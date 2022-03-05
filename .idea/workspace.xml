@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d579d5cc-943d-45e6-9867-106e32f5e77e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/BUDGETING_WEBSITE.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BUDGETING_WEBSITE.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSS/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSS/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SASS/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SASS/style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +61,7 @@
       <option name="presentableId" value="Default" />
       <updated>1646409623575</updated>
       <workItem from="1646409630230" duration="3727000" />
-      <workItem from="1646487957010" duration="7937000" />
+      <workItem from="1646487957010" duration="8623000" />
     </task>
     <servers />
   </component>
