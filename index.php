@@ -57,15 +57,15 @@
     <div class="container">
         <div class="d-sm-flex align-items-center justify-content-between">
             <div>
-                <h1>Become a <span class="text-warning"> Web Developer</span></h1>
+                <h1>Save your hard earned <span class="text-warning"> money </span></h1>
                 <p class="lead my-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur culpa
                     cum delectus deleniti dicta eaque earum, incidunt neque nesciunt numquam optio quae quidem quod
                     sapiente, similique ullam,
                     veritatis vero voluptatem?
                 </p>
-                <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#enroll">Start The Enrollment</button>
+                <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#enroll">Sign up</button>
             </div>
-            <img class="img-fluid w-50 d-none d-sm-block" src="img/placeholder.jpg" alt="placeholder">
+            <img class="img-fluid w-50 d-none d-sm-block" src="img/money1.jpg" alt="money1">
         </div>
     </div>
 
@@ -104,7 +104,7 @@
                 <div class="card bg-dark text-light">
                     <div class="card-body text-center">
                         <div class="h1 mb-3">
-                        <i class="bi bi-laptop"></i>
+                        <i class="bi bi-cash-stack"></i>
                         </div>
                         <h3 class="card-title mb-3">
                             Virtual
@@ -120,9 +120,9 @@
                 <div class="card bg-secondary text-light">
                     <div class="card-body text-center">
                         <div class="h1 mb-3">
-                            <i class="bi bi-person-square"></i>
+                            <i class="bi bi-laptop"></i>
                         </div>
-                        <h3 class="card-title mb-3">Hybrid</h3>
+                        <h3 class="card-title mb-3">Save money online</h3>
                         <p class="card-text">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, veniam?Lorem ipsum dolor sit amet.
                         </p>
@@ -136,7 +136,7 @@
                         <div class="h1 mb-3">
                             <i class="bi bi-people"></i>
                         </div>
-                        <h3 class="card-title mb-3">In Person</h3>
+                        <h3 class="card-title mb-3">Keep track of your spendings</h3>
                         <p class="card-text">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, veniam?Lorem ipsum dolor sit amet.
                         </p>
@@ -153,10 +153,10 @@
     <div class="container">
         <div class="row align-item-center justify-content-between">
             <div class="col-md">
-                <img src="img/placeholder.jpg" class="img-fluid" alt="">
+                <img src="img/track.jpg" class="img-fluid" alt="track">
             </div>
             <div class="col-md p-5">
-                <h2>Learn the fundamentals</h2>
+                <h2>Easy to track </h2>
                 <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut autem cum doloremque hic iusto maxime nihil obcaecati ratione, sint voluptate!</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto consequuntur, distinctio ea est ex, incidunt
                     ipsa labore laborum laudantium maiores nobis odit perspiciatis qui ratione reiciendis velit vitae voluptate voluptatibus.</p>
@@ -170,14 +170,14 @@
     <div class="container">
         <div class="row align-item-center justify-content-between">
             <div class="col-md p-5">
-                <h2>Learn React</h2>
+                <h2>Focus your budget on a single goal</h2>
                 <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut autem cum doloremque hic iusto maxime nihil obcaecati ratione, sint voluptate!</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto consequuntur, distinctio ea est ex, incidunt
                     ipsa labore laborum laudantium maiores nobis odit perspiciatis qui ratione reiciendis velit vitae voluptate voluptatibus.</p>
                 <a href="#" class="btn btn-light mt-3"> <i class="bi bi-chevron-right"></i> Read more</a>
             </div>
             <div class="col-md">
-                <img src="img/placeholder.jpg" class="img-fluid" alt="placeholder">
+                <img src="img/goal.jpg" class="img-fluid" alt="goal">
             </div>
         </div>
     </div>
@@ -207,7 +207,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-2">
-                        How much does it cost to attend?
+                        Is there a subscription fee?
                     </button>
                 </h2>
                 <div id="question-2" class="accordion-collapse collapse" data-bs-parent="#questions">
@@ -249,7 +249,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-5">
-                        Do you help me find a job?
+                        Can I track my progress?
                     </button>
                 </h2>
                 <div id="question-5" class="accordion-collapse collapse" data-bs-parent="#questions">
@@ -267,7 +267,7 @@ s
 <!--Instructors/Review start-->
 <section id="instructors" class="p-5 bg-primary">
     <div class="container">
-        <h2 class="text-center text-white">Our instructors</h2>
+        <h2 class="text-center text-white">Reviews</h2>
         <p class="lead text-center text-white mb-5">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto cum dolores id magni maxime quia recusandae sapiente suscipit vel!
         </p>
