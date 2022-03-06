@@ -30,7 +30,7 @@ include_once "faq-accordion.php";
 include_once "review.php";
 include_once "contac_map.php";
 include_once "footer.php";
-include_once "modal_form.php";
+include_once "REGISTRATION_STUFF/modal_form.php";
 ?>
 <!--BODY END-->
 <!--Javascript links -->
