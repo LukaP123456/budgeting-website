@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d579d5cc-943d-45e6-9867-106e32f5e77e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LOGIN_STUFF/login.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/boxes.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/contac_map.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/faq-accordion.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/footer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/learn.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modal_form.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/newsletter.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/review.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/showcase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-    </list>
+    <list default="true" id="d579d5cc-943d-45e6-9867-106e32f5e77e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,7 +59,7 @@
       <updated>1646409623575</updated>
       <workItem from="1646409630230" duration="3727000" />
       <workItem from="1646487957010" duration="10225000" />
-      <workItem from="1646574000785" duration="2899000" />
+      <workItem from="1646574000785" duration="3259000" />
     </task>
     <servers />
   </component>
