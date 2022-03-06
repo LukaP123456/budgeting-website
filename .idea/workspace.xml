@@ -2,77 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d579d5cc-943d-45e6-9867-106e32f5e77e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/COMMITMENT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/SECURITY.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/VERSION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/get_oauth_token.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-af.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ar.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-az.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ba.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-be.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-bg.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ca.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ch.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-cs.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-da.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-de.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-el.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-eo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-es.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-et.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-fa.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-fi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-fo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-fr.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-gl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-he.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-hi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-hr.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-hu.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-hy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-id.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-it.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ja.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ka.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ko.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-lt.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-lv.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-mg.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ms.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-nb.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-nl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-pl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-pt.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-pt_br.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ro.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ru.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-sk.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-sl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-sr.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-sr_latn.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-sv.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-tl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-tr.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-uk.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-vi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-zh.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-zh_cn.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/src/Exception.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/src/OAuth.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/src/OAuthTokenProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/src/PHPMailer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/src/POP3.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer-master/src/SMTP.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/classes/dbh.classes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/classes/login-contr.classes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/classes/login.classes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/classes/signup-contr.classes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/classes/signup.classes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/includes/class-autoload.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/includes/login.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/includes/logout.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/includes/signup.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login-sistem/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login-sistem/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login-sistem/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login-sistem/.idea/login-sistem.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login-sistem/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login-sistem/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login-sistem/classes/dbh.classes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login-sistem/classes/login-contr.classes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login-sistem/classes/login.classes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login-sistem/classes/signup-contr.classes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login-sistem/classes/signup.classes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login-sistem/includes/class-autoload.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login-sistem/includes/login.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login-sistem/includes/logout.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login-sistem/includes/signup.inc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login-sistem/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b2a41b6d-f841-41df-9092-ef343b4bf659.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b2a41b6d-f841-41df-9092-ef343b4bf659.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REGISTRATION_STUFF/login.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/REGISTRATION_STUFF/profile.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/REGISTRATION_STUFF/signup.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/REGISTRATION_STUFF/modal_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/REGISTRATION_STUFF/modal_form.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modal_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/REGISTRATION_STUFF/modal_form.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +94,8 @@
       <updated>1646409623575</updated>
       <workItem from="1646409630230" duration="3727000" />
       <workItem from="1646487957010" duration="10225000" />
-      <workItem from="1646574000785" duration="7194000" />
+      <workItem from="1646574000785" duration="7916000" />
+      <workItem from="1646586638414" duration="2609000" />
     </task>
     <servers />
   </component>

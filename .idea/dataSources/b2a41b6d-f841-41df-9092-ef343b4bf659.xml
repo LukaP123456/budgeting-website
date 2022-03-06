@@ -1187,25 +1187,25 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <Host>localhost</Host>
     </user>
     <table id="339" parent="3" name="accounts"/>
-    <column id="340" parent="339" name="id">
+    <column id="340" parent="339" name="users_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="341" parent="339" name="username">
+    <column id="341" parent="339" name="users_uid">
       <Position>2</Position>
-      <DataType>varchar(45)|0s</DataType>
+      <DataType>tinytext|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="342" parent="339" name="password">
+    <column id="342" parent="339" name="users_pwd">
       <Position>3</Position>
-      <DataType>varchar(45)|0s</DataType>
+      <DataType>longtext|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="343" parent="339" name="email">
+    <column id="343" parent="339" name="users_email">
       <Position>4</Position>
-      <DataType>varchar(45)|0s</DataType>
+      <DataType>tinytext|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="344" parent="339" name="vkey">
@@ -1230,9 +1230,14 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="348" parent="339" name="PRIMARY">
+    <column id="348" parent="339" name="role">
+      <Position>9</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="349" parent="339" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
+      <ColNames>users_id</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>

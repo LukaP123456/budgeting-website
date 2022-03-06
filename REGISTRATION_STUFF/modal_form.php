@@ -28,14 +28,14 @@
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password" >
                     </div>
                     <div class="mb-3">
-                        <label for="R_password" class="col-form-label">Repeat password:</label>
-                        <input type="password" class="form-control" id="R_password" name="R_password" placeholder="Retype Password" >
+                        <label for="pwdRepeat" class="col-form-label">Repeat password:</label>
+                        <input type="password" class="form-control" id="pwdRepeat" name="pwdRepeat" placeholder="Retype Password" >
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="register_btn" >Register now</button>
+                <button type="button" class="btn btn-primary" name="submit" >Register now</button>
             </div>
         </div>
     </div>
