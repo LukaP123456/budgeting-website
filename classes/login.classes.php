@@ -1,10 +1,11 @@
-<?php
+<?php /** @noinspection ALL */
+
 class Login extends Dbh{
 
-    protected function getUser($uid,$pwd){
-        $stmt = $this->connect()->prepare("SELECT users_pwd from users where users_uid = ? OR users_email = ?;");
+    protected function getUser($username, $pwd){
+        $stmt = $this->connect()->prepare("SELECT users_pwd from accounts where users_uid = ? OR users_email = ?;");
 
-        if(!$stmt->execute(array($uid,$pwd))){
+        if(!$stmt->execute(array($username,$pwd))){
             $stmt = null;
             header("location: ../index.php?error=stmtfailed");
             exit();
@@ -26,9 +27,9 @@ class Login extends Dbh{
             exit();
         }
         elseif ($checkPwd == true){
-            $stmt = $this->connect()->prepare("SELECT * from users where users_uid = ? OR users_email = ? AND users_pwd = ?;");
+            $stmt = $this->connect()->prepare("SELECT * from accounts where users_uid = ? OR users_email = ? AND users_pwd = ?;");
 
-            if(!$stmt->execute(array($uid,$uid,$pwd))){
+            if(!$stmt->execute(array($username,$username,$pwd))){
                 $stmt = null;
                 header("location: ../index.php?error=stmtfailed");
                 exit();
@@ -44,7 +45,7 @@ class Login extends Dbh{
 
             session_start();
             $_SESSION["userid"]=$user[0]["users_id"];
-            $_SESSION["useruid"]=$user[0]["users_id"];
+            $_SESSION["useruid"]=$user[0]["users_uid"];
             $stmt=null;
 
 

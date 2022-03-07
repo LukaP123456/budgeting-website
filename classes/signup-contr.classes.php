@@ -45,7 +45,7 @@ class SignupContr extends Signup{
             header("location:../index.php?error=useroremailtaken");
             exit();
         }
-
+        //Part that will sign up the user to the website
         $this->setUser($this->username,$this->pwd,$this->email);
 
     }

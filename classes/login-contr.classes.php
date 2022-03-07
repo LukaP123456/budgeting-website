@@ -2,13 +2,13 @@
 
 class LoginContr extends Login {
 
-    private $uid;
+    private $username;
     private $pwd;
 
 
-    public function __construct($uid,$pwd){
+    public function __construct($username,$pwd){
 
-        $this->uid = $uid;
+        $this->username = $username;
         $this->pwd = $pwd;
 
 
@@ -21,14 +21,14 @@ class LoginContr extends Login {
         }
 
 
-        $this->getUser($this->uid,$this->pwd);
+        $this->getUser($this->username,$this->pwd);
 
     }
 
 
     private function emptyInput(){
         $result = null;
-        if (empty($this->uid) || empty($this->pwd)){
+        if (empty($this->username) || empty($this->pwd)){
             $result = false;
         }
         else{

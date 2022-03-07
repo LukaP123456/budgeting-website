@@ -4,16 +4,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="enrollLabel">Modal title</h5>
+                <h5 class="modal-title" id="enrollLabel">User signup</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
             <div class="modal-body">
                 <p class="lead">Fill out this form we will get back to you</p>
                 <!-- Form -->
-                <form method="POST" action="../REGISTRATION_STUFF/code.php">
+                <form id="forma" method="POST" action="signup.inc.php">
                     <div class="mb-3">
                         <label for="full-name" class="col-form-label">Full name:</label>
-                        <input type="text" class="form-control" id="full-name" placeholder="Full name" >
+                        <input type="text" class="form-control" id="full-name" name="" placeholder="Full name" >
                     </div>
                     <div class="mb-3">
                         <label for="email" class="col-form-label">Email:</label>
@@ -31,13 +32,25 @@
                         <label for="pwdRepeat" class="col-form-label">Repeat password:</label>
                         <input type="password" class="form-control" id="pwdRepeat" name="pwdRepeat" placeholder="Retype Password" >
                     </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button onclick="form_submit()" type="button" class="btn btn-primary" name="registruj" >Register now</button>
+                    </div>
                 </form>
+
+
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="submit" >Register now</button>
-            </div>
+
+
+
+
+
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function form_submit() {
+        document.getElementById("forma").submit();
+    }</script>
 <!--Modal end-->

@@ -5,7 +5,7 @@ class Signup extends Dbh{
         $stmt = $this->connect()->prepare("INSERT INTO accounts(users_uid,users_pwd,users_email) values (?,?,?)");
 
         $hashedPwd = password_hash($pwd,PASSWORD_DEFAULT);
-
+        //The result of the execute function is true or false based on the succes of the execution
         if(!$stmt->execute(array($username,$hashedPwd,$email))){
             $stmt = null;
             header("location: ../index.php?error=stmtfailed");

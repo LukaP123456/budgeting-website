@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST['submit']))
+if (isset($_POST['registruj']))
 {
     //Grab data from the form
     $username = $_POST["username"];
