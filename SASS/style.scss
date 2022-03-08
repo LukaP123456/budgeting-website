@@ -10,6 +10,7 @@ body::before{
   border-radius: 10px;
 }
 /*vw-view with stops the scroll bar from changing size */
+/*SCROLLBAR*/
 html::-webkit-scrollbar{
   width: 1vw;
 }

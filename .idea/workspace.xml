@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d579d5cc-943d-45e6-9867-106e32f5e77e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/includes/modal_form.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/stuff.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REGISTRATION_STUFF/modal_form.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/login-contr.classes.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/login-contr.classes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/login.classes.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/login.classes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/signup-contr.classes.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/signup-contr.classes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/signup.classes.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/signup.classes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/signup.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/signup.inc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SASS/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SASS/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/modal_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/modal_form.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +72,7 @@
       <workItem from="1646574000785" duration="7916000" />
       <workItem from="1646586638414" duration="3265000" />
       <workItem from="1646672441194" duration="7757000" />
+      <workItem from="1646746939587" duration="1084000" />
     </task>
     <servers />
   </component>

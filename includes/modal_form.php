@@ -11,7 +11,7 @@
             <div class="modal-body">
                 <p class="lead">Fill out this form we will get back to you</p>
                 <!-- Form -->
-                <form id="forma" method="POST" action="./includes/signup.inc.php">
+                <form method="POST" action="./includes/signup.inc.php">
                     <div class="mb-3">
                         <label for="full-name" class="col-form-label">Full name:</label>
                         <input type="text" class="form-control" id="full-name" name="" placeholder="Full name" >
@@ -38,19 +38,7 @@
                         <button type="submit" class="btn btn-primary" name="registruj" >Register now</button>
                     </div>
                 </form>
-
-
             </div>
-
-
-
-
-
         </div>
     </div>
 </div>
-<!--<script type="text/javascript">-->
-<!--    function form_submit() {-->
-<!--        document.getElementById("forma").submit();-->
-<!--    }</script>-->
-<!--Modal end-->
