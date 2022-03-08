@@ -2,7 +2,7 @@
 <!--navbar start-->
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
     <div class="container">
-        <a href="#" class="navbar-brand">LP<span class="text-warning">Budgeting</span></a>
+        <a href="index.php" class="navbar-brand">LP<span class="text-warning">Budgeting</span></a>
 
         <button class="navbar-toggler"
                 type="button"
@@ -21,7 +21,30 @@
                     <a href="#questions" class="nav-link">Questions</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#instructors" class="nav-link">Instructors</a>
+                    <a href="#instructors" class="nav-link">Reviews</a>
+                </li>
+                <li>
+                    <?php
+                    if (isset($_SESSION["userid"])){
+                        ?>
+                        <li class='nav-item'>
+                            <a href='#' class='nav-link'><?php echo $_SESSION["useruid"]?></a>
+                        </li><li class='nav-item'>
+                        <li class='nav-item'>
+                            <a href='includes/logout.inc.php' class='nav-link'>Logout</a>
+                        </li><li class='nav-item'>
+                    <?php
+                    }else{
+                        ?>
+                        <li class='nav-item'>
+                            <a href='REGISTRATION_STUFF/modal_form.php' class='nav-link'>Signup</a>
+                        </li><li class='nav-item'>
+                        <li class='nav-item'>
+                            <a href='includes/login.inc.php' class='nav-link'>Login</a>
+                        </li><li class='nav-item'>
+                    <?php
+                    }
+                    ?>
                 </li>
             </ul>
         </div>

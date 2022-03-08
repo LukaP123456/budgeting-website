@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d579d5cc-943d-45e6-9867-106e32f5e77e" name="Changes" comment="" />
+    <list default="true" id="d579d5cc-943d-45e6-9867-106e32f5e77e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/includes/modal_form.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/stuff.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REGISTRATION_STUFF/modal_form.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/login-contr.classes.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/login-contr.classes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/login.classes.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/login.classes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/signup-contr.classes.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/signup-contr.classes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/signup.classes.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/signup.classes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/signup.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/signup.inc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,14 +52,19 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/PROGRAMMING/HTML-Internet tehnologije/Scout-App/Scout-App.exe" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\BUDGETING_WEBSITE\REGISTRATION_STUFF" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -59,7 +76,9 @@
       <updated>1646409623575</updated>
       <workItem from="1646409630230" duration="3727000" />
       <workItem from="1646487957010" duration="10225000" />
-      <workItem from="1646574000785" duration="3259000" />
+      <workItem from="1646574000785" duration="7916000" />
+      <workItem from="1646586638414" duration="3265000" />
+      <workItem from="1646672441194" duration="7757000" />
     </task>
     <servers />
   </component>

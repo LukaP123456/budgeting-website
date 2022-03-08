@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,6 +23,7 @@
 <!--BODY START-->
 <?php
 include_once "header.php";
+include_once "includes/modal_form.php";
 include_once "showcase.php";
 include_once "newsletter.php";
 include_once "boxes.php";
@@ -30,7 +32,6 @@ include_once "faq-accordion.php";
 include_once "review.php";
 include_once "contac_map.php";
 include_once "footer.php";
-include_once "modal_form.php";
 ?>
 <!--BODY END-->
 <!--Javascript links -->
