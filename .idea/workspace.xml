@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d579d5cc-943d-45e6-9867-106e32f5e77e" name="Changes" comment="" />
+    <list default="true" id="d579d5cc-943d-45e6-9867-106e32f5e77e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/login-page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b2a41b6d-f841-41df-9092-ef343b4bf659.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b2a41b6d-f841-41df-9092-ef343b4bf659.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contac_map.php" beforeDir="false" afterPath="$PROJECT_DIR$/contact_map.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-sistem/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-sistem/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-sistem/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-sistem/.idea/login-sistem.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-sistem/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-sistem/.idea/sqldialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-sistem/classes/dbh.classes.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-sistem/classes/login-contr.classes.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-sistem/classes/login.classes.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-sistem/classes/signup-contr.classes.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-sistem/classes/signup.classes.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-sistem/includes/class-autoload.inc.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-sistem/includes/login.inc.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-sistem/includes/logout.inc.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-sistem/includes/signup.inc.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-sistem/index.php" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,6 +91,7 @@
       <workItem from="1646586638414" duration="3265000" />
       <workItem from="1646672441194" duration="7757000" />
       <workItem from="1646746939587" duration="1141000" />
+      <workItem from="1646757833724" duration="2735000" />
     </task>
     <servers />
   </component>

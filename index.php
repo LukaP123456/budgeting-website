@@ -30,7 +30,7 @@ include_once "boxes.php";
 include_once "learn.php";
 include_once "faq-accordion.php";
 include_once "review.php";
-include_once "contac_map.php";
+include_once "contact_map.php";
 include_once "footer.php";
 ?>
 <!--BODY END-->
