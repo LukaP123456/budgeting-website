@@ -37,9 +37,6 @@
                     }else{
                         ?>
                         <li class='nav-item'>
-                            <a href='REGISTRATION_STUFF/modal_form.php' class='nav-link'>Signup</a>
-                        </li><li class='nav-item'>
-                        <li class='nav-item'>
                             <a href='login-page.php' class='nav-link'>Login</a>
                         </li><li class='nav-item'>
                     <?php

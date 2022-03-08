@@ -48,6 +48,14 @@ include_once "footer.php";
         center: [-71.060982,42.35725],
         zoom:18,
     });
+
+    $(document).ready(function() {
+
+        if(window.location.href.indexOf('#enroll') != -1) {
+            $('#enroll').modal('show');
+        }
+
+    });
 </script>
 </body>
 </html>
