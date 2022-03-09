@@ -14,7 +14,7 @@
                 <form method="POST" action="./includes/signup.inc.php">
                     <div class="mb-3">
                         <label for="full-name" class="col-form-label">Full name:</label>
-                        <input type="text" class="form-control" id="full-name" name="" placeholder="Full name" >
+                        <input type="text" class="form-control" id="full-name" name="full-name" placeholder="Full name" >
                     </div>
                     <div class="mb-3">
                         <label for="email" class="col-form-label">Email:</label>

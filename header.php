@@ -37,10 +37,7 @@
                     }else{
                         ?>
                         <li class='nav-item'>
-                            <a href='REGISTRATION_STUFF/modal_form.php' class='nav-link'>Signup</a>
-                        </li><li class='nav-item'>
-                        <li class='nav-item'>
-                            <a href='includes/login.inc.php' class='nav-link'>Login</a>
+                            <a href='includes/login.inc.php' class='nav-link' data-bs-toggle="modal" data-bs-target="#login_modal">Login</a>
                         </li><li class='nav-item'>
                     <?php
                     }
