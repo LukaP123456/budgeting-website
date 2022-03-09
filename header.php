@@ -37,7 +37,11 @@
                     }else{
                         ?>
                         <li class='nav-item'>
+<<<<<<< HEAD
                             <a href='includes/login.inc.php' class='nav-link' data-bs-toggle="modal" data-bs-target="#login_modal">Login</a>
+=======
+                            <a href='login-page.php' class='nav-link'>Login</a>
+>>>>>>> 7d61196c346a8d53bf9220ccac59fac13114d4a2
                         </li><li class='nav-item'>
                     <?php
                     }
@@ -45,7 +49,7 @@
                 </li>
             </ul>
         </div>
-    </div>asdasdasdas
+    </div>
 </nav>
 <!--navbar end-->
 <!--HEADER END-->

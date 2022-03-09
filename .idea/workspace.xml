@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d579d5cc-943d-45e6-9867-106e32f5e77e" name="Changes" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/includes/login-modal.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/login.classes.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/login.classes.php" afterDir="false" />
@@ -28,6 +29,10 @@
       <change beforePath="$PROJECT_DIR$/login-sistem/includes/logout.inc.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/login-sistem/includes/signup.inc.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/login-sistem/index.php" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+>>>>>>> 7d61196c346a8d53bf9220ccac59fac13114d4a2
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,8 +99,14 @@
       <workItem from="1646574000785" duration="7916000" />
       <workItem from="1646586638414" duration="3265000" />
       <workItem from="1646672441194" duration="7757000" />
+<<<<<<< HEAD
       <workItem from="1646746939587" duration="1304000" />
       <workItem from="1646826589611" duration="2217000" />
+=======
+      <workItem from="1646746939587" duration="1141000" />
+      <workItem from="1646757833724" duration="2774000" />
+      <workItem from="1646773820723" duration="227000" />
+>>>>>>> 7d61196c346a8d53bf9220ccac59fac13114d4a2
     </task>
     <servers />
   </component>

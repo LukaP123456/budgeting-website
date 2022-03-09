@@ -29,7 +29,7 @@ include_once "boxes.php";
 include_once "learn.php";
 include_once "faq-accordion.php";
 include_once "review.php";
-include_once "contac_map.php";
+include_once "contact_map.php";
 include_once "footer.php";
 include_once "includes/modal_form.php";
 include_once "includes/login-modal.php"
@@ -48,6 +48,14 @@ include_once "includes/login-modal.php"
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [-71.060982,42.35725],
         zoom:18,
+    });
+
+    $(document).ready(function() {
+
+        if(window.location.href.indexOf('#enroll') != -1) {
+            $('#enroll').modal('show');
+        }
+
     });
 </script>
 </body>
