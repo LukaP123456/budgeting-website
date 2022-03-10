@@ -48,7 +48,6 @@
                 </li>
                 <li>
                     <?php
-                    //If a user logs in a sessions type userid is set and because of that the users id is written out and login link is changed yo logout
                     if (isset($_SESSION["userid"])){
                     ?>
                 <li class='nav-item'>
@@ -61,7 +60,10 @@
                     }else{
                     ?>
                 <li class='nav-item'>
-                    <a href='./includes/login-modal.php' class='nav-link'>Signup</a>
+                    <a href='REGISTRATION_STUFF/modal_form.php' class='nav-link'>Signup</a>
+                </li><li class='nav-item'>
+                <li class='nav-item'>
+                    <a href='login-page.php' class='nav-link'>Login</a>
                 </li><li class='nav-item'>
                     <?php
                     }
