@@ -6,13 +6,14 @@ if (isset($_POST['registruj']))
     $pwd = $_POST["password"];
     $pwdRepeat = $_POST["pwdRepeat"];
     $email = $_POST["email"];
+    $full_name = $_POST["full-name"];
 
     //Instanciranje klase SignupContr
     include "../classes/dbh.classes.php";
     include "../classes/signup.classes.php";
     include "../classes/signup-contr.classes.php";
 
-    $signup = new SignupContr($username,$pwd,$pwdRepeat,$email);
+    $signup = new SignupContr($username,$pwd,$pwdRepeat,$email,$full_name);
 
     //Running error handlers and using signup
 

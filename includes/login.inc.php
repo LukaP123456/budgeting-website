@@ -3,8 +3,8 @@
 if (isset($_POST['submit']))
 {
     //Uzimamo podatke
-    $uid = $_POST["uid"];
-    $pwd = $_POST["pwd"];
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
 
     //Instanciranje klase SignupContr
@@ -12,7 +12,7 @@ if (isset($_POST['submit']))
     include "../classes/login.classes.php";
     include "../classes/login-contr.classes.php";
 
-    $signup = new LoginContr($uid,$pwd);
+    $signup = new LoginContr($username,$password);
 
     //Running error handlers and using signup
 
