@@ -9,7 +9,7 @@
             </div>
 
             <div class="modal-body">
-                <p class="lead">Fill out this form we will get back to you</p>
+                <p class="lead">Fill out this form to make an account</p>
                 <!-- Form -->
                 <form method="POST" action="./includes/signup.inc.php">
                     <div class="mb-3">

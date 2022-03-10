@@ -8,6 +8,9 @@ if (isset($_POST['registruj']))
     $email = $_POST["email"];
     $full_name = $_POST["full-name"];
 
+    //Check if the email exists
+    $check_email_query="SELECT * FROM accounts where users_email = '$email' LIMIT 1";
+
     //Instanciranje klase SignupContr
     include "../classes/dbh.classes.php";
     include "../classes/signup.classes.php";

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class SignupContr extends Signup{
 
     private $username;
@@ -17,7 +17,9 @@ class SignupContr extends Signup{
         $this->full_name = $full_name;
 
     }
+    //Error handlers
     public function signupUser(){
+
 
         if ($this->emptyInput() == false){
             header("location:../index.php?error=emptyinput");
@@ -96,6 +98,7 @@ class SignupContr extends Signup{
         return $result;
     }
 
+    
 
     private function invalidEmail(){
         $result = false;
