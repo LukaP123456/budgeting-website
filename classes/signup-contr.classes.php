@@ -20,6 +20,9 @@ class SignupContr extends Signup{
     //Error handlers
     public function signupUser(){
 
+        if ($this->email_exist($this->email)){
+
+        }
 
         if ($this->emptyInput() == false){
             header("location:../index.php?error=emptyinput");
@@ -98,7 +101,17 @@ class SignupContr extends Signup{
         return $result;
     }
 
-    
+    private function email_exist($email){
+        $email = $this->email;
+        $check_email_query = "SELECT users_email from accounts WHERE users_email = '$email'";
+        $check_email_query_run = $this->connect()->prepare($check_email_query);
+        if (!$check_email_query_run->execute(array($email))){
+            $_SESSION['status'] = "Email id already exists";
+            header("Location: ./index.php");
+            return true;
+        }
+
+    }
 
     private function invalidEmail(){
         $result = false;

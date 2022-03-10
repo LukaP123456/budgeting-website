@@ -2,7 +2,6 @@
 if (isset($_POST['registruj']))
 {
     //Grab data from the form
-    $username = $_POST["username"];
     $pwd = $_POST["password"];
     $pwdRepeat = $_POST["pwdRepeat"];
     $email = $_POST["email"];
@@ -16,7 +15,7 @@ if (isset($_POST['registruj']))
     include "../classes/signup.classes.php";
     include "../classes/signup-contr.classes.php";
 
-    $signup = new SignupContr($username,$pwd,$pwdRepeat,$email,$full_name);
+    $signup = new SignupContr($pwd,$pwdRepeat,$email,$full_name);
 
     //Running error handlers and using signup
 
