@@ -2,10 +2,10 @@
 
 class Login extends Dbh{
 
-    protected function getUser($username, $pwd){
-        $stmt = $this->connect()->prepare("SELECT users_pwd from accounts where users_uid = ? OR users_email = ?;");
+    protected function getUser($email, $pwd){
+        $stmt = $this->connect()->prepare("SELECT users_pwd from accounts where full_name = ? OR users_email = ?;");
 
-        if(!$stmt->execute(array($username,$pwd))){
+        if(!$stmt->execute(array($email,$pwd))){
             $stmt = null;
             header("location: ../index.php?error=stmtfailed");
             exit();
@@ -27,9 +27,9 @@ class Login extends Dbh{
             exit();
         }
         elseif ($checkPwd == true){
-            $stmt = $this->connect()->prepare("SELECT * from accounts where users_uid = ? OR users_email = ? AND users_pwd = ?;");
+            $stmt = $this->connect()->prepare("SELECT * from accounts where full_name = ? OR users_email = ? AND users_pwd = ?;");
 
-            if(!$stmt->execute(array($username,$username,$pwd))){
+            if(!$stmt->execute(array($email,$email,$pwd))){
                 $stmt = null;
                 header("location: ../index.php?error=stmtfailed");
                 exit();

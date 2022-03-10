@@ -1,12 +1,12 @@
 <?php
 class Signup extends Dbh{
 
-    protected function setUser($username, $pwd, $email,$full_name){
-        $stmt = $this->connect()->prepare("INSERT INTO accounts(users_uid,users_pwd,users_email,full_name) values (?,?,?,?)");
+    protected function setUser( $pwd, $email,$full_name){
+        $stmt = $this->connect()->prepare("INSERT INTO accounts(users_pwd,users_email,full_name) values (?,?,?)");
 
         $hashedPwd = password_hash($pwd,PASSWORD_DEFAULT);
         //The result of the execute function is true or false based on the succes of the execution
-        if(!$stmt->execute(array($username,$hashedPwd,$email,$full_name))){
+        if(!$stmt->execute(array($hashedPwd,$email,$full_name))){
             $stmt = null;
             header("location: ../index.php?error=stmtfailed");
             exit();
@@ -16,11 +16,12 @@ class Signup extends Dbh{
 
     }
 
-    protected function checkUser($username, $email){
-        $stmt = $this->connect()->prepare("SELECT users_uid FROM accounts where users_uid = ? OR users_email	= ?");
+    protected function checkUser($full_name, $email){
+        $stmt = $this->connect()->prepare("SELECT full_name FROM accounts where full_name = ? OR users_email	= ?");
         //Provera da je kveri izvrsen execute vraca true kad uspe false kad ne uspe ako ne uspe ! ce obrniti i izvrsice se error handler
         //telo if-a ce se pokrenuti samo ako nesto ne uspe sa kverijem
-        if(!$stmt->execute(array($username,$email))){
+        //!$stmt->execute(array($full_name,$email) returns true if user doesn't exist in DB
+        if(!$stmt->execute(array($full_name,$email))){
             $stmt = null;
             header("location: ../index.php?error=stmtfailed");
             exit();

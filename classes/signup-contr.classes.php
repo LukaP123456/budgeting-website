@@ -2,36 +2,27 @@
 
 class SignupContr extends Signup{
 
-    private $username;
+    private $full_name;
     private $pwd;
     private $pwdRepeat;
     private $email;
-    private $full_name;
 
-    public function __construct($username,$pwd,$pwdRepeat,$email,$full_name){
-
-        $this->username = $username;
+    public function __construct($full_name,$pwd,$pwdRepeat,$email){
+        $this->full_name = $full_name;
         $this->pwd = $pwd;
         $this->pwdRepeat = $pwdRepeat;
         $this->email = $email;
-        $this->full_name = $full_name;
 
     }
     public function signupUser(){
 
         if ($this->emptyInput() == false){
-            header("location:../index.php?error=emptyinput");
-            exit();
-        }
-
-        if ($this->invalid_username() == false){
-            //Invalid username
-            header("location:../index.php?error=username");
+            header("location:../index.php?error=empty_input");
             exit();
         }
 
         if ($this->invalid_fullname() == false){
-            //Invalid username
+            //Invalid full name
             header("location:../index.php?error=full_name");
             exit();
         }
@@ -44,18 +35,19 @@ class SignupContr extends Signup{
 
         if ($this->pwdMatch() == false){
             //passwords do not match
-            header("location:../index.php?error=passwordmatch");
+            header("location:../index.php?error=password_match");
+            exit();
+        }
+
+        if ($this->email_TakenCheck() == false){
+            //passwords do not match
+            header("location:../index.php?error=email_taken");
             exit();
         }
 
 
-        if ($this->username_TakenCheck() == false){
-            //username or email taken
-            header("location:../index.php?error=useroremailtaken");
-            exit();
-        }
         //Part that will sign up the user to the website
-        $this->setUser($this->username,$this->pwd,$this->email,$this->full_name);
+        $this->setUser($this->pwd,$this->email,$this->full_name);
 
     }
 
@@ -64,7 +56,7 @@ class SignupContr extends Signup{
 
     private function emptyInput(){
         $result = null;
-        if (empty($this->username) || empty($this->pwd) || empty($this->pwdRepeat) || empty($this->email) || empty($this->full_name)){
+        if ( empty($this->pwd) || empty($this->pwdRepeat) || empty($this->email) || empty($this->full_name)){
             $result = false;
         }
         else{
@@ -75,27 +67,16 @@ class SignupContr extends Signup{
 
     private function invalid_fullname(){
         $result = false;
-        if (!preg_match("/^[a-zA-Z]*$/",$this->full_name)){
+        if (!preg_match("/^[a-zA-Z0-9]*$/",$this->full_name))
+        {
             $result = false;
         }
-        else{
+        else
+        {
             $result = true;
         }
         return $result;
     }
-
-
-    private function invalid_username(){
-        $result = false;
-        if (!preg_match("/^[a-zA-Z0-9]*$/",$this->username)){
-            $result = false;
-        }
-        else{
-            $result = true;
-        }
-        return $result;
-    }
-
 
     private function invalidEmail(){
         $result = false;
@@ -119,9 +100,9 @@ class SignupContr extends Signup{
         return $result;
     }
 
-    private function username_TakenCheck(){
+    private function email_TakenCheck(){
         $result = false;
-        if (!$this->checkUser($this->username,$this->email)){
+        if (!$this->checkUser($this->full_name,$this->email)){
             $result = false;
         }
         else{
