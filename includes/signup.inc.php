@@ -1,4 +1,11 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
+require 'vendor/autoload.php';
+
 if (isset($_POST['registruj']))
 {
     //Grab data from the form
@@ -9,19 +16,58 @@ if (isset($_POST['registruj']))
     //will maybe be changed
     $verify_token = bin2hex(openssl_random_pseudo_bytes(16));
 
-    //Instantiate SignupContr class
-    include "../classes/dbh.classes.php";
-    include "../classes/signup.classes.php";
-    include "../classes/signup-contr.classes.php";
+    //EMAIL TEST
 
-    $signup = new SignupContr($full_name,$pwd,$pwdRepeat,$email,$verify_token);
+    function sendemail_verify($full_name,$email,$verify_token)
+    {
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();                                                        //Send using SMTP
+    $mail->Host       = 'smtp.gmail.com';                                   //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                               //Enable SMTP authentication
+    $mail->Username   = 'bobomejl123@gmail.com';                            //SMTP username
+    $mail->Password   = 'testsifrazamejl';                                  //SMTP password
 
-    //Runs error handlers and inserts the user into the database
-    $signup->signupUser();
+    $mail->SMTPSecure = "tls";                                              //Enable implicit TLS encryption
+    $mail->Port       = 587;                                                //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-    //Povratak na glavnu stranu
+    //Recipients
+    $mail->setFrom('bobomejl123@gmail.com', "Luka Prcic");
+    $mail->addAddress($email, $full_name);                                  //Add a recipient
 
-    header("location../index.php?error=none");
+    //Content
+    $mail->isHTML(true);                                                //Set email format to HTML
+    $mail->Subject = 'Email verification from LP Budgeting';
+
+    $email_template = "
+            <h2>You have registered with LP Budgeting</h2>
+            <h5>Verify your email address to Login with the below given link</h5>
+            <br><br>
+            <a href='http://localhost/BUDGETING_WEBSITE/includes/verify_email.php?token=$verify_token'>Click me to verify</a>
+        ";
+    $mail->Body    = $email_template;
+
+    $mail->send();
+    echo 'Message has been sent';
+
+}
+
+
+
+
+
+//    //Instantiate SignupContr class
+//    include "../classes/dbh.classes.php";
+//    include "../classes/signup.classes.php";
+//    include "../classes/signup-contr.classes.php";
+//
+//    $signup = new SignupContr($full_name,$pwd,$pwdRepeat,$email,$verify_token);
+//
+//    //Runs error handlers and inserts the user into the database
+//    $signup->signupUser();
+//
+//    //Povratak na glavnu stranu
+//
+//    header("location../index.php?error=none");
 
 
 }
