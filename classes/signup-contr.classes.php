@@ -6,12 +6,14 @@ class SignupContr extends Signup{
     private $pwd;
     private $pwdRepeat;
     private $email;
+    private $verify_token;
 
-    public function __construct($full_name,$pwd,$pwdRepeat,$email){
+    public function __construct($full_name,$pwd,$pwdRepeat,$email,$verify_token){
         $this->full_name = $full_name;
         $this->pwd = $pwd;
         $this->pwdRepeat = $pwdRepeat;
         $this->email = $email;
+        $this->verify_token = $verify_token;
 
     }
     public function signupUser(){
@@ -47,7 +49,7 @@ class SignupContr extends Signup{
 
 
         //Part that will sign up the user to the website
-        $this->setUser($this->pwd,$this->email,$this->full_name);
+        $this->setUser($this->pwd,$this->email,$this->full_name,$this->verify_token);
 
     }
 

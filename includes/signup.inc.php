@@ -6,18 +6,17 @@ if (isset($_POST['registruj']))
     $pwd = $_POST["password"];
     $pwdRepeat = $_POST["pwdRepeat"];
     $email = $_POST["email"];
+    //will maybe be changed
+    $verify_token = bin2hex(openssl_random_pseudo_bytes(16));
 
     //Instantiate SignupContr class
     include "../classes/dbh.classes.php";
     include "../classes/signup.classes.php";
     include "../classes/signup-contr.classes.php";
 
-    $signup = new SignupContr($full_name,$pwd,$pwdRepeat,$email);
+    $signup = new SignupContr($full_name,$pwd,$pwdRepeat,$email,$verify_token);
 
-
-
-    //modifikuj ceck_username kod signupUser umesto toga check email
-
+    //Runs error handlers and inserts the user into the database
     $signup->signupUser();
 
     //Povratak na glavnu stranu

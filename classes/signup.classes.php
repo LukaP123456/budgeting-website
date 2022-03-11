@@ -1,7 +1,7 @@
 <?php
 class Signup extends Dbh{
 
-    protected function setUser( $pwd, $email,$full_name){
+    protected function setUser( $pwd, $email,$full_name,$verify_token){
         $stmt = $this->connect()->prepare("INSERT INTO accounts(users_pwd,users_email,full_name) values (?,?,?)");
 
         $hashedPwd = password_hash($pwd,PASSWORD_DEFAULT);
