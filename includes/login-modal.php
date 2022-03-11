@@ -10,10 +10,10 @@
                 <p class="lead">Fill out this form to login</p>
                 <form action="./includes/login.inc.php" method="POST">
                     <div class="mb-3">
-                        <label for="username" class="call-form-label">
-                            User name:
+                        <label for="email" class="call-form-label">
+                            Email:
                         </label>
-                        <input type="text" class="form-control" name="username" id="username" placeholder="User name">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Email">
                         <label for="password" class="call-form-label">
                             Password:
                         </label>

@@ -25,10 +25,10 @@
                 </li>
                 <li>
                     <?php
-                    if (isset($_SESSION["userid"])){
+                    if (isset($_SESSION["email"])){
                         ?>
                         <li class='nav-item'>
-                            <a href='#' class='nav-link'><?php echo $_SESSION["useruid"]?></a>
+                            <a href='#' class='nav-link'><?php echo $_SESSION["email"]?></a>
                         </li><li class='nav-item'>
                         <li class='nav-item'>
                             <a href='includes/logout.inc.php' class='nav-link'>Logout</a>

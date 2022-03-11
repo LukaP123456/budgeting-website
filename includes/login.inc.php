@@ -3,7 +3,7 @@
 if (isset($_POST['submit']))
 {
     //Uzimamo podatke
-    $username = $_POST["username"];
+    $email = $_POST["email"];
     $password = $_POST["password"];
 
 
@@ -12,7 +12,7 @@ if (isset($_POST['submit']))
     include "../classes/login.classes.php";
     include "../classes/login-contr.classes.php";
 
-    $signup = new LoginContr($username,$password);
+    $signup = new LoginContr($email,$password);
 
     //Running error handlers and using signup
 

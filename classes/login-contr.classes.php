@@ -11,12 +11,18 @@ class LoginContr extends Login {
         $this->email = $email;
         $this->pwd = $pwd;
 
-
     }
     public function loginUser(){
 
         if ($this->emptyInput() == false){
             header("location:../index.php?error=emptyinput");
+            exit();
+        }
+
+
+        if ($this->invalidEmail() == false){
+            //invalid email
+            header("location:../index.php?error=email");
             exit();
         }
 
@@ -36,6 +42,19 @@ class LoginContr extends Login {
         }
         return $result;
     }
+
+    private function invalidEmail(){
+        $result = false;
+        if (!filter_var($this->email,FILTER_VALIDATE_EMAIL)){
+            $result= false;
+        }
+        else{
+            $result = true;
+        }
+        return $result;
+    }
+
+
 
 
 
