@@ -7,6 +7,7 @@ class Signup extends Dbh{
         $stmt = $this->connect()->prepare("INSERT INTO accounts(users_pwd,users_email,full_name,verify_token) values (?,?,?,?)");
 
         $hashedPwd = password_hash($pwd,PASSWORD_DEFAULT);
+
         //The result of the execute function is true or false based on the succes of the execution
         if(!$stmt->execute(array($hashedPwd,$email,$full_name,$verify_token))){
             //Throws an error message in the url if it fails setting a user
