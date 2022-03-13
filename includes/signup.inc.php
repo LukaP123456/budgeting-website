@@ -6,8 +6,11 @@ if (isset($_POST['registruj'])) {
     $pwd = $_POST["password"];
     $pwdRepeat = $_POST["pwdRepeat"];
     $email = $_POST["email"];
-    //will maybe be changed
-    $verify_token = bin2hex(openssl_random_pseudo_bytes(16));
+    //Verification token
+    $number_rand = rand(0,9999999);
+    $salt1="token456456456456465657894531324848951";
+    $data = $number_rand.$full_name.$email.$salt1;
+    $verify_token = md5($data);
 
 
     //Instantiate SignupContr class
