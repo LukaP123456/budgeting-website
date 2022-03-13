@@ -1,37 +1,29 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
-if (isset($_POST['registruj']))
+
+function sendemail_verify($full_name,$email,$verify_token)
 {
-    //Grab data from the form
-    $full_name = $_POST["full-name"];
-    $pwd = $_POST["password"];
-    $pwdRepeat = $_POST["pwdRepeat"];
-    $email = $_POST["email"];
-    //will maybe be changed
-    $verify_token = bin2hex(openssl_random_pseudo_bytes(16));
 
-    //EMAIL TEST
-
-    function sendemail_verify($full_name,$email,$verify_token)
-    {
     $mail = new PHPMailer(true);
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
     $mail->isSMTP();                                                        //Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                                   //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                               //Enable SMTP authentication
-    $mail->Username   = 'bobomejl123@gmail.com';                            //SMTP username
-    $mail->Password   = 'testsifrazamejl';                                  //SMTP password
+    $mail->Username   = 'probamjel123456@gmail.com';                            //SMTP username
+    $mail->Password   = 'probamejl123456';                                  //SMTP password
 
     $mail->SMTPSecure = "tls";                                              //Enable implicit TLS encryption
     $mail->Port       = 587;                                                //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('bobomejl123@gmail.com', "Luka Prcic");
+    $mail->setFrom('probamejl123456@gmail.com', "Luka Prcic");
     $mail->addAddress($email, $full_name);                                  //Add a recipient
 
     //Content
@@ -50,6 +42,21 @@ if (isset($_POST['registruj']))
     echo 'Message has been sent';
 
 }
+
+
+if (isset($_POST['registruj']))
+{
+    //Grab data from the form
+    $full_name = $_POST["full-name"];
+    $pwd = $_POST["password"];
+    $pwdRepeat = $_POST["pwdRepeat"];
+    $email = $_POST["email"];
+    //will maybe be changed
+    $verify_token = bin2hex(openssl_random_pseudo_bytes(16));
+
+    //EMAIL TEST
+    sendemail_verify($full_name,$email,$verify_token);
+
 
 
 

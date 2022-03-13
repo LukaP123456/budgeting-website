@@ -134,11 +134,11 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <DefaultEngine>InnoDB</DefaultEngine>
       <DefaultCasing>lower/lower</DefaultCasing>
     </root>
-    <schema id="2" parent="1" name="ajaxtest">
+    <schema id="2" parent="1" name="cost">
+      <Current>1</Current>
       <Collation>utf8mb4_general_ci</Collation>
     </schema>
-    <schema id="3" parent="1" name="cost">
-      <Current>1</Current>
+    <schema id="3" parent="1" name="ajaxtest">
       <Collation>utf8mb4_general_ci</Collation>
     </schema>
     <schema id="4" parent="1" name="food-order">
@@ -1186,7 +1186,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
     <user id="338" parent="1" name="pma">
       <Host>localhost</Host>
     </user>
-    <table id="339" parent="3" name="accounts"/>
+    <table id="339" parent="2" name="accounts"/>
     <column id="340" parent="339" name="users_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
