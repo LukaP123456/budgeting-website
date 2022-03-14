@@ -21,7 +21,7 @@ class Signup extends Dbh{
 
             $_SESSION['email'] = $email ;
 
-            header("Location:../login_success.php");
+            header("Location:../signup_success.php");
         }
 
         $stmt = null;

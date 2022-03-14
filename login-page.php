@@ -43,6 +43,18 @@
                 <li class="nav-item">
                     <a href="#questions" class="nav-link">Questions</a>
                 </li>
+                <?php
+                    if (isset($_SESSION['status']))
+                    {
+                        ?>
+                        <li class="alert alert-success">
+                            <h5><?php $_SESSION['status'] ?></h5>
+                        </li>
+                <?php unset($_SESSION['status']);
+                    }
+
+
+                ?>
                 <li class="nav-item">
                     <a href="#instructors" class="nav-link">Reviews</a>
                 </li>
