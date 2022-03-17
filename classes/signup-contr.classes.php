@@ -81,7 +81,7 @@ class SignupContr extends Signup
 
         if ($this->invalidEmail() == false) {
             //invalid email
-            header("location:../index.php?error=email");
+            header("location:../index.php?error=invalidemail");
             exit();
         }
 

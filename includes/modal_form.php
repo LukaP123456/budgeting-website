@@ -35,6 +35,7 @@
                         <button type="submit" class="btn btn-primary" name="registruj" >Register now</button>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>

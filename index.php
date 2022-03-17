@@ -35,28 +35,57 @@ include_once "includes/modal_form.php";
 include_once "includes/login-modal.php";
 ?>
 <!--BODY END-->
-<!--Javascript links -->
+
+<?php
+$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+if (strpos($fullUrl,"error=empty") == true)
+{
+    echo "<p>You did not fill out all fields!</p>";
+    exit();
+}
+elseif (strpos($fullUrl,"error=full_name") == true)
+{
+    echo "<p>You used invalid characters. Please use only capital or small letters.</p>";
+    exit();
+}
+elseif (strpos($fullUrl,"error=invalidemail") == true)
+{
+    echo "<p>Your email address is invalid.</p>";
+    exit();
+}
+elseif (strpos($fullUrl,"error=password_match") == true)
+{
+    echo "<p>Your passwords do not match.</p>";
+    exit();
+}
+elseif (strpos($fullUrl,"error=email_taken") == true)
+{
+    echo "<p>There is already a user signed up with that email address.</p>";
+    exit();
+}
+elseif (strpos($fullUrl,"error=none") == true)
+{
+    echo "<p>You have been signed up!</p>";
+    exit();
+}
+
+
+?>
+
+<!--Javascript links-->
+<!--Javascript/Bootstrap links-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-<!--Mapbox link(optional)-->
+
+<!--Mapbox links-->
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-<script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoibHVrYXAxMjM0IiwiYSI6ImNsMGUyZm9zMzBlbjcza216dHVpaHp1MGsifQ.YiIO8BXNFO_5ulU7cekvnQ';
-    let map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-71.060982,42.35725],
-        zoom:18,
-    });
+<script src="js/Mapbox.js" ></script>
+<!--Mapbox links-->
 
-    $(document).ready(function() {
 
-        if(window.location.href.indexOf('#enroll') != -1) {
-            $('#enroll').modal('show');
-        }
 
-    });
-</script>
+
 </body>
 </html>

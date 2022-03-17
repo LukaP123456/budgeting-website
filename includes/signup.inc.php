@@ -6,7 +6,8 @@ if (isset($_POST['registruj'])) {
     $pwd = $_POST["password"];
     $pwdRepeat = $_POST["pwdRepeat"];
     $email = $_POST["email"];
-    //Verification token
+
+     //Verification token
     $number_rand = rand(0,9999999);
     $salt1="token456456456456465657894531324848951";
     $data = $number_rand.$full_name.$email.$salt1;
@@ -24,8 +25,11 @@ if (isset($_POST['registruj'])) {
     $signup->signupUser();
 
     //Povratak na glavnu stranu
-
     header("location../index.php?error=none");
 
 
+}
+else
+{
+    header("Location: ../index.php?signup=error");
 }
