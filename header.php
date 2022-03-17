@@ -23,27 +23,8 @@
                 <li class="nav-item">
                     <a href="#instructors" class="nav-link">Reviews</a>
                 </li>
-                <li>
-                    <?php
-                    if (isset($_SESSION["email"])){
-                        ?>
-                        <li class='nav-item'>
-                            <a href='#' class='nav-link'><?php echo $_SESSION["email"]?></a>
-                        </li><li class='nav-item'>
-                        <li class='nav-item'>
-                            <a href='includes/logout.inc.php' class='nav-link'>Logout</a>
-                        </li><li class='nav-item'>
-                    <?php
-                    }else{
-                        ?>
-                        <li class='nav-item'>
-
-                            <a href='includes/login.inc.php' class='nav-link' data-bs-toggle="modal" data-bs-target="#login_modal">Login</a>
-
-                        </li><li class='nav-item'>
-                    <?php
-                    }
-                    ?>
+                <li class='nav-item'>
+                    <a href='includes/login.inc.php' class='nav-link' data-bs-toggle="modal" data-bs-target="#login_modal">Login</a>
                 </li>
             </ul>
         </div>

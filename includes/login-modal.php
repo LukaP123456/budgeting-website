@@ -9,11 +9,16 @@
             <div class="modal-body">
                 <p class="lead">Fill out this form to login</p>
                 <form action="./includes/login.inc.php" method="POST">
-                    <div class="mb-3">
+                    <p class="mb-3">
                         <label for="email" class="call-form-label">
                             Email:
                         </label>
                         <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                    <!--Error meesage-->
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                         <label for="password" class="call-form-label">
                             Password:
                         </label>
@@ -28,5 +33,9 @@
 
         </div>
     </div>
-</div>
+
 <!-- LOGIN modal start -->
+
+<script>
+    document.getElementById('error').innerHTML="Please enter a email";
+</script>

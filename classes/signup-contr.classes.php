@@ -68,6 +68,7 @@ class SignupContr extends Signup
     {
 
         if ($this->emptyInput() == false) {
+            $_SESSION["empty_input"] = "set";
             header("location:../index.php?error=empty_input");
             exit();
         }

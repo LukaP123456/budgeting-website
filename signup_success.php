@@ -19,6 +19,9 @@
     <title>LP Budgeting</title>
 </head>
 <body>
+<?php
+session_start();
+?>
 <!--Bootstrap stuff for the checkmark icon-->
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -35,9 +38,9 @@
 <!--Message which appears after you successfully sign up and takes you back to your page-->
 <div class="alert alert-success" role="alert">
     <h4 class="alert-heading"><svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>Well done!</h4>
-    <p>You have successfully signed up Click this link to go to your page <a href="index.php">Click me</a></p>
+    <p>You have successfully signed up. Please check your email account <b><?php echo $_SESSION["email"]?></b> and follow the instructions in the email to verify your account and log in <a href="index.php">Click me</a></p>
     <hr>
-    <p class="mb-0">We will have you saving money in no time</p>
+    <p class="mb-0"><b>We will have you saving money in no time</b></p>
 </div>
 
 
