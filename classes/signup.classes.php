@@ -21,7 +21,9 @@ class Signup extends Dbh{
 
             $_SESSION['email'] = $email ;
 
-            header("Location:../signup_success.php");
+            $_SESSION[] = "<span class='success'> Signed up successfully </span>";
+
+//            header("Location:../signup_success.php");
         }
 
         $stmt = null;

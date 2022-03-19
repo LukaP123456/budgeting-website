@@ -1,11 +1,12 @@
 <?php
 
-if (isset($_POST['registruj'])) {
-    //Grab data from the form
-    $full_name = $_POST["full-name"];
+if (isset($_POST['submit'])) {
+    //Grab data from the jQuery script
+    $full_name = $_POST["name"];
     $pwd = $_POST["password"];
     $pwdRepeat = $_POST["pwdRepeat"];
     $email = $_POST["email"];
+
 
      //Verification token
     $number_rand = rand(0,9999999);
@@ -33,3 +34,26 @@ else
 {
     header("Location: ../index.php?signup=error");
 }
+?>
+
+<script>
+    $("#full-name,#email,#password,#pwdRepeat").removeClassName("input-error");
+
+    let errorEmpty = "<?php echo $_SESSION['error-empty'] ?>";
+    let errorEmail = "<?php echo $_SESSION['error-emmail'] ?>";
+
+    if (errorEmpty === true)
+    {
+        $("#full-name,#email,#password,#pwdRepeat").addClassName("input-error");
+    }
+
+    if (errorEmail === true)
+    {
+        $("#email").addClassName("input-error");
+    }
+
+    if (errorEmpty === false && errorEmail === false)
+    {
+        $("#full-name,#email,#password,#pwdRepeat").val("");
+    }
+</script>

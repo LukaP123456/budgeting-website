@@ -17,6 +17,29 @@
     <!--Custom styles link-->
     <link rel="stylesheet" href="CSS/style.css">
 
+    <!--JQUERY LINK-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!--    Jquery functions used to stop the from from submitting values in it-->
+    <script>
+        $(document).ready(function (){
+            $("signup-form").submit(function (event){
+                event.preventDefault();
+                let name = $("#full-name").value();
+                let email = $("#email").value();
+                let password = $("#password").value();
+                let pwdRepeat = $("#pwdRepeat").value();
+                let submit = $("#submit").value();
+                $(".form-message").load("./includes/signup.inc.php", {
+                    name: name,
+                    email: email,
+                    password: password,
+                    pwdRepeat: pwdRepeat,
+                    submit: submit
+                });
+            });
+        });
+    </script>
+
     <title>LP Budgeting</title>
 </head>
 <body>
@@ -74,6 +97,8 @@ elseif (strpos($fullUrl,"error=none") == true)
 ?>
 
 <!--Javascript links-->
+
+
 <!--Javascript/Bootstrap links-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
