@@ -7,7 +7,6 @@ use PHPMailer\PHPMailer\Exception;
 //Load Composer's autoloader
 require '../vendor/autoload.php';
 
-$errorEmpty = false;
 class SignupContr extends Signup
 {
 
@@ -27,9 +26,6 @@ class SignupContr extends Signup
 
     }
 
-
-
-
     public function signupUser()
     {
 
@@ -40,7 +36,7 @@ class SignupContr extends Signup
 
 //            header("location:../index.php?error=empty_input");
 
-            //exit();
+            exit();
         }
 
         if ($this->invalid_fullname() == false) {

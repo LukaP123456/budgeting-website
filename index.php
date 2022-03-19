@@ -60,39 +60,39 @@ include_once "includes/login-modal.php";
 <!--BODY END-->
 
 <?php
-$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-if (strpos($fullUrl,"error=empty") == true)
-{
-    echo "<p>You did not fill out all fields!</p>";
-    exit();
-}
-elseif (strpos($fullUrl,"error=full_name") == true)
-{
-    echo "<p>You used invalid characters. Please use only capital or small letters.</p>";
-    exit();
-}
-elseif (strpos($fullUrl,"error=invalidemail") == true)
-{
-    echo "<p>Your email address is invalid.</p>";
-    exit();
-}
-elseif (strpos($fullUrl,"error=password_match") == true)
-{
-    echo "<p>Your passwords do not match.</p>";
-    exit();
-}
-elseif (strpos($fullUrl,"error=email_taken") == true)
-{
-    echo "<p>There is already a user signed up with that email address.</p>";
-    exit();
-}
-elseif (strpos($fullUrl,"error=none") == true)
-{
-    echo "<p>You have been signed up!</p>";
-    exit();
-}
-
+//$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+//
+//if (strpos($fullUrl,"error=empty") == true)
+//{
+//    echo "<p>You did not fill out all fields!</p>";
+//    exit();
+//}
+//elseif (strpos($fullUrl,"error=full_name") == true)
+//{
+//    echo "<p>You used invalid characters. Please use only capital or small letters.</p>";
+//    exit();
+//}
+//elseif (strpos($fullUrl,"error=invalidemail") == true)
+//{
+//    echo "<p>Your email address is invalid.</p>";
+//    exit();
+//}
+//elseif (strpos($fullUrl,"error=password_match") == true)
+//{
+//    echo "<p>Your passwords do not match.</p>";
+//    exit();
+//}
+//elseif (strpos($fullUrl,"error=email_taken") == true)
+//{
+//    echo "<p>There is already a user signed up with that email address.</p>";
+//    exit();
+//}
+//elseif (strpos($fullUrl,"error=none") == true)
+//{
+//    echo "<p>You have been signed up!</p>";
+//    exit();
+//}
+//
 
 ?>
 
