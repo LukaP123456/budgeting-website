@@ -1,4 +1,23 @@
-
+<!--    Jquery functions used to stop the from from submitting values in it-->
+<script>
+    $(document).ready(function (){
+        $("signup-form").submit(function (event){
+            event.preventDefault();
+            let name = $("#full-name").value();
+            let email = $("#email").value();
+            let password = $("#password").value();
+            let pwdRepeat = $("#pwdRepeat").value();
+            let submit = $("#submit").value();
+            $(".form-message").load("./includes/signup.inc.php", {
+                name: name,
+                email: email,
+                password: password,
+                pwdRepeat: pwdRepeat,
+                submit: submit
+            });
+        });
+    });
+</script>
 
 <!--SIGNUP = modal_form.php-->
 <!--Modal start-->
@@ -15,19 +34,23 @@
                 <!-- Form -->
                 <form id="signup-form"  method="POST" action="./includes/signup.inc.php">
                     <div class="mb-3">
+                        <label for="full-name">Full name</label>
                         <input type="text" class="form-control" id="full-name" name="full-name" placeholder="Full name">
                         <br>
                     </div>
                     <div class="mb-3">
+                        <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" >
                         <br>
                     </div>
 
                     <div class="mb-3">
+                        <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password" >
                         <br>
                     </div>
                     <div class="mb-3">
+                        <label for="pwdRepeat">Password repeat</label>
                         <input type="password" class="form-control" id="pwdRepeat" name="pwdRepeat" placeholder="Retype Password" >
                         <br>
                     </div>
@@ -46,24 +69,4 @@
 
 
 
-<script>
-    $("#full-name,#email,#password,#pwdRepeat").removeClassName("input-error");
 
-    let errorEmpty = "<?php echo $_SESSION['error-empty'] ?>";
-    let errorEmail = "<?php echo $_SESSION['error-emmail'] ?>";
-
-    if (errorEmpty === true)
-    {
-        $("#full-name,#email,#password,#pwdRepeat").addClassName("input-error");
-    }
-
-    if (errorEmail === true)
-    {
-        $("#email").addClassName("input-error");
-    }
-
-    if (errorEmpty === false && errorEmail === false)
-    {
-        $("#full-name,#email,#password,#pwdRepeat").val("");
-    }
-</script>

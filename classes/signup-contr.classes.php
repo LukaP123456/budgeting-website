@@ -31,11 +31,8 @@ class SignupContr extends Signup
 
         if ($this->emptyInput() == false) {
             $_SESSION['error-empty'] = true;
-            $_SESSION["empty_input"] = "<span class='warning'> Empty input </span>";
-
-
-//            header("location:../index.php?error=empty_input");
-
+            $_SESSION["empty_input"] = "<span class='input-error'> Empty input </span>";
+            header("location:../index.php?error=empty_input");
             exit();
         }
 

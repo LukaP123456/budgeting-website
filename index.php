@@ -19,26 +19,6 @@
 
     <!--JQUERY LINK-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!--    Jquery functions used to stop the from from submitting values in it-->
-    <script>
-        $(document).ready(function (){
-            $("signup-form").submit(function (event){
-                event.preventDefault();
-                let name = $("#full-name").value();
-                let email = $("#email").value();
-                let password = $("#password").value();
-                let pwdRepeat = $("#pwdRepeat").value();
-                let submit = $("#submit").value();
-                $(".form-message").load("./includes/signup.inc.php", {
-                    name: name,
-                    email: email,
-                    password: password,
-                    pwdRepeat: pwdRepeat,
-                    submit: submit
-                });
-            });
-        });
-    </script>
 
     <title>LP Budgeting</title>
 </head>
@@ -97,7 +77,26 @@ include_once "includes/login-modal.php";
 ?>
 
 <!--Javascript links-->
-
+<!--    Jquery functions used to stop the from from submitting values in it-->
+<!--<script>-->
+<!--    $(document).ready(function (){-->
+<!--        $("signup-form").submit(function (event){-->
+<!--            event.preventDefault();-->
+<!--            let name = $("#full-name").value();-->
+<!--            let email = $("#email").value();-->
+<!--            let password = $("#password").value();-->
+<!--            let pwdRepeat = $("#pwdRepeat").value();-->
+<!--            let submit = $("#submit").value();-->
+<!--            $(".form-message").load("./includes/signup.inc.php", {-->
+<!--                name: name,-->
+<!--                email: email,-->
+<!--                password: password,-->
+<!--                pwdRepeat: pwdRepeat,-->
+<!--                submit: submit-->
+<!--            });-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 
 <!--Javascript/Bootstrap links-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

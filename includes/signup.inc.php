@@ -14,6 +14,16 @@ if (isset($_POST['submit'])) {
     $data = $number_rand.$full_name.$email.$salt1;
     $verify_token = md5($data);
 
+    if (empty($full_name) || empty($email) || empty($pwd) || empty($pwdRepeat) )
+    {
+        echo "<span class='input-error'> Fill in all fields </span>";
+        $errorEmpty = true;
+    }
+    else
+    {
+        echo "<span> Signed up successfully </span>";
+    }
+
 
     //Instantiate SignupContr class
     include "../classes/dbh.classes.php";
@@ -35,3 +45,24 @@ else
     header("Location: ../index.php?signup=error");
 }
 ?>
+<script>
+    $("#full-name,#email,#password,#pwdRepeat").removeClassName("input-error");
+
+    let errorEmpty = "<?php echo $errorEmpty; ?>";
+    //let errorEmail = "<?php //echo $_SESSION['error-emmail'] ?>//";
+
+    if (errorEmpty == true)
+    {
+        $("#full-name,#email,#password,#pwdRepeat").addClass("input-error");
+    }
+
+    // if (errorEmail == true)
+    // {
+    //     $("#email").addClassName("input-error");
+    // }
+
+    if (errorEmpty === false && errorEmail === false)
+    {
+        $("#full-name,#email,#password,#pwdRepeat").val("");
+    }
+</script>
