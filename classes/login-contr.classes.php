@@ -16,6 +16,8 @@ class LoginContr extends Login {
 
         if ($this->emptyInput() == false){
             header("location:../index.php?error=emptyinput");
+//            $_SESSION['status'] = "All fields are mandatory!";
+//            header("Location:./includes/login-modal.php");
             exit();
         }
 

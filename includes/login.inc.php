@@ -2,18 +2,9 @@
 
 if (isset($_POST['submit']))
 {
-    if (!empty(trim($_POST["email"])) && !empty(trim($_POST["password"])) )
-    {
-        //Uzimamo podatke
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-    }
-    else
-    {
-        $_SESSION['status'] = "All fields are mandatory!";
-        header("Location:./includes/login-modal.php");
-    }
-
+    //Uzimamo podatke
+    $email = $_POST["email"];
+    $password = $_POST["password"];
 
 
     //Instanciranje klase SignupContr

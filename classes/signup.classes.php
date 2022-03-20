@@ -23,7 +23,7 @@ class Signup extends Dbh{
 
             $_SESSION[] = "<span class='success'> Signed up successfully </span>";
 
-//            header("Location:../signup_success.php");
+           header("Location:../signup_success.php");
         }
 
         $stmt = null;

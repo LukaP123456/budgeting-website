@@ -1,4 +1,14 @@
-<?php session_start(); ?>
+<?php session_start();
+if (!isset($_SESSION['authenticated']))
+{
+    $_SESSION['status'] = "Please login to access user side";
+    header("Location: index.php");
+    exit();
+}
+else
+{
+
+?>
     <!doctype html>
     <html lang="en">
     <head>
@@ -64,7 +74,8 @@
 <!--navbar end-->
 <!--USER HEADER END-->
 </body>
-
-
+<?php
+}
+?>
 
 
