@@ -26,6 +26,8 @@ class SignupContr extends Signup
 
     }
 
+
+
     public function signupUser()
     {
 

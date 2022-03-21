@@ -53,6 +53,32 @@ class Signup extends Dbh{
 
     }
 
+    public function email_resend($email)
+    {
+        $stmt = $this->connect()->prepare("SELECT * FROM accounts where users_email = ? AND verify_status = 0 LIMIT 1");
+        if($stmt->execute(array($email))){
+
+            $_SESSION['staus-message'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                        Success! An email with a verification link has been resent.
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div></p>";
+            header("Location: resend-email-verification.php");
+            exit();
+        }
+        else
+        {
+            $stmt = null;
+            $_SESSION['staus-message'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        Please enter your email
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div></p>";
+            exit();
+        }
+
+
+
+    }
+
 
 
 
