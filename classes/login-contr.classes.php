@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class LoginContr extends Login {
 
     private $email;
@@ -14,16 +14,18 @@ class LoginContr extends Login {
     }
     public function loginUser(){
 
+
         if ($this->emptyInput() == false){
+            //empty input
+            $_SESSION['error2'] = true;
             header("location:../index.php?error=emptyinput");
-//            $_SESSION['status'] = "All fields are mandatory!";
-//            header("Location:./includes/login-modal.php");
             exit();
         }
 
 
         if ($this->invalidEmail() == false){
             //invalid email
+            $_SESSION['error2'] = true;
             header("location:../index.php?error=email");
             exit();
         }

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class Login extends Dbh{
 
     protected function getUser($email, $pwd){
@@ -8,6 +8,7 @@ class Login extends Dbh{
         if(!$stmt->execute(array($email)))
         {
             $stmt = null;
+            $_SESSION['error2'] = true;
             header("location: ../index.php?error=stmtfailed");
             exit();
         }
@@ -15,6 +16,7 @@ class Login extends Dbh{
         if ($stmt->rowCount() == 0 )
         {
             $stmt = null;
+            $_SESSION['error2'] = true;
             header("location:../index.php?error=usernotfound");
             exit();
         }
@@ -27,6 +29,7 @@ class Login extends Dbh{
         if ($checkPwd == false )
         {
             $stmt = null;
+            $_SESSION['error2'] = true;
             header("location:../index.php?error=wrongpassword");
             exit();
         }
@@ -37,6 +40,7 @@ class Login extends Dbh{
             if(!$stmt->execute(array($email,$pwdHashed2)))
             {
                 $stmt = null;
+                $_SESSION['error2'] = true;
                 header("location: ../index.php?error=stmtfailed");
                 exit();
             }
@@ -44,6 +48,7 @@ class Login extends Dbh{
             if ($stmt->rowCount() == 0 )
             {
                 $stmt = null;
+                $_SESSION['error2'] = true;
                 header("location:../index.php?error=usernotfound");
                 exit();
             }

@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start();?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -39,64 +39,59 @@ include_once "includes/login-modal.php";
 ?>
 <!--BODY END-->
 
-<?php
-//$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-//
-//if (strpos($fullUrl,"error=empty") == true)
-//{
-//    echo "<p>You did not fill out all fields!</p>";
-//    exit();
-//}
-//elseif (strpos($fullUrl,"error=full_name") == true)
-//{
-//    echo "<p>You used invalid characters. Please use only capital or small letters.</p>";
-//    exit();
-//}
-//elseif (strpos($fullUrl,"error=invalidemail") == true)
-//{
-//    echo "<p>Your email address is invalid.</p>";
-//    exit();
-//}
-//elseif (strpos($fullUrl,"error=password_match") == true)
-//{
-//    echo "<p>Your passwords do not match.</p>";
-//    exit();
-//}
-//elseif (strpos($fullUrl,"error=email_taken") == true)
-//{
-//    echo "<p>There is already a user signed up with that email address.</p>";
-//    exit();
-//}
-//elseif (strpos($fullUrl,"error=none") == true)
-//{
-//    echo "<p>You have been signed up!</p>";
-//    exit();
-//}
-//
-
-?>
-
 <!--Javascript links-->
-<!--    Jquery functions used to stop the from from submitting values in it-->
-<!--<script>-->
-<!--    $(document).ready(function (){-->
-<!--        $("signup-form").submit(function (event){-->
-<!--            event.preventDefault();-->
-<!--            let name = $("#full-name").value();-->
-<!--            let email = $("#email").value();-->
-<!--            let password = $("#password").value();-->
-<!--            let pwdRepeat = $("#pwdRepeat").value();-->
-<!--            let submit = $("#submit").value();-->
-<!--            $(".form-message").load("./includes/signup.inc.php", {-->
-<!--                name: name,-->
-<!--                email: email,-->
-<!--                password: password,-->
-<!--                pwdRepeat: pwdRepeat,-->
-<!--                submit: submit-->
-<!--            });-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
+<!--Jquery functions used to stop the from from submitting values in it-->
+<script>
+
+    //MODAL SIGNUP FORM STOPPER - used to stop the modal form from disappearing so the user
+    //can see the error message which occurs on sign up
+    let error = <?php if (isset($_SESSION['error1'])){echo  $_SESSION['error1'];} else{echo 0;} ?>;
+    console.log(error);
+        $(document).ready(function(){
+            if (error === 1){
+                console.log(error)
+                console.log("unutar if-a");
+                $("#enroll").modal("show");
+
+            }
+        });
+
+
+
+    //LOGIN SIGNUP FORM STOPPER - used to stop the modal form from disappearing so the user
+    //can see the error message which occurs on sign up
+
+    let error2 = <?php if (isset($_SESSION['error2'])){echo  $_SESSION['error2'];} else{echo 0;} ?>;
+    console.log(error2);
+        $(document).ready(function(){
+            if (error2 === 1){
+                console.log(error)
+                console.log("unutar if-a");
+                $("#login_modal").modal("show");
+
+            }
+        });
+
+
+    //Prevents the sign up form from submitting the values
+    $(document).ready(function (){
+        $("signup-form").submit(function (event){
+            event.preventDefault();
+            let name = $("#full-name").value();
+            let email = $("#email").value();
+            let password = $("#password").value();
+            let pwdRepeat = $("#pwdRepeat").value();
+            let submit = $("#submit").value();
+            $(".form-message").load("./includes/signup.inc.php", {
+                name: name,
+                email: email,
+                password: password,
+                pwdRepeat: pwdRepeat,
+                submit: submit
+            });
+        });
+    });
+</script>
 
 <!--Javascript/Bootstrap links-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -107,9 +102,6 @@ include_once "includes/login-modal.php";
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
 <script src="js/Mapbox.js" ></script>
 <!--Mapbox links-->
-
-
-
 
 </body>
 </html>

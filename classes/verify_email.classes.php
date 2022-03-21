@@ -20,7 +20,7 @@ class Verify extends Dbh{
 
                     if ($update_stmt->execute())
                     {
-                        $_SESSION['status'] = "Your account has been verified successfully";
+
                         header("Location: ../index.php");
                         exit();
                     }

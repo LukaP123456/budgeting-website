@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -30,33 +30,35 @@ class SignupContr extends Signup
     {
 
         if ($this->emptyInput() == false) {
-            $_SESSION['error-empty'] = true;
-            $_SESSION["empty_input"] = "<span class='input-error'> Empty input </span>";
+            $_SESSION['error1'] = true;
             header("location:../index.php?error=empty_input");
             exit();
         }
 
         if ($this->invalid_fullname() == false) {
             //Invalid full name
+            $_SESSION['error1'] = true;
             header("location:../index.php?error=full_name");
             exit();
         }
 
         if ($this->invalidEmail() == false) {
-            $_SESSION['error-empty'] = true;
             //invalid email
+            $_SESSION['error1'] = true;
             header("location:../index.php?error=invalidemail");
             exit();
         }
 
         if ($this->pwdMatch() == false) {
             //passwords do not match
+            $_SESSION['error1'] = true;
             header("location:../index.php?error=password_match");
             exit();
         }
 
         if ($this->email_TakenCheck() == false) {
             //passwords do not match
+            $_SESSION['error1'] = true;
             header("location:../index.php?error=email_taken");
             exit();
         }

@@ -1,24 +1,3 @@
-<!--    Jquery functions used to stop the from from submitting values in it-->
-<script>
-    $(document).ready(function (){
-        $("signup-form").submit(function (event){
-            event.preventDefault();
-            let name = $("#full-name").value();
-            let email = $("#email").value();
-            let password = $("#password").value();
-            let pwdRepeat = $("#pwdRepeat").value();
-            let submit = $("#submit").value();
-            $(".form-message").load("./includes/signup.inc.php", {
-                name: name,
-                email: email,
-                password: password,
-                pwdRepeat: pwdRepeat,
-                submit: submit
-            });
-        });
-    });
-</script>
-
 <!--SIGNUP = modal_form.php-->
 <!--Modal start-->
 <div class="modal fade" id="enroll" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
@@ -33,8 +12,60 @@
                 <p class="lead">Fill out this form we will get back to you</p>
                 <!-- Form -->
                 <form id="signup-form"  method="POST" action="./includes/signup.inc.php">
+                    <?php
+                    $fullUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+
+                    if (strpos($fullUrl,"error=empty_input") == true)
+                    {
+                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <strong>Holy guacamole!</strong> You should fill in on some of those fields below.
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div></p>";
+                    }
+                    elseif (strpos($fullUrl,"error=full_name") == true)
+                    {
+                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <strong>Holy guacamole!</strong> Please only use letters when writing your name!
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div></p>";
+                    }
+                    elseif (strpos($fullUrl,"error=invalidemail") == true)
+                    {
+                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <strong>Holy guacamole!</strong> Your e-mail address is invalid.Please check if you wrote it correctly.
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div></p>";
+                    }
+                    elseif (strpos($fullUrl,"error=password_match") == true)
+                    {
+                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <strong>Holy guacamole!</strong> The passwords you wrote do not match.
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div></p>";
+                    }
+                    elseif (strpos($fullUrl,"error=email_taken") == true)
+                    {
+                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <strong>Holy guacamole!</strong> The e-mail you wrote is already taken please login into your account or use another e-mail address
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div></p>";
+                    }
+                    elseif (strpos($fullUrl,"error=none") == true)
+                    {
+                        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                        <strong>Holy guacamole!</strong> Success you signed up.
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div></p>";
+                    }
+                    else{
+                        unset($_SESSION['error1']);
+                    }
+                    ?>
+
                     <div class="mb-3">
-                        <label for="full-name">Full name</label>
+                        <label for="full-name">Full name\User name</label><br>
+                        <span>*You can only have on user name per e-mail account</span>
                         <input type="text" class="form-control" id="full-name" name="full-name" placeholder="Full name">
                         <br>
                     </div>
