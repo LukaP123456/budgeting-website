@@ -27,7 +27,6 @@ class SignupContr extends Signup
     }
 
 
-
     public function signupUser()
     {
 
@@ -128,7 +127,7 @@ class SignupContr extends Signup
         return $result;
     }
 
-    //Sends and email for verifivation
+    //Sends and email for verification
     function sendemail_verify($full_name, $email, $verify_token)
     {
 
@@ -138,7 +137,7 @@ class SignupContr extends Signup
         $mail->Host = 'smtp.gmail.com';                                         //Set the SMTP server to send through
         $mail->SMTPAuth = true;                                                 //Enable SMTP authentication
         $mail->Username = 'probamjel123456@gmail.com';                          //SMTP username
-        $mail->Password = 'probamejl123456';                                    //SMTP password
+        $mail->Password = 'probaMEJL123456789';                                    //SMTP password
 
         $mail->SMTPSecure = "tls";                                              //Enable implicit TLS encryption
         $mail->Port = 587;                                                      //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`

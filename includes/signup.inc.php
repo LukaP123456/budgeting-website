@@ -44,25 +44,5 @@ else
 {
     header("Location: ../index.php?signup=error");
 }
-?>
-<script>
-    $("#full-name,#email,#password,#pwdRepeat").removeClassName("input-error");
 
-    let errorEmpty = "<?php echo $errorEmpty; ?>";
-    //let errorEmail = "<?php //echo $_SESSION['error-emmail'] ?>//";
 
-    if (errorEmpty == true)
-    {
-        $("#full-name,#email,#password,#pwdRepeat").addClass("input-error");
-    }
-
-    // if (errorEmail == true)
-    // {
-    //     $("#email").addClassName("input-error");
-    // }
-
-    if (errorEmpty === false && errorEmail === false)
-    {
-        $("#full-name,#email,#password,#pwdRepeat").val("");
-    }
-</script>

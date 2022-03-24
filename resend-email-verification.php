@@ -1,3 +1,4 @@
+<?php    session_start(); ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,8 +22,10 @@
 
     <title>LP Budgeting</title>
 </head>
-<?php include "header.php";?>
+<?php include "header.php";
+?>
 <body>
+
 <div class="py-5">
     <div class="container">
         <div class="row justify-content-center">
@@ -31,7 +34,15 @@
                     <div class="card-header">
                         <h5>Resend Email verification</h5>
                     </div>
+
                     <div class="card-body">
+                        <?php
+
+                        if (isset($_SESSION['status-message'])){
+                            echo $_SESSION['status-message'];
+
+                        }
+                        ?>
                         <form action="resend-code.php" method="POST">
                             <div class="form-group mb-3">
                                 <label for="email">Email address</label>
@@ -49,3 +60,8 @@
 </div>
 </body>
 
+
+<!--Javascript/Bootstrap links-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
