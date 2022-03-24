@@ -22,8 +22,32 @@
 
     <title>LP Budgeting</title>
 </head>
-<?php include "header.php";
-?>
+<!--HEADER START-->
+<!--navbar start-->
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
+    <div class="container">
+        <a href="index.php" class="navbar-brand">LP<span class="text-warning">Budgeting</span></a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navmenu"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="index.php" class="nav-link">Home</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--navbar end-->
+<!--HEADER END-->
 <body>
 
 <div class="py-5">
@@ -40,7 +64,7 @@
 
                         if (isset($_SESSION['status-message'])){
                             echo $_SESSION['status-message'];
-
+                            unset($_SESSION['status-message']);
                         }
                         ?>
                         <form action="resend-code.php" method="POST">
@@ -65,3 +89,4 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+

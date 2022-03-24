@@ -1,10 +1,16 @@
 <?php
-require_once "classes/dbh.classes.php";
+include_once "classes/dbh.classes.php";
 
 class resend extends Dbh {
 
+    //TODO: napraviti da radi resend verify link na sledeci nacin:Pobati jos jednom PDO::FETCH_ASSOC ako ne radi onda napraviti funkciju koja selektuje sve iz baze na osnovu mejla i de je verify
+    //status = 1. Napraviti if ako vrati istinu nasao je profil koji je vec verifikovan sto znaci da ne mora slati link ponovo, napraviti session sa porukom da se samo treba ulogovati da se ne mora
+    //slati link ponovo itd
+    //
+
+
     public function checkVerify($email){
-        $stmt = $this->connect()->prepare("SELECT * FROM accounts WHERE users_email=? LIMIT 1");
+        $stmt = $this->connect()->prepare("SELECT * FROM accounts WHERE users_email=?  LIMIT 1");
 
         if(!$stmt->execute(array($email)))
         {
@@ -69,26 +75,7 @@ class resend extends Dbh {
     }
 
 
-    public function email_resend($email)
-    {
-        $stmt = $this->connect()->prepare("SELECT * FROM accounts where users_email = ? AND verify_status = 0 LIMIT 1");
-        if ($stmt->execute(array($email))) {
 
-            $_SESSION['staus-message'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                        Success! An email with a verification link has been resent.
-                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                    </div></p>";
-            header("Location: resend-email-verification.php");
-            exit();
-        } else {
-            $stmt = null;
-            $_SESSION['staus-message'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        Please enter your email
-                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                    </div></p>";
-            exit();
-        }
-    }
 
 
 

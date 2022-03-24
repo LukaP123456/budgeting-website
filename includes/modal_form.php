@@ -21,42 +21,42 @@
                         echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                         <strong>Holy guacamole!</strong> You should fill in on some of those fields below.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                    </div></p>";
+                    </div>";
                     }
                     elseif (strpos($fullUrl,"error=full_name") == true)
                     {
                         echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                         <strong>Holy guacamole!</strong> Please only use letters when writing your name!
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                    </div></p>";
+                    </div>";
                     }
                     elseif (strpos($fullUrl,"error=invalidemail") == true)
                     {
                         echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                         <strong>Holy guacamole!</strong> Your e-mail address is invalid.Please check if you wrote it correctly.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                    </div></p>";
+                    </div>";
                     }
                     elseif (strpos($fullUrl,"error=password_match") == true)
                     {
                         echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                         <strong>Holy guacamole!</strong> The passwords you wrote do not match.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                    </div></p>";
+                    </div>";
                     }
                     elseif (strpos($fullUrl,"error=email_taken") == true)
                     {
                         echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                         <strong>Holy guacamole!</strong> The e-mail you wrote is already taken please login into your account or use another e-mail address
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                    </div></p>";
+                    </div>";
                     }
                     elseif (strpos($fullUrl,"error=none") == true)
                     {
                         echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                         <strong>Holy guacamole!</strong> Success you signed up.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                    </div></p>";
+                    </div>";
                     }
                     else{
                         unset($_SESSION['error1']);

@@ -5,8 +5,7 @@ if (!isset($_SESSION['authenticated']))
     header("Location: index.php");
     exit();
 }
-else
-{
+
 
 ?>
     <!doctype html>
@@ -46,15 +45,6 @@ else
 
         <div class="collapse navbar-collapse" id="navmenu">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a href="#learn" class="nav-link">What you will learn</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#questions" class="nav-link">Questions</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#instructors" class="nav-link">Reviews</a>
-                </li>
                 <li>
                     <?php
                     if (isset($_SESSION["email"])){
@@ -75,7 +65,12 @@ else
 <!--USER HEADER END-->
 </body>
 <?php
+
+if (isset($_SESSION['login-success'])){
+    echo $_SESSION['login-success'];
 }
+
+
 ?>
 
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "dbh.classes.php";
+include_once "dbh.classes.php";
 class Login extends Dbh{
 
     protected function getUser($email, $pwd){

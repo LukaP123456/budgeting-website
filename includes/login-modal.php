@@ -49,10 +49,12 @@
                     }
                     elseif (strpos($fullUrl,"error=none") == true)
                     {
-                        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                        <strong>Holy guacamole!</strong> Success you signed up.
+                        //TODO:Napraviti alert da se ispise succes na strani korisnika ne na strani guesta
+
+                        $_SESSION['login-success'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        Please fill in the form and we will resend you the verification link. 
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                    </div></p>";
+                    </div>";
 
                     }
                     else
