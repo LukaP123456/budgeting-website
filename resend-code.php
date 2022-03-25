@@ -17,7 +17,7 @@ if (isset($_POST['resend_email_verify_btn']))
         else
         {
             $_SESSION['status-message'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        Email is not registered please sign up with this email ".$email."
+                        Email is not registered please sign up with this email 
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
             header("location: resend-email-verification.php");
