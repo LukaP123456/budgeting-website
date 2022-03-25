@@ -11,7 +11,7 @@ if (isset($_GET['token'])){
     $verify = new Verify();
     $verify->verify_token($token);
 
-    var_dump($token);
+
 
 }
 

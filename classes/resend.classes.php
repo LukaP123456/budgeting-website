@@ -10,10 +10,6 @@ require './vendor/autoload.php';
 
 class resend extends Dbh {
 
-
-
-
-
     public function checkUser($email){
         $stmt = $this->connect()->prepare("SELECT * FROM accounts WHERE users_email=? LIMIT 1");
 
@@ -30,13 +26,7 @@ class resend extends Dbh {
             {
                 $name = $result["full_name"];
                 $email_db = $result["users_email"];
-
-                $number_rand = rand(0,9999999);
-                $salt1="token456456456456465657894531324848951";
-                $data = $number_rand.$name.$email_db.$salt1;
-                $verify_token = md5($data);
-
-
+                $verify_token = $result["verify_token"];
 
                 $this->sendemail_verify($name,$email_db,$verify_token);
                 $_SESSION['status-message'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
