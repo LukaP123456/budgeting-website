@@ -4,7 +4,7 @@
         <!--g-4 gives a gap between all the boxes-->
         <div class="row text-center g-4">
             <div class="col-md">
-                <div class="card bg-dark text-light">
+                <div class="card bg-black text-light p-3">
                     <div class="card-body text-center">
                         <div class="h1 mb-3">
                             <i class="bi bi-cash-stack"></i>
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="col-md">
-                <div class="card bg-secondary text-light">
+                <div class="card bg-secondary text-light p-3">
                     <div class="card-body text-center">
                         <div class="h1 mb-3">
                             <i class="bi bi-laptop"></i>
@@ -34,14 +34,14 @@
                 </div>
             </div>
             <div class="col-md">
-                <div class="card bg-dark text-light">
+                <div class="card bg-black text-light p-3">
                     <div class="card-body text-center">
                         <div class="h1 mb-3">
                             <i class="bi bi-people"></i>
                         </div>
-                        <h3 class="card-title mb-3">Keep track of your spendings</h3>
+                        <h3 class="card-title mb-2">Keep track of your spending's</h3>
                         <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, veniam?Lorem ipsum dolor sit amet.
+                            Lorem ipsum dolor sit amet Lorem ipsum Lorem ipsum dolor.
                         </p>
                         <a href="#" class="btn btn-primary">Read more</a>
                     </div>

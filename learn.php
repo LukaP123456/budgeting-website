@@ -16,7 +16,7 @@
     </div>
 </section>
 
-<section id="learn" class="p-5 bg-dark text-light">
+<section id="learn" class="p-5 bg-black text-light">
     <div class="container">
         <div class="row align-item-center justify-content-between">
             <div class="col-md p-5">
