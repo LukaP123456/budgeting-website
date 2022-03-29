@@ -31,7 +31,7 @@ if (!isset($_SESSION['authenticated']))
 <body>
 <!--USER HEADER START-->
 <!--navbar start-->
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
+<nav class="navbar navbar-expand-lg bg-black navbar-dark py-3 fixed-top">
     <div class="container">
         <a href="index.php" class="navbar-brand">LP<span class="text-warning">Budgeting</span></a>
 
