@@ -1,6 +1,5 @@
 <?php
 
-
 // Function to get the client IP address
 function get_client_ip() {
     $ipaddress = '';
@@ -28,9 +27,10 @@ if (isset($_POST['submit'])) {
     $pwd = $_POST["password"];
     $pwdRepeat = $_POST["pwdRepeat"];
     $email = $_POST["email"];
-
-    require 'vendor/autoload.php';
     $ip = get_client_ip();
+
+    require '../vendor/autoload.php';
+
     $result = new WhichBrowser\Parser(getallheaders());
     $browser = $result->toString();
 
@@ -57,7 +57,7 @@ if (isset($_POST['submit'])) {
     include "../classes/signup.classes.php";
     include "../classes/signup-contr.classes.php";
 
-    $signup = new SignupContr($full_name, $pwd, $pwdRepeat, $email, $verify_token,$ip);
+    $signup = new SignupContr($full_name, $pwd, $pwdRepeat, $email, $verify_token,$ip,$browser);
 
     //Runs error handlers and inserts the user into the database
     $signup->signupUser();

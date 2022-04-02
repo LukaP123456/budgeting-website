@@ -16,8 +16,9 @@ class SignupContr extends Signup
     private $email;
     private $verify_token;
     private $ip;
+    private $browser;
 
-    public function __construct($full_name, $pwd, $pwdRepeat, $email, $verify_token,$ip)
+    public function __construct($full_name, $pwd, $pwdRepeat, $email, $verify_token,$ip,$browser)
     {
         $this->full_name = $full_name;
         $this->pwd = $pwd;
@@ -25,6 +26,7 @@ class SignupContr extends Signup
         $this->email = $email;
         $this->verify_token = $verify_token;
         $this->ip = $ip;
+        $this->browser = $browser;
 
     }
 
@@ -68,7 +70,7 @@ class SignupContr extends Signup
 
 
         //Part that will sign up the user to the website
-        $this->setUser($this->pwd, $this->email, $this->full_name, $this->verify_token,$this->ip);
+        $this->setUser($this->pwd, $this->email, $this->full_name, $this->verify_token,$this->ip,$this->browser);
 
 
     }

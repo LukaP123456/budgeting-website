@@ -7,13 +7,27 @@ namespace Composer\Autoload;
 class ComposerStaticInit93bc8e8c2e2906bd1ee21968b4555ccb
 {
     public static $prefixLengthsPsr4 = array (
+        'W' => 
+        array (
+            'WhichBrowser\\' => 13,
+        ),
         'P' => 
         array (
+            'Psr\\Cache\\' => 10,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'WhichBrowser\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/whichbrowser/parser/src',
+            1 => __DIR__ . '/..' . '/whichbrowser/parser/tests/src',
+        ),
+        'Psr\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/cache/src',
+        ),
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
