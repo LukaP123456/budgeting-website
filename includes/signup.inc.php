@@ -1,11 +1,33 @@
 <?php
 
+// Function to get the client IP address
+function get_client_ip() {
+    $ipaddress = '';
+    if (isset($_SERVER['HTTP_CLIENT_IP']))
+        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+    else if(isset($_SERVER['REMOTE_ADDR']))
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+    else
+        $ipaddress = 'UNKNOWN';
+    return $ipaddress;
+}
+
+
 if (isset($_POST['submit'])) {
     //Grab data from the jQuery script
     $full_name = $_POST["full-name"];
     $pwd = $_POST["password"];
     $pwdRepeat = $_POST["pwdRepeat"];
     $email = $_POST["email"];
+    $ip = get_client_ip();
 
 
      //Verification token
@@ -30,7 +52,7 @@ if (isset($_POST['submit'])) {
     include "../classes/signup.classes.php";
     include "../classes/signup-contr.classes.php";
 
-    $signup = new SignupContr($full_name, $pwd, $pwdRepeat, $email, $verify_token);
+    $signup = new SignupContr($full_name, $pwd, $pwdRepeat, $email, $verify_token,$ip);
 
     //Runs error handlers and inserts the user into the database
     $signup->signupUser();
@@ -44,5 +66,8 @@ else
 {
     header("Location: ../index.php?signup=error");
 }
+
+
+
 
 
