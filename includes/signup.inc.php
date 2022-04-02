@@ -1,5 +1,6 @@
 <?php
 
+
 // Function to get the client IP address
 function get_client_ip() {
     $ipaddress = '';
@@ -27,7 +28,11 @@ if (isset($_POST['submit'])) {
     $pwd = $_POST["password"];
     $pwdRepeat = $_POST["pwdRepeat"];
     $email = $_POST["email"];
+
+    require 'vendor/autoload.php';
     $ip = get_client_ip();
+    $result = new WhichBrowser\Parser(getallheaders());
+    $browser = $result->toString();
 
 
      //Verification token
