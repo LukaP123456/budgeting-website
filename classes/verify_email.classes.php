@@ -6,7 +6,6 @@ class Verify extends Dbh{
 
         if (isset($token))
         {
-            //TODO:Resiti problem sa ponovnim slanjem verify tokena jer sada kveri ispod trazi token kojeg nema u bazi
             //Querry which checks if there is a token inside a database
             $stmt = $this->connect()->prepare("SELECT verify_token,verify_status FROM accounts WHERE verify_token = ? LIMIT 1");
 
@@ -14,7 +13,7 @@ class Verify extends Dbh{
             if ($stmt->execute(array($token)))
             {
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                if ($row["verify_status"] == "0")
+                if ($row["verify_status"] == 0)
                 {
                     $clicked_token = $row["verify_status"];
                     $update_stmt = $this->connect()->prepare("UPDATE accounts SET verify_status=1 WHERE verify_token=$clicked_token");
