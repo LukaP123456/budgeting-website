@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2022 at 09:08 PM
+-- Generation Time: Apr 03, 2022 at 04:42 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.0
 
@@ -35,7 +35,7 @@ CREATE TABLE `accounts` (
   `verify_status` tinyint(2) NOT NULL DEFAULT 0 COMMENT '0 = not verified, 1 = verified ',
   `verify_token` varchar(200) NOT NULL,
   `ip_adresa` varchar(200) NOT NULL,
-  `web_browser` varchar(200) NOT NULL,
+  `web_browser_OS` varchar(200) NOT NULL,
   `signup_time` datetime NOT NULL,
   `is_household_admin` tinyint(2) NOT NULL COMMENT '0=not admin, 1=admin',
   `domacinstvo_id` int(255) DEFAULT NULL
@@ -45,8 +45,8 @@ CREATE TABLE `accounts` (
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`users_id`, `users_pwd`, `users_email`, `full_name`, `verify_status`, `verify_token`, `ip_adresa`, `web_browser`, `signup_time`, `is_household_admin`, `domacinstvo_id`) VALUES
-(76, '$2y$10$GnEHtt7WUmApv1NxiHw7PuNa8hX0Y5TU/FW6jTQeVp5CQ6yghfEEG', 'bobomejl123@gmail.com', 'bobo ime ', 1, 'd6b642b4fc5247a25dd81a28f5c03845', '', '', '0000-00-00 00:00:00', 0, NULL);
+INSERT INTO `accounts` (`users_id`, `users_pwd`, `users_email`, `full_name`, `verify_status`, `verify_token`, `ip_adresa`, `web_browser_OS`, `signup_time`, `is_household_admin`, `domacinstvo_id`) VALUES
+(97, '$2y$10$XDRkJRKDjBNE0nQbnSvaDOnIBnN3hECIk3g9nZHgt0Q4ppO7T5bmu', 'bobomejl123@gmail.com', 'bobo ime ', 0, '941af0477171971183dc590dde33a622', '::1', 'an unknown browser that imitates Chrome Dev 100.0.4896.60 on Windows 10', '0000-00-00 00:00:00', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -164,7 +164,7 @@ ALTER TABLE `household`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT for table `admin`
