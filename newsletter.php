@@ -1,6 +1,5 @@
 <!--Newsletter start-->
-<section class="bg-primary text-light p-5" style="background: url('./img/okean3.jpg'); background-size: cover; height: 20vh">
-<!--<section class="bg-primary text-light p-5" >-->
+<section class="bg-primary text-light p-5" id="background1" style="background: url('./img/okean3.jpg'); background-size: cover; height: 20vh">
     <div class="container">
         <div class="d-md-flex justify-content-between align-items-center">
             <h3 class="mb-3 mb-md-0">Sign up for Our Newsletter</h3>
