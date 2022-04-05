@@ -1,5 +1,5 @@
 <!--Showcase start-->
-<section class="bg-black text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start bg-image" style="background: url('./img/money1.jpg'); background-size: cover; height: 70vh" >
+<section class="bg-black text-light p-1 p-lg-0 pt-lg-5 text-center text-sm-start bg-image" style="background: url('./img/money1.jpg'); background-size: cover; height: 70vh" >
     <div class="container mt-5">
         <div class="d-sm-flex align-items-center justify-content-between">
             <div>
