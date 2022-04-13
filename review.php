@@ -1,5 +1,5 @@
 <!--Review start-->
-<section id="instructors" class="p-5 bg-primary" style="background: url('./img/okean2.jpg'); background-size: cover;">
+<section id="instructors" class="p-5" style="background: url('./img/okean2.jpg'); background-size: cover;">
     <div class="container">
         <h2 class="text-center text-white">Reviews</h2>
         <p class="lead text-center text-white mb-5">
