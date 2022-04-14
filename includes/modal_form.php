@@ -82,7 +82,7 @@
                     elseif (strpos($fullUrl,"error=none") == true)
                     {
                         echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                        <strong>Holy guacamole!</strong> Success you signed up.
+                        <strong>Success!</strong> Success you signed up.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
                     }
