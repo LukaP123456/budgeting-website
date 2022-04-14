@@ -41,16 +41,6 @@ if (isset($_POST['submit'])) {
     $data = $number_rand.$full_name.$email.$salt1;
     $verify_token = md5($data);
 
-    if (empty($full_name) || empty($email) || empty($pwd) || empty($pwdRepeat) )
-    {
-        echo "<span class='input-error'> Fill in all fields </span>";
-        $errorEmpty = true;
-    }
-    else
-    {
-        echo "<span> Signed up successfully </span>";
-    }
-
 
     //Instantiate SignupContr class
     include "../classes/dbh.classes.php";
