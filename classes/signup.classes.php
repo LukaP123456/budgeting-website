@@ -4,7 +4,11 @@
 class Signup extends Dbh{
 
     protected function setUser( $pwd, $email,$full_name,$verify_token,$ip,$browser){
-        $stmt = $this->connect()->prepare("INSERT INTO accounts(users_pwd,users_email,full_name,verify_token,ip_adresa,web_browser_OS) values (?,?,?,?,?,?)");
+        $stmt = $this->connect()->prepare(
+         "BEGIN;
+         INSERT INTO accounts(users_pwd,users_email,full_name,verify_token) values (?,?,?,?);
+         INSERT INTO log_data(users_id,ip_adress,web_browser_OS) values(LAST_INSERT_ID(),?,?);
+         COMMIT;");
 
         $hashedPwd = password_hash($pwd,PASSWORD_DEFAULT);
 
