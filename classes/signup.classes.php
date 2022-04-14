@@ -61,7 +61,8 @@ class Signup extends Dbh{
         if(!$stmt->execute(array($hashedPwd,$email,$full_name,$verify_token,$ip,$browser))){
             //Throws an error message in the url if it fails setting a user
             $stmt = null;
-            header("location: ../index.php?error=stmtfailed");
+            $_SESSION['error1'] = true;
+            header("location:../index.php?error=stmtfailed");
             exit();
         }
         else{
@@ -86,7 +87,8 @@ class Signup extends Dbh{
         //!$stmt->execute(array($full_name,$email) returns true if user doesn't exist in DB
         if(!$stmt->execute(array($full_name,$email))){
             $stmt = null;
-            header("location: ../index.php?error=stmtfailed");
+            $_SESSION['error1'] = true;
+            header("location:../index.php?error=user_not_found");
             exit();
         }
 
@@ -102,15 +104,5 @@ class Signup extends Dbh{
         return $resultCheck;
 
     }
-
-
-
-
-
-
-
-
-
-
 
 }

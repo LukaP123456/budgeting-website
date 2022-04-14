@@ -51,6 +51,34 @@
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
                     }
+                    elseif (strpos($fullUrl,"error=signup_error") == true)
+                    {
+                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        Massive error has happened please contact this email: xy@gmail.com
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+                    }
+                    elseif (strpos($fullUrl,"error=stmtfailed") == true)
+                    {
+                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        Failed to insert into database 
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+                    }
+                    elseif (strpos($fullUrl,"error=user_not_found") == true)
+                    {
+                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        User has not been found
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+                    }
+                    elseif (strpos($fullUrl,"error=token_failed") == true)
+                    {
+                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        There is an error with your verification token
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+                    }
                     elseif (strpos($fullUrl,"error=none") == true)
                     {
                         echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>

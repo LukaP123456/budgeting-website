@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
     $number_rand = rand(0,9999999);
     $salt1="token456456456456465657894531324848951";
     $data = $number_rand.$full_name.$email.$salt1;
-    $verify_token = md5($data);
+    $verify_token = password_hash($data,PASSWORD_DEFAULT);
 
 
     //Instantiate SignupContr class
@@ -59,7 +59,8 @@ if (isset($_POST['submit'])) {
 }
 else
 {
-    header("Location: ../index.php?signup=error");
+    $_SESSION['error1'] = true;
+    header("location:../index.php?error=signup_error");
 }
 
 
