@@ -16,10 +16,8 @@ if (isset($_POST['reset-request-submit']))
 
     $user_email = $_POST["email"];
 
-
-
-
-
+    $reset = new reset_password();
+    $reset->reset_user($user_email,$selector,$token,$expires);
 
 
 }
