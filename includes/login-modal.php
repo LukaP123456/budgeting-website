@@ -77,9 +77,9 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" name="submit" id="submit" class="btn btn-primary">Login</button>
                         <hr>
-                        <h5>Did not receive Your Verification Email?
+                        <p>Did not receive Your Verification Email?
                             <a href="./resend-email-verification.php">Resend</a>
-                        </h5>
+                        </p>
                     </div>
                 </form>
             </div>

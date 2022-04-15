@@ -114,13 +114,15 @@
                         <br>
                     </div>
 
+                    <a href="./includes/reset-password-form.php">Forgot your password?</a>
+
                     <div class="modal-footer">
                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" id="submit" class="btn btn-primary" name="submit" >Register now</button>
                     </div>
+
                     <p class="form-message"></p>
                 </form>
-
             </div>
         </div>
     </div>
