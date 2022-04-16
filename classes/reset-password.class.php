@@ -44,35 +44,28 @@ class reset_password extends Dbh{
 
     }
 
-    public function reset_user_password($email, $password_token, $password_selector, $password_expires){
-        $stmt_check = $this->connect()->prepare( "SELECT * FROM cost.accounts where users_email=? LIMIT 1;");
-        $hashed_token = password_hash($password_token,PASSWORD_DEFAULT);
+    public function reset_user_password($email, $password_token,$expiration_date){
+        $url = "http://localhost/BUDGETING_WEBSITE/includes/create-new-password.php?token=" . $password_token;
 
+        $stmt_check = $this->connect()->prepare( "SELECT * FROM cost.accounts where users_email=? AND verify_status=1 LIMIT 1;");
 
         if ($stmt_check->execute($email))
         {
-            //We have the entered email in the database now we will delete the old password
             $user = $stmt_check->fetchAll(PDO::FETCH_ASSOC);
             $fullname = $user["full_name"];
 
 
-
-            $stmt_delete = $this->connect()->prepare("UPDATE `accounts` SET `users_pwd` = '' WHERE `accounts`.`users_email` =?;");
-            if ($stmt_delete->execute($email))
+            $insert_stmt = $this->connect()->prepare("UPDATE accounts set password_reset_expires=? WHERE users_email=$email");
+            if (!$insert_stmt->execute($expiration_date))
             {
-                //We deleted the old password now we have to change it into the new value which we will get from the reset-form.php page and insert password_reset_token into the database
-                $stmt_insert = "INSERT INTO accounts(password_reset_token,password_reset_expires) VALUES (?,?);";
-                if ($stmt_insert->execute($hashed_token,$password_expires))
-                {
-                    //We inserted the reset token into the database and the time it has before it is invalid
-                    $this->sendemail_verify($fullname,$email,$hashed_token);
-
-                }
-
-
+                //There was an error with updating the table with the expiration date
+                echo "error";
             }
-
-
+            else{
+                //We successfully inserted the expiration date into the database and so we are sending the email
+                echo "success";
+                $this->sendemail_verify($fullname,$email,$url);
+            }
         }
         else
         {
@@ -80,32 +73,10 @@ class reset_password extends Dbh{
             echo "error";
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        $stmt = $this->connect()->prepare("UPDATE `accounts` SET `users_pwd` = '' and verify_token = '' WHERE `accounts`.`users_email` =?;");
-
-        if (!$stmt->execute($email))
-        {
-            echo "There was an error";
-            exit();
-        }
-        else
-        {
-
-            $insert_stmt = "INSERT INTO accounts(verify_token,users_pwd,) VALUES (?,?,?,?);";
-
-           if (!$insert_stmt->execute($email,$password_selector,$hashed_token,$password_expires))
-            {
-                echo "There was an error";
-            }
-            else
-            {
-                //TODO:prepraviti da reset_user funkcija uzima podatke iz baze na osnovu email-a i iskorisiti accounts tabelu
-                //TODO:za ponovno resetovanje sifre ne koristiti jos jednu posebnu tabelu.
-                $this->sendemail_verify($email);
-            }
-        }
 
     }
+
+
 
 
 
