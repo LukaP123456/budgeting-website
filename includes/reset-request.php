@@ -1,4 +1,6 @@
 <?php
+require_once "../classes/dbh.classes.php";
+require_once "../classes/reset-password.class.php";
 
 if (isset($_POST['reset-request-submit']))
 {
@@ -9,7 +11,8 @@ if (isset($_POST['reset-request-submit']))
     //Expiary date for the token
     //date("U") gives us the current date in seconds since 1970
     //1800 = 1 hour
-    $expires = date("U") + 1800;
+    $expires = date('U') + 1800;
+    echo $expires;
 
     $user_email = $_POST["email"];
 

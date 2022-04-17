@@ -1,4 +1,6 @@
 <?php
+require_once "../classes/dbh.classes.php";
+require_once "../classes/reset-password.class.php";
 
 if ($_GET['token'] && $_GET['email'])
 {
