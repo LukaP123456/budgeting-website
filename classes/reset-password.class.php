@@ -45,7 +45,7 @@ class reset_password extends Dbh{
     }
 
     public function reset_user_password($email, $password_token,$expiration_date){
-        $url = "http://localhost/BUDGETING_WEBSITE/includes/create-new-password.php?token=" . $password_token;
+        $url = "http://localhost/BUDGETING_WEBSITE/includes/create-new-password.php?token=" . $password_token ."&email=" . $email;
 
         $stmt_check = $this->connect()->prepare( "SELECT * FROM cost.accounts where users_email=? AND verify_status=1 LIMIT 1;");
 
@@ -55,7 +55,7 @@ class reset_password extends Dbh{
             $fullname = $user["full_name"];
 
 
-            $insert_stmt = $this->connect()->prepare("UPDATE accounts set password_reset_expires=? WHERE users_email=$email");
+            $insert_stmt = $this->connect()->prepare("UPDATE accounts set password_reset_expires=?  WHERE users_email=$email");
             if (!$insert_stmt->execute($expiration_date))
             {
                 //There was an error with updating the table with the expiration date
@@ -72,6 +72,46 @@ class reset_password extends Dbh{
             //Error the entered email doesn't exist
             echo "error";
         }
+
+
+    }
+
+
+    public function check_user_4reset($email,$reset_token){
+
+        $stmt_check = $this->connect()->prepare("SELECT * FROM cost.accounts WHERE users_email = ? AND password_reset_token = ? LIMIT 1;");
+
+        if ($stmt_check->execute($email,$reset_token))
+        {
+            //User exists
+            return true;
+        }
+        else
+        {
+            //User doesn't exist
+            return false;
+        }
+
+
+    }
+
+    public function insert_new_password($email,$new_password,$token){
+
+        $stmt_insert = $this->connect()->prepare("UPDATE accounts set users_pwd=? WHERE users_email=? AND password_reset_token=? AND password_reset_expires <=1800;");
+
+        if ($stmt_insert->execute($new_password,$email,$token))
+        {
+            //We successfully inserted the new password;
+            return true;
+        }
+        else
+        {
+            //Failed to insert new password
+            return false;
+        }
+
+
+
 
 
     }
