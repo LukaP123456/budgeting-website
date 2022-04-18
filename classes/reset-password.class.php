@@ -1,4 +1,5 @@
 <?php
+session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -51,6 +52,7 @@ class reset_password extends Dbh{
 
         if ($stmt_check->execute(array($email) ))
         {
+
             $user = $stmt_check->fetchAll(PDO::FETCH_ASSOC);
             $fullname = $user["full_name"];
 
@@ -64,7 +66,10 @@ class reset_password extends Dbh{
             else{
                 //We successfully inserted the expiration date into the database and so we are sending the email
                 echo "success";
+                $_SESSION["email"] =  $email;
+
                 $this->sendemail_verify($fullname,$email,$url);
+                header("Location:../includes/reset-password-success.php");
             }
         }
         else

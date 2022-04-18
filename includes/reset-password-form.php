@@ -64,6 +64,16 @@
                         <p>You will receive an e-mail with instructions on how to reset your password.</p>
                     </div>
                     <div class="card-body">
+                        <?php
+                        session_start();
+
+                        $fullUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+                        if (strpos($fullUrl,"error=empty_email") == true)
+                            echo $_SESSION['error-message-resend'];
+                            unset($_SESSION['error-message-resend']);
+
+                        ?>
                         <form action="reset-request.php" method="POST">
                             <div class="form-group mb-3">
                                 <label for="email">Email address</label>
@@ -84,3 +94,8 @@
 
 
 </body>
+
+<!--Javascript/Bootstrap links-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
