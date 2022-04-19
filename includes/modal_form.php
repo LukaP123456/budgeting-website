@@ -95,6 +95,7 @@
                         <label for="full-name">Full name\User name</label><br>
                         <span>*You can only have on user name per e-mail account</span>
                         <input type="text" class="form-control" id="full-name" name="full-name" placeholder="Full name">
+                        <div id="error-message-client" ></div>
                         <br>
                     </div>
                     <div class="mb-3">
@@ -121,7 +122,30 @@
                         <button type="submit" id="submit" class="btn btn-primary" name="submit" >Register now</button>
                     </div>
 
-                    <p class="form-message"></p>
+
+                    <script>
+                        const name = document.getElementById('full-name');
+                        const email = document.getElementById('email');
+                        const form = document.getElementById('signup-form');
+                        const errorElement = document.getElementById('error-message-client');
+
+                        form.addEventListener('submit', (e) =>{
+                            let message = [];
+
+                            if (name.value === '' || email.value === null)
+                            {
+                                message.push("Name is required");
+                            }
+
+                            if (message.length > 0)
+                            {
+                                e.preventDefault();
+                                errorElement.innerHTML = message.join(',');
+                            }
+
+                        });
+                    </script>
+
                 </form>
             </div>
         </div>
