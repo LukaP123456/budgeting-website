@@ -1,3 +1,16 @@
+.input-control.succes input{
+  border-color: green;
+}
+
+.input-control.succes input{
+  border-color: red;
+}
+
+.input-control .error {
+  border-color: red;
+  font-size: 9px;
+  height: 13px;
+}
 /*Adds a ghost element of 60 px which pushes the body element down*/
 body::before{
   display: block;
