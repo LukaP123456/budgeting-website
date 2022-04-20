@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="cost@localhost">
   <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.23">
+<<<<<<< HEAD
     <root id="1">
       <ServerVersion>10.4.22</ServerVersion>
       <Grants>|root||root|127.0.0.1|ALTER|G
@@ -134,6 +135,9 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <DefaultEngine>InnoDB</DefaultEngine>
       <DefaultCasing>lower/lower</DefaultCasing>
     </root>
+=======
+    <root id="1"/>
+>>>>>>> 7d57227ce01e2674f8a148d4299275034ed339f7
     <schema id="2" parent="1" name="cost">
       <Current>1</Current>
       <Collation>utf8mb4_general_ci</Collation>
@@ -1187,6 +1191,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <Host>localhost</Host>
     </user>
     <table id="339" parent="2" name="accounts"/>
+<<<<<<< HEAD
     <table id="340" parent="2" name="cash_flow"/>
     <table id="341" parent="2" name="cateogries"/>
     <table id="342" parent="2" name="goals"/>
@@ -1196,354 +1201,60 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
     <table id="346" parent="2" name="roles"/>
     <table id="347" parent="2" name="transport_user_table"/>
     <column id="348" parent="339" name="users_id">
+=======
+    <column id="340" parent="339" name="users_id">
+>>>>>>> 7d57227ce01e2674f8a148d4299275034ed339f7
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="349" parent="339" name="users_pwd">
+    <column id="341" parent="339" name="users_uid">
       <Position>2</Position>
+      <DataType>tinytext|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="342" parent="339" name="users_pwd">
+      <Position>3</Position>
       <DataType>longtext|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="350" parent="339" name="users_email">
-      <Position>3</Position>
+    <column id="343" parent="339" name="users_email">
+      <Position>4</Position>
+      <DataType>tinytext|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="344" parent="339" name="vkey">
+      <Position>5</Position>
+      <DataType>varchar(191)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="345" parent="339" name="verified">
+      <Position>6</Position>
+      <DataType>tinyint(1)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="346" parent="339" name="createdate">
+      <Position>7</Position>
+      <DataType>timestamp(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>current_timestamp(6)</DefaultExpression>
+      <OnUpdate>current_timestamp(6)</OnUpdate>
+    </column>
+    <column id="347" parent="339" name="full_name">
+      <Position>8</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="348" parent="339" name="role">
+      <Position>9</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="351" parent="339" name="full_name">
-      <Position>4</Position>
-      <DataType>varchar(200)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="352" parent="339" name="verify_status">
-      <Position>5</Position>
-      <Comment>0 = not verified, 1 = verified </Comment>
-      <DataType>tinyint(2)|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>0</DefaultExpression>
-    </column>
-    <column id="353" parent="339" name="verify_token">
-      <Position>6</Position>
-      <DataType>varchar(200)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="354" parent="339" name="is_household_admin">
-      <Position>7</Position>
-      <Comment>0 = is not household admin&#xd;
-1 = is household admin</Comment>
-      <DataType>tinyint(4)|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>1</DefaultExpression>
-    </column>
-    <column id="355" parent="339" name="household_id">
-      <Position>8</Position>
-      <DataType>int(255)|0s</DataType>
-      <DefaultExpression>0</DefaultExpression>
-    </column>
-    <column id="356" parent="339" name="role">
-      <Position>9</Position>
-      <Comment>0 = regular user &#xd;
-1 = household admin &#xd;
-2 = super admin	</Comment>
-      <DataType>int(11)|0s</DataType>
-      <DefaultExpression>1</DefaultExpression>
-    </column>
-    <index id="357" parent="339" name="users_email">
-      <ColNames>users_email</ColNames>
-      <Unique>1</Unique>
-      <Type>btree</Type>
-    </index>
-    <index id="358" parent="339" name="household_id">
-      <ColNames>household_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="359" parent="339" name="role_fk">
-      <ColNames>role</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="360" parent="339" name="PRIMARY">
+    <key id="349" parent="339" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>users_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="361" parent="339" name="users_email">
-      <ColNames>users_email</ColNames>
-      <UnderlyingIndexName>users_email</UnderlyingIndexName>
-    </key>
-    <foreign-key id="362" parent="339" name="household_id">
-      <ColNames>household_id</ColNames>
-      <RefTableName>household</RefTableName>
-      <RefColNames>household_id</RefColNames>
-    </foreign-key>
-    <foreign-key id="363" parent="339" name="role_fk">
-      <ColNames>role</ColNames>
-      <RefTableName>roles</RefTableName>
-      <RefColNames>roles_id</RefColNames>
-    </foreign-key>
-    <column id="364" parent="340" name="amount_id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="365" parent="340" name="amount">
-      <Position>2</Position>
-      <DataType>int(255)|0s</DataType>
-    </column>
-    <column id="366" parent="340" name="users_id">
-      <Position>3</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="367" parent="340" name="category_id">
-      <Position>4</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="368" parent="340" name="positive_negative">
-      <Position>5</Position>
-      <Comment>0 = withdrawing amount from the budget, 1 = adding amount to the goal/budget</Comment>
-      <DataType>tinyint(4)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="369" parent="340" name="date_added">
-      <Position>6</Position>
-      <DataType>datetime|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="370" parent="340" name="users_id">
-      <ColNames>users_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="371" parent="340" name="category_id">
-      <ColNames>category_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <foreign-key id="372" parent="340" name="cash_flow_ibfk_1">
-      <ColNames>users_id</ColNames>
-      <RefTableName>accounts</RefTableName>
-      <RefColNames>users_id</RefColNames>
-    </foreign-key>
-    <foreign-key id="373" parent="340" name="category_id">
-      <ColNames>category_id</ColNames>
-      <RefTableName>cateogries</RefTableName>
-      <RefColNames>category_id</RefColNames>
-    </foreign-key>
-    <column id="374" parent="341" name="category_id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="375" parent="341" name="category_name">
-      <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="376" parent="341" name="household_id">
-      <Position>3</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="377" parent="341" name="category_date_added">
-      <Position>4</Position>
-      <DataType>datetime|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="378" parent="341" name="household_id">
-      <ColNames>household_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="379" parent="341" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>category_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="380" parent="341" name="cateogries_ibfk_1">
-      <ColNames>household_id</ColNames>
-      <RefTableName>household</RefTableName>
-      <RefColNames>household_id</RefColNames>
-    </foreign-key>
-    <column id="381" parent="342" name="goal_id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="382" parent="342" name="goal_name">
-      <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="383" parent="342" name="goal_price">
-      <Position>3</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="384" parent="342" name="user_id">
-      <Position>4</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="385" parent="342" name="goal_achieved">
-      <Position>5</Position>
-      <Comment>0 = goal not achieved, 1 = goal achieved</Comment>
-      <DataType>tinyint(3)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="386" parent="342" name="user_id">
-      <ColNames>user_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="387" parent="342" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>goal_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="388" parent="342" name="goals_ibfk_1">
-      <ColNames>user_id</ColNames>
-      <RefTableName>accounts</RefTableName>
-      <RefColNames>users_id</RefColNames>
-    </foreign-key>
-    <column id="389" parent="343" name="household_id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="390" parent="343" name="household_name">
-      <Position>2</Position>
-      <DataType>varchar(200)|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;single person&apos;</DefaultExpression>
-    </column>
-    <key id="391" parent="343" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>household_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="392" parent="344" name="data_id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
-    </column>
-    <column id="393" parent="344" name="ip_adress">
-      <Position>2</Position>
-      <DataType>varchar(200)|0s</DataType>
-    </column>
-    <column id="394" parent="344" name="web_browser_OS">
-      <Position>3</Position>
-      <DataType>varchar(200)|0s</DataType>
-    </column>
-    <column id="395" parent="344" name="signup_time">
-      <Position>4</Position>
-      <DataType>datetime|0s</DataType>
-    </column>
-    <column id="396" parent="344" name="users_id">
-      <Position>5</Position>
-      <DataType>int(11)|0s</DataType>
-    </column>
-    <index id="397" parent="344" name="users_id">
-      <ColNames>users_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="398" parent="344" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>data_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="399" parent="344" name="log_data_ibfk_1">
-      <ColNames>users_id</ColNames>
-      <RefTableName>accounts</RefTableName>
-      <RefColNames>users_id</RefColNames>
-    </foreign-key>
-    <column id="400" parent="345" name="password_reset_id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
-    </column>
-    <column id="401" parent="345" name="password_reset_email">
-      <Position>2</Position>
-      <DataType>text|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="402" parent="345" name="password_reset_selector">
-      <Position>3</Position>
-      <DataType>text|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="403" parent="345" name="password_reset_token">
-      <Position>4</Position>
-      <DataType>longtext|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="404" parent="345" name="password_reset_expires">
-      <Position>5</Position>
-      <DataType>text|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <key id="405" parent="345" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>password_reset_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="406" parent="346" name="roles_id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
-    </column>
-    <column id="407" parent="346" name="role">
-      <Position>2</Position>
-      <Comment>0 = regular user&#xd;
-1 = household admin &#xd;
-2 = super admin	</Comment>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>1</DefaultExpression>
-    </column>
-    <key id="408" parent="346" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>roles_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="409" parent="347" name="transport_id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
-    </column>
-    <column id="410" parent="347" name="user_id">
-      <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="411" parent="347" name="house_hold_id">
-      <Position>3</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="412" parent="347" name="user_id">
-      <ColNames>user_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="413" parent="347" name="household1_id">
-      <ColNames>house_hold_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="414" parent="347" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>transport_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="415" parent="347" name="user_id">
-      <ColNames>user_id</ColNames>
-      <RefTableName>accounts</RefTableName>
-      <RefColNames>users_id</RefColNames>
-    </foreign-key>
-    <foreign-key id="416" parent="347" name="household1_id">
-      <ColNames>house_hold_id</ColNames>
-      <RefTableName>household</RefTableName>
-      <RefColNames>household_id</RefColNames>
-    </foreign-key>
   </database-model>
 </dataSource>
