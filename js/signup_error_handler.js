@@ -1,22 +1,60 @@
+const form = document.getElementById('signup-form');
 const name = document.getElementById('full-name');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
-const passwordRepeat = document.getElementById('pwdRepeat');
-const form = document.getElementById('signup-form');
-const errorElement = document.getElementById('error-message-client');
+const password_repeat = document.getElementById('pwdRepeat');
 
-form.addEventListener('submit', (e) =>{
-    let message = [];
+form.addEventListener('submit', e => {
 
-    if (name.value === '' || email.value === null)
-    {
-        message.push("Name is required");
-    }
+    e.preventDefault();
 
-    if (message.length > 0)
-    {
-        e.preventDefault();
-        errorElement.innerHTML = message.join(',');
-    }
+    validateInputs();
 
 });
+
+const setError = (element,message) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerHTML = message;
+    inputControl.classList.add('error');
+    inputControl.classList.remove('success');
+
+}
+
+const setSuccess = (element) => {
+    const inputControl = element.parentElement;
+    const successDisplay = inputControl.querySelector('.error');
+
+    successDisplay.innerText = '';
+    inputControl.classList.add('success');
+    inputControl.classList.remove('error');
+  
+}
+
+const validateInputs = () => {
+    const nameValue = name.value.trim();
+    const emailValue = email.value.trim();
+    const passwordValue = password.value.trim();
+    const passwordRepeatValue = password_repeat.value.trim();
+
+    if (nameValue === '')
+    {
+        setError(name,'Username is required');
+    }
+    else
+    {
+        setSuccess(name);
+    }
+
+    if (emailValue.value === '')
+    {
+        setError(email,'Email is required')
+    }
+    else
+    {
+        setSuccess(email);
+    }
+
+
+}

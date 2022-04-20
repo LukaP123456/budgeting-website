@@ -91,27 +91,30 @@
                     }
                     ?>
 
-                    <div class="mb-3">
+                    <div class="mb-3 input-control">
                         <label for="full-name">Full name\User name</label><br>
                         <span>*You can only have on user name per e-mail account</span>
                         <input type="text" class="form-control" id="full-name" name="full-name" placeholder="Full name">
-                        <div id="error-message-client" ></div>
+                        <div id="error-name"></div>
                         <br>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 input-control">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" >
+                        <div id="error-name"></div>
                         <br>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3 input-control">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password" >
+                        <div id="error-name"></div>
                         <br>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 input-control">
                         <label for="pwdRepeat">Password repeat</label>
                         <input type="password" class="form-control" id="pwdRepeat" name="pwdRepeat" placeholder="Retype Password" >
+                        <div id="error-name"></div>
                         <br>
                     </div>
 
