@@ -16,6 +16,8 @@ const setError = (element,message) => {
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
 
+    console.log(errorDisplay);
+
     console.log(message);
     errorDisplay.innerHTML = message;
     inputControl.classList.add('error');
