@@ -15,10 +15,11 @@ class Signup extends Dbh{
         $mail = new PHPMailer(true);
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();                                                        //Send using SMTP
+        //$mail->Host = "smtp.mail.yahoo.com ";                                         //Set the SMTP server to send through
         $mail->Host = 'smtp.gmail.com';                                         //Set the SMTP server to send through
         $mail->SMTPAuth = true;                                                 //Enable SMTP authentication
-        $mail->Username = 'lpbudgeting@gmail.com';                              //SMTP username
-        $mail->Password = 'supertajnasifra123';                                 //SMTP password
+        $mail->Username = 'lpbudgeting456@gmail.com';                              //SMTP username
+        $mail->Password = 'trecasrecalpBudgeting!';                                 //SMTP password
 
         $mail->SMTPSecure = "tls";                                              //Enable implicit TLS encryption
         $mail->Port = 587;                                                      //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
