@@ -22,9 +22,21 @@ class Verify extends Dbh{
 
                     if ($update_stmt->execute())
                     {
-                        //The update_stmt has update verify_status successfully so the user is sent back to the index page so they can log in their account
-                        header("Location: ../index.php");
-                        exit();
+                        $delete_stmt = $this->connect()->prepare("UPDATE accounts set verify_token=NULL WHERE verify_token=$clicked_token");
+                        if ($delete_stmt->execute())
+                        {
+                            //The update_stmt has updated verify_status successfully so the user is sent back to the index page so they can log in their account
+                            //And the delete_stmt has successfully updated the token to NULL
+                            header("Location: ../index.php");
+                            exit();
+                        }
+                        else
+                        {
+                            header("Location: ../index.php?error=token_not_delete");
+                            exit();
+                        }
+
+
                     }
 
 

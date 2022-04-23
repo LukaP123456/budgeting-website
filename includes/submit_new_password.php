@@ -21,12 +21,23 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['passwor
             //If the user exists we enter the if part and insert the new password into the database
             if ($reset_password->insert_new_password( $email,$new_password_hashed,$token))
             {
-                //Success! We have updated the password
-                $_SESSION["password-change-success"] =  "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+
+                if ($reset_password->delete_token($email))
+                {
+                    //Success! We have updated the password
+                    $_SESSION["password-change-success"] =  "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                         <strong>Success!</strong> Your password has been successfully changed. Please close this window and login your account.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
-                header("Location:../includes/create-new-password.php?token=" . $token ."&email=" . $email );
+                    header("Location:../includes/create-new-password.php?token=" . $token ."&email=" . $email );
+                }
+                else
+                {
+                    //Failed to delete the password_reset_token
+                    header("Location:../index.php?error=password_reset_token_failed");
+                }
+
+
             }
             else
             {
