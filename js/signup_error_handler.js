@@ -4,6 +4,8 @@ const email = document.getElementById('email');
 const password = document.getElementById('password');
 const password_repeat = document.getElementById('pwdRepeat');
 
+
+
 form.addEventListener('submit', e => {
 
     e.preventDefault();
@@ -19,7 +21,7 @@ const setError = (element,message) => {
     //Add error message
     errorDisplay.innerText = message;
     //Add error class
-    inputControl.classList.add('input-control error');
+    inputControl.classList.add('error');
     inputControl.classList.remove('success');
 
 }

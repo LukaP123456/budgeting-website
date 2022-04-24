@@ -11,7 +11,7 @@
             <div class="modal-body">
                 <p class="lead">Fill out this form we will get back to you</p>
                 <!-- Form -->
-                <form id="signup-form"  method="POST" action="./includes/signup.inc.php">
+                <form id="signup-form" class="form" method="POST" action="./includes/signup.inc.php">
                     <?php
                     $fullUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
@@ -93,28 +93,36 @@
 
                     <div class="mb-3 input-control">
                         <label for="full-name">Full name\User name</label><br>
-                        <span>*You can only have on user name per e-mail account</span>
-                        <input type="text" class="form-control" id="full-name" name="full-name" placeholder="Full name">
-                        <div class="error-name"></div>
+                        <p>*You can only have on user name per e-mail account</p>
+                        <input type="text" class="form-control " id="full-name" name="full-name" placeholder="Full name">
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small class="error-name">error</small>
                         <br>
                     </div>
                     <div class="mb-3 input-control">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" >
-                        <div class="error-name"></div>
+                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <small class="error-name"></small>
                         <br>
                     </div>
 
                     <div class="mb-3 input-control">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password" >
-                        <div class="error-name"></div>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small class="error-name"></small>
                         <br>
                     </div>
                     <div class="mb-3 input-control">
                         <label for="pwdRepeat">Password repeat</label>
                         <input type="password" class="form-control" id="pwdRepeat" name="pwdRepeat" placeholder="Retype Password" >
-                        <div class="error-name"></div>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small class="error-name"></small>
                         <br>
                     </div>
 

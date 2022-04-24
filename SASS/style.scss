@@ -1,15 +1,83 @@
-.input-control.succes input{
+//~ selects every i.fas element that is preceded by a input tag
+.input-control>input~i.fa-check-circle {
+  position: absolute;
+  transform: translate(27em,-1.5em);
+  visibility: hidden;
+  color: green;
+
+}
+
+.input-control>input~i.fa-exclamation-circle {
+  position: absolute;
+  transform: translate(27em,-1.5em);
+  visibility: hidden;
+  color: red;
+
+}
+@media (max-width : 572px) {
+  .input-control>input~i.fa-check-circle {
+    position: absolute;
+    transform: translate(30em,-1.5em);
+    visibility: hidden;
+    color: green;
+
+
+  }
+
+  .input-control>input~i.fa-exclamation-circle {
+    position: absolute;
+    transform: translate(30em,-1.5em);
+    visibility: hidden;
+    color: red;
+
+  }
+
+}
+@media (max-width: 500px) {
+  .input-control>input~i.fa-check-circle {
+    position: absolute;
+    transform: translate(25em,-1.5em);
+    visibility: hidden;
+    color: green;
+
+
+  }
+
+  .input-control>input~i.fa-exclamation-circle {
+    position: absolute;
+    transform: translate(25em,-1.5em);
+    visibility: hidden;
+    color: red;
+
+  }
+}
+
+@media (max-width: 450px) {
+  .input-control>input~i.fa-check-circle {
+    position: absolute;
+    transform: translate(21em,-1.5em);
+    visibility: hidden;
+  }
+
+  .input-control>input~i.fa-exclamation-circle {
+    position: absolute;
+    transform: translate(21em,-1.5em);
+    visibility: hidden;
+    color: red;
+
+  }
+}
+
+.input-control small {
+  visibility: hidden;
+}
+//Border color for input success
+.form-control.success {
   border-color: green;
 }
-
-.input-control.succes input{
+//Border color for input error
+.form-control.error {
   border-color: red;
-}
-
-.input-control .error {
-  border-color: red;
-  font-size: 9px;
-  height: 13px;
 }
 /*Adds a ghost element of 60 px which pushes the body element down*/
 body::before{
