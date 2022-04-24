@@ -14,29 +14,9 @@ form.addEventListener('submit', e => {
 
 });
 
-const setError = (element,message) => {
-    const inputControl = element.parentElement; //.mb-3 input-control
-    const errorDisplay = inputControl.querySelector('.error-name');
 
-    //Add error message
-    errorDisplay.innerText = message;
-    //Add error class
-    inputControl.classList.add('error');
-    inputControl.classList.remove('success');
 
-}
-
-const setSuccess = (element) => {
-    const inputControl = element.parentElement;
-    const successDisplay = inputControl.querySelector('.error-name');
-
-    successDisplay.innerText = '';
-    inputControl.classList.add('success');
-    inputControl.classList.remove('error');
-
-}
-
-const validateInputs = () => {
+function validateInputs() {
     //Get the value from inputs
     const nameValue = name.value.trim();
     const emailValue = email.value.trim();
@@ -46,10 +26,11 @@ const validateInputs = () => {
     if (nameValue === '')
     {
         //Show error and set error class
-        setError(name,'Your name cannot be empty');
+        setError(name,'Your name cannot be empty<i class="fas fa-exclamation">');
     }
     else
     {
+        //Add success class
         setSuccess(name);
     }
 
@@ -62,6 +43,29 @@ const validateInputs = () => {
         //Add success class
         setSuccess(email);
     }
+}
 
+function setError(element,message){
+    const inputControl = element.getElementsByClassName("form-control"); //.mb-3 input-control
+    const errorDisplay = inputControl.querySelector('small');
+
+    //Add error message
+    errorDisplay.innerText = message;
+    //Add error class
+    inputControl.classList.add('error');
+    errorDisplay.classList.add('bg-warning');
+    inputControl.classList.remove('success');
+
+}
+
+
+
+const setSuccess = (element) => {
+    const inputControl = element.parentElement;
+    const successDisplay = inputControl.querySelector('.error-name');
+
+    successDisplay.innerText = '';
+    inputControl.classList.add('success');
+    inputControl.classList.remove('error');
 
 }

@@ -1,83 +1,26 @@
-//~ selects every i.fas element that is preceded by a input tag
-.input-control>input~i.fa-check-circle {
-  position: absolute;
-  transform: translate(27em,-1.5em);
-  visibility: hidden;
-  color: green;
-
-}
-
-.input-control>input~i.fa-exclamation-circle {
-  position: absolute;
-  transform: translate(27em,-1.5em);
-  visibility: hidden;
-  color: red;
-
-}
-@media (max-width : 572px) {
-  .input-control>input~i.fa-check-circle {
-    position: absolute;
-    transform: translate(30em,-1.5em);
-    visibility: hidden;
-    color: green;
-
-
-  }
-
-  .input-control>input~i.fa-exclamation-circle {
-    position: absolute;
-    transform: translate(30em,-1.5em);
-    visibility: hidden;
-    color: red;
-
-  }
-
-}
-@media (max-width: 500px) {
-  .input-control>input~i.fa-check-circle {
-    position: absolute;
-    transform: translate(25em,-1.5em);
-    visibility: hidden;
-    color: green;
-
-
-  }
-
-  .input-control>input~i.fa-exclamation-circle {
-    position: absolute;
-    transform: translate(25em,-1.5em);
-    visibility: hidden;
-    color: red;
-
-  }
-}
-
-@media (max-width: 450px) {
-  .input-control>input~i.fa-check-circle {
-    position: absolute;
-    transform: translate(21em,-1.5em);
-    visibility: hidden;
-  }
-
-  .input-control>input~i.fa-exclamation-circle {
-    position: absolute;
-    transform: translate(21em,-1.5em);
-    visibility: hidden;
-    color: red;
-
-  }
-}
-
 .input-control small {
   visibility: hidden;
 }
+
+.input-control small.error{
+  visibility: visible;
+  color: #dc3545;
+}
+
+.input-control small.success{
+  visibility: visible;
+  color: #198754;
+}
+
+
 //Border color for input success
 .form-control.success {
-  border-color: green;
+  border-color: #198754;
+  border-width: 4px;
 }
 //Border color for input error
 .form-control.error {
-  border-color: red;
+  border-color: #dc3545;
 }
 /*Adds a ghost element of 60 px which pushes the body element down*/
 body::before{
@@ -112,5 +55,5 @@ html::-webkit-scrollbar-track{
 }
 
 .input-error{
-  box-shadow: 0 0 5px red;
+  box-shadow: 0 0 5px #dc3545;
 }
