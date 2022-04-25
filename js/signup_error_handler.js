@@ -7,12 +7,9 @@ const password_repeat = document.getElementById('pwdRepeat');
 
 form.addEventListener('submit', e => {
 
-
-    if (validateInputs()){
+    if (validateInputs()) {
         e.currentTarget.submit();
-    }
-    else
-    {
+    } else {
         e.preventDefault();
 
     }
@@ -26,6 +23,13 @@ function validateInputs() {
     const emailValue = email.value.trim();
     const passwordValue = password.value.trim();
     const passwordRepeatValue = password_repeat.value.trim();
+    let return_value = false;
+
+    //These variables are set with one when the value of the input field is correct
+    let name_check = 0;
+    let email_check = 0;
+    let password_check = 0;
+    let password_repeat_check = 0;
 
     if (nameValue === '') {
         //Show error and set error class
@@ -33,6 +37,7 @@ function validateInputs() {
     } else {
         //Add success class
         setSuccess(name);
+        name_check = 1;
     }
 
     if (emailValue === '') {
@@ -44,6 +49,7 @@ function validateInputs() {
     } else {
         //Add success class
         setSuccess(email);
+        email_check = 1;
     }
 
     if (passwordValue === '') {
@@ -55,6 +61,7 @@ function validateInputs() {
     } else {
         //Add success class
         setSuccess(password);
+        password_check = 1;
     }
 
     if (passwordRepeatValue === '') {
@@ -66,10 +73,17 @@ function validateInputs() {
     } else {
         //Add success class
         setSuccess(password_repeat);
-        return true;
+        password_repeat_check = 1;
     }
 
-    return false;
+    if (name_check === 1 && email_check === 1 && password_check === 1 && password_repeat_check === 1){
+        return_value = true;
+    }
+    else {
+        return_value = false;
+    }
+
+    return return_value;
 
 
 }
