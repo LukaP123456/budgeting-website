@@ -26,7 +26,7 @@ function validateInputs() {
     if (nameValue === '')
     {
         //Show error and set error class
-        setError(name,'Your name cannot be empty<i class="fas fa-exclamation">');
+        setError(name,'Your name cannot be empty');
     }
     else
     {
@@ -34,7 +34,7 @@ function validateInputs() {
         setSuccess(name);
     }
 
-    if (emailValue.value === '')
+    if (emailValue === '')
     {
         setError(email,'Email is required')
     }
@@ -46,26 +46,28 @@ function validateInputs() {
 }
 
 function setError(element,message){
-    const inputControl = element.getElementsByClassName("form-control"); //.mb-3 input-control
-    const errorDisplay = inputControl.querySelector('small');
 
-    //Add error message
-    errorDisplay.innerText = message;
+    element.classList.add("error");
+    const messageDisplay = document.querySelector(".message");
+
+    //Add error message and icon
+    messageDisplay.innerHTML = message + ' <i class="fas fa-exclamation-circle">';
     //Add error class
-    inputControl.classList.add('error');
-    errorDisplay.classList.add('bg-warning');
-    inputControl.classList.remove('success');
+    messageDisplay.classList.add('error');
+    messageDisplay.classList.remove('success');
 
 }
 
 
-
 const setSuccess = (element) => {
-    const inputControl = element.parentElement;
-    const successDisplay = inputControl.querySelector('.error-name');
+    element.classList.remove('error');
+    element.classList.add("success");
+    const messageDisplay = document.querySelector(".message");
 
-    successDisplay.innerText = '';
-    inputControl.classList.add('success');
-    inputControl.classList.remove('error');
+    //Add success icon
+    messageDisplay.innerHTML = '  <iclass="fas fa-check-circle">';
+    //Add success class
+    messageDisplay.classList.add('success');
+    messageDisplay.classList.remove('error');
 
 }

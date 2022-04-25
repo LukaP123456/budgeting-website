@@ -95,27 +95,27 @@
                         <label for="full-name">Full name\User name</label><br>
                         <p>*You can only have on user name per e-mail account</p>
                         <input type="text" class="form-control" id="full-name" name="full-name" placeholder="John Smith">
-                        <small class=""></small>
+                        <small class="message"></small>
                         <br>
                     </div>
                     <div class="mb-3 input-control">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="JohnSmith@gmail.com" >
-                            <small class=""></small>
+                            <small class="message"></small>
                         <br>
                     </div>
 
                     <div class="mb-3 input-control">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password" >
-                        <small class=""></small>
+                        <small class="message"></small>
                         <br>
                     </div>
 
                     <div class="mb-3 input-control">
                         <label for="pwdRepeat">Password repeat</label>
                         <input type="password" class="form-control" id="pwdRepeat" name="pwdRepeat" placeholder="Retype Password" >
-                        <small class=""></small>
+                        <small class="message"></small>
                         <br>
                     </div>
 
