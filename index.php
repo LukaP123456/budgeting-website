@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php session_start(); ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,7 +12,7 @@
     <!--Bootstrap icons link-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <!--Mapbox css link (optional)-->
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
 
     <!--Custom styles link-->
     <link rel="stylesheet" href="CSS/style.css">
@@ -21,7 +21,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!--FONT AWESOME-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
 
     <title>LP Budgeting</title>
@@ -49,52 +51,41 @@ include_once "includes/login-modal.php";
 
     //MODAL SIGNUP FORM STOPPER - used to stop the modal form from disappearing so the user
     //can see the error message which occurs on sign up
-    let error = <?php if (isset($_SESSION['error1'])){echo  $_SESSION['error1'];} else{echo 0;} ?>;
+    let error = <?php if (isset($_SESSION['error1'])) {
+        echo $_SESSION['error1'];
+    } else {
+        echo 0;
+    } ?>;
     console.log(error);
-        $(document).ready(function(){
-            if (error === 1){
-                console.log(error)
-                console.log("unutar if-a");
-                $("#enroll").modal("show");
+    $(document).ready(function () {
+        if (error === 1) {
+            console.log(error)
+            console.log("unutar if-a");
+            $("#enroll").modal("show");
 
-            }
-        });
-
+        }
+    });
 
 
     //LOGIN SIGNUP FORM STOPPER - used to stop the modal form from disappearing so the user
     //can see the error message which occurs on sign up
 
-    let error2 = <?php if (isset($_SESSION['error2'])){echo  $_SESSION['error2'];} else{echo 0;} ?>;
+    let error2 = <?php if (isset($_SESSION['error2'])) {
+        echo $_SESSION['error2'];
+    } else {
+        echo 0;
+    } ?>;
     console.log(error2);
-        $(document).ready(function(){
-            if (error2 === 1){
-                console.log(error)
-                console.log("unutar if-a");
-                $("#login_modal").modal("show");
+    $(document).ready(function () {
+        if (error2 === 1) {
+            console.log(error)
+            console.log("unutar if-a");
+            $("#login_modal").modal("show");
 
-            }
-        });
-
-
-    //Prevents the sign up form from submitting the values
-    $(document).ready(function (){
-        $("signup-form").submit(function (event){
-            event.preventDefault();
-            let name = $("#full-name").value();
-            let email = $("#email").value();
-            let password = $("#password").value();
-            let pwdRepeat = $("#pwdRepeat").value();
-            let submit = $("#submit").value();
-            $(".form-message").load("./includes/signup.inc.php", {
-                name: name,
-                email: email,
-                password: password,
-                pwdRepeat: pwdRepeat,
-                submit: submit
-            });
-        });
+        }
     });
+
+
 </script>
 
 <!--Javascript/Bootstrap links-->
@@ -104,7 +95,7 @@ include_once "includes/login-modal.php";
 
 <!--Mapbox links-->
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-<script src="js/Mapbox.js" ></script>
+<script src="js/Mapbox.js"></script>
 <!--Mapbox links-->
 
 </body>
