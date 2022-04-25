@@ -101,7 +101,7 @@
                     <div class="mb-3 input-control">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="JohnSmith@gmail.com" >
-                            <small class="message"></small>
+                        <small class="message"></small>
                         <br>
                     </div>
 

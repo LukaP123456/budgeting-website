@@ -36,38 +36,63 @@ function validateInputs() {
 
     if (emailValue === '')
     {
-        setError(email,'Email is required')
+        //Show error and set error class
+        setError(email,'Email field cannot be empty');
     }
     else
     {
         //Add success class
         setSuccess(email);
     }
+
+    if (passwordValue === '')
+    {
+        //Show error and set error class
+        setError(password,'Password field cannot be empty');
+    }
+    else
+    {
+        //Add success class
+        setSuccess(password);
+    }
+
+    if (passwordRepeatValue === '')
+    {
+        //Show error and set error class
+        setError(password_repeat,'Password repeat field cannot be empty');
+    }
+    else
+    {
+        //Add success class
+        setSuccess(password_repeat);
+    }
+
+
+
 }
+
 
 function setError(element,message){
-
-    element.classList.add("error");
-    const messageDisplay = document.querySelector(".message");
+    element.className = "form-control error";
+    const small = document.querySelector(".message");
 
     //Add error message and icon
-    messageDisplay.innerHTML = message + ' <i class="fas fa-exclamation-circle">';
+    console.log(message);
+    small.innerHTML = message + ' <i class="fas fa-exclamation-circle">';
     //Add error class
-    messageDisplay.classList.add('error');
-    messageDisplay.classList.remove('success');
+    small.className = "error";
+
 
 }
 
-
 const setSuccess = (element) => {
-    element.classList.remove('error');
-    element.classList.add("success");
-    const messageDisplay = document.querySelector(".message");
+    element.className = "form-control success";
+    const small = document.querySelector(".message");
 
     //Add success icon
-    messageDisplay.innerHTML = '  <iclass="fas fa-check-circle">';
+    // small.innerHTML = ""
+    small.innerHTML ='<i class="fas fa-check-circle">';
     //Add success class
-    messageDisplay.classList.add('success');
-    messageDisplay.classList.remove('error');
+    small.className = "success";
 
 }
