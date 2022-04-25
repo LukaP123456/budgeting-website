@@ -74,25 +74,26 @@ function validateInputs() {
 
 function setError(element,message){
     element.className = "form-control error";
-    const small = document.querySelector(".message");
+    const small = document.getElementById("message-" + element.id);
+    small.classList.remove('success');
 
     //Add error message and icon
-    console.log(message);
+    console.log(small);
     small.innerHTML = message + ' <i class="fas fa-exclamation-circle">';
     //Add error class
-    small.className = "error";
+    small.classList.add( "error");
 
 
 }
 
 const setSuccess = (element) => {
     element.className = "form-control success";
-    const small = document.querySelector(".message");
+    const small = document.getElementById("message-" + element.id);
+    small.classList.remove('error');
 
     //Add success icon
-    // small.innerHTML = ""
     small.innerHTML ='<i class="fas fa-check-circle">';
     //Add success class
-    small.className = "success";
+    small.classList.add("success");
 
 }
