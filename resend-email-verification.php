@@ -20,6 +20,11 @@
     <!--JQUERY LINK-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+    <!--FONT AWESOME-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
     <title>LP Budgeting - resend verification link</title>
 </head>
 <!--HEADER START-->
@@ -85,6 +90,7 @@
                             <div class="form-group mb-3">
                                 <label for="email">Email address</label>
                                 <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address">
+                                <small class="message" id="message-email"></small>
                             </div>
                             <div class="form-group mb-3">
                                 <button type="submit" name="resend_email_verify_btn" class="btn btn-primary" >Submit</button>
@@ -99,8 +105,14 @@
 </body>
 
 
+
+
 <!--Javascript/Bootstrap links-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
+<script src="js/resend-email-error-handler.js" ></script>
+
+
+</html>
