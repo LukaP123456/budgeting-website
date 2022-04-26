@@ -19,6 +19,11 @@
     <!--JQUERY LINK-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+    <!--FONT AWESOME-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
     <title>LP Budgeting - reset password</title>
 </head>
 <body>
@@ -69,19 +74,26 @@
 
                         $fullUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-                        if (strpos($fullUrl,"error=empty_email") == true)
-                            echo $_SESSION['error-message-resend'];
+                        if (strpos($fullUrl,"error=empty_email") == true){
+                            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <strong>Holy guacamole!</strong> That's not the password from the database.
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div></p>";
+                        }
+                        else{
                             unset($_SESSION['error-message-resend']);
-
+                        }
                         ?>
-                        <form action="reset-request.php" method="POST">
+                        <form action="reset-request.php" id="reset-request-form" method="POST">
                             <div class="form-group mb-3">
                                 <label for="email">Email address</label>
-                                <input type="email" name="email" class="form-control" placeholder="Enter your e-mail address">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Enter your e-mail address">
+                                <small class="message" id="message-email" ></small>
                             </div>
                             <div class="form-group mb-3">
                                 <button type="submit" name="reset-request-submit" class="btn btn-primary" >Submit</button>
                             </div>
+                            <script src="../js/reset-password-error-handler.js" ></script>
                         </form>
                     </div>
                 </div>

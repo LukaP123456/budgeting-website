@@ -63,14 +63,19 @@
                         <?php
 
                         if (isset($_SESSION['status-message'])){
-                            echo $_SESSION['status-message'];
+                            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <strong>Warning</strong> Please fill out the field below.
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div></p>";
+                        }
+                        else{
                             unset($_SESSION['status-message']);
                         }
                         ?>
-                        <form action="resend-code.php" method="POST">
+                        <form action="resend-code.php" id="resend-form" method="POST">
                             <div class="form-group mb-3">
                                 <label for="email">Email address</label>
-                                <input type="email" name="email" class="form-control" placeholder="Enter your email address">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address">
                             </div>
                             <div class="form-group mb-3">
                                 <button type="submit" name="resend_email_verify_btn" class="btn btn-primary" >Submit</button>

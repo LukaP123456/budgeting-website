@@ -38,7 +38,7 @@
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div></p>";
                     } elseif (strpos($fullUrl, "error=none") == true) {
-                        //TODO:Napraviti alert da se ispise succes na strani korisnika ne na strani guesta
+
 
                         $_SESSION['login-success'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                         Please fill in the form and we will resend you the verification link. 
@@ -50,22 +50,22 @@
                     }
 
                     ?>
-                    <label for="email" class="call-form-label">
+                    <label for="login-email" class="call-form-label">
                         Email:
                     </label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Email">
-                    <small class="message" id="message-email"></small>
+                    <input type="email" class="form-control" name="email" id="login-email" placeholder="Email">
+                    <small class="message" id="message-login-email"></small>
                     <br>
-                    <label for="password" class="call-form-label">
+                    <label for="login-password" class="call-form-label">
                         Password:
                     </label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-                    <small class="message" id="message-email"></small>
+                    <input type="password" class="form-control" name="password" id="login-password" placeholder="Password">
+                    <small class="message" id="message-login-password"></small>
                     <br>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" name="submit" id="submit" class="btn btn-primary">Login</button>
+                <button type="submit" name="login-submit" id="login-submit" class="btn btn-primary">Login</button>
                 <hr>
                 <p>Did not receive Your Verification Email?
                     <a href="./resend-email-verification.php">Resend</a>

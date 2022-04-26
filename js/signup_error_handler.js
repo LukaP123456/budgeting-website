@@ -45,7 +45,6 @@ function validateInputs() {
         setError(email, 'Email field cannot be empty');
     } else if (!isEmail(emailValue)) {
         setError(email, 'Email is not valid');
-
     } else {
         //Add success class
         setSuccess(email);
@@ -69,17 +68,17 @@ function validateInputs() {
         setError(password_repeat, 'Password repeat field cannot be empty');
     } else if (passwordValue !== passwordRepeatValue) {
         setError(password_repeat, 'The passwords do not match');
-
+    }else if (passwordRepeatValue.length <= 6){
+        setError(password_repeat,"Repeated password needs to be longer")
     } else {
         //Add success class
         setSuccess(password_repeat);
         password_repeat_check = 1;
     }
 
-    if (name_check === 1 && email_check === 1 && password_check === 1 && password_repeat_check === 1){
+    if (name_check === 1 && email_check === 1 && password_check === 1 && password_repeat_check === 1) {
         return_value = true;
-    }
-    else {
+    } else {
         return_value = false;
     }
 

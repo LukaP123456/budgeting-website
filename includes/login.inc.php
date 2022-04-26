@@ -20,7 +20,7 @@ if (isset($_POST['login-submit']))
 
     //Povratak na glavnu stranu
 
-    header("location../index.php?error=none");
+    header("location: ../index.php?error=none");
 
 
 }

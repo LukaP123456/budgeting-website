@@ -15,7 +15,7 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
 
     <!--Custom styles link-->
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="./CSS/style.css">
 
     <!--JQUERY LINK-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -41,7 +41,7 @@ include_once "review.php";
 include_once "contact_map.php";
 include_once "footer.php";
 include_once "includes/modal_form.php";
-include_once "includes/login-modal.php";
+include_once "./includes/login-modal.php";
 ?>
 <!--BODY END-->
 
