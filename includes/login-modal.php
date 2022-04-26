@@ -38,13 +38,10 @@
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div></p>";
                     } elseif (strpos($fullUrl, "error=none") == true) {
-
-
-                        $_SESSION['login-success'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        Please fill in the form and we will resend you the verification link. 
+                        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                        <strong>Success!</strong> Success you signed up.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
-
                     } else {
                         unset($_SESSION['error2']);
                     }
@@ -71,13 +68,11 @@
                     <a href="./resend-email-verification.php">Resend</a>
                 </p>
             </div>
-
-            <script src="./js/login_error_handler.js" ></script>
             </form>
         </div>
-
     </div>
 </div>
+<script src="./js/login_error_handler.js" ></script>
 
 <!-- LOGIN modal end -->
 

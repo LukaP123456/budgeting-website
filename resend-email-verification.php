@@ -62,14 +62,23 @@
                     <div class="card-body">
                         <?php
 
-                        if (isset($_SESSION['status-message'])){
+                        $fullUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+                        if (strpos($fullUrl, "error=email_unregistered") == true) {
                             echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <strong>Warning</strong> Please fill out the field below.
+                          <strong>Warning!</strong>Email is not registered please sign up with this email 
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                    </div></p>";
-                        }
-                        else{
-                            unset($_SESSION['status-message']);
+                    </div>";
+                        }elseif (strpos($fullUrl, "error=empty_input") == true) {
+                            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                          <strong>Warning!</strong>Please fill in the form and we will resend you the verification link. 
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+                        }elseif (strpos($fullUrl, "error=none") == true) {
+                            echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                        <strong>Success!</strong> A email with the verification has been sent.
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
                         }
                         ?>
                         <form action="resend-code.php" id="resend-form" method="POST">

@@ -16,8 +16,6 @@ form.addEventListener('submit', e=>{
 });
 
 
-
-
 function validateInputs() {
     //Get the value from inputs
     const emailValue = email.value.trim();

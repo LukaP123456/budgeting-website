@@ -8,7 +8,6 @@ login_form.addEventListener('submit', e => {
         e.currentTarget.submit();
     } else {
         e.preventDefault();
-
     }
 
 });
@@ -17,7 +16,6 @@ function login_validateInputs() {
     //Get the value from inputs
     const login_email_value = login_email.value.trim();
     const login_password_value = login_email.value.trim();
-    let return_value = false;
 
     //These variables are set with one when the value of the input field is correct
     let login_email_check = 0;
@@ -35,14 +33,15 @@ function login_validateInputs() {
     }
 
     if (login_password_value === '') {
-        //Show error class and set error class
+        //Show error and set error class
         login_setError(login_password, 'Password field cannot be empty');
     } else if (login_password_value.length <= 6) {
-        login_setError(login_password, "Please enter a longer password");
+        login_setError(login_password, 'Please enter a longer password');
+
     } else {
         //Add success class
-        login_setSuccess(login_password);
-        login_email_check = 1;
+        login_setSuccess(password);
+        login_password_check = 1;
     }
 
     if (login_password_check === 1 && login_email_check === 1) {
@@ -57,7 +56,6 @@ function login_validateInputs() {
 function login_setError(element, message) {
     element.className = "form-control error";
     const small = document.getElementById("message-" + element.id);
-    console.log(small)
     small.classList.remove('success');
 
     //Add error message and icon
