@@ -33,7 +33,7 @@ else
     $_SESSION['error-message-resend'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                         Please fill in the form and we will resend you the verification link. 
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                    </div>"; ;
+                    </div>";
 
     header("Location:../includes/reset-password-form.php?error=empty_email");
 }

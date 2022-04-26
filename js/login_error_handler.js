@@ -4,11 +4,13 @@ const login_password = document.getElementById('login-password');
 
 login_form.addEventListener('submit', e => {
 
-    if (login_validateInputs()){
+    if (login_validateInputs()) {
         e.currentTarget.submit();
-    }else {
+    } else {
         e.preventDefault();
+
     }
+
 });
 
 function login_validateInputs() {
@@ -21,47 +23,52 @@ function login_validateInputs() {
     let login_email_check = 0;
     let login_password_check = 0;
 
-    if (login_email_value === ''){
+    if (login_email_value === '') {
         //Show error and set error class
-        login_setError(login_email,"Email field cannot be empty");
-    }else if (!login_isEmail(login_email_value)){
-        login_setError(login_email,"Email is not valid");
-    }else {
+        login_setError(login_email, "Email field cannot be empty");
+    } else if (!login_isEmail(login_email_value)) {
+        login_setError(login_email, "Email is not valid");
+    } else {
         //Add success class
         login_setSuccess(login_email);
         login_email_check = 1;
     }
 
-    if (login_password_value === ''){
+    if (login_password_value === '') {
         //Show error class and set error class
-        login_setError(login_password,'Password field cannot be empty');
-    }else if (login_password_value.length <= 6){
-        login_setError(login_password,"Please enter a longer password");
-    }else {
+        login_setError(login_password, 'Password field cannot be empty');
+    } else if (login_password_value.length <= 6) {
+        login_setError(login_password, "Please enter a longer password");
+    } else {
         //Add success class
-        login_setSuccess(login_email);
+        login_setSuccess(login_password);
         login_email_check = 1;
     }
 
-    // if (login_password_check === 1 && login)
+    if (login_password_check === 1 && login_email_check === 1) {
+        return_value = true;
+    } else {
+        return_value = false;
+    }
 
-
+    return return_value;
 }
 
-function login_setError(element,message){
+function login_setError(element, message) {
     element.className = "form-control error";
     const small = document.getElementById("message-" + element.id);
+    console.log(small)
     small.classList.remove('success');
 
     //Add error message and icon
     small.innerHTML = message + ' <i class="fas fa-exclamation-circle" >';
     //Add error class
-    small.classList.add('error');
+    small.classList.add("error");
 }
 
 const login_setSuccess = (element) => {
-    element.className = 'form-control success';
-    const small = document.getElementById('message-' + element.id);
+    element.className = "form-control success";
+    const small = document.getElementById("message-" + element.id);
     small.classList.remove('error');
 
     //Add success icon
@@ -70,6 +77,6 @@ const login_setSuccess = (element) => {
     small.classList.add('success');
 }
 
-function login_isEmail(email){
+function login_isEmail(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }

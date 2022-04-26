@@ -54,13 +54,13 @@
                         Email:
                     </label>
                     <input type="email" class="form-control" name="email" id="login-email" placeholder="Email">
-                    <small class="message" id="message-email"></small>
+                    <small class="message" id="message-login-email"></small>
                     <br>
                     <label for="login-password" class="call-form-label">
                         Password:
                     </label>
                     <input type="password" class="form-control" name="password" id="login-password" placeholder="Password">
-                    <small class="message" id="message-email"></small>
+                    <small class="message" id="message-login-password"></small>
                     <br>
             </div>
             <div class="modal-footer">
