@@ -69,16 +69,18 @@
 
                         $fullUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-                        if (strpos($fullUrl, "error=email_unregistered") == true) {
+                        if (strpos($fullUrl, "error=email_unregistered") == true && isset($_SESSION['error-email']) && isset($_SESSION['status-message'])) {
                             echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                          <strong>Warning!</strong>Email is not registered please sign up with this email 
+                          <strong>Warning!</strong>Email is not registered please sign up with this email
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
-                        }elseif (strpos($fullUrl, "error=empty_input") == true) {
+                            unset($_SESSION['error-email']);
+                        }elseif (strpos($fullUrl, "error=empty_input") == true && isset($_SESSION['error-email-empty'])  && isset($_SESSION['status-message'])) {
                             echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                          <strong>Warning!</strong>Please fill in the form and we will resend you the verification link. 
+                          <strong>Warning!</strong>Please fill in the form and we will resend you the verification link.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
+                            unset($_SESSION['error-email-empty']);
                         }elseif (strpos($fullUrl, "error=none") == true) {
                             echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                         <strong>Success!</strong> A email with the verification has been sent.
@@ -96,6 +98,8 @@
                                 <button type="submit" name="resend_email_verify_btn" class="btn btn-primary" >Submit</button>
                             </div>
                         </form>
+<!--                        <script src="js/resend-email-error-handler.js" ></script>-->
+
                     </div>
                 </div>
             </div>
@@ -112,7 +116,6 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
-<script src="js/resend-email-error-handler.js" ></script>
 
 
 </html>

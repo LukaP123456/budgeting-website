@@ -5,11 +5,12 @@ const email = document.getElementById('email');
 form.addEventListener('submit', e=>{
 
 
-    if (!validateInputs()) {
-        e.preventDefault();
+    if (validateInputs()) {
+        e.currentTarget.submit();
+
 
     } else {
-        e.currentTarget.submit();
+        e.preventDefault();
 
     }
 

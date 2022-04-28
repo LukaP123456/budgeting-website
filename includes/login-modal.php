@@ -69,10 +69,11 @@
                 </p>
             </div>
             </form>
+            <script src="./js/login_error_handler.js" ></script>
         </div>
     </div>
 </div>
-<script src="./js/login_error_handler.js" ></script>
+
 
 <!-- LOGIN modal end -->
 

@@ -1,14 +1,14 @@
 const form = document.getElementById('resend-form');
 const email = document.getElementById('email');
-console.log("asdasdasd")
 
 form.addEventListener('submit', e=>{
 
-    if (!validateInputs()) {
-        e.preventDefault();
+    if (validateInputs()) {
+        e.currentTarget.submit();
+
 
     } else {
-        e.currentTarget.submit();
+        e.preventDefault();
 
     }
 

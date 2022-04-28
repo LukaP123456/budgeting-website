@@ -68,8 +68,8 @@ function validateInputs() {
         setError(password_repeat, 'Password repeat field cannot be empty');
     } else if (passwordValue !== passwordRepeatValue) {
         setError(password_repeat, 'The passwords do not match');
-    }else if (passwordRepeatValue.length <= 6){
-        setError(password_repeat,"Repeated password needs to be longer")
+    } else if (passwordRepeatValue.length <= 6) {
+        setError(password_repeat, "Repeated password needs to be longer")
     } else {
         //Add success class
         setSuccess(password_repeat);

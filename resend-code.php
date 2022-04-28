@@ -18,6 +18,7 @@ if (isset($_POST['resend_email_verify_btn']))
         else
         {
             //Email is not registered in the database
+            $_SESSION['error-email'] = 1;
             header("location: resend-email-verification.php?error=email_unregistered");
             exit();
         }
@@ -27,6 +28,7 @@ if (isset($_POST['resend_email_verify_btn']))
     else
     {
         //No email address has been written.
+        $_SESSION['error-email-empty'] = 1;
         header("Location: resend-email-verification.php?error=empty_input");
         exit();
     }

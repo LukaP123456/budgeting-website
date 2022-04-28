@@ -15,7 +15,8 @@ login_form.addEventListener('submit', e => {
 function login_validateInputs() {
     //Get the value from inputs
     const login_email_value = login_email.value.trim();
-    const login_password_value = login_email.value.trim();
+    const login_password_value = login_password.value.trim();
+    let login_return_value = false;
 
     //These variables are set with one when the value of the input field is correct
     let login_email_check = 0;
@@ -40,17 +41,17 @@ function login_validateInputs() {
 
     } else {
         //Add success class
-        login_setSuccess(password);
+        login_setSuccess(login_password);
         login_password_check = 1;
     }
 
     if (login_password_check === 1 && login_email_check === 1) {
-        return_value = true;
+        login_return_value = true;
     } else {
-        return_value = false;
+        login_return_value = false;
     }
 
-    return return_value;
+    return login_return_value;
 }
 
 function login_setError(element, message) {
