@@ -1,4 +1,4 @@
-<?php    session_start(); ?>
+<?php session_start(); ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,7 +12,7 @@
     <!--Bootstrap icons link-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <!--Mapbox css link (optional)-->
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
 
     <!--Custom styles link-->
     <link rel="stylesheet" href="CSS/style.css">
@@ -69,36 +69,39 @@
 
                         $fullUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-                        if (strpos($fullUrl, "error=email_unregistered") == true && isset($_SESSION['error-email']) && isset($_SESSION['status-message'])) {
+                        if (strpos($fullUrl, "error=email_unregistered") == true) {
                             echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                          <strong>Warning!</strong>Email is not registered please sign up with this email
+                          <strong>Warning!</strong>Email is not registered please, sign up with this email at the <a href='index.php' > home page </a>
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
-                            unset($_SESSION['error-email']);
-                        }elseif (strpos($fullUrl, "error=empty_input") == true && isset($_SESSION['error-email-empty'])  && isset($_SESSION['status-message'])) {
+                        } elseif (strpos($fullUrl, "error=empty_input") == true) {
                             echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                           <strong>Warning!</strong>Please fill in the form and we will resend you the verification link.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
                             unset($_SESSION['error-email-empty']);
-                        }elseif (strpos($fullUrl, "error=none") == true) {
-                            echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                        <strong>Success!</strong> A email with the verification has been sent.
+                        } elseif (strpos($fullUrl, "error=email_verified") == true) {
+                            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        Email is already verified. Please go to the <a href='../index.php' >home page</a> and login into your account.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
+                        } elseif (strpos($fullUrl, "error=none") == true) {
+                            echo $_SESSION['resend-success'];
                         }
                         ?>
                         <form action="resend-code.php" id="resend-form" method="POST">
                             <div class="form-group mb-3">
                                 <label for="email">Email address</label>
-                                <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address">
+                                <input type="email" id="email" name="email" class="form-control"
+                                       placeholder="Enter your email address">
                                 <small class="message" id="message-email"></small>
                             </div>
                             <div class="form-group mb-3">
-                                <button type="submit" name="resend_email_verify_btn" class="btn btn-primary" >Submit</button>
+                                <button type="submit" name="resend_email_verify_btn" class="btn btn-primary">Submit
+                                </button>
                             </div>
                         </form>
-<!--                        <script src="js/resend-email-error-handler.js" ></script>-->
+                        <script src="js/resend-email-error-handler.js"></script>
 
                     </div>
                 </div>
@@ -109,13 +112,10 @@
 </body>
 
 
-
-
 <!--Javascript/Bootstrap links-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-
 
 
 </html>

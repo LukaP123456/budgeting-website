@@ -1,7 +1,5 @@
 <?php
-
-if (isset($_POST['login-submit']))
-{
+if (isset($_POST['login-submit'])) {
     //Uzimamo podatke
     $email = $_POST["login-email"];
     $password = $_POST["login-password"];
@@ -12,7 +10,7 @@ if (isset($_POST['login-submit']))
     include "../classes/login.classes.php";
     include "../classes/login-contr.classes.php";
 
-    $signup = new LoginContr($email,$password);
+    $signup = new LoginContr($email, $password);
 
     //Running error handlers and using signup
 

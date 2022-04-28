@@ -18,8 +18,8 @@ class resend extends Dbh {
         $mail->isSMTP();                                                        //Send using SMTP
         $mail->Host = 'smtp.gmail.com';                                         //Set the SMTP server to send through
         $mail->SMTPAuth = true;                                                 //Enable SMTP authentication
-        $mail->Username = 'lpbudgeting@gmail.com';                          //SMTP username
-        $mail->Password = 'supertajnasifra123';                                    //SMTP password
+        $mail->Username = 'lpbudgeting456@gmail.com';                              //SMTP username
+        $mail->Password = 'lpbudgetinggunduliceva63';                                 //SMTP password
 
         $mail->SMTPSecure = "tls";                                              //Enable implicit TLS encryption
         $mail->Port = 587;                                                      //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
@@ -51,13 +51,12 @@ class resend extends Dbh {
     public function checkUser($email){
         $stmt = $this->connect()->prepare("SELECT * FROM accounts WHERE users_email=? LIMIT 1");
 
-        if ($stmt->rowCount() > 0)
+        if (!$stmt->execute(array($email)))
         {
             $resultCheck2 = false;
             return $resultCheck2;
         }
-
-        if ($stmt->execute(array($email)))
+        if ($stmt->rowCount() > 0)
         {
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             if ( $result["verify_status"] == 0)
@@ -67,21 +66,17 @@ class resend extends Dbh {
                 $verify_token = $result["verify_token"];
 
                 $this->sendemail_verify($name,$email_db,$verify_token);
-                $_SESSION['status-message'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                $_SESSION['resend-success'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                         Verification e-mail link has been sent to your email address(".$email_db.")
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
-                header("location: resend-email-verification.php");
+                header("location: resend-email-verification.php?error=none");
                 exit();
             }
             else
             {
                 $stmt = null;
-                $_SESSION['status-message'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        Email is already verified. Please go to the <a href='../index.php' >home page</a> and login into your account.
-                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                    </div>";
-                header("location: resend-email-verification.php");
+                header("location: resend-email-verification.php?error=email_verified");
                 exit();
 
             }
@@ -89,11 +84,7 @@ class resend extends Dbh {
         }
         else{
             $stmt = null;
-            $_SESSION['status-message'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        Email is not registered please go to the <a href='../index.php' >home page</a> and sign up with this email ".$email."
-                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                    </div>";
-            header("location: resend-email-verification.php");
+            header("location: resend-email-verification.php?error=email_unregistered");
             exit();
 
         }

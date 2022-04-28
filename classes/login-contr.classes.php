@@ -1,21 +1,26 @@
 <?php
 session_start();
-class LoginContr extends Login {
+
+class LoginContr extends Login
+{
 
     private $email;
     private $pwd;
 
 
-    public function __construct($email,$pwd){
+    public function __construct($email, $pwd)
+    {
 
         $this->email = $email;
         $this->pwd = $pwd;
 
     }
-    public function loginUser(){
+
+    public function loginUser()
+    {
 
 
-        if ($this->emptyInput() == false){
+        if ($this->emptyInput() == false) {
             //empty input
             $_SESSION['error2'] = true;
             header("location:../index.php?error=emptyinput");
@@ -23,7 +28,7 @@ class LoginContr extends Login {
         }
 
 
-        if ($this->invalidEmail() == false){
+        if ($this->invalidEmail() == false) {
             //invalid email
             $_SESSION['error2'] = true;
             header("location:../index.php?error=email");
@@ -31,39 +36,32 @@ class LoginContr extends Login {
         }
 
 
-        $this->getUser($this->email,$this->pwd);
+        $this->getUser($this->email, $this->pwd);
 
     }
 
 
-    private function emptyInput(){
+    private function emptyInput()
+    {
         $result = null;
-        if (empty($this->email) || empty($this->pwd)){
+        if (empty($this->email) || empty($this->pwd)) {
             $result = false;
-        }
-        else{
+        } else {
             $result = true;
         }
         return $result;
     }
 
-    private function invalidEmail(){
+    private function invalidEmail()
+    {
         $result = false;
-        if (!filter_var($this->email,FILTER_VALIDATE_EMAIL)){
-            $result= false;
-        }
-        else{
+        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            $result = false;
+        } else {
             $result = true;
         }
         return $result;
     }
-
-
-
-
-
-
-
 
 
 }

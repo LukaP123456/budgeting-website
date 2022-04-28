@@ -1,21 +1,22 @@
 <?php
 session_start();
 include_once "dbh.classes.php";
-class Login extends Dbh{
 
-    protected function getUser($email, $pwd){
+class Login extends Dbh
+{
+
+    protected function getUser($email, $pwd)
+    {
         $stmt = $this->connect()->prepare("SELECT users_pwd from accounts where  users_email = ? AND verify_status = 1;");
 
-        if(!$stmt->execute(array($email)))
-        {
+        if (!$stmt->execute(array($email))) {
             $stmt = null;
             $_SESSION['error2'] = true;
             header("location: ../index.php?error=stmtfailed");
             exit();
         }
 
-        if ($stmt->rowCount() == 0 )
-        {
+        if ($stmt->rowCount() == 0) {
             $stmt = null;
             $_SESSION['error2'] = true;
             header("location:../index.php?error=usernotfound");
@@ -24,30 +25,25 @@ class Login extends Dbh{
 
 
         $pwdHashed = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $checkPwd = password_verify($pwd,$pwdHashed[0]["users_pwd"]);
+        $checkPwd = password_verify($pwd, $pwdHashed[0]["users_pwd"]);
         $pwdHashed2 = $pwdHashed[0]["users_pwd"];
 
-        if ($checkPwd == false )
-        {
+        if ($checkPwd == false) {
             $stmt = null;
             $_SESSION['error2'] = true;
             header("location:../index.php?error=wrongpassword");
             exit();
-        }
-        elseif ($checkPwd == true)
-        {
+        } elseif ($checkPwd == true) {
             $stmt = $this->connect()->prepare("SELECT * from accounts where users_email = ? AND users_pwd = ? AND verify_status = 1 LIMIT 1");
 
-            if(!$stmt->execute(array($email,$pwdHashed2)))
-            {
+            if (!$stmt->execute(array($email, $pwdHashed2))) {
                 $stmt = null;
                 $_SESSION['error2'] = true;
                 header("location: ../index.php?error=stmtfailed");
                 exit();
             }
 
-            if ($stmt->rowCount() == 0 )
-            {
+            if ($stmt->rowCount() == 0) {
                 $stmt = null;
                 $_SESSION['error2'] = true;
                 header("location:../index.php?error=usernotfound");
@@ -57,15 +53,14 @@ class Login extends Dbh{
             $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             session_start();
-            $_SESSION["email"]=$user[0]["users_email"];
-            $_SESSION["users_email"]=$user[0]["users_email"];
+            $_SESSION["email"] = $user[0]["users_email"];
+            $_SESSION["users_email"] = $user[0]["users_email"];
 
-            $stmt=null;
+            $stmt = null;
 
             $_SESSION['authenticated'] = true;
 
             header("Location: ../user-logged-in.php");
-
 
 
         }
@@ -74,10 +69,6 @@ class Login extends Dbh{
         $stmt = null;
 
     }
-
-
-
-
 
 
 }
