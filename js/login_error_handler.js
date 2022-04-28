@@ -2,6 +2,7 @@ const login_form = document.getElementById('login-form');
 const login_email = document.getElementById('login-email');
 const login_password = document.getElementById('login-password');
 
+
 login_form.addEventListener('submit', e => {
 
     if (login_validateInputs()) {
@@ -17,6 +18,7 @@ function login_validateInputs() {
     const login_email_value = login_email.value.trim();
     const login_password_value = login_password.value.trim();
     let login_return_value = false;
+
 
     //These variables are set with one when the value of the input field is correct
     let login_email_check = 0;

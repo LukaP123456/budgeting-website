@@ -1,8 +1,11 @@
 <?php
+
 if (isset($_POST['login-submit'])) {
     //Uzimamo podatke
     $email = $_POST["login-email"];
     $password = $_POST["login-password"];
+
+
 
 
     //Instanciranje klase SignupContr

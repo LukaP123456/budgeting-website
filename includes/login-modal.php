@@ -60,20 +60,20 @@
                            placeholder="Password">
                     <small class="message" id="message-login-password"></small>
                     <br>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" id="login-submit" class="btn btn-primary">Login</button>
+                        <hr>
+                        <p>Did not receive Your Verification Email?
+                            <a href="./resend-email-verification.php">Resend</a>
+                        </p>
+                    </div>
+                    <script src="./js/login_error_handler.js"></script>
+                </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" id="logisn-submit" class="btn btn-primary">Login</button>
-                <hr>
-                <p>Did not receive Your Verification Email?
-                    <a href="./resend-email-verification.php">Resend</a>
-                </p>
-            </div>
-            <script src="./js/login_error_handler.js"></script>
         </div>
     </div>
-</div>
-
-
-<!-- LOGIN modal end -->
+    <!-- LOGIN modal end -->
 
