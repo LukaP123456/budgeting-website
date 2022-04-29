@@ -50,13 +50,13 @@
                     <label for="login-email" class="call-form-label">
                         Email:
                     </label>
-                    <input type="email" class="form-control" id="login-email" placeholder="Email">
+                    <input type="email" class="form-control" id="login-email" name="login-email" placeholder="Email">
                     <small class="message" id="message-login-email"></small>
                     <br>
                     <label for="login-password" class="call-form-label">
                         Password:
                     </label>
-                    <input type="password" class="form-control" id="login-password"
+                    <input type="password" class="form-control" name="login-password" id="login-password"
                            placeholder="Password">
                     <small class="message" id="message-login-password"></small>
                     <br>
@@ -64,7 +64,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" id="login-submit" class="btn btn-primary">Login</button>
+                        <button type="submit" name="login-submit" id="login-submit" class="btn btn-primary">Login</button>
                         <hr>
                         <p>Did not receive Your Verification Email?
                             <a href="./resend-email-verification.php">Resend</a>

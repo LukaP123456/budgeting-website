@@ -5,8 +5,8 @@ if (isset($_POST['login-submit'])) {
     $email = $_POST["login-email"];
     $password = $_POST["login-password"];
 
-
-
+    var_dump($email);
+    var_dump($password);
 
     //Instanciranje klase SignupContr
     include "../classes/dbh.classes.php";
@@ -18,10 +18,4 @@ if (isset($_POST['login-submit'])) {
     //Running error handlers and using signup
 
     $signup->loginUser();
-
-    //Povratak na glavnu stranu
-
-    header("location: ../index.php?error=none");
-
-
 }

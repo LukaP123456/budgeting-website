@@ -1,9 +1,10 @@
-const reset_form = document.getElementById('reset_form');
+const reset_form = document.getElementById('reset-form');
 const password = document.getElementById('password');
 const password_repeat = document.getElementById('password2');
 
 
 reset_form.addEventListener('submit', e => {
+
 
     if (validateInputs()) {
         e.currentTarget.submit();

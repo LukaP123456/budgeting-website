@@ -75,7 +75,7 @@ require_once "../classes/reset-password.class.php";
                             $check_user_class = new reset_password();
                             if ($check_user_class->check_user_4reset($email, $token)) {
                                 ?>
-                                <form method="post" id="reset_form" action="submit_new_password.php">
+                                <form method="post" name="reset-form" id="reset-form" action="submit_new_password.php">
                                     <?php
                                     $fullUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
@@ -101,17 +101,19 @@ require_once "../classes/reset-password.class.php";
                                         <input type="hidden" name="email" value="<?php echo $email; ?>">
                                         <input type="hidden" name="token" value="<?php echo $token; ?>">
                                         <label for="password">Enter New password</label>
-                                        <input type="password" id="password" class="form-control" name='password'><br>
+                                        <input type="password" id="password" class="form-control" name='password'
+                                               placeholder="New password"><br>
                                         <label for="password2">Repeat your password</label>
                                         <input type="password" id="password2" class="form-control"
-                                               name='password_repeat'>
+                                               name='password_repeat' placeholder="Repeat your password">
                                     </div>
                                     <div class="form-group mb-3">
                                         <input type="submit" id="submit_password" name="submit_password"
                                                class="btn btn-primary">
                                     </div>
                                 </form>
-                                <script src="../js/password-reset-error-handling.js"></script>
+                                <!--Custom Javascript-->
+                                <script src="../js/password-reset-error-handling.js" type="module"></script>
                                 <!--RESET PASSWORD FORM END-->
                                 <?php
                             } else {
@@ -122,10 +124,13 @@ require_once "../classes/reset-password.class.php";
 
                         }
                         ?>
-</body>
+
 
 <!--Javascript/Bootstrap links-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
+
+</body>
+</html>
