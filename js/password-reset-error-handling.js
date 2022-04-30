@@ -3,6 +3,18 @@ const password = document.getElementById('password');
 const password_repeat = document.getElementById('password2');
 
 
+console.log(reset_form)
+console.log(password)
+console.log(password_repeat)
+
+reset_form.addEventListener('submit', ev => {
+
+    ev.preventDefault();
+
+
+})
+
+
 reset_form.addEventListener('submit', e => {
 
 
@@ -51,7 +63,7 @@ function validateInputs() {
         password_repeat_check = 1;
     }
 
-    if (name_check === 1 && email_check === 1 && password_check === 1 && password_repeat_check === 1) {
+    if (password_check === 1 && password_repeat_check === 1) {
         return_value = true;
     } else {
         return_value = false;
@@ -66,12 +78,12 @@ function validateInputs() {
 function setError(element, message) {
     element.className = "form-control error";
     const small = document.getElementById("message-" + element.id);
-    small.classList.remove('success');
+    small.classList.remove('text-success');
 
     //Add error message and icon
     small.innerHTML = message + ' <i class="fas fa-exclamation-circle">';
     //Add error class
-    small.classList.add("error");
+    small.classList.add("text-danger");
 
 
 }
@@ -79,12 +91,12 @@ function setError(element, message) {
 const setSuccess = (element) => {
     element.className = "form-control success";
     const small = document.getElementById("message-" + element.id);
-    small.classList.remove('error');
+    small.classList.remove('text-danger');
 
     //Add success icon
     small.innerHTML = '<i class="fas fa-check-circle">';
     //Add success class
-    small.classList.add("success");
+    small.classList.add("text-success");
 
 }
 

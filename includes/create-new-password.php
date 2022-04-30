@@ -23,11 +23,14 @@ require_once "../classes/reset-password.class.php";
     <!--JQUERY LINK-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+    <!--FONT AWESOME-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
     <title>LP Budgeting - reset password</title>
 </head>
 <body>
-
-
 <!--HEADER START-->
 <!--navbar start-->
 <nav class="navbar navbar-expand-lg bg-black navbar-dark py-3 fixed-top">
@@ -54,8 +57,6 @@ require_once "../classes/reset-password.class.php";
 </nav>
 <!--navbar end-->
 <!--HEADER END-->
-
-
 <!--RESET PASSWORD FORM START-->
 <div class="py-5">
     <div class="container">
@@ -102,18 +103,19 @@ require_once "../classes/reset-password.class.php";
                                         <input type="hidden" name="token" value="<?php echo $token; ?>">
                                         <label for="password">Enter New password</label>
                                         <input type="password" id="password" class="form-control" name='password'
-                                               placeholder="New password"><br>
+                                               placeholder="New password">
+                                        <small class="message" id="message-password"></small>
+                                        <br><br>
                                         <label for="password2">Repeat your password</label>
                                         <input type="password" id="password2" class="form-control"
                                                name='password_repeat' placeholder="Repeat your password">
+                                        <small class="message" id="message-password2" ></small>
                                     </div>
                                     <div class="form-group mb-3">
                                         <input type="submit" id="submit_password" name="submit_password"
                                                class="btn btn-primary">
                                     </div>
                                 </form>
-                                <!--Custom Javascript-->
-                                <script src="../js/password-reset-error-handling.js" type="module"></script>
                                 <!--RESET PASSWORD FORM END-->
                                 <?php
                             } else {
@@ -126,11 +128,15 @@ require_once "../classes/reset-password.class.php";
                         ?>
 
 
+
+
+
+</body>
 <!--Javascript/Bootstrap links-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
-
-</body>
+<!--Custom Javascript-->
+<script src="../js/password-reset-error-handling.js" type="module"></script>
 </html>
