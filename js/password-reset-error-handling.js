@@ -7,15 +7,8 @@ console.log(reset_form)
 console.log(password)
 console.log(password_repeat)
 
-reset_form.addEventListener('submit', ev => {
-
-    ev.preventDefault();
-
-
-})
-
-
 reset_form.addEventListener('submit', e => {
+
 
 
     if (validateInputs()) {
@@ -23,6 +16,8 @@ reset_form.addEventListener('submit', e => {
     } else {
         e.preventDefault();
     }
+    console.log("asdasdasdasd")
+    console.log(e)
 
 });
 
