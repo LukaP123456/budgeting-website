@@ -13,13 +13,13 @@ if(!empty($_POST['email']))
         //Expiary date for the token
         //date("U") gives us the current date in seconds since 1970
         //1800 = 1 hour
-        $expires = date('U') + 1800;
-        echo $expires;
+//        $expires = date('U') + 1800;
+//        echo $expires;
 
         $user_email = $_POST["email"];
 
         $reset = new reset_password();
-        $reset->reset_user_password($user_email,$token,$expires);
+        $reset->reset_user_password($user_email,$token);
 
 
     }

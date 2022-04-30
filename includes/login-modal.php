@@ -37,11 +37,11 @@
                         <strong>Holy guacamole!</strong> That's not the password from the database.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div></p>";
-                    } elseif (strpos($fullUrl, "error=none") == true) {
-                        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                        <strong>Success!</strong> Success you signed up.
-                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                    </div>";
+//                    } elseif (strpos($fullUrl, "error=none") == true) {
+//                        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+//                        <strong>Success!</strong> Success you signed up.
+//                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+//                    </div>";
                     } else {
                         unset($_SESSION['error2']);
                     }
