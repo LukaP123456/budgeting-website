@@ -1,19 +1,20 @@
 <?php
 
 // Function to get the client IP address
-function get_client_ip() {
+function get_client_ip()
+{
     $ipaddress = '';
     if (isset($_SERVER['HTTP_CLIENT_IP']))
         $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+    else if (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
         $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    else if(isset($_SERVER['HTTP_X_FORWARDED']))
+    else if (isset($_SERVER['HTTP_X_FORWARDED']))
         $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+    else if (isset($_SERVER['HTTP_FORWARDED_FOR']))
         $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-    else if(isset($_SERVER['HTTP_FORWARDED']))
+    else if (isset($_SERVER['HTTP_FORWARDED']))
         $ipaddress = $_SERVER['HTTP_FORWARDED'];
-    else if(isset($_SERVER['REMOTE_ADDR']))
+    else if (isset($_SERVER['REMOTE_ADDR']))
         $ipaddress = $_SERVER['REMOTE_ADDR'];
     else
         $ipaddress = 'UNKNOWN';
@@ -35,11 +36,11 @@ if (isset($_POST['submit'])) {
     $browser = $result->toString();
 
 
-     //Verification token
-    $number_rand = rand(0,9999999);
-    $salt1="token456456456456465657894531324848951";
-    $data = $number_rand.$full_name.$email.$salt1;
-    $verify_token = password_hash($data,PASSWORD_DEFAULT);
+    //Verification token
+    $number_rand = rand(0, 9999999);
+    $salt1 = "token456456456456465657894531324848951";
+    $data = $number_rand . $full_name . $email . $salt1;
+    $verify_token = password_hash($data, PASSWORD_DEFAULT);
 
 
     //Instantiate SignupContr class
@@ -47,7 +48,7 @@ if (isset($_POST['submit'])) {
     include "../classes/signup.classes.php";
     include "../classes/signup-contr.classes.php";
 
-    $signup = new SignupContr($full_name, $pwd, $pwdRepeat, $email, $verify_token,$ip,$browser);
+    $signup = new SignupContr($full_name, $pwd, $pwdRepeat, $email, $verify_token, $ip, $browser);
 
     //Runs error handlers and inserts the user into the database
     $signup->signupUser();
@@ -56,9 +57,7 @@ if (isset($_POST['submit'])) {
     header("location../index.php?error=none");
 
 
-}
-else
-{
+} else {
     $_SESSION['error1'] = true;
     header("location:../index.php?error=signup_error");
 }

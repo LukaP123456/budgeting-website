@@ -11,7 +11,7 @@
     <!--Bootstrap icons link-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <!--Mapbox css link (optional)-->
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
 
     <!--Custom styles link-->
     <link rel="stylesheet" href="../CSS/style.css">
@@ -27,7 +27,6 @@
     <title>LP Budgeting - reset password</title>
 </head>
 <body>
-
 
 
 <!--HEADER START-->
@@ -56,8 +55,6 @@
 </nav>
 <!--navbar end-->
 <!--HEADER END-->
-
-
 <!--FORGOTTEN PASSWORD FORM START-->
 <div class="py-5">
     <div class="container">
@@ -74,26 +71,27 @@
 
                         $fullUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-                        if (strpos($fullUrl,"error=empty_email") == true){
+                        if (strpos($fullUrl, "error=empty_email") == true) {
                             echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                         <strong>Holy guacamole!</strong> That's not the password from the database.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div></p>";
-                        }
-                        else{
+                        } else {
                             unset($_SESSION['error-message-resend']);
                         }
                         ?>
                         <form action="reset-request.php" id="reset-request-form" method="POST">
                             <div class="form-group mb-3">
                                 <label for="email">Email address</label>
-                                <input type="email" id="email" name="email" class="form-control" placeholder="Enter your e-mail address">
-                                <small class="message" id="message-email" ></small>
+                                <input type="email" id="email" name="email" class="form-control"
+                                       placeholder="Enter your e-mail address">
+                                <small class="message" id="message-email"></small>
                             </div>
                             <div class="form-group mb-3">
-                                <button type="submit" name="reset-request-submit" class="btn btn-primary" >Submit</button>
+                                <button type="submit" name="reset-request-submit" class="btn btn-primary">Submit
+                                </button>
                             </div>
-                            <script src="../js/reset-password-error-handler.js" ></script>
+                            <script src="../js/reset-password-error-handler.js"></script>
                         </form>
                     </div>
                 </div>
@@ -103,9 +101,6 @@
 </div>
 
 <!--FORGOTTEN PASSWORD FORM END-->
-
-
-
 
 
 <!--Javascript/Bootstrap links-->

@@ -24,7 +24,8 @@
                     <a href="#instructors" class="nav-link">Reviews</a>
                 </li>
                 <li class='nav-item'>
-                    <a href='includes/login.inc.php' class='nav-link' data-bs-toggle="modal" data-bs-target="#login_modal">Login</a>
+                    <a href='includes/login.inc.php' class='nav-link' data-bs-toggle="modal"
+                       data-bs-target="#login_modal">Login</a>
                 </li>
             </ul>
         </div>

@@ -3,23 +3,17 @@ session_start();
 
 class LoginContr extends Login
 {
-
     private $email;
     private $pwd;
 
-
     public function __construct($email, $pwd)
     {
-
         $this->email = $email;
         $this->pwd = $pwd;
-
     }
 
     public function loginUser()
     {
-
-
         if ($this->emptyInput() == false) {
             //empty input
             $_SESSION['error2'] = true;
@@ -34,12 +28,9 @@ class LoginContr extends Login
             header("location:../index.php?error=email");
             exit();
         }
-
-
         $this->getUser($this->email, $this->pwd);
 
     }
-
 
     private function emptyInput()
     {

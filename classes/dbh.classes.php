@@ -1,18 +1,18 @@
 <?php
 
-class Dbh{
+class Dbh
+{
 
-    protected function connect(){
-        try
-        {
+    protected function connect()
+    {
+        try {
             $username = "root";
             $password = "root";
-            $dbh = new PDO('mysql:host=localhost;dbname=cost',$username,$password);
+            $dbh = new PDO('mysql:host=localhost;dbname=cost', $username, $password);
             return $dbh;
 
-        }
-        catch (PDOException $e){
-            print "Error: ". $e->getMessage()."<br>";
+        } catch (PDOException $e) {
+            print "Error: " . $e->getMessage() . "<br>";
             die();
         }
     }

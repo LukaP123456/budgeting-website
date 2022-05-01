@@ -12,7 +12,7 @@
     <!--Bootstrap icons link-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <!--Mapbox css link (optional)-->
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
 
     <!--Custom styles link-->
     <link rel="stylesheet" href="CSS/style.css">
@@ -44,14 +44,13 @@
                     <a href="#questions" class="nav-link">Questions</a>
                 </li>
                 <?php
-                    if (isset($_SESSION['status']))
-                    {
-                        ?>
-                        <li class="alert alert-success">
-                            <h5><?php $_SESSION['status'] ?></h5>
-                        </li>
-                <?php unset($_SESSION['status']);
-                    }
+                if (isset($_SESSION['status'])) {
+                    ?>
+                    <li class="alert alert-success">
+                        <h5><?php $_SESSION['status'] ?></h5>
+                    </li>
+                    <?php unset($_SESSION['status']);
+                }
 
 
                 ?>
@@ -63,20 +62,24 @@
                     if (isset($_SESSION["userid"])){
                     ?>
                 <li class='nav-item'>
-                    <a href='#' class='nav-link'><?php echo $_SESSION["useruid"]?></a>
-                </li><li class='nav-item'>
+                    <a href='#' class='nav-link'><?php echo $_SESSION["useruid"] ?></a>
+                </li>
+                <li class='nav-item'>
                 <li class='nav-item'>
                     <a href='includes/logout.inc.php' class='nav-link'>Logout</a>
-                </li><li class='nav-item'>
+                </li>
+                <li class='nav-item'>
                     <?php
                     }else{
                     ?>
                 <li class='nav-item'>
                     <a href='REGISTRATION_STUFF/modal_form.php' class='nav-link'>Signup</a>
-                </li><li class='nav-item'>
+                </li>
+                <li class='nav-item'>
                 <li class='nav-item'>
                     <a href='login-page.php' class='nav-link'>Login</a>
-                </li><li class='nav-item'>
+                </li>
+                <li class='nav-item'>
                     <?php
                     }
                     ?>
@@ -87,7 +90,6 @@
 </nav>
 <!--navbar login end-->
 <!--HEADER LOGIN END-->
-
 
 
 </body>

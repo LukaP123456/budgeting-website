@@ -11,7 +11,7 @@
     <!--Bootstrap icons link-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <!--Mapbox css link (optional)-->
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
 
     <!--Custom styles link-->
     <link rel="stylesheet" href="CSS/style.css">
@@ -37,8 +37,14 @@ session_start();
 
 <!--Message which appears after you successfully sign up and takes you back to your page-->
 <div class="alert alert-success" role="alert">
-    <h4 class="alert-heading"><svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>Well done!</h4>
-    <p>You have successfully signed up. Please check your email account <b><?php echo $_SESSION["email"]?></b> and follow the instructions in the email to verify your account and log in <a href="index.php">Click me</a></p>
+    <h4 class="alert-heading">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+            <use xlink:href="#check-circle-fill"/>
+        </svg>
+        Well done!
+    </h4>
+    <p>You have successfully signed up. Please check your email account <b><?php echo $_SESSION["email"] ?></b> and
+        follow the instructions in the email to verify your account and log in <a href="index.php">Click me</a></p>
     <hr>
     <p class="mb-0"><b>We will have you saving money in no time</b></p>
 </div>

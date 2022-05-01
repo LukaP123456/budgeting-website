@@ -13,7 +13,8 @@
                             Virtual
                         </h3>
                         <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, veniam?Lorem ipsum dolor sit amet.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, veniam?Lorem ipsum
+                            dolor sit amet.
                         </p>
                         <a href="#" class="btn btn-primary">Read more</a>
                     </div>
@@ -27,7 +28,8 @@
                         </div>
                         <h3 class="card-title mb-3">Save money online</h3>
                         <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, veniam?Lorem ipsum dolor sit amet.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, veniam?Lorem ipsum
+                            dolor sit amet.
                         </p>
                         <a href="#" class="btn btn-dark">Read more</a>
                     </div>

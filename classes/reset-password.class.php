@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -7,9 +8,10 @@ use PHPMailer\PHPMailer\Exception;
 //Load Composer's autoloader
 require '../vendor/autoload.php';
 
-class reset_password extends Dbh{
+class reset_password extends Dbh
+{
 
-    function sendemail_verify($full_name, $email,$url)
+    function sendemail_verify($full_name, $email, $url)
     {
 
         $mail = new PHPMailer(true);
@@ -45,36 +47,32 @@ class reset_password extends Dbh{
 
     }
 
-    public function reset_user_password($email, $password_token){
-        $url = "http://localhost/BUDGETING_WEBSITE/includes/create-new-password.php?token=" . $password_token ."&email=" . $email;
+    public function reset_user_password($email, $password_token)
+    {
+        $url = "http://localhost/BUDGETING_WEBSITE/includes/create-new-password.php?token=" . $password_token . "&email=" . $email;
 
-        $stmt_check = $this->connect()->prepare( "SELECT users_email FROM accounts where users_email=? AND verify_status=1 LIMIT 1;");
+        $stmt_check = $this->connect()->prepare("SELECT users_email FROM accounts where users_email=? AND verify_status=1 LIMIT 1;");
 
-        if ($stmt_check->execute(array($email) ))
-        {
+        if ($stmt_check->execute(array($email))) {
 
             $user = $stmt_check->fetchAll(PDO::FETCH_ASSOC);
             $fullname = $user["full_name"];
 
 
             $insert_stmt = $this->connect()->prepare("UPDATE accounts set  password_reset_token=?  WHERE users_email='$email'");
-            if (!$insert_stmt->execute(array( $password_token)))
-            {
+            if (!$insert_stmt->execute(array($password_token))) {
                 //There was an error with updating the table with the expiration date
                 echo "error";
-            }
-            else{
+            } else {
 
                 //We successfully inserted the expiration date into the database and so we are sending the email
                 echo "success";
-                $_SESSION["email"] =  $email;
+                $_SESSION["email"] = $email;
 
-                $this->sendemail_verify($fullname,$email,$url);
+                $this->sendemail_verify($fullname, $email, $url);
                 header("Location:../includes/reset-password-success.php");
             }
-        }
-        else
-        {
+        } else {
             //Error the entered email doesn't exist or isn't verified
             echo "error";
         }
@@ -83,17 +81,15 @@ class reset_password extends Dbh{
     }
 
 
-    public function check_user_4reset($email,$reset_token){
+    public function check_user_4reset($email, $reset_token)
+    {
 
         $stmt_check = $this->connect()->prepare("SELECT * FROM cost.accounts WHERE users_email = ? AND password_reset_token = ? LIMIT 1;");
 
-        if ($stmt_check->execute(array($email,$reset_token)))
-        {
+        if ($stmt_check->execute(array($email, $reset_token))) {
             //User exists
             return true;
-        }
-        else
-        {
+        } else {
             //User doesn't exist
             return false;
         }
@@ -101,42 +97,35 @@ class reset_password extends Dbh{
 
     }
 
-    public function insert_new_password($email,$new_password){
+    public function insert_new_password($email, $new_password)
+    {
 
         $stmt_insert = $this->connect()->prepare("UPDATE accounts set users_pwd=? WHERE users_email=?;");
 
-        if ($stmt_insert->execute(array($new_password,$email)))
-        {
+        if ($stmt_insert->execute(array($new_password, $email))) {
             //We successfully inserted the new password;
             return true;
-        }
-        else
-        {
+        } else {
             //Failed to insert new password
             return false;
         }
 
     }
 
-    public function delete_token($email){
+    public function delete_token($email)
+    {
         $delete_stmt = $this->connect()->prepare("UPDATE accounts set password_reset_token=NULL WHERE users_email=?;");
 
-        if ($delete_stmt->execute(array($email)))
-        {
+        if ($delete_stmt->execute(array($email))) {
             //We deleted the password_reset_token successfully
             return true;
 
-        }
-        else
-        {
+        } else {
             //Failed to delete the token
             return false;
         }
 
     }
-
-
-
 
 
 }

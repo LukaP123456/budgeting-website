@@ -8,7 +8,8 @@ use PHPMailer\PHPMailer\Exception;
 //Load Composer's autoloader
 require './vendor/autoload.php';
 
-class resend extends Dbh {
+class resend extends Dbh
+{
 
     function sendemail_verify($full_name, $email, $verify_token)
     {
@@ -48,41 +49,36 @@ class resend extends Dbh {
 
     }
 
-    public function checkUser($email){
+    public function checkUser($email)
+    {
         $stmt = $this->connect()->prepare("SELECT * FROM accounts WHERE users_email=? LIMIT 1");
 
-        if (!$stmt->execute(array($email)))
-        {
+        if (!$stmt->execute(array($email))) {
             $resultCheck2 = false;
             return $resultCheck2;
         }
-        if ($stmt->rowCount() > 0)
-        {
+        if ($stmt->rowCount() > 0) {
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ( $result["verify_status"] == 0)
-            {
+            if ($result["verify_status"] == 0) {
                 $name = $result["full_name"];
                 $email_db = $result["users_email"];
                 $verify_token = $result["verify_token"];
 
-                $this->sendemail_verify($name,$email_db,$verify_token);
+                $this->sendemail_verify($name, $email_db, $verify_token);
                 $_SESSION['resend-success'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                        Verification e-mail link has been sent to your email address(".$email_db.")
+                        Verification e-mail link has been sent to your email address(" . $email_db . ")
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
                 header("location: resend-email-verification.php?error=none");
                 exit();
-            }
-            else
-            {
+            } else {
                 $stmt = null;
                 header("location: resend-email-verification.php?error=email_verified");
                 exit();
 
             }
 
-        }
-        else{
+        } else {
             $stmt = null;
             header("location: resend-email-verification.php?error=email_unregistered");
             exit();
@@ -90,18 +86,6 @@ class resend extends Dbh {
         }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

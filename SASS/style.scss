@@ -2,12 +2,12 @@
   visibility: hidden;
 }
 
-.input-control small.error{
+.input-control small.error {
   visibility: visible;
   color: #dc3545;
 }
 
-.input-control small.success{
+.input-control small.success {
   visibility: visible;
   color: #198754;
 }
@@ -18,44 +18,49 @@
   border-color: #198754;
   border-width: 2.5px;
 }
+
 //Border color for input error
 .form-control.error {
   border-color: #dc3545;
   border-width: 2.5px;
 
 }
+
 /*Adds a ghost element of 60 px which pushes the body element down*/
-body::before{
+body::before {
   display: block;
   content: '';
   height: 60px;
 }
-#map{
+
+#map {
   width: 100%;
   height: 100%;
   border-radius: 10px;
 }
+
 /*vw-view with stops the scroll bar from changing size */
 /*SCROLLBAR*/
-html::-webkit-scrollbar{
+html::-webkit-scrollbar {
   width: 1vw;
 }
-html::-webkit-scrollbar-thumb{
+
+html::-webkit-scrollbar-thumb {
   background-color: #0d6efd;
 }
 
-html::-webkit-scrollbar-track{
+html::-webkit-scrollbar-track {
   background-color: black;
 }
 
 
 @media (min-width: 768px) {
-  .news-input{
+  .news-input {
     width: 50%;
   }
-  
+
 }
 
-.input-error{
+.input-error {
   box-shadow: 0 0 5px #dc3545;
 }

@@ -109,7 +109,7 @@ require_once "../classes/reset-password.class.php";
                                         <label for="password2">Repeat your password</label>
                                         <input type="password" id="password2" class="form-control"
                                                name='password_repeat' placeholder="Repeat your password">
-                                        <small class="message" id="message-password2" ></small>
+                                        <small class="message" id="message-password2"></small>
                                     </div>
                                     <div class="form-group mb-3">
                                         <input type="submit" id="submit_password" name="submit_password"
@@ -122,15 +122,8 @@ require_once "../classes/reset-password.class.php";
                                 //That user doesn't exist
                                 echo "error";
                             }
-
-
                         }
                         ?>
-
-
-
-
-
 </body>
 <!--Javascript/Bootstrap links-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
