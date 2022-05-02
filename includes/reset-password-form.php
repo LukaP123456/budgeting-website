@@ -73,12 +73,19 @@
 
                         if (strpos($fullUrl, "error=empty_email") == true) {
                             echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <strong>Holy guacamole!</strong> That's not the password from the database.
+                        <strong>Warning!</strong> That's not the password from the database.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div></p>";
-                        } else {
+                        }elseif (strpos($fullUrl, "error=email_notindb") == true){
+                            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <strong>Warning!</strong> An account with the entered email doesn't exist.
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div></p>";
+                        }else {
                             unset($_SESSION['error-message-resend']);
                         }
+
+
                         ?>
                         <form action="reset-request.php" id="reset-request-form" method="POST">
                             <div class="form-group mb-3">

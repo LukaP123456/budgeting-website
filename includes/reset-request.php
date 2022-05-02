@@ -8,12 +8,6 @@ if (!empty($_POST['email'])) {
         //We use selector to verify that we are selecting the correct user
         $token = password_hash(bin2hex(random_bytes(32)), PASSWORD_DEFAULT);
 
-        //Expiary date for the token
-        //date("U") gives us the current date in seconds since 1970
-        //1800 = 1 hour
-//        $expires = date('U') + 1800;
-//        echo $expires;
-
         $user_email = $_POST["email"];
 
         $reset = new reset_password();

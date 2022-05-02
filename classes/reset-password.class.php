@@ -74,30 +74,34 @@ class reset_password extends Dbh
             }
         } else {
             //Error the entered email doesn't exist or isn't verified
-            echo "error";
+            header("Location:../includes/reset-password-form.php?error=email_notindb");
+
         }
 
 
     }
 
 
-    public function check_user_4reset($email, $reset_token)
+    public function check_user_4reset($email, $reset_token): bool
     {
 
-        $stmt_check = $this->connect()->prepare("SELECT * FROM cost.accounts WHERE users_email = ? AND password_reset_token = ? LIMIT 1;");
+        $stmt_check = $this->connect()->prepare("SELECT * FROM cost.accounts WHERE users_email = ? AND password_reset_token = ? AND verify_status=1;");
+        $return_value = false;
 
         if ($stmt_check->execute(array($email, $reset_token))) {
             //User exists
-            return true;
+            $return_value = true;
         } else {
             //User doesn't exist
-            return false;
+            $return_value = false;
         }
+
+        return  $return_value;
 
 
     }
 
-    public function insert_new_password($email, $new_password)
+    public function insert_new_password($email, $new_password): bool
     {
 
         $stmt_insert = $this->connect()->prepare("UPDATE accounts set users_pwd=? WHERE users_email=?;");
