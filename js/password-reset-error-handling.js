@@ -2,11 +2,6 @@ const reset_form = document.getElementById('reset-form');
 const password = document.getElementById('password');
 const password_repeat = document.getElementById('password2');
 
-
-console.log(reset_form)
-console.log(password)
-console.log(password_repeat)
-
 reset_form.addEventListener('submit', e => {
 
 
@@ -16,8 +11,6 @@ reset_form.addEventListener('submit', e => {
     } else {
         e.preventDefault();
     }
-    console.log("asdasdasdasd")
-    console.log(e)
 
 });
 
@@ -41,7 +34,7 @@ function validateInputs() {
 
     } else {
         //Add success class
-        setSuccess(password);
+        setSuccess(password,"Looks good!");
         password_check = 1;
     }
 
@@ -54,7 +47,7 @@ function validateInputs() {
         setError(password_repeat, "Repeated password needs to be longer")
     } else {
         //Add success class
-        setSuccess(password_repeat);
+        setSuccess(password_repeat,"Looks good!");
         password_repeat_check = 1;
     }
 
@@ -83,13 +76,13 @@ function setError(element, message) {
 
 }
 
-const setSuccess = (element) => {
+const setSuccess = (element,message) => {
     element.className = "form-control success";
     const small = document.getElementById("message-" + element.id);
     small.classList.remove('text-danger');
 
     //Add success icon
-    small.innerHTML = '<i class="fas fa-check-circle">';
+    small.innerHTML =message + ' <i class="fas fa-check-circle">';
     //Add success class
     small.classList.add("text-success");
 

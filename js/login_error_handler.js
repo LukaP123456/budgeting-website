@@ -31,7 +31,7 @@ function login_validateInputs() {
         login_setError(login_email, "Email is not valid");
     } else {
         //Add success class
-        login_setSuccess(login_email);
+        login_setSuccess(login_email,"Looks good!");
         login_email_check = 1;
     }
 
@@ -43,7 +43,7 @@ function login_validateInputs() {
 
     } else {
         //Add success class
-        login_setSuccess(login_password);
+        login_setSuccess(login_password,"Looks good!");
         login_password_check = 1;
     }
 
@@ -67,13 +67,13 @@ function login_setError(element, message) {
     small.classList.add("text-danger");
 }
 
-const login_setSuccess = (element) => {
+const login_setSuccess = (element,message) => {
     element.className = "form-control success";
     const small = document.getElementById("message-" + element.id);
     small.classList.remove('text-danger');
 
     //Add success icon
-    small.innerHTML = '<i class="fas fa-check-circle">';
+    small.innerHTML = message+ ' <i class="fas fa-check-circle">';
     //Add success class
     small.classList.add('text-success');
 }

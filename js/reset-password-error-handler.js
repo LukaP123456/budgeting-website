@@ -33,7 +33,7 @@ function validateInputs() {
         setError(email, 'Email is not valid');
     } else {
         //Add success class
-        setSuccess(email);
+        setSuccess(email,"Looks good!");
         email_check = 1;
     }
 
@@ -62,13 +62,13 @@ function setError(element, message) {
 
 }
 
-const setSuccess = (element) => {
+const setSuccess = (element,message) => {
     element.className = "form-control success";
     const small = document.getElementById("message-" + element.id);
     small.classList.remove('text-danger');
 
     //Add success icon
-    small.innerHTML = '<i class="fas fa-check-circle">';
+    small.innerHTML =message + ' <i class="fas fa-check-circle">';
     //Add success class
     small.classList.add("text-success");
 

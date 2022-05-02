@@ -5,6 +5,8 @@ if (!isset($_SESSION['authenticated'])) {
     exit();
 }
 
+include_once "classes/first-time-loggedin.classes.php";
+
 
 ?>
 <!doctype html>
@@ -23,7 +25,15 @@ if (!isset($_SESSION['authenticated'])) {
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
 
     <!--Custom styles link-->
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="./CSS/style.css">
+
+    <!--JQUERY LINK-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!--FONT AWESOME-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <title>LP Budgeting</title>
 </head>
@@ -49,11 +59,11 @@ if (!isset($_SESSION['authenticated'])) {
                     if (isset($_SESSION["email"])){
                     ?>
                 <li class='nav-item'>
-                    <a href='#' class='nav-link'><?php echo $_SESSION["email"] ?></a>
+                    <a href='#' class='nav-link text-white'><?php echo $_SESSION["email"]; ?></a>
                 </li>
                 <li class='nav-item'>
                 <li class='nav-item'>
-                    <a href='includes/logout.inc.php' class='nav-link'>Logout</a>
+                    <a href='includes/logout.inc.php' class='nav-link text-white'>Logout</a>
                 </li>
                 <?php
                 } ?>
@@ -63,14 +73,107 @@ if (!isset($_SESSION['authenticated'])) {
 </nav>
 <!--navbar end-->
 <!--USER HEADER END-->
-</body>
+
+
 <?php
+$first_log = new first_time_logged();
+$email = $_SESSION['email'];
 
-if (isset($_SESSION['login-success'])) {
-    echo $_SESSION['login-success'];
+
+if ($first_log->check_if_first_log($email)) {
+    ?>
+    <!--FIRST TIME USER LOGGED IN START-->
+    <div class="py-5">
+        <div class="container">
+            <div class="row justify-content-center"
+                 style="background: url('./img/okean3.jpg'); background-size: cover; ">
+                <div class="card-header">
+                    <h1><span class="text-white">Welcome to LP</span><span class="text-warning">Budgeting</span></h1>
+                    <p class="text-white">Before starting your plan please fill out the form below and answer our
+                        questions.</p>
+                    <p class="text-white">Will you be saving your money alone or with someone else</p>
+                </div>
+                <div class="card-body">
+                    <form action="">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label text-white" for="flexRadioDefault1">
+                                I will be saving money alone.
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                                   checked>
+                            <label class="form-check-label text-white" for="flexRadioDefault2">
+                                I will be saving money with someone.
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input type="text" class="">
+                            <label class="form-check-label text-white" for="flexRadioDefault2">
+                                Invite another person who you want to save money with
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                                   checked>
+                            <label class="form-check-label text-white" for="flexRadioDefault2">
+                                I will be saving money with someone.
+                            </label>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--FIRST TIME USER LOGGED IN END-->
+
+
+    <div class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card text-white" style="background: url('./img/okean3.jpg'); background-size: cover; ">
+                        <div class="card-header">
+                            <h5>Reset your password</h5>
+                            <p>You will receive an e-mail with instructions on how to reset your password.</p>
+                        </div>
+                        <div class="card-body">
+                            <form action="reset-request.php" id="reset-request-form" method="POST">
+                                <div class="form-group mb-3">
+                                    <label for="email">Email address</label>
+                                    <input type="email" id="email" name="email" class="form-control"
+                                           placeholder="Enter your e-mail address">
+                                    <small class="message" id="message-email"></small>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <input type="radio">
+                                    <label for="email">Email address</label>
+                                    <small class="message" id="message-email"></small>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <button type="submit" name="reset-request-submit" class="btn btn-primary">Submit
+                                    </button>
+                                </div>
+                                <script src="../js/reset-password-error-handler.js"></script>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
 }
-
-
 ?>
 
+</body>
+</html>
 

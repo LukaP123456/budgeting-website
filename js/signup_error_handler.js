@@ -36,7 +36,7 @@ function validateInputs() {
         setError(name, 'Your name cannot be empty');
     } else {
         //Add success class
-        setSuccess(name);
+        setSuccess(name,"Looks good!");
         name_check = 1;
     }
 
@@ -47,7 +47,7 @@ function validateInputs() {
         setError(email, 'Email is not valid');
     } else {
         //Add success class
-        setSuccess(email);
+        setSuccess(email,"Looks good!");
         email_check = 1;
     }
 
@@ -59,7 +59,7 @@ function validateInputs() {
 
     } else {
         //Add success class
-        setSuccess(password);
+        setSuccess(password,"Looks good!");
         password_check = 1;
     }
 
@@ -72,7 +72,7 @@ function validateInputs() {
         setError(password_repeat, "Repeated password needs to be longer")
     } else {
         //Add success class
-        setSuccess(password_repeat);
+        setSuccess(password_repeat,"Looks good!");
         password_repeat_check = 1;
     }
 
@@ -101,13 +101,13 @@ function setError(element, message) {
 
 }
 
-const setSuccess = (element) => {
+const setSuccess = (element,message) => {
     element.className = "form-control success";
     const small = document.getElementById("message-" + element.id);
     small.classList.remove('error');
 
     //Add success icon
-    small.innerHTML = '<i class="fas fa-check-circle">';
+    small.innerHTML =message + ' <i class="fas fa-check-circle">';
     //Add success class
     small.classList.add("success");
 

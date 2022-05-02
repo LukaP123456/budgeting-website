@@ -42,6 +42,9 @@ include_once "contact_map.php";
 include_once "footer.php";
 include_once "includes/modal_form.php";
 include_once "includes/login-modal.php";
+
+//TODO: Prepraviti mozda server side error handlere da su switch case umesto if else
+//TODO: Dodati u bazu kolonu log_time default NULL, na osnovu ove kolone cu znati da li se neki user prvi put prijavio ili ne ako je null kolona prvi put se prijavio i prikazujem mu odredjenu formu
 ?>
 <!--BODY END-->
 
