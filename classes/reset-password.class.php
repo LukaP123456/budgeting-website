@@ -55,26 +55,33 @@ class reset_password extends Dbh
 
         if ($stmt_check->execute(array($email))) {
 
-            $user = $stmt_check->fetchAll(PDO::FETCH_ASSOC);
-            $fullname = $user["full_name"];
+            if (!$stmt_check->rowCount() == 0) {
+                $user = $stmt_check->fetchAll(PDO::FETCH_ASSOC);
+                $fullname = $user["full_name"];
 
 
-            $insert_stmt = $this->connect()->prepare("UPDATE accounts set  password_reset_token=?  WHERE users_email='$email'");
-            if (!$insert_stmt->execute(array($password_token))) {
-                //There was an error with updating the table with the expiration date
-                echo "error";
+                $insert_stmt = $this->connect()->prepare("UPDATE accounts set  password_reset_token=?  WHERE users_email=?");
+                if (!$insert_stmt->execute(array($password_token,$email))) {
+                    header("Location:../includes/reset-password-form.php?error=email_notindb");
+
+                } else {
+
+                    //We successfully inserted the expiration date into the database and so we are sending the email
+                    echo "success";
+                    $_SESSION["email"] = $email;
+
+                    $this->sendemail_verify($fullname, $email, $url);
+                    header("Location:../includes/reset-password-success.php");
+                }
+
             } else {
-
-                //We successfully inserted the expiration date into the database and so we are sending the email
-                echo "success";
-                $_SESSION["email"] = $email;
-
-                $this->sendemail_verify($fullname, $email, $url);
-                header("Location:../includes/reset-password-success.php");
+                //Error the entered email doesn't exist or isn't verified
+                header("Location:../includes/reset-password-form.php?error=email_notindb");
             }
+
+
         } else {
-            //Error the entered email doesn't exist or isn't verified
-            header("Location:../includes/reset-password-form.php?error=email_notindb");
+            echo "Sql error";
 
         }
 
@@ -96,7 +103,7 @@ class reset_password extends Dbh
             $return_value = false;
         }
 
-        return  $return_value;
+        return $return_value;
 
 
     }
