@@ -89,18 +89,17 @@ if ($first_log->check_if_first_log($email)) {
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-black text-white">
                             <h5>Welcome to LP<span class="text-warning">Budgeting</span></h5>
                             <p>Please fill out the form below to finish setting up your account</p>
                         </div>
                         <div class="card-body">
-                            <form action="includes/first-time-log.php" name="first-time-log-form" id="first-time-log-form" method="POST">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" name="alone-box" id="flexSwitchCheckDefault" style="transform: scale(1.3)" >
-                                    <label class="form-check-label" for="flexSwitchCheckDefault">Click this button if you want to save money alone(without a group)</label>
+                            <form action="includes/first-time-log.php" name="first-time-log-form" id="first-time-log-form" method="POST" novalidate>
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" role="switch" name="alone-box" id="alone-radio" style="transform: scale(1.3)" onclick="radioCheck()">
+                                    <label class="form-check-label" for="alone-radio">Click this button if you want to save money alone(without a group)</label>
                                     <small class="message" id="message-email"></small>
                                 </div>
-                                <br>
                                 <br>
                                 <div class="form-group mb-3">
                                     <label for="email" >Enter the email address of the person you want to invite to save money with you</label>
@@ -110,16 +109,16 @@ if ($first_log->check_if_first_log($email)) {
                                 </div>
                                 <br>
                                 <div class="form-group mb-3">
-                                    <label for="group-name" >Enter the name of your group</label>
+                                    <label for="group-name" >Enter the name of your group/household</label>
                                     <input type="text" id="group-name" name="group-name" class="form-control"
-                                           placeholder="Group name" >
+                                           placeholder="Group name/household name" >
                                     <small class="message" id="message-email"></small>
                                 </div>
                                 <div class="form-group mb-3">
                                     <button type="submit" name="submit" class="btn btn-primary">Submit
                                     </button>
                                 </div>
-                                <script src=""></script>
+                                <script src="js/first-time-log.js" ></script>
                             </form>
                         </div>
                     </div>
