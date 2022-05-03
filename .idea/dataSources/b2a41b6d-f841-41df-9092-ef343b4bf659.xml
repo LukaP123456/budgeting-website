@@ -1245,9 +1245,8 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
     </column>
     <column id="356" parent="339" name="first_login">
       <Position>10</Position>
-      <Comment>1 = user hasn&apos;t logged in yet, 2 = user has logged in for the first time</Comment>
+      <Comment>NULL = user has yet to log in for the first time, 1 = user has already logged in once</Comment>
       <DataType>int(11)|0s</DataType>
-      <DefaultExpression>1</DefaultExpression>
     </column>
     <index id="357" parent="339" name="users_email">
       <ColNames>users_email</ColNames>

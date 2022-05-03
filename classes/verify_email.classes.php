@@ -4,7 +4,7 @@ include_once "dbh.classes.php";
 class Verify extends Dbh
 {
 //Function which checks if the token is in the database
-    public function verify_token($token)
+    public function verify_token($token,$email)
     {
 
         if (isset($token)) {
@@ -18,14 +18,10 @@ class Verify extends Dbh
                 if ($row["verify_status"] == 0) {
                     //If the verify_status field is 0 or if the user is not verified we will execute the update_stmt query and change the verification status to 1
                     $clicked_token = $row["verify_status"];
-                    $update_stmt = $this->connect()->prepare("UPDATE accounts SET verify_status=1 WHERE verify_token=$clicked_token");
+                    $update_stmt = $this->connect()->prepare("UPDATE accounts SET verify_status=1 WHERE verify_token=$clicked_token AND users_email=?");
 
-                    if ($update_stmt->execute()) {
-//                        $delete_stmt = $this->connect()->prepare("UPDATE accounts set verify_token=NULL WHERE verify_token=$clicked_token");
-                        // if ($delete_stmt->execute())
-                        //{
-                        //The update_stmt has updated verify_status successfully so the user is sent back to the index page so they can log in their account
-                        //And the delete_stmt has successfully updated the token to NULL
+                    if ($update_stmt->execute(array($email))) {
+
                         header("Location: ../index.php");
                         exit();
                         //}

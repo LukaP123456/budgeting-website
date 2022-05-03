@@ -42,7 +42,7 @@ class Signup extends Dbh
             <h3>Hello $full_name you have registered with LP Budgeting on $date_time with your email account $email</h3>
             <h4>Verify your email address to Login with the below given link</h4>
             <br><br>
-            <h1><a href='http://localhost/BUDGETING_WEBSITE/includes/verify_email.php?token=$verify_token'>Click me to verify</a></h1>
+            <h1><a href='http://localhost/BUDGETING_WEBSITE/includes/verify_email.php?token=$verify_token&email=$email'>Click me to verify</a></h1>
         ";
         $mail->Body = $email_template;
 
@@ -56,9 +56,8 @@ class Signup extends Dbh
     {
         $stmt = $this->connect()->prepare(
             "BEGIN;
-         INSERT INTO accounts(users_pwd,users_email,full_name,verify_token) values (?,?,?,?);
+         INSERT INTO accounts(users_pwd,users_email,full_name,verify_token,household_id) values (?,?,?,?,0);
          INSERT INTO log_data(users_id,ip_adress,web_browser_OS) values(LAST_INSERT_ID(),?,?);
-         INSERT INTO household(household_id ) values(LAST_INSERT_ID());
          COMMIT;");
 
         $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
@@ -79,6 +78,8 @@ class Signup extends Dbh
             $_SESSION[] = "<span class='success'> Signed up successfully </span>";
 
             header("Location:../signup_success.php");
+
+
         }
 
         $stmt = null;

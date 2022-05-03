@@ -81,88 +81,45 @@ $email = $_SESSION['email'];
 
 
 if ($first_log->check_if_first_log($email)) {
+//    $first_log->log_first_time($email);
     ?>
     <!--FIRST TIME USER LOGGED IN START-->
     <div class="py-5">
         <div class="container">
-            <div class="row justify-content-center"
-                 style="background: url('./img/okean3.jpg'); background-size: cover; ">
-                <div class="card-header">
-                    <h1><span class="text-white">Welcome to LP</span><span class="text-warning">Budgeting</span></h1>
-                    <p class="text-white">Before starting your plan please fill out the form below and answer our
-                        questions.</p>
-                    <p class="text-white">Will you be saving your money alone or with someone else</p>
-                </div>
-                <div class="card-body">
-                    <form action="">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label text-white" for="flexRadioDefault1">
-                                I will be saving money alone.
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                                   checked>
-                            <label class="form-check-label text-white" for="flexRadioDefault2">
-                                I will be saving money with someone.
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input type="text" class="">
-                            <label class="form-check-label text-white" for="flexRadioDefault2">
-                                Invite another person who you want to save money with
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                                   checked>
-                            <label class="form-check-label text-white" for="flexRadioDefault2">
-                                I will be saving money with someone.
-                            </label>
-                        </div>
-
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!--FIRST TIME USER LOGGED IN END-->
-
-
-    <div class="py-5">
-        <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <div class="card text-white" style="background: url('./img/okean3.jpg'); background-size: cover; ">
+                    <div class="card">
                         <div class="card-header">
-                            <h5>Reset your password</h5>
-                            <p>You will receive an e-mail with instructions on how to reset your password.</p>
+                            <h5>Welcome to LP<span class="text-warning">Budgeting</span></h5>
+                            <p>Please fill out the form below to finish setting up your account</p>
                         </div>
                         <div class="card-body">
-                            <form action="reset-request.php" id="reset-request-form" method="POST">
-                                <div class="form-group mb-3">
-                                    <label for="email">Email address</label>
-                                    <input type="email" id="email" name="email" class="form-control"
-                                           placeholder="Enter your e-mail address">
+                            <form action="includes/first-time-log.php" name="first-time-log-form" id="first-time-log-form" method="POST">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" name="alone-box" id="flexSwitchCheckDefault" style="transform: scale(1.3)" >
+                                    <label class="form-check-label" for="flexSwitchCheckDefault">Click this button if you want to save money alone(without a group)</label>
                                     <small class="message" id="message-email"></small>
                                 </div>
-
+                                <br>
+                                <br>
                                 <div class="form-group mb-3">
-                                    <input type="radio">
-                                    <label for="email">Email address</label>
+                                    <label for="email" >Enter the email address of the person you want to invite to save money with you</label>
+                                    <input type="email" id="email" name="email-friend" class="form-control"
+                                           placeholder="E-mail of a friend/family member" >
                                     <small class="message" id="message-email"></small>
                                 </div>
-
+                                <br>
                                 <div class="form-group mb-3">
-                                    <button type="submit" name="reset-request-submit" class="btn btn-primary">Submit
+                                    <label for="group-name" >Enter the name of your group</label>
+                                    <input type="text" id="group-name" name="group-name" class="form-control"
+                                           placeholder="Group name" >
+                                    <small class="message" id="message-email"></small>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <button type="submit" name="submit" class="btn btn-primary">Submit
                                     </button>
                                 </div>
-                                <script src="../js/reset-password-error-handler.js"></script>
+                                <script src=""></script>
                             </form>
                         </div>
                     </div>
@@ -170,6 +127,7 @@ if ($first_log->check_if_first_log($email)) {
             </div>
         </div>
     </div>
+    <!--FIRST TIME USER LOGGED IN END-->
     <?php
 }
 ?>

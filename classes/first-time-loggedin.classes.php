@@ -30,5 +30,14 @@ class first_time_logged extends Dbh
 
     }
 
+    function log_first_time($email){
+        $change_stmt = $this->connect()->prepare("UPDATE accounts set first_login=1 WHERE users_email=? AND first_login IS NULL; ");
+
+        $change_stmt->execute(array($email));
+
+    }
+
+
+
 
 }
