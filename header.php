@@ -12,19 +12,19 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navmenu">
+        <div class="collapse navbar-collapse " id="navmenu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a href="#learn" class="nav-link">What you will learn</a>
+                    <a href="#learn" class="nav-link text-white">What you will learn</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#questions" class="nav-link">Questions</a>
+                    <a href="#questions" class="nav-link text-white">Questions</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#instructors" class="nav-link">Reviews</a>
+                    <a href="#instructors" class="nav-link text-white">Reviews</a>
                 </li>
                 <li class='nav-item'>
-                    <a href='includes/login.inc.php' class='nav-link' data-bs-toggle="modal"
+                    <a href='includes/login.inc.php' class='nav-link text-white' data-bs-toggle="modal"
                        data-bs-target="#login_modal">Login</a>
                 </li>
             </ul>

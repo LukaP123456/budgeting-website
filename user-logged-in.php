@@ -94,31 +94,35 @@ if ($first_log->check_if_first_log($email)) {
                             <p>Please fill out the form below to finish setting up your account</p>
                         </div>
                         <div class="card-body">
-                            <form action="includes/first-time-log.php" name="first-time-log-form" id="first-time-log-form" method="POST" novalidate>
+                            <form action="includes/first-time-log.php" name="first-time-log-form"
+                                  id="first-time-log-form" method="POST">
                                 <div class="form-check form-switch mb-3">
-                                    <input class="form-check-input" type="checkbox" role="switch" name="alone-box" id="alone-radio" style="transform: scale(1.3)" onclick="radioCheck()">
-                                    <label class="form-check-label" for="alone-radio">Click this button if you want to save money alone(without a group)</label>
-                                    <small class="message" id="message-email"></small>
+                                    <input class="form-check-input" type="checkbox" role="switch" name="alone-box"
+                                           id="alone-radio" style="transform: scale(1.3)" onclick="radioCheck()">
+                                    <label class="form-check-label" for="alone-radio">Click this button if you want to
+                                        save money alone(without a group)</label>
+                                    <small class="message" id="message-alone-radio"></small>
                                 </div>
                                 <br>
                                 <div class="form-group mb-3">
-                                    <label for="email" >Enter the email address of the person you want to invite to save money with you</label>
+                                    <label for="email">Enter the email address of the person you want to invite to save
+                                        money with you</label>
                                     <input type="email" id="email" name="email-friend" class="form-control"
-                                           placeholder="E-mail of a friend/family member" >
+                                           placeholder="E-mail of a friend/family member">
                                     <small class="message" id="message-email"></small>
                                 </div>
                                 <br>
                                 <div class="form-group mb-3">
-                                    <label for="group-name" >Enter the name of your group/household</label>
+                                    <label for="group-name">Enter the name of your group/household</label>
                                     <input type="text" id="group-name" name="group-name" class="form-control"
-                                           placeholder="Group name/household name" >
-                                    <small class="message" id="message-email"></small>
+                                           placeholder="Group name/household name">
+                                    <small class="message" id="message-group-name"></small>
                                 </div>
                                 <div class="form-group mb-3">
                                     <button type="submit" name="submit" class="btn btn-primary">Submit
                                     </button>
                                 </div>
-                                <script src="js/first-time-log.js" ></script>
+                                <script src="js/first-time-log.js"></script>
                             </form>
                         </div>
                     </div>

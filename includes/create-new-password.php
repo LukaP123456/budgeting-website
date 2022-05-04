@@ -63,7 +63,7 @@ require_once "../classes/reset-password.class.php";
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header bg-dark text-white">
                         <h5>Reset your password</h5>
                         <p>Please fill out the fields below and your password will be changed</p>
                     </div>

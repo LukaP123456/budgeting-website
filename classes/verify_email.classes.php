@@ -24,7 +24,7 @@ class Verify extends Dbh
 
                         header("Location: ../index.php");
                         exit();
-                        //}
+
 
 
                     } else {

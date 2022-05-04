@@ -3,6 +3,12 @@ include_once "dbh.classes.php";
 
 class first_time_logged extends Dbh
 {
+    //TODO: Skontati kako ovo lol
+    function create_household($friend_email,$group_name,$alone){
+
+
+    }
+
 
     function check_if_first_log($email)
     {

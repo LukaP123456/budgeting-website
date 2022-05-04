@@ -4,10 +4,9 @@ const friend_email = document.getElementById('email');
 const group_name = document.getElementById('group-name');
 
 
-
 console.log("asdasd")
 first_log_form.addEventListener('submit', ev => {
-console.log(123123123)
+    console.log(123123123)
     if (validateInputs()) {
         ev.currentTarget.submit();
     } else {
@@ -15,46 +14,49 @@ console.log(123123123)
 
     }
 
-
 });
 
 
-function validateInputs(){
+function validateInputs() {
     const friend_email_value = friend_email.value.trim();
     const group_name_value = group_name.value.trim();
-    let return_value = false;
 
-    let email_check = 0;
+    let friend_email_check = 0;
     let group_name_check = 0;
 
+    if (!radioCheck()) {
 
-    if (friend_email_value === '') {
-        //Show error and set error class
-        setError(friend_email, 'Email field cannot be empty');
-    } else if (!isEmail(friend_email_value)) {
-        setError(friend_email, 'Email is not valid');
-    } else {
-        //Add success class
-        setSuccess(friend_email,"Looks good!");
-        email_check = 1;
+        if (friend_email_value === '') {
+            //Show error and set error class
+            setError(friend_email, 'Email field cannot be empty');
+        } else if (!isEmail(friend_email_value)) {
+            setError(friend_email, 'Email is not valid');
+        } else {
+            //Add success class
+            setSuccess(friend_email, "Looks good!");
+            friend_email_check = 1;
+        }
     }
 
-    if (group_name_value === '') {
-        //Show error and set error class
-        setError(group_name, 'Your name cannot be empty');
-    } else {
-        //Add success class
-        setSuccess(group_name,"Looks good!");
-        group_name_check = 1;
+    if (radioCheck()){
+        friend_email_check = 1;
     }
 
-    if (group_name_check === 1 && email_check === 1) {
-        return_value = true;
-    } else {
-        return_value = false;
-    }
+        if (group_name_value === '') {
+            //Show error and set error class
+            setError(group_name, 'Your name cannot be empty');
+        } else {
+            //Add success class
+            setSuccess(group_name, "Looks good!");
+            group_name_check = 1;
+        }
 
-    return return_value;
+        if (group_name_check === 1 && friend_email_check === 1){
+            return true;
+        }else {
+            return false;
+        }
+
 
 }
 
@@ -62,33 +64,38 @@ function validateInputs(){
 function setError(element, message) {
     element.className = "form-control error";
     const small = document.getElementById("message-" + element.id);
-    small.classList.remove('success');
+    small.classList.remove('text-success');
 
     //Add error message and icon
     small.innerHTML = message + ' <i class="fas fa-exclamation-circle">';
     //Add error class
-    small.classList.add("error");
+    small.classList.add("text-danger");
 
 
 }
 
-const setSuccess = (element,message) => {
+const setSuccess = (element, message) => {
     element.className = "form-control success";
     const small = document.getElementById("message-" + element.id);
-    small.classList.remove('error');
+    small.classList.remove('text-danger');
 
     //Add success icon
-    small.innerHTML =message + ' <i class="fas fa-check-circle">';
+    small.innerHTML = message + ' <i class="fas fa-check-circle">';
     //Add success class
-    small.classList.add("success");
+    small.classList.add("text-success");
 
 }
 
-function radioCheck(){
-    if (radio.checked){
+function radioCheck() {
+    let return_value = false;
+    if (radio.checked) {
         friend_email.disabled = true;
+        return_value = true;
+    } else {
+        friend_email.disabled = false;
+        return_value = false;
     }
-    else friend_email.disabled = false;
+    return return_value
 
 }
 
