@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2022 at 11:34 AM
+-- Generation Time: May 04, 2022 at 01:10 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.0
 
@@ -33,11 +33,20 @@ CREATE TABLE `accounts` (
   `users_email` varchar(100) NOT NULL,
   `full_name` varchar(200) NOT NULL,
   `verify_status` tinyint(2) NOT NULL DEFAULT 0 COMMENT '0 = not verified, 1 = verified ',
-  `verify_token` varchar(200) NOT NULL,
-  `is_household_admin` tinyint(2) NOT NULL COMMENT '0=not admin, 1=admin',
-  `household_id` int(255) DEFAULT NULL,
-  `role` int(11) DEFAULT NULL
+  `verify_token` varchar(200) DEFAULT NULL,
+  `household_id` int(255) DEFAULT 0,
+  `role` int(11) DEFAULT 1 COMMENT '0 = regular user \r\n1 = household admin \r\n2 = super admin	',
+  `password_reset_token` longtext DEFAULT NULL,
+  `first_login` int(11) DEFAULT NULL COMMENT 'NULL = user has yet to log in for the first time, 1 = user has already logged in once'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`users_id`, `users_pwd`, `users_email`, `full_name`, `verify_status`, `verify_token`, `household_id`, `role`, `password_reset_token`, `first_login`) VALUES
+(1034, '$2y$10$7nyR7.KNLn1YPTsQRaK8kuDJlmFLlq0zrGrQtRilrE7f4.PFkc8Lm', 'bobomejl123@gmail.com', 'bobo ime ', 1, '$2y$10$aFEQ9tw086lSdOzD/g36XOQfzr4052wXvkMQb25oq6o1RMcAMkHWC', 0, 1, NULL, NULL),
+(1035, '$2y$10$tyOVtFxD4NhZ4jhsUmbJJ.lR8ZfqvfFLDb3aACFsdDdaDGAwIN8g.', 'bobsagott17@gmail.com', 'Luka Prcic', 1, '$2y$10$f/lzP0Ou1koPDWzEfShvJe4SMEdY7KUXqYkat7HAnWPCvtVFR9unW', 0, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -89,7 +98,25 @@ CREATE TABLE `goals` (
 
 CREATE TABLE `household` (
   `household_id` int(11) NOT NULL,
-  `household_name` int(11) NOT NULL
+  `household_name` varchar(200) NOT NULL DEFAULT 'single person'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `household`
+--
+
+INSERT INTO `household` (`household_id`, `household_name`) VALUES
+(0, 'temporary_house');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `household_accounts`
+--
+
+CREATE TABLE `household_accounts` (
+  `user_id` int(11) NOT NULL,
+  `house_hold_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -106,6 +133,14 @@ CREATE TABLE `log_data` (
   `users_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `log_data`
+--
+
+INSERT INTO `log_data` (`data_id`, `ip_adress`, `web_browser_OS`, `signup_time`, `users_id`) VALUES
+(149, '::1', 'an unknown browser that imitates Chrome Dev 100.0.4896.127 on Windows 10', NULL, 1034),
+(150, '::1', 'an unknown browser that imitates Chrome Dev 100.0.4896.127 on Windows 10', NULL, 1035);
+
 -- --------------------------------------------------------
 
 --
@@ -114,7 +149,7 @@ CREATE TABLE `log_data` (
 
 CREATE TABLE `roles` (
   `roles_id` int(11) NOT NULL,
-  `role` int(11) NOT NULL COMMENT '0 = regular user\r\n1 = household admin \r\n2 = super admin	'
+  `role` int(11) NOT NULL DEFAULT 1 COMMENT '0 = regular user\r\n1 = household admin \r\n2 = super admin	'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -122,21 +157,9 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`roles_id`, `role`) VALUES
-(1, 0),
-(2, 1),
-(3, 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `transport_user_table`
---
-
-CREATE TABLE `transport_user_table` (
-  `transport_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `house_hold_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(0, 0),
+(1, 1),
+(2, 2);
 
 --
 -- Indexes for dumped tables
@@ -179,6 +202,14 @@ ALTER TABLE `household`
   ADD PRIMARY KEY (`household_id`);
 
 --
+-- Indexes for table `household_accounts`
+--
+ALTER TABLE `household_accounts`
+  ADD PRIMARY KEY (`user_id`,`house_hold_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `household1_id` (`house_hold_id`);
+
+--
 -- Indexes for table `log_data`
 --
 ALTER TABLE `log_data`
@@ -192,14 +223,6 @@ ALTER TABLE `roles`
   ADD PRIMARY KEY (`roles_id`);
 
 --
--- Indexes for table `transport_user_table`
---
-ALTER TABLE `transport_user_table`
-  ADD PRIMARY KEY (`transport_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `household1_id` (`house_hold_id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -207,25 +230,19 @@ ALTER TABLE `transport_user_table`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1036;
 
 --
 -- AUTO_INCREMENT for table `log_data`
 --
 ALTER TABLE `log_data`
-  MODIFY `data_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `data_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `roles_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `transport_user_table`
---
-ALTER TABLE `transport_user_table`
-  MODIFY `transport_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -258,17 +275,17 @@ ALTER TABLE `goals`
   ADD CONSTRAINT `goals_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `accounts` (`users_id`);
 
 --
+-- Constraints for table `household_accounts`
+--
+ALTER TABLE `household_accounts`
+  ADD CONSTRAINT `household1_id` FOREIGN KEY (`house_hold_id`) REFERENCES `household` (`household_id`),
+  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `accounts` (`users_id`);
+
+--
 -- Constraints for table `log_data`
 --
 ALTER TABLE `log_data`
   ADD CONSTRAINT `log_data_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `accounts` (`users_id`);
-
---
--- Constraints for table `transport_user_table`
---
-ALTER TABLE `transport_user_table`
-  ADD CONSTRAINT `household1_id` FOREIGN KEY (`house_hold_id`) REFERENCES `household` (`household_id`),
-  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `accounts` (`users_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
