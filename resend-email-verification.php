@@ -60,7 +60,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header bg-dark text-white">
                         <h5>Resend Email verification</h5>
                     </div>
 
