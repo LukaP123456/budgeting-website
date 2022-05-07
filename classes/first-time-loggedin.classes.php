@@ -3,8 +3,33 @@ include_once "dbh.classes.php";
 
 class first_time_logged extends Dbh
 {
-    //TODO: Skontati kako ovo lol
+
+    function check_user_exists($users_email){
+        $return_value = false;
+
+        $check_stmt = $this->connect()->prepare( "SELECT * from cost.accounts WHERE users_email=? AND verify_status = 1;");
+
+        if ($check_stmt->execute(array($users_email))){
+            if ($check_stmt->rowCount() > 0){
+                $return_value = true;
+            }
+            else{
+                $return_value = false;
+            }
+
+        }
+
+        return $return_value;
+
+    }
+
     function create_household($friend_email,$group_name,$alone){
+
+        //TODO: Porblem sa bazom. Trenutno tabele u bazi koje mi ovde trebaju nemaju autoincrement ukljucen na primary key tj na id, ne mogu ukljuciti auto increment dok ne postavim neku kateogirju u bazu
+
+        $create_stmt = $this->connect()->prepare("");
+
+
 
 
     }

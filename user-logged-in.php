@@ -79,7 +79,6 @@ include_once "classes/first-time-loggedin.classes.php";
 $first_log = new first_time_logged();
 $email = $_SESSION['email'];
 
-
 if ($first_log->check_if_first_log($email)) {
 //    $first_log->log_first_time($email);
     ?>
@@ -107,6 +106,7 @@ if ($first_log->check_if_first_log($email)) {
                                 <div class="form-group mb-3">
                                     <label for="email">Enter the email address of the person you want to invite to save
                                         money with you</label>
+                                    <input type="hidden" id="user-email" name="user-email" value="<?php echo $email; ?>">
                                     <input type="email" id="email" name="email-friend" class="form-control"
                                            placeholder="E-mail of a friend/family member">
                                     <small class="message" id="message-email"></small>
