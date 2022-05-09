@@ -4,16 +4,16 @@ include_once "dbh.classes.php";
 class first_time_logged extends Dbh
 {
 
-    function check_user_exists($users_email){
+    function check_user_exists($users_email)
+    {
         $return_value = false;
 
-        $check_stmt = $this->connect()->prepare( "SELECT * from cost.accounts WHERE users_email=? AND verify_status = 1;");
+        $check_stmt = $this->connect()->prepare("SELECT * from cost.accounts WHERE users_email=? AND verify_status = 1;");
 
-        if ($check_stmt->execute(array($users_email))){
-            if ($check_stmt->rowCount() > 0){
+        if ($check_stmt->execute(array($users_email))) {
+            if ($check_stmt->rowCount() > 0) {
                 $return_value = true;
-            }
-            else{
+            } else {
                 $return_value = false;
             }
 
@@ -23,13 +23,22 @@ class first_time_logged extends Dbh
 
     }
 
-    function create_household($friend_email,$group_name,$alone){
+    function create_household($group_name, $user_id)
+    {
 
-        //TODO: Porblem sa bazom. Trenutno tabele u bazi koje mi ovde trebaju nemaju autoincrement ukljucen na primary key tj na id, ne mogu ukljuciti auto increment dok ne postavim neku kateogirju u bazu
+        $create_stmt = $this->connect()->prepare("BEGIN;    
+            INSERT INTO household( household_name) VALUES (?);
+            INSERT INTO household_accounts(user_id,house_hold_id) VALUES(?,LAST_INSERT_ID());
+            `COMMIT;");
 
-        $create_stmt = $this->connect()->prepare("");
+        if ($create_stmt->execute(array($group_name, $user_id))) {
+            if ($create_stmt->rowCount() > 0) {
+                echo "sql success";
+            }
+        } else {
+            echo "sql failed";
 
-
+        }
 
 
     }
@@ -51,8 +60,7 @@ class first_time_logged extends Dbh
                 //Not the first time logging in for the user
                 $return_value = false;
             }
-        }
-        else{
+        } else {
             echo "Didn't find the value in the database";
         }
 
@@ -61,14 +69,13 @@ class first_time_logged extends Dbh
 
     }
 
-    function log_first_time($email){
+    function log_first_time($email)
+    {
         $change_stmt = $this->connect()->prepare("UPDATE accounts set first_login=1 WHERE users_email=? AND first_login IS NULL; ");
 
         $change_stmt->execute(array($email));
 
     }
-
-
 
 
 }

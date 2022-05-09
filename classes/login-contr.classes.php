@@ -28,6 +28,7 @@ class LoginContr extends Login
             header("location:../index.php?error=email");
             exit();
         }
+
         $this->getUser($this->email, $this->pwd);
 
     }

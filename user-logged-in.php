@@ -79,8 +79,10 @@ include_once "classes/first-time-loggedin.classes.php";
 $first_log = new first_time_logged();
 $email = $_SESSION['email'];
 
+
 if ($first_log->check_if_first_log($email)) {
-//    $first_log->log_first_time($email);
+    //TODO: NAPRAVITI funkciju koja proverava da li se logovo user vec jednom tako sto ce proveriti da li postoji user_id sa nekim household_id u bazi household_accounts
+
     ?>
     <!--FIRST TIME USER LOGGED IN START-->
     <div class="py-5">
