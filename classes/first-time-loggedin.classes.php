@@ -26,17 +26,20 @@ class first_time_logged extends Dbh
     function create_household($group_name, $user_id)
     {
 
-        $create_stmt = $this->connect()->prepare("BEGIN;    
+        $create_stmt = $this->connect()->prepare("BEGIN; 
             INSERT INTO household( household_name) VALUES (?);
-            INSERT INTO household_accounts(user_id,house_hold_id) VALUES(?,?);
-            `COMMIT;");
+            INSERT INTO household_accounts(user_id,house_hold_id) VALUES(?,LAST_INSERT_ID());
+            COMMIT;");
 
-        if ($create_stmt->execute(array($group_name, $user_id,$_SESSION['house_id']))) {
+        if ($create_stmt->execute(array($group_name,$user_id ))) {
             if ($create_stmt->rowCount() > 0) {
-                echo "sql success";
+                return true;
+
+            } else {
+                return false;
             }
         } else {
-            echo "sql failed";
+            return false;
 
         }
 

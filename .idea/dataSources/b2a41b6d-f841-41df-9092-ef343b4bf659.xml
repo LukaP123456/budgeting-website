@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="MySQL - cost@localhost">
+<dataSource name="cost@localhost">
   <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.23">
     <root id="1">
       <ServerVersion>10.4.21</ServerVersion>
