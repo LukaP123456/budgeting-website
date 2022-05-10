@@ -6,17 +6,15 @@
                 <h2 class="text-center mb-4">Contact info</h2>
                 <ul class="list-group list-group-flush lead">
                     <li class="list-group-item">
-                        <span class="fw-bold">Main Location:</span> 50 Main st Boston MA
+                        <span class="fw-bold">Main Location:</span> Marka Oreškovića 16
                     </li>
                     <li class="list-group-item">
-                        <span class="fw-bold">Enrollment Phone:</span> (555) 555-555
+                        <span class="fw-bold">My Phone:</span> (555) 555-555
                     </li>
                     <li class="list-group-item">
-                        <span class="fw-bold">Student Phone:</span> (333) 333-333
+                        <span class="fw-bold">Home Phone:</span> (333) 333-333
                     </li>
-                    <li class="list-group-item">
-                        <span class="fw-bold">Enrollment Email:</span> enroll@mail.com
-                    </li>
+
 
                 </ul>
             </div>

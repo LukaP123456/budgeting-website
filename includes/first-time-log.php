@@ -16,7 +16,9 @@ if (isset($_POST['submit'])){
     }
 
     $group_name = $_POST['group-name'];
-    $users_email = $_POST['user-email'];
+    $users_email = $_POST['users_email'];
+    echo $users_email;
+    die();
     $users_id = $_SESSION['users_id'];
 
 
@@ -27,7 +29,6 @@ if (isset($_POST['submit'])){
 
         $first_time_log->create_household($group_name,$users_id);
 
-        //    $first_log->log_first_time($email);
 
         echo "success";
 
