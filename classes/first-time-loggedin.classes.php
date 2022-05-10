@@ -28,10 +28,10 @@ class first_time_logged extends Dbh
 
         $create_stmt = $this->connect()->prepare("BEGIN;    
             INSERT INTO household( household_name) VALUES (?);
-            INSERT INTO household_accounts(user_id,house_hold_id) VALUES(?,LAST_INSERT_ID());
+            INSERT INTO household_accounts(user_id,house_hold_id) VALUES(?,?);
             `COMMIT;");
 
-        if ($create_stmt->execute(array($group_name, $user_id))) {
+        if ($create_stmt->execute(array($group_name, $user_id,$_SESSION['house_id']))) {
             if ($create_stmt->rowCount() > 0) {
                 echo "sql success";
             }
@@ -69,11 +69,42 @@ class first_time_logged extends Dbh
 
     }
 
-    function log_first_time($email)
+    function log_first_time($user_id)
     {
-        $change_stmt = $this->connect()->prepare("UPDATE accounts set first_login=1 WHERE users_email=? AND first_login IS NULL; ");
 
-        $change_stmt->execute(array($email));
+        $select_stmt = $this->connect()->prepare("SELECT * FROM household_accounts WHERE user_id=?");
+
+        if ($select_stmt->execute(array($user_id))) {
+
+            if ($select_stmt->rowCount() > 0) {
+                $selector = $select_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                $house_id = $selector[0]["house_hold_id"];
+                $_SESSION['house_id'] = $selector[0]["house_hold_id"];
+
+                $check_stmt = $this->connect()->prepare("SELECT * from household_accounts WHERE user_id = ? AND house_hold_id = ?;");
+
+                if ($check_stmt->execute(array($user_id, $house_id))) {
+                    if ($check_stmt->rowCount() > 0) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+
+                } else {
+                    return false;
+                }
+
+
+            } else {
+                return false;
+            }
+
+
+        } else {
+            return false;
+        }
+
 
     }
 
