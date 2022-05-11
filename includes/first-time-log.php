@@ -4,14 +4,12 @@ require_once "../classes/first-time-loggedin.classes.php";
 
 if (isset($_POST['submit'])) {
 
-    $alone_box = 0;
+    $first_time_log = new first_time_logged();
 
-    if (isset($_POST['alone-box'])) {
-        $alone_box = 1;
-        $email = "";
-    } else {
-        $alone_box = 0;
+    if (!isset($_POST['alone-box'])) {
         $friends_email = $_POST['email-friend'];
+
+       // $first_time_log->sendemail_verify();
     }
 
     $group_name = $_POST['group-name'];
@@ -19,7 +17,7 @@ if (isset($_POST['submit'])) {
 
     $users_id = $_SESSION['users_id'];
 
-    $first_time_log = new first_time_logged();
+
 
     if ($first_time_log->check_user_exists($users_email)) {
         //user exists and is verified in the database so we can continue and make a household

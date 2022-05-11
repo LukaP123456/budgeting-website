@@ -1,8 +1,55 @@
 <?php
 include_once "dbh.classes.php";
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
+require '../vendor/autoload.php';
+
 class first_time_logged extends Dbh
 {
+
+    //Sends and email for verification
+    function sendemail_verify($email, $verify_token,$friends_email)
+    {
+
+        $mail = new PHPMailer(true);
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $mail->isSMTP();                                                        //Send using SMTP
+        //$mail->Host = "smtp.mail.yahoo.com ";                                         //Set the SMTP server to send through
+        $mail->Host = 'smtp.gmail.com';                                         //Set the SMTP server to send through
+        $mail->SMTPAuth = true;                                                 //Enable SMTP authentication
+        $mail->Username = 'lpbudgeting456@gmail.com';                              //SMTP username
+        $mail->Password = 'lpbudgetinggunduliceva63';                                 //SMTP password
+
+        $mail->SMTPSecure = "tls";                                              //Enable implicit TLS encryption
+        $mail->Port = 587;                                                      //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+        //Recipients
+        $mail->setFrom('LP_BUDGETING@gmail.com', "LP Budgeting");
+        $mail->addAddress($email);                                  //Add a recipient
+
+        //Content
+        $mail->isHTML(true);                                                            //Set email format to HTML
+        $mail->Subject = 'Email verification from LP Budgeting';
+
+        $date_time = date("d-m-Y H:i:s");
+
+        $email_template = "
+            <h1>Hello! You have been invited by $email to save money on our <a href='../index.php' > website</a></h1>
+            <h3>Plese click on the link below to sign up if you do not want to save money using our services please ignore this e-mail.</h3>
+            <h4>Verify your email address to Login with the below given link</h4>
+            <br><br>
+            <h1><a href='http://localhost/BUDGETING_WEBSITE/includes/verify_email.php?token=$verify_token&email=$email'>Click me to verify</a></h1>
+        ";
+        $mail->Body = $email_template;
+
+        $mail->send();
+        echo 'Message has been sent';
+
+    }
 
     function check_user_exists($users_email)
     {
@@ -46,31 +93,6 @@ class first_time_logged extends Dbh
 
     }
 
-
-    function check_if_first_log($email)
-    {
-        $check_stmt = $this->connect()->prepare("SELECT first_login from accounts WHERE users_email=?;");
-        $return_value = false;
-
-        if ($check_stmt->execute(array($email))) {
-            $first_login_value = $check_stmt->fetchAll(PDO::FETCH_ASSOC);
-            $first_login = $first_login_value[0]["first_login"];
-
-            if ($first_login === null) {
-                //First time logging in for the user
-                $return_value = true;
-            } else {
-                //Not the first time logging in for the user
-                $return_value = false;
-            }
-        } else {
-            echo "Didn't find the value in the database";
-        }
-
-        return $return_value;
-
-
-    }
 
     function log_first_time($user_id)
     {

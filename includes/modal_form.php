@@ -67,11 +67,13 @@
                     ?>
 
                     <div class="mb-3 input-control">
-                        <label for="full-name">Full name\User name</label><br>
-                        <p>*You can only have on user name per e-mail account</p>
+                        <label for="full-name">Full name\User name</label>
+                        <span data-bs-toggle="tooltip" data-bs-placement="right"
+                              title="*You can only have one username/name  per e-mail account">
                         <input type="text" class="form-control" id="full-name" name="full-name"
                                placeholder="John Smith">
                         <small class="message" id="message-full-name"></small>
+                        </span>
                         <br>
                     </div>
                     <div class="mb-3 input-control">
@@ -114,6 +116,11 @@
 </div>
 
 
-
+<!--Javascript/Bootstrap links-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+<!--Bootstrap tooltip link-->
+<script src="./js/bootstrap-tooltip.js"></script>
 
 
