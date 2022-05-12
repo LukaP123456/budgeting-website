@@ -5,7 +5,7 @@ if (!isset($_SESSION['authenticated'])) {
     exit();
 }
 
-include_once "classes/first-time-loggedin.classes.php";
+require_once "../classes/first-time-loggedin.classes.php";
 
 
 ?>
@@ -25,7 +25,7 @@ include_once "classes/first-time-loggedin.classes.php";
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
 
     <!--Custom styles link-->
-    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="../CSS/style.css">
 
     <!--JQUERY LINK-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -42,7 +42,7 @@ include_once "classes/first-time-loggedin.classes.php";
 <!--navbar start-->
 <nav class="navbar navbar-expand-lg bg-black navbar-dark py-3 fixed-top">
     <div class="container">
-        <a href="index.php" class="navbar-brand">LP<span class="text-warning">Budgeting</span></a>
+        <a href="../index.php" class="navbar-brand">LP<span class="text-warning">Budgeting</span></a>
 
         <button class="navbar-toggler"
                 type="button"
@@ -63,7 +63,7 @@ include_once "classes/first-time-loggedin.classes.php";
                 </li>
                 <li class='nav-item'>
                 <li class='nav-item'>
-                    <a href='includes/logout.inc.php' class='nav-link text-white'>Logout</a>
+                    <a href='logout.inc.php' class='nav-link text-white'>Logout</a>
                 </li>
                 <?php
                 } ?>
@@ -94,7 +94,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <p>Please fill out the form below to finish setting up your account</p>
                         </div>
                         <div class="card-body">
-                            <form action="includes/first-time-log.php" name="first-time-log-form"
+                            <form action="first-time-log.php" name="first-time-log-form"
                                   id="first-time-log-form" method="POST">
                                 <div class="form-check form-switch mb-3">
                                     <input class="form-check-input" type="checkbox" role="switch" name="alone-box"
@@ -114,6 +114,19 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                                     <small class="message" id="message-email"></small>
                                 </div>
                                 <br>
+                                <?php
+                                $fullUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+
+                                if (strpos($fullUrl, "error=house_exists") == true) {
+                                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                                             <strong>Warning!</strong> Name of your group already exists please enter another name.
+                                             <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                          </div>";
+                                }
+
+
+                                ?>
                                 <div class="form-group mb-3">
                                     <label for="group-name">Enter the name of your group/household</label>
                                     <input type="text" id="group-name" name="group-name" class="form-control"
@@ -124,7 +137,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                                     <button type="submit" name="submit" class="btn btn-primary">Submit
                                     </button>
                                 </div>
-                                <script src="js/first-time-log.js"></script>
+                                <script src="../js/first-time-log.js"></script>
                             </form>
                         </div>
                     </div>
@@ -136,6 +149,11 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
     <?php
 }
 ?>
+
+<!--Javascript/Bootstrap links-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

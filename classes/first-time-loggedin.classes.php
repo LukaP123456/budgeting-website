@@ -12,7 +12,7 @@ class first_time_logged extends Dbh
 {
 
     //Sends and email for verification
-    function sendemail_verify($email, $verify_token,$friends_email)
+    function sendemail_verify($email, $friends_email,$group_name)
     {
 
         $mail = new PHPMailer(true);
@@ -28,12 +28,12 @@ class first_time_logged extends Dbh
         $mail->Port = 587;                                                      //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
         //Recipients
-        $mail->setFrom('LP_BUDGETING@gmail.com', "LP Budgeting");
-        $mail->addAddress($email);                                  //Add a recipient
+        $mail->setFrom($friends_email);
+        $mail->addAddress($friends_email);                                  //Add a recipient
 
         //Content
         $mail->isHTML(true);                                                            //Set email format to HTML
-        $mail->Subject = 'Email verification from LP Budgeting';
+        $mail->Subject = 'Invite from '.$email.' for our website LPBudgeting';
 
         $date_time = date("d-m-Y H:i:s");
 
@@ -42,7 +42,7 @@ class first_time_logged extends Dbh
             <h3>Plese click on the link below to sign up if you do not want to save money using our services please ignore this e-mail.</h3>
             <h4>Verify your email address to Login with the below given link</h4>
             <br><br>
-            <h1><a href='http://localhost/BUDGETING_WEBSITE/includes/verify_email.php?token=$verify_token&email=$email'>Click me to verify</a></h1>
+            <h1><a href='http://localhost/BUDGETING_WEBSITE/includes/invited-signup.php?email=$email&group_name=$group_name'<a>Click me to verify</a></h1>
         ";
         $mail->Body = $email_template;
 
@@ -67,6 +67,23 @@ class first_time_logged extends Dbh
         }
 
         return $return_value;
+
+    }
+
+    function check_household_exists($house_name){
+        $check_stmt = $this->connect()->prepare("SELECT * FROM household WHERE household_name=?;");
+
+        if ($check_stmt->execute(array($house_name))){
+
+            if ($check_stmt->rowCount() > 0){
+                //Household with the same name exists and we have to stop the user from creating a new house with the same name
+                header("location:../includes/user-logged-in.php?error=house_exists");
+                return false;
+
+            }
+        }
+
+        return true;
 
     }
 

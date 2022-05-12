@@ -60,7 +60,7 @@ class Login extends Dbh
 
             $_SESSION['authenticated'] = true;
 
-            header("Location: ../user-logged-in.php");
+            header("Location: ../includes/user-logged-in.php");
 
 
         }
