@@ -69,7 +69,7 @@
                     <div class="mb-3 input-control">
                         <label for="full-name">Full name\User name</label>
                         <span data-bs-toggle="tooltip" data-bs-placement="right"
-                              title="*You can only have one username/name  per e-mail account">
+                              title="*You can only have one username/name per e-mail account">
                         <input type="text" class="form-control" id="full-name" name="full-name"
                                placeholder="John Smith">
                         <small class="message" id="message-full-name"></small>

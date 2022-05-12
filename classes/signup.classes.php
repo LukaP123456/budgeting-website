@@ -51,6 +51,40 @@ class Signup extends Dbh
 
     }
 
+    protected function set_invited_user($pwd, $email, $full_name, $verify_token, $ip, $browser,$group_name)
+    {
+        $stmt = $this->connect()->prepare(
+            "BEGIN;
+         INSERT INTO accounts(users_pwd,users_email,full_name,verify_token) values (?,?,?,?);
+         INSERT INTO log_data(users_id,ip_adress,web_browser_OS) values(LAST_INSERT_ID(),?,?);
+         COMMIT;");
+
+        $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+
+        //The result of the execute function is true or false based on the succes of the execution
+        if (!$stmt->execute(array($hashedPwd, $email, $full_name, $verify_token, $ip, $browser))) {
+            //Throws an error message in the url if it fails setting a user
+            $stmt = null;
+            $_SESSION['error1'] = true;
+            header("location:../index.php?error=stmtfailed");
+            exit();
+        } else {
+            //Sends a verification email and show a success message if the user was set successfully
+            $this->sendemail_verify($full_name, $email, $verify_token);
+
+            $_SESSION['email'] = $email;
+
+            $_SESSION[] = "<span class='success'> Signed up successfully </span>";
+
+            header("Location:../signup_success.php");
+
+
+        }
+
+        $stmt = null;
+
+    }
+
 
     protected function setUser($pwd, $email, $full_name, $verify_token, $ip, $browser)
     {
