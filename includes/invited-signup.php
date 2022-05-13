@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -58,7 +59,7 @@
                         <p>You have been invited by <span class="text-warning" ><?php echo $_GET['email']; ?> </span> to join him in saving money.</p>
                     </div>
                     <div class="card-body">
-                        <form id="signup-form" class="form" method="POST" action="invite-signup.inc.php">
+                        <form id="signup-form" class="form" method="POST" action="invite-signup-code.inc.php">
                             <?php
                             $fullUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
@@ -112,6 +113,7 @@
                                 unset($_SESSION['error1']);
                             }
                             $group_name = $_GET['group_name'];
+
                             ?>
                             <input type="hidden" value="<?php echo $group_name;?>" name="group_name" id="group_name">
 

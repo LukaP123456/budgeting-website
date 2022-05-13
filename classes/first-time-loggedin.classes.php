@@ -38,11 +38,9 @@ class first_time_logged extends Dbh
         $date_time = date("d-m-Y H:i:s");
 
         $email_template = "
-            <h1>Hello! You have been invited by $email to save money on our <a href='../index.php' > website</a></h1>
+            <h1>Hello! You have been invited by $email to save money on our <a href='http://localhost/BUDGETING_WEBSITE/includes/invited-signup.php?email=$email&group_name=$group_name'<a>website</a></h1>
             <h3>Plese click on the link below to sign up if you do not want to save money using our services please ignore this e-mail.</h3>
             <h4>Verify your email address to Login with the below given link</h4>
-            <br><br>
-            <h1><a href='http://localhost/BUDGETING_WEBSITE/includes/invited-signup.php?email=$email&group_name=$group_name'<a>Click me to verify</a></h1>
         ";
         $mail->Body = $email_template;
 

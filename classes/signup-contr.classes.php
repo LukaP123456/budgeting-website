@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 class SignupContr extends Signup
 {
@@ -11,19 +10,62 @@ class SignupContr extends Signup
     private $verify_token;
     private $ip;
     private $browser;
-    private $group_name;
+    private $house_id;
 
-    public function __construct($full_name, $pwd, $pwdRepeat, $email, $verify_token, $ip, $browser)
+    public function __construct()
     {
-        $this->full_name = $full_name;
-        $this->pwd = $pwd;
-        $this->pwdRepeat = $pwdRepeat;
-        $this->email = $email;
-        $this->verify_token = $verify_token;
-        $this->ip = $ip;
-        $this->browser = $browser;
+
 
     }
+
+    public static function create() {
+        return new self();
+    }
+
+    public function set_house_id($house_id) {
+        $this->house_id = $house_id;
+        return $this;
+    }
+
+    public function set_full_name($full_name) {
+        $this->full_name = $full_name;
+        return $this;
+    }
+
+    public function set_pwd($pwd) {
+        $this->pwd = $pwd;
+        return $this;
+    }
+
+    public function set_pwd_repeat($pwdRepeat) {
+        $this->pwdRepeat = $pwdRepeat;
+        return $this;
+    }
+
+    public function set_email($email) {
+        $this->email = $email;
+        return $this;
+    }
+
+    public function set_verify_token($verify_token) {
+        $this->verify_token = $verify_token;
+        return $this;
+    }
+
+    public function set_ip($ip) {
+        $this->ip = $ip;
+        return $this;
+    }
+
+    public function set_browser($browser) {
+        $this->browser = $browser;
+        return $this;
+    }
+
+
+
+
+
 
 
     public function signupUser()
@@ -109,10 +151,12 @@ class SignupContr extends Signup
 
 
         //Part that will sign up the user to the website
-        $this->set_invited_user($this->pwd, $this->email, $this->full_name, $this->verify_token, $this->ip, $this->browser,$this->group_name);
+        $this->set_invited_user($this->pwd, $this->email, $this->full_name, $this->verify_token, $this->ip, $this->browser,$this->house_id);
 
 
     }
+
+
 
 
     private function emptyInput()
