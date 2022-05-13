@@ -1,8 +1,7 @@
 <?php
 session_start();
 
-//TODO:Napraviti novu klasu ili funkciju koja ce zabiljeziti novog usera tacno u onu grupu/kucu koja je prosledjena.
-// Function to get the client IP address
+//TODO:Napraviti da radi signup pozvanog user i verifikacija zasad radi slanje poruke ali ne insertuje i pukne na verifikaciji
 function get_client_ip()
 {
     $ipaddress = '';
