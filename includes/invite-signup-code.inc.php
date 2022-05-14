@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-//TODO:Napraviti da radi signup pozvanog user i verifikacija zasad radi slanje poruke ali ne insertuje i pukne na verifikaciji
 function get_client_ip()
 {
     $ipaddress = '';
@@ -32,9 +31,12 @@ if (isset($_POST['submit'])) {
     $pwdRepeat = $_POST["pwdRepeat"];
     $email = $_POST["email"];
     $ip = get_client_ip();
-    $inviter_id = $_SESSION["users_id"];
+    $inviter_email = $_POST["inviter_email"];
+    $inviter_id = $_POST["user_id"];
 
-    $inviter_email = $_SESSION["users_email"];
+    echo $inviter_id;
+    echo "<br>";
+
 
 
     require '../vendor/autoload.php';
@@ -54,13 +56,15 @@ if (isset($_POST['submit'])) {
     include "../classes/signup.classes.php";
     include "../classes/signup-contr.classes.php";
 
-    $signup = SignupContr::create()->set_house_id($_SESSION['house_id'])->set_full_name($full_name)->set_pwd($pwd)->set_pwd_repeat($pwdRepeat)->set_email($email)->set_verify_token($verify_token)->set_ip($ip)->set_browser($browser);
+
+
+    $signup = SignupContr::create()->set_inviter_id($inviter_id)->set_house_id($_SESSION['house_id'])->set_vanilla_user($full_name,$pwd,$pwdRepeat,$email,$verify_token,$ip,$browser);
+
 
     //Checks if the house exists
     if ($signup->get_group_id($group_name)) {
         //Runs error handlers and inserts the user into the database to the aproppriate hosue if the house exists
-        $signup->signup_user_invite($full_name, $pwd, $pwdRepeat, $email, $verify_token, $ip, $browser, $_SESSION['house_id']);
-
+        $signup->signup_user_invite();
 
     } else {
         header("Location:../includes/invited-signup.php?email=" . $inviter_email . "&group_name=" . $group_name . "&error=no_house");
@@ -68,7 +72,7 @@ if (isset($_POST['submit'])) {
 
 
     //Povratak na glavnu stranu
-    header("Location:../includes/invited-signup.php?email=" . $inviter_email . "&group_name=" . $group_name . "&error=none");
+//    header("Location:../includes/invited-signup.php?email=" . $inviter_email . "&group_name=" . $group_name . "&error=none");
 
 } else {
     header("Location:../includes/invited-signup.php?email=" . $_SESSION["users_email"] . "&group_name=" . $_SESSION['group_name'] . "&error=no_house");

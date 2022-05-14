@@ -11,15 +11,28 @@ class SignupContr extends Signup
     private $ip;
     private $browser;
     private $house_id;
+    private $inviter_id;
 
-    public function __construct()
-    {
-
-
-    }
+//    public function __construct()
+//    {
+//
+//
+//    }
 
     public static function create() {
         return new self();
+    }
+
+    public function set_vanilla_user($full_name,$pwd,$pwdRepeat,$email,$verify_token,$ip,$browser){
+        $this->full_name = $full_name;
+        $this->pwd = $pwd;
+        $this->pwdRepeat = $pwdRepeat;
+        $this->email = $email;
+        $this->verify_token = $verify_token;
+        $this->ip = $ip;
+        $this->browser = $browser;
+
+        return $this;
     }
 
     public function set_house_id($house_id) {
@@ -27,44 +40,10 @@ class SignupContr extends Signup
         return $this;
     }
 
-    public function set_full_name($full_name) {
-        $this->full_name = $full_name;
+    public function set_inviter_id($inviter_id) {
+        $this->inviter_id = $inviter_id;
         return $this;
     }
-
-    public function set_pwd($pwd) {
-        $this->pwd = $pwd;
-        return $this;
-    }
-
-    public function set_pwd_repeat($pwdRepeat) {
-        $this->pwdRepeat = $pwdRepeat;
-        return $this;
-    }
-
-    public function set_email($email) {
-        $this->email = $email;
-        return $this;
-    }
-
-    public function set_verify_token($verify_token) {
-        $this->verify_token = $verify_token;
-        return $this;
-    }
-
-    public function set_ip($ip) {
-        $this->ip = $ip;
-        return $this;
-    }
-
-    public function set_browser($browser) {
-        $this->browser = $browser;
-        return $this;
-    }
-
-
-
-
 
 
 
@@ -151,7 +130,7 @@ class SignupContr extends Signup
 
 
         //Part that will sign up the user to the website
-        $this->set_invited_user($this->pwd, $this->email, $this->full_name, $this->verify_token, $this->ip, $this->browser,$this->house_id);
+        $this->set_invited_user($this->pwd, $this->email, $this->full_name, $this->verify_token, $this->ip, $this->browser,$this->house_id,$this->inviter_id);
 
 
     }

@@ -48,7 +48,8 @@ if (isset($_POST['submit'])) {
     include "../classes/signup.classes.php";
     include "../classes/signup-contr.classes.php";
 
-    $signup = SignupContr::create()->set_full_name($full_name)->set_pwd($pwd)->set_pwd_repeat($pwdRepeat)->set_email($email)->set_verify_token($verify_token)->set_ip($ip)->set_browser($browser);
+
+    $signup = SignupContr::create()->set_vanilla_user($full_name,$pwd,$pwdRepeat,$email,$verify_token,$ip,$browser);
 
     //Runs error handlers and inserts the user into the database
     $signup->signupUser();

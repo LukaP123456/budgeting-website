@@ -11,6 +11,45 @@ require '../vendor/autoload.php';
 class first_time_logged extends Dbh
 {
 
+    function log_first_time($user_id)
+    {
+
+        $select_stmt = $this->connect()->prepare("SELECT * FROM household_accounts WHERE user_id=?");
+
+        if ($select_stmt->execute(array($user_id))) {
+
+            if ($select_stmt->rowCount() > 0) {
+                $selector = $select_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                $house_id = $selector[0]["house_hold_id"];
+                $_SESSION['house_id'] = $selector[0]["house_hold_id"];
+
+                $check_stmt = $this->connect()->prepare("SELECT * from household_accounts WHERE user_id = ? AND house_hold_id = ?;");
+
+                if ($check_stmt->execute(array($user_id, $house_id))) {
+                    if ($check_stmt->rowCount() > 0) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+
+                } else {
+                    return false;
+                }
+
+
+            } else {
+                return false;
+            }
+
+
+        } else {
+            return false;
+        }
+
+
+    }
+
     //Sends and email for verification
     function sendemail_verify($email, $friends_email,$group_name)
     {
@@ -35,10 +74,12 @@ class first_time_logged extends Dbh
         $mail->isHTML(true);                                                            //Set email format to HTML
         $mail->Subject = 'Invite from '.$email.' for our website LPBudgeting';
 
-        $date_time = date("d-m-Y H:i:s");
+        $user_id = $_SESSION['users_id'];
+
+
 
         $email_template = "
-            <h1>Hello! You have been invited by $email to save money on our <a href='http://localhost/BUDGETING_WEBSITE/includes/invited-signup.php?email=$email&group_name=$group_name'<a>website</a></h1>
+            <h1>Hello! You have been invited by $email to save money on our <a href='http://localhost/BUDGETING_WEBSITE/includes/invited-signup.php?email=$email&group_name=$group_name&userID=$user_id'<a>website</a></h1>
             <h3>Plese click on the link below to sign up if you do not want to save money using our services please ignore this e-mail.</h3>
             <h4>Verify your email address to Login with the below given link</h4>
         ";
@@ -109,44 +150,7 @@ class first_time_logged extends Dbh
     }
 
 
-    function log_first_time($user_id)
-    {
 
-        $select_stmt = $this->connect()->prepare("SELECT * FROM household_accounts WHERE user_id=?");
-
-        if ($select_stmt->execute(array($user_id))) {
-
-            if ($select_stmt->rowCount() > 0) {
-                $selector = $select_stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                $house_id = $selector[0]["house_hold_id"];
-                $_SESSION['house_id'] = $selector[0]["house_hold_id"];
-
-                $check_stmt = $this->connect()->prepare("SELECT * from household_accounts WHERE user_id = ? AND house_hold_id = ?;");
-
-                if ($check_stmt->execute(array($user_id, $house_id))) {
-                    if ($check_stmt->rowCount() > 0) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-
-                } else {
-                    return false;
-                }
-
-
-            } else {
-                return false;
-            }
-
-
-        } else {
-            return false;
-        }
-
-
-    }
 
 
 }

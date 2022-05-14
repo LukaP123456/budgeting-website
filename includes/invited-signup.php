@@ -112,10 +112,13 @@
                             } else {
                                 unset($_SESSION['error1']);
                             }
-                            $group_name = $_GET['group_name'];
+
 
                             ?>
-                            <input type="hidden" value="<?php echo $group_name;?>" name="group_name" id="group_name">
+                            <input type="hidden" value="<?php echo  $_GET['group_name'];?>" name="group_name" id="group_name">
+                            <input type="hidden" value="<?php echo $_GET['email'];?>" name="inviter_email" id="inviter_email">
+                            <input type="hidden" value="<?php echo $_GET['userID'];?>" name="user_id" id="user_id">
+
 
                             <div class="mb-3 input-control">
                                 <label for="full-name">Full name\User name</label>
