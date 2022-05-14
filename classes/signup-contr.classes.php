@@ -13,11 +13,6 @@ class SignupContr extends Signup
     private $house_id;
     private $inviter_id;
 
-//    public function __construct()
-//    {
-//
-//
-//    }
 
     public static function create() {
         return new self();

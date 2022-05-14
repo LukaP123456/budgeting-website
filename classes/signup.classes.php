@@ -76,14 +76,15 @@ class Signup extends Dbh
         $stmt = $this->connect()->prepare(
             "BEGIN;
          INSERT INTO accounts(users_pwd,users_email,full_name,verify_token,role) values (?,?,?,?,0);
-         UPDATE household_accounts SET user_id = LAST_INSERT_ID(),house_hold_id=? WHERE house_hold_id=?
-         INSERT INTO log_data(users_id,ip_adress,web_browser_OS) values(LAST_INSERT_ID(),?,?);
+         SET @users_id = LAST_INSERT_ID();
+         INSERT INTO log_data(users_id,ip_adress,web_browser_OS) values(@users_id,?,?);
+         INSERT INTO household_accounts(user_id,house_hold_id)values(@users_id,?);
          COMMIT;");
 
         $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
         //The result of the execute function is true or false based on the succes of the execution
-        if (!$stmt->execute(array($hashedPwd, $email, $full_name, $verify_token, $ip, $browser,$house_id,$house_id))) {
+        if (!$stmt->execute(array($hashedPwd, $email, $full_name, $verify_token, $ip, $browser,$house_id))) {
             //Throws an error message in the url if it fails setting a user
             $stmt = null;
             $_SESSION['error1'] = true;
