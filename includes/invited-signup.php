@@ -161,7 +161,7 @@
                                 </button>
                             </div>
 
-<!--                            <script src="../js/signup_error_handler.js"></script>-->
+                            <script src="../js/signup_error_handler.js"></script>
 
                         </form>
                     </div>

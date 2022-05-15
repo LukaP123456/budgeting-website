@@ -92,10 +92,6 @@ class Signup extends Dbh
             exit();
         } else {
 
-//            $house_stmt =  $this->connect()->prepare( "");
-
-//            if ($house_stmt->execute(array())){
-
                 //Sends a verification email and show a success message if the user was set successfully
                 $this->sendemail_verify($full_name, $email, $verify_token);
 
@@ -106,9 +102,9 @@ class Signup extends Dbh
                 echo "<br>";
                 echo "success";
 
-//            header("Location:../signup_success.php");
+            header("Location:../signup_success.php");
 
-            //}
+
 
 
 

@@ -26,7 +26,8 @@ if (isset($_POST['submit'])) {
         if ($first_time_log->check_household_exists($group_name)){
 
             if (!$first_time_log->create_household($group_name, $users_id)) {
-                echo "success";
+                header("location:../includes/user-logged-in.php?error=none");
+
             }
 
         }
@@ -35,7 +36,7 @@ if (isset($_POST['submit'])) {
 
     } else {
         //User doesn't exist so we will show an error message
-        header("location:../index.php?error=first_time_log_no_user");
+        header("location:../includes/user-logged-in.php?error=user_exists");
     }
 
 
