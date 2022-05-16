@@ -100,9 +100,6 @@ require_once "../classes/first-time-loggedin.classes.php";
                     if (isset($_SESSION["email"])){
                     ?>
                 <li class='nav-item'>
-                    <a href='#' class='nav-link text-white'><?php echo $_SESSION["email"]; ?></a>
-                </li>
-                <li class='nav-item'>
                 <li class='nav-item'>
                     <a href='logout.inc.php' class='nav-link text-white'>Logout</a>
                 </li>
@@ -238,10 +235,18 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
             <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-black" style="width: 100%;">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <svg class="bi bi-piggy-bank" width="40" height="32">
-                        <use xlink:href="#piggy"/>
+                        <use xlink:href="#piggy" />
                     </svg>
 
-                    <span class="fs-6">bobsagott17@gmail.com</span>
+                    <span class="fs-6">
+                           <?php
+                           if (isset($_SESSION["email"])){
+
+                               echo $_SESSION['email'];
+
+                           } ?>
+
+                    </span>
                 </a>
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
@@ -312,9 +317,9 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 <!--    POSITIVE,NEGATIVE,TARGET START-->
     <section class="m-4">
     <div class="card-group">
-        <div class="card"  >
-            <img class="card-img-top" src="../img/money-stack.jpg"  alt="Card image cap">
-            <div class="card-body ">
+        <div class="card">
+            <img class="card-img-top" src="../img/money-stack.jpg"  alt="Card image cap" >
+            <div class="card-body p-0">
                 <div class="bg-success p-1">
                     <h5 class="card-title text-white">Budget</h5>
                 </div>                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -323,7 +328,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
         </div>
         <div class="card">
             <img class="card-img-top" src="../img/money-fire.jpg"   alt="Card image cap">
-            <div class="card-body">
+            <div class="card-body p-0">
                 <div class="bg-danger p-1">
                     <h5 class="card-title text-white">Expenses</h5>
                 </div>                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
@@ -331,8 +336,10 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
             </div>
         </div>
         <div class="card">
-            <img class="card-img-top" src="../img/target.jpg"  alt="Card image cap">
-            <div class="card-body">
+            <div class="card-header p-0" >
+            <img class="card-img-top" src="../img/target.jpg" alt="Card image cap">
+            </div>
+                <div class="card-body p-0" >
                 <div class="bg-warning p-1">
                 <h5 class="card-title text-black">Target</h5>
                 </div>
@@ -341,6 +348,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
             </div>
         </div>
     </div>
+
     <!--    POSITIVE,NEGATIVE,TARGET END-->
     <br>
     <br>
@@ -385,7 +393,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     <div class="mb-3 input-control">
                         <label for="password">Amount</label>
                         <input type="number" class="form-control" id="password" name="password"
-                               placeholder="Password">
+                               placeholder="Password" >
                         <small class="message" id="message-password"></small>
                         <br>
                     </div>
