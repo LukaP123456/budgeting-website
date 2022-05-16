@@ -227,7 +227,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 
 
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
-         id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+         id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" style="width: 280px;">
         <div class="offcanvas-header bg-black text-white">
             <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>
             <button type="button" class="btn-close text-reset bg-white" data-bs-dismiss="offcanvas"
@@ -235,7 +235,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
         </div>
         <main class="d-flex flex-nowrap">
 
-            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-black" style="width: 280px;">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-black" style="width: 100%;">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <svg class="bi bi-piggy-bank" width="40" height="32">
                         <use xlink:href="#piggy"/>
