@@ -72,9 +72,9 @@ if (isset($_POST['submit'])) {
 
 
     //Povratak na glavnu stranu
-//    header("Location:../includes/invited-signup.php?email=" . $inviter_email . "&group_name=" . $group_name . "&error=none");
+//   header("Location:../includes/invited-signup.php?email=" . $inviter_email . "&group_name=" . $group_name . "&error=none");
 
 } else {
-    header("Location:../includes/invited-signup.php?email=" . $_SESSION["users_email"] . "&group_name=" . $_SESSION['group_name'] . "&error=no_house");
+    header("Location:../includes/invited-signup.php?email=" . $_SESSION["users_email"] . "&group_name=" . $_SESSION['group_name'] . "&error=no_submit");
 
 }

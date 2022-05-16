@@ -114,6 +114,7 @@
                             }
 
 
+
                             ?>
                             <input type="hidden" value="<?php echo  $_GET['group_name'];?>" name="group_name" id="group_name">
                             <input type="hidden" value="<?php echo $_GET['email'];?>" name="inviter_email" id="inviter_email">
