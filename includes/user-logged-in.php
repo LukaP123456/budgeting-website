@@ -182,7 +182,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 <?php
 } else {
 ?>
-
+    <!--SIDEBAR START-->
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="bootstrap" viewBox="0 0 118 94">
             <title>Bootstrap</title>
@@ -217,106 +217,172 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 
     </svg>
 
-    <main class="d-flex flex-nowrap">
-        <h1 class="visually-hidden">Sidebars examples</h1>
-
-        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-black" style="width: 280px;">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                <svg class="bi bi-piggy-bank" width="40" height="32">
-                    <use xlink:href="#piggy"/>
-                </svg>
-
-
-                <span class="fs-6">bobsagott17@gmail.com</span>
-            </a>
-            <hr>
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active bg-warning text-black" aria-current="page">
-                        <svg class="bi pe-none me-2" width="16" height="16">
-                            <use xlink:href="#home"/>
-                        </svg>
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link text-white">
-                        <svg class="bi pe-none me-2" width="16" height="16">
-                            <use xlink:href="#speedometer2"/>
-                        </svg>
-                        Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link text-white">
-                        <svg class="bi pe-none me-2" width="16" height="16">
-                            <use xlink:href="#table"/>
-                        </svg>
-                        Orders
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link text-white">
-                        <svg class="bi pe-none me-2" width="16" height="16">
-                            <use xlink:href="#grid"/>
-                        </svg>
-                        Products
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link text-white">
-                        <svg class="bi pe-none me-2" width="16" height="16">
-                            <use xlink:href="#people-circle"/>
-                        </svg>
-                        Customers
-                    </a>
-                </li>
-            </ul>
-            <hr>
-            <div class="dropdown">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                   id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                    <strong>mdo</strong>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="b-example-divider b-example-vr"></div>
-
-
-    </main>
-
-
-
-
-    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-        Toggle static offcanvas
-    </button>
-
-    <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="staticBackdropLabel">Offcanvas</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div>
-                I will not close if you click outside of me.
-            </div>
-        </div>
-    </div>
+<!--    <main class="d-flex flex-nowrap">-->
+<!---->
+<!--        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-black" style="width: 280px;">-->
+<!--            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">-->
+<!--                <svg class="bi bi-piggy-bank" width="40" height="32">-->
+<!--                    <use xlink:href="#piggy"/>-->
+<!--                </svg>-->
+<!---->
+<!--                <span class="fs-6">bobsagott17@gmail.com</span>-->
+<!--            </a>-->
+<!--            <hr>-->
+<!--            <ul class="nav nav-pills flex-column mb-auto">-->
+<!--                <li class="nav-item">-->
+<!--                    <a href="#" class="nav-link active bg-warning text-black" aria-current="page">-->
+<!--                        <svg class="bi pe-none me-2" width="16" height="16">-->
+<!--                            <use xlink:href="#home"/>-->
+<!--                        </svg>-->
+<!--                        Home-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="#" class="nav-link text-white">-->
+<!--                        <svg class="bi pe-none me-2" width="16" height="16">-->
+<!--                            <use xlink:href="#speedometer2"/>-->
+<!--                        </svg>-->
+<!--                        Dashboard-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="#" class="nav-link text-white">-->
+<!--                        <svg class="bi pe-none me-2" width="16" height="16">-->
+<!--                            <use xlink:href="#table"/>-->
+<!--                        </svg>-->
+<!--                        Orders-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="#" class="nav-link text-white">-->
+<!--                        <svg class="bi pe-none me-2" width="16" height="16">-->
+<!--                            <use xlink:href="#grid"/>-->
+<!--                        </svg>-->
+<!--                        Products-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="#" class="nav-link text-white">-->
+<!--                        <svg class="bi pe-none me-2" width="16" height="16">-->
+<!--                            <use xlink:href="#people-circle"/>-->
+<!--                        </svg>-->
+<!--                        Customers-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--            <hr>-->
+<!--            <div class="dropdown">-->
+<!--                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"-->
+<!--                   id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">-->
+<!--                    <strong>mdo</strong>-->
+<!--                </a>-->
+<!--                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">-->
+<!--                    <li><a class="dropdown-item" href="#">New project...</a></li>-->
+<!--                    <li><a class="dropdown-item" href="#">Settings</a></li>-->
+<!--                    <li><a class="dropdown-item" href="#">Profile</a></li>-->
+<!--                    <li>-->
+<!--                        <hr class="dropdown-divider">-->
+<!--                    </li>-->
+<!--                    <li><a class="dropdown-item" href="#">Sign out</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="b-example-divider b-example-vr"></div>-->
+<!---->
+<!---->
+<!--    </main>-->
 
 
     <script src="../js/sidebars.js"></script>
+    <!--SIDEBAR END-->
+
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+            aria-controls="offcanvasScrolling">Enable body scrolling
+    </button>
+
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+         id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header bg-black text-white">
+            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>
+            <button type="button" class="btn-close text-reset bg-white" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <main class="d-flex flex-nowrap">
+
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-black" style="width: 280px;">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <svg class="bi bi-piggy-bank" width="40" height="32">
+                        <use xlink:href="#piggy"/>
+                    </svg>
+
+                    <span class="fs-6">bobsagott17@gmail.com</span>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active bg-warning text-black" aria-current="page">
+                            <svg class="bi pe-none me-2" width="16" height="16">
+                                <use xlink:href="#home"/>
+                            </svg>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
+                            <svg class="bi pe-none me-2" width="16" height="16">
+                                <use xlink:href="#speedometer2"/>
+                            </svg>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
+                            <svg class="bi pe-none me-2" width="16" height="16">
+                                <use xlink:href="#table"/>
+                            </svg>
+                            Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
+                            <svg class="bi pe-none me-2" width="16" height="16">
+                                <use xlink:href="#grid"/>
+                            </svg>
+                            Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
+                            <svg class="bi pe-none me-2" width="16" height="16">
+                                <use xlink:href="#people-circle"/>
+                            </svg>
+                            Customers
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                       id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <strong>mdo</strong>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+    </div>
 
 
     <?php
@@ -331,4 +397,3 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 
 </body>
 </html>
-
