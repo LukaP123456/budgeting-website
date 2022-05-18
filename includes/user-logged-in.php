@@ -18,7 +18,6 @@ require_once "../classes/first-time-loggedin.classes.php";
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 
-
     <!--Bootstrap link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -37,7 +36,6 @@ require_once "../classes/first-time-loggedin.classes.php";
 
     <!--Custom styles link-->
     <link rel="stylesheet" href="../CSS/style.css">
-
 
 
     <!--FONT AWESOME-->
@@ -235,12 +233,12 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
             <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-black" style="width: 100%;">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <svg class="bi bi-piggy-bank" width="40" height="32">
-                        <use xlink:href="#piggy" />
+                        <use xlink:href="#piggy"/>
                     </svg>
 
                     <span class="fs-6">
                            <?php
-                           if (isset($_SESSION["email"])){
+                           if (isset($_SESSION["email"])) {
 
                                echo $_SESSION['email'];
 
@@ -314,93 +312,107 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 
     <!--SIDEBAR END-->
 
-<!--    POSITIVE,NEGATIVE,TARGET START-->
+    <!--    POSITIVE,NEGATIVE,TARGET START-->
     <section class="m-4">
-    <div class="card-group">
-        <div class="card">
-            <img class="card-img-top" src="../img/money-stack.jpg"  alt="Card image cap" >
-            <div class="card-body p-0">
-                <div class="bg-success p-1">
-                    <h5 class="card-title text-white">Budget</h5>
-                </div>                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="../img/money-fire.jpg"   alt="Card image cap">
-            <div class="card-body p-0">
-                <div class="bg-danger p-1">
-                    <h5 class="card-title text-white">Expenses</h5>
-                </div>                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header p-0" >
-            <img class="card-img-top" src="../img/target.jpg" alt="Card image cap">
-            </div>
-                <div class="card-body p-0" >
-                <div class="bg-warning p-1">
-                <h5 class="card-title text-black">Target</h5>
-                </div>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-    </div>
-
-    <!--    POSITIVE,NEGATIVE,TARGET END-->
-    <br>
-    <br>
-    <br>
-
-    <section class="m-3">
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="card" style="border: green solid 2px">
-                <div class="card-body">
-                    <h5 class="card-title">Add an amount to the budget</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#enroll">+</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6">
+        <div class="card-group">
             <div class="card">
-                <div class="card-body"  style="border: red solid 2px">
-                    <h5 class="card-title">Withdraw from the budget</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#delete">-</button>
+                <div class="card-header "
+                     style="background: url('../img/money-stack.jpg'); background-size: cover ; height: 30vh">
+                </div>
+                <div class="card-body p-0">
+                    <div class="bg-success p-1">
+                        <h5 class="card-title text-white">Budget</h5>
+                    </div>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header "
+                     style="background: url('../img/money-fire.jpg'); background-size: cover;  height: 30vh ">
+
+                </div>
+                <div class="card-body p-0">
+                    <div class="bg-danger p-1">
+                        <h5 class="card-title text-white">Expenses</h5>
+                    </div>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional
+                        content.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header "
+                     style="background: url('../img/target.jpg'); background-size: cover ; height: 30vh">
+                </div>
+                <div class="card-body p-0">
+                    <div class="bg-warning p-1">
+                        <h5 class="card-title text-white">Target</h5>
+                    </div>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional
+                        content.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
             </div>
         </div>
-    </div>
-    </section>
-</section>
+        <!--    POSITIVE,NEGATIVE,TARGET END-->
 
+
+        <br>
+        <br>
+        <br>
+
+        <section class="m-3">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card" style="border: green solid 2px">
+                        <div class="card-body">
+                            <h5 class="card-title">Add an amount to the budget</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional
+                                content.</p>
+                            <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#enroll">+
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body" style="border: red solid 2px">
+                            <h5 class="card-title">Withdraw from the budget</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional
+                                content.</p>
+                            <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#delete">-
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
 
 
     <!--ADD MODAL START-->
     <div class="modal fade" id="enroll" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="enrollLabel">User signup</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="">
-                <div class="modal-body">
-                    <div class="mb-3 input-control">
-                        <label for="password">Amount</label>
-                        <input type="number" class="form-control" id="password" name="password"
-                               placeholder="Password" >
-                        <small class="message" id="message-password"></small>
-                        <br>
+                    <div class="modal-body">
+                        <div class="mb-3 input-control">
+                            <label for="password">Amount</label>
+                            <input type="number" class="form-control" id="password" name="password"
+                                   placeholder="Password">
+                            <small class="message" id="message-password"></small>
+                            <br>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -470,13 +482,11 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
             crossorigin="anonymous"></script>
 
 
-
-
-
-
     <?php
 }
 ?>
+
+asdasd
 <!--Javascript/Bootstrap links-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
