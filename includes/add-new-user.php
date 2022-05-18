@@ -46,7 +46,7 @@
         <div class="collapse navbar-collapse" id="navmenu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a href="../index.php" class="nav-link">Home</a>
+                    <a href="user-logged-in.php" class="nav-link text-white">Back</a>
                 </li>
 
             </ul>
@@ -62,8 +62,8 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header bg-black text-white">
-                        <h5>Reset your password</h5>
-                        <p>You will receive an e-mail with instructions on how to reset your password.</p>
+                        <h5><span class="text-warning">Invite</span> another member to your house/group</h5>
+                        <p>Fill out this form to send an <span class="text-warning"> invite </span>email to a friend,family member,coworker</p>
                     </div>
                     <div class="card-body">
                         <?php
@@ -87,7 +87,7 @@
 
 
                         ?>
-                        <form action="reset-request.php" id="reset-request-form" method="POST">
+                        <form action="first-time-log.php" id="reset-request-form" method="POST">
                             <div class="form-group mb-3">
                                 <label for="email">Email address</label>
                                 <input type="email" id="email" name="email" class="form-control"

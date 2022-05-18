@@ -29,7 +29,7 @@
 </head>
 <!--HEADER START-->
 <!--navbar start-->
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
+<nav class="navbar navbar-expand-lg bg-black navbar-dark py-3 fixed-top">
     <div class="container">
         <a href="index.php" class="navbar-brand">LP<span class="text-warning">Budgeting</span></a>
 
@@ -97,7 +97,7 @@
                                 <small class="message" id="message-email"></small>
                             </div>
                             <div class="form-group mb-3">
-                                <button type="submit" name="resend_email_verify_btn" class="btn btn-primary">Submit
+                                <button type="submit" name="submit" class="btn btn-primary">Submit
                                 </button>
                             </div>
                         </form>
