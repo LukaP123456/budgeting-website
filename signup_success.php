@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,9 +22,7 @@
     <title>LP Budgeting</title>
 </head>
 <body>
-<?php
-session_start();
-?>
+
 <!--Bootstrap stuff for the checkmark icon-->
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">

@@ -40,7 +40,7 @@ class resend extends Dbh
             <h3>Hello $full_name you have registered with LP Budgeting on $date_time with your email account $email</h3>
             <h4>Verify your email address to Login with the below given link</h4>
             <br><br>
-            <h1><a href='http://localhost/BUDGETING_WEBSITE/includes/verify_email.php?token=$verify_token'>Click me to verify</a></h1>
+            <h1><a href='http://localhost/BUDGETING_WEBSITE/includes/verify_email.php?token=$verify_token&email=$email'>Click me to verify</a></h1>
         ";
         $mail->Body = $email_template;
 

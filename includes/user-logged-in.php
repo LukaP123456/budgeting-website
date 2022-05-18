@@ -397,33 +397,6 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
         <br>
         <br>
         <br>
-
-        <section class="m-3">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card" style="border: green solid 2px">
-                        <div class="card-body">
-                            <h5 class="card-title">Add an amount to the budget</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#enroll">+
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body" style="border: red solid 2px">
-                            <h5 class="card-title">Withdraw from the budget</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#delete">-
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </section>
 
 

@@ -82,7 +82,7 @@
                             unset($_SESSION['error-email-empty']);
                         } elseif (strpos($fullUrl, "error=email_verified") == true) {
                             echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        Email is already verified. Please go to the <a href='../index.php' >home page</a> and login into your account.
+                        Email is already verified. Please go to the <a href='index.php' >home page</a> and login into your account.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
                         } elseif (strpos($fullUrl, "error=none") == true) {

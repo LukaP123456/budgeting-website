@@ -2,7 +2,7 @@
 session_start();
 include_once "classes/resend.classes.php";
 
-if (isset($_POST['resend_email_verify_btn'])) {
+if (isset($_POST['submit'])) {
     if (!empty(trim($_POST['email']))) {
         $email = $_POST['email'];
 
@@ -25,6 +25,8 @@ if (isset($_POST['resend_email_verify_btn'])) {
     }
 
 
+}else{
+    echo "error";
 }
 
 

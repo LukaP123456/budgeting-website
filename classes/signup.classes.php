@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -103,12 +103,6 @@ class Signup extends Dbh
                 echo "success";
 
             header("Location:../signup_success.php");
-
-
-
-
-
-
         }
 
         $stmt = null;

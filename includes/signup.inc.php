@@ -35,7 +35,6 @@ if (isset($_POST['submit'])) {
     $result = new WhichBrowser\Parser(getallheaders());
     $browser = $result->toString();
 
-
     //Verification token
     $number_rand = rand(0, 9999999);
     $salt1 = "token456456456456465657894531324848951";
