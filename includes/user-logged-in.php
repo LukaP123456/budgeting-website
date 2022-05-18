@@ -330,8 +330,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     <div class="bg-success p-1">
                         <h5 class="card-title text-white">Budget</h5>
                     </div>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
+                    <p class="card-text text-center">Your current Budget is:</p>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
             </div>
@@ -342,10 +341,9 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                 </div>
                 <div class="card-body p-0">
                     <div class="bg-danger p-1">
-                        <h5 class="card-title text-white">Expenses</h5>
+                        <h5 class="card-title text-white ">Expenses</h5>
                     </div>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional
-                        content.</p>
+                    <p class="card-text text-center">Your expenses are:</p>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
             </div>
@@ -355,10 +353,9 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                 </div>
                 <div class="card-body p-0">
                     <div class="bg-warning p-1">
-                        <h5 class="card-title text-white">Target</h5>
+                        <h5 class="card-title text-black">Target</h5>
                     </div>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional
-                        content.</p>
+                    <p class="card-text text-center">Your target is: </p>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
             </div>
