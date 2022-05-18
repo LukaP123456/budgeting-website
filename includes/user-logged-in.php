@@ -359,6 +359,34 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
         <!--    POSITIVE,NEGATIVE,TARGET END-->
 
 
+        <section class="m-3">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card" style="border: green solid 2px">
+                        <div class="card-body">
+                            <h5 class="card-title">Add an amount to the budget</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional
+                                content.</p>
+                            <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#enroll">+
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body" style="border: red solid 2px">
+                            <h5 class="card-title">Withdraw from the budget</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional
+                                content.</p>
+                            <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#delete">-
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
         <br>
         <br>
         <br>
@@ -485,6 +513,8 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
     <?php
 }
 ?>
+
+asdasd
 <!--Javascript/Bootstrap links-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
