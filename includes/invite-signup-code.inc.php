@@ -25,7 +25,6 @@ if (isset($_POST['submit'])) {
 
 
     $group_name = $_POST['group_name'];
-    $_SESSION['group_name'] = $_POST['group_name'];
     $full_name = $_POST["full-name"];
     $pwd = $_POST["password"];
     $pwdRepeat = $_POST["pwdRepeat"];
@@ -34,10 +33,9 @@ if (isset($_POST['submit'])) {
     $inviter_email = $_POST["inviter_email"];
     $inviter_id = $_POST["user_id"];
 
-    echo $inviter_id;
-    echo "<br>";
-
-
+    $_SESSION['inviter-email'] = $_POST['inviter_email'];
+    $_SESSION['group_name'] = $_POST['group_name'];
+    $_SESSION['inviterID'] = $_POST['user_id'];
 
     require '../vendor/autoload.php';
 
@@ -75,6 +73,7 @@ if (isset($_POST['submit'])) {
 //   header("Location:../includes/invited-signup.php?email=" . $inviter_email . "&group_name=" . $group_name . "&error=none");
 
 } else {
-    header("Location:../includes/invited-signup.php?email=" . $_SESSION["users_email"] . "&group_name=" . $_SESSION['group_name'] . "&error=no_submit");
+
+    header("Location:../includes/invited-signup.php?email=" . $_SESSION["users_email"] . "&group_name=" . $_SESSION['group_name'] ."&userID=".$_SESSION['inviterID']."&error=no_submit");
 
 }

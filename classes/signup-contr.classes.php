@@ -91,35 +91,40 @@ class SignupContr extends Signup
 
         if ($this->emptyInput() == false) {
             $_SESSION['error1'] = true;
-            header("location:../index.php?error=empty_input");
+            header("Location:../includes/invited-signup.php?email=" . $_SESSION["users_email"] . "&group_name=" . $_SESSION['group_name'] ."&userID=".$_SESSION['inviterID']."&error=empty_input");
+
             exit();
         }
 
         if ($this->invalid_fullname() == false) {
             //Invalid full name
             $_SESSION['error1'] = true;
-            header("location:../index.php?error=full_name");
+            header("Location:../includes/invited-signup.php?email=" . $_SESSION["users_email"] . "&group_name=" . $_SESSION['group_name'] ."&userID=".$_SESSION['inviterID']."&error=full_name");
+
             exit();
         }
 
         if ($this->invalidEmail() == false) {
             //invalid email
             $_SESSION['error1'] = true;
-            header("location:../index.php?error=invalidemail");
+            header("Location:../includes/invited-signup.php?email=" . $_SESSION["users_email"] . "&group_name=" . $_SESSION['group_name'] ."&userID=".$_SESSION['inviterID']."&error=invalidemail");
+
             exit();
         }
 
         if ($this->pwdMatch() == false) {
             //passwords do not match
             $_SESSION['error1'] = true;
-            header("location:../index.php?error=password_match");
+            header("Location:../includes/invited-signup.php?email=" . $_SESSION["users_email"] . "&group_name=" . $_SESSION['group_name'] ."&userID=".$_SESSION['inviterID']."&error=password_match");
+
             exit();
         }
 
         if ($this->email_TakenCheck() == false) {
             //passwords do not match
             $_SESSION['error1'] = true;
-            header("location:../index.php?error=email_taken");
+            header("Location:../includes/invited-signup.php?email=" . $_SESSION["users_email"] . "&group_name=" . $_SESSION['group_name'] ."&userID=".$_SESSION['inviterID']."&error=email_taken");
+
             exit();
         }
 

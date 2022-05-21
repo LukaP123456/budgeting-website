@@ -109,7 +109,13 @@
                         There is an error with your verification token
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
-                            } else {
+                            }elseif (strpos($fullUrl, "error=no_submit") == true) {
+                                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        You can't access this page that way.
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+                            }
+                            else {
                                 unset($_SESSION['error1']);
                             }
 

@@ -88,7 +88,8 @@ class Signup extends Dbh
             //Throws an error message in the url if it fails setting a user
             $stmt = null;
             $_SESSION['error1'] = true;
-            header("location:../index.php?error=stmtfailed");
+            header("Location:../includes/invited-signup.php?email=" . $_SESSION["users_email"] . "&group_name=" . $_SESSION['group_name'] ."&userID=".$_SESSION['inviterID']."&error=stmtfailed");
+
             exit();
         } else {
 
