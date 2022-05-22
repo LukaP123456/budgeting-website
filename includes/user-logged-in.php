@@ -52,26 +52,13 @@ require_once "../classes/first-time-loggedin.classes.php";
 
     <style>
 
-        .b-example-divider {
-            height: 3rem;
-            background-color: rgba(0, 0, 0, .1);
-            border: solid rgba(0, 0, 0, .15);
-            border-width: 1px 0;
-            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-        }
-
-        .b-example-vr {
-            flex-shrink: 0;
-            width: 1.5rem;
-            height: 100vh;
-        }
-
         .bi {
             vertical-align: -.125em;
             fill: currentColor;
         }
 
     </style>
+
 
 
     <title>LP Budgeting</title>
@@ -118,12 +105,7 @@ require_once "../classes/first-time-loggedin.classes.php";
 </nav>
 <!--navbar end-->
 <!--USER HEADER END-->
-
-
 <?php
-
-
-//if ($first_log->check_if_first_log($email)) {
 if (!$first_log->log_first_time($_SESSION["users_id"])) {
 
     ?>
@@ -228,7 +210,6 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 
     <script src="../js/sidebars.js"></script>
 
-
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
          id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" style="width: 280px;">
         <div class="offcanvas-header bg-black text-white">
@@ -329,7 +310,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 
     <!--SIDEBAR END-->
 
-    <!--    POSITIVE,NEGATIVE,TARGET START-->
+    <!--POSITIVE,NEGATIVE,TARGET START-->
     <section class="m-4">
         <div class="card-group">
             <div class="card">
@@ -405,7 +386,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <h5 class="card-title">Withdraw from the budget</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional
                                 content.</p>
-                            <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#delete">-
+                            <button  class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#delete">-
                             </button>
                         </div>
                     </div>
@@ -419,36 +400,63 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 <br>
 
     <!--CHANGE TARGET START-->
+
     <div class="modal fade" id="target" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
+    <script type="text/javascript">
+        $(document).ready(function (){
+            //use button click event
+            $("#goalBTN").on("click",".response" , function (){
+                let goal = $("#goal_name").val();
+                let amount = $("#amount").val();
+                //call ajax here
+                $.post("target-modal-code.php",{
+                        goal:goal,
+                        amount:amount
+                    },
+                    function (data,status){
+                        if (data === "success"){
+                            $("#response").html("<div>"+data+"</data>")
+                        }else {
+                            $("#response").html("<div>"+data+"</data>")
+
+                        }
+
+                    });
+            });
+        });
+
+    </script>
+
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="enrollLabel">User signup</h5>
+                    <h5 class="modal-title" id="enrollLabel">Change your goal</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="">
                     <div class="modal-body">
+                        <form action="">
                         <div class="mb-3 input-control">
-                            <label for="password">Amount</label>
-                            <input type="number" class="form-control" id="password" name="password"
-                                   placeholder="Password">
+                            <label for="amount">Cost</label>
+                            <input type="number" class="form-control" id="amount" name="amount"
+                                   placeholder="Amount">
                             <small class="message" id="message-password"></small>
                             <br>
                         </div>
                         <div class="mb-3 input-control">
-                            <label for="password">Category</label>
-                            <select class="form-select" id="password" name="password">
-                                <option value="kategorija">kategorija</option>
-                                <option value="kategorija">kategorija</option>
-                                <option value="kategorija">kategorija</option>
-                                <option value="kategorija">kategorija</option>
-                            </select>
+                            <label for="goal_name">Goal</label>
+                            <input type="text" class="form-control" id="goal_name" name="goal_name"
+                                   placeholder="Goal">
                             <small class="message" id="message-password"></small>
                             <br>
                         </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <div class="response">
+                            <p class="response"></p>
+                        </div>
+                        <button type="button" id="goalBTN" class="btn btn-warning">Save changes</button>
                     </div>
                 </form>
             </div>
@@ -487,7 +495,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-success">Save changes</button>
                     </div>
                 </form>
             </div>
@@ -525,7 +533,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-danger">Save changes</button>
                     </div>
                 </form>
             </div>
