@@ -98,9 +98,19 @@ require_once "../classes/first-time-loggedin.classes.php";
         <div class="collapse navbar-collapse" id="navmenu">
             <ul class="navbar-nav ms-auto">
                 <li>
+                <?php
+                $first_log = new first_time_logged();
+                $email = $_SESSION['email'];
+
+                if ($first_log->check_if_house_admin($email)){
+
+                ?>
                 <li class='nav-item'>
                     <a href='add-new-user.php?group_name=<?php echo $_SESSION['group-name']?>' class='nav-link text-white'>Add a member</a>
                 </li>
+                <?php
+                }
+                ?>
             </ul>
         </div>
     </div>
@@ -110,8 +120,7 @@ require_once "../classes/first-time-loggedin.classes.php";
 
 
 <?php
-$first_log = new first_time_logged();
-$email = $_SESSION['email'];
+
 
 //if ($first_log->check_if_first_log($email)) {
 if (!$first_log->log_first_time($_SESSION["users_id"])) {
@@ -222,7 +231,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
          id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" style="width: 280px;">
         <div class="offcanvas-header bg-black text-white">
-            <h5 class="offcanvas-title" id="offcanvasScrollingLabel"><?php echo $_SESSION['group-name']; ?></h5>
+            <h5 class="offcanvas-title" id="offcanvasScrollingLabel"><?php echo $_COOKIE['group_name']; ?></h5>
             <button type="button" class="btn-close text-reset bg-white" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
         </div>

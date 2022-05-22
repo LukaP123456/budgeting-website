@@ -3,7 +3,6 @@ include_once "dbh.classes.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
 require '../vendor/autoload.php';
@@ -51,7 +50,7 @@ class first_time_logged extends Dbh
     }
 
     //Sends and email for verification
-    function sendemail_verify($email, $friends_email,$group_name)
+    function sendemail_verify($email, $friends_email, $group_name)
     {
 
         $mail = new PHPMailer(true);
@@ -72,10 +71,9 @@ class first_time_logged extends Dbh
 
         //Content
         $mail->isHTML(true);                                                            //Set email format to HTML
-        $mail->Subject = 'Invite from '.$email.' for our website LPBudgeting';
+        $mail->Subject = 'Invite from ' . $email . ' for our website LPBudgeting';
 
         $user_id = $_SESSION['users_id'];
-
 
 
         $email_template = "
@@ -109,12 +107,13 @@ class first_time_logged extends Dbh
 
     }
 
-    function check_household_exists($house_name){
+    function check_household_exists($house_name)
+    {
         $check_stmt = $this->connect()->prepare("SELECT * FROM household WHERE household_name=?;");
 
-        if ($check_stmt->execute(array($house_name))){
+        if ($check_stmt->execute(array($house_name))) {
 
-            if ($check_stmt->rowCount() > 0){
+            if ($check_stmt->rowCount() > 0) {
                 //Household with the same name exists and we have to stop the user from creating a new house with the same name
                 header("location:../includes/user-logged-in.php?error=house_exists");
                 return false;
@@ -134,7 +133,7 @@ class first_time_logged extends Dbh
             INSERT INTO household_accounts(user_id,house_hold_id) VALUES(?,LAST_INSERT_ID());
             COMMIT;");
 
-        if ($create_stmt->execute(array($group_name,$user_id ))) {
+        if ($create_stmt->execute(array($group_name, $user_id))) {
             if ($create_stmt->rowCount() > 0) {
                 return true;
 
@@ -149,6 +148,18 @@ class first_time_logged extends Dbh
 
     }
 
+    function check_if_house_admin($users_email)
+    {
+        $check_stmt = $this->connect()->prepare("SELECT * FROM cost.accounts WHERE users_email=? AND role=1;");
+
+        if ($check_stmt->execute(array($users_email))) {
+            if ($check_stmt->rowCount() === 1) {
+                return true;
+            }
+        }
+        return false;
+
+    }
 
 
 
