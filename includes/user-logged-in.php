@@ -98,15 +98,16 @@ require_once "../classes/first-time-loggedin.classes.php";
         <div class="collapse navbar-collapse" id="navmenu">
             <ul class="navbar-nav ms-auto">
                 <li>
-                <?php
-                $first_log = new first_time_logged();
-                $email = $_SESSION['email'];
+                    <?php
+                    $first_log = new first_time_logged();
+                    $email = $_SESSION['email'];
 
-                if ($first_log->check_if_house_admin($email)){
+                    if ($first_log->check_if_house_admin($email)){
 
-                ?>
+                    ?>
                 <li class='nav-item'>
-                    <a href='add-new-user.php?group_name=<?php echo $_SESSION['group-name']?>' class='nav-link text-white'>Add a member</a>
+                    <a href='add-new-user.php?group_name=<?php echo $_COOKIE['group_name']; ?>'
+                       class='nav-link text-white'>Add a member</a>
                 </li>
                 <?php
                 }
@@ -340,7 +341,10 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                         <h5 class="card-title text-white">Budget</h5>
                     </div>
                     <p class="card-text text-center">Your current Budget is:</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <p class="card-text text-center text-success" style="font-size: 45px">$0</p>
+                    <div class="text-center">
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
                 </div>
             </div>
             <div class="card">
@@ -353,7 +357,10 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                         <h5 class="card-title text-white ">Expenses</h5>
                     </div>
                     <p class="card-text text-center">Your expenses are:</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <p class="card-text text-center text-danger" style="font-size: 45px">$0</p>
+                    <div class="text-center">
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
                 </div>
             </div>
             <div class="card">
@@ -365,7 +372,14 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                         <h5 class="card-title text-black">Target</h5>
                     </div>
                     <p class="card-text text-center">Your target is: </p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <p class="card-text text-center">A car, </p>
+                    <p class="card-text text-center">It's value is: $35,000 </p>
+                    <div class="text-center">
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <button class="btn btn-warning  text-black btn-lg" data-bs-toggle="modal"
+                                data-bs-target="#target">Change target
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -400,10 +414,47 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
         </section>
     </section>
 
-        <br>
-        <br>
-        <br>
-    </section>
+<br>
+<br>
+<br>
+
+    <!--CHANGE TARGET START-->
+    <div class="modal fade" id="target" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="enrollLabel">User signup</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="">
+                    <div class="modal-body">
+                        <div class="mb-3 input-control">
+                            <label for="password">Amount</label>
+                            <input type="number" class="form-control" id="password" name="password"
+                                   placeholder="Password">
+                            <small class="message" id="message-password"></small>
+                            <br>
+                        </div>
+                        <div class="mb-3 input-control">
+                            <label for="password">Category</label>
+                            <select class="form-select" id="password" name="password">
+                                <option value="kategorija">kategorija</option>
+                                <option value="kategorija">kategorija</option>
+                                <option value="kategorija">kategorija</option>
+                                <option value="kategorija">kategorija</option>
+                            </select>
+                            <small class="message" id="message-password"></small>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--CHANGE TARGET END-->
 
 
     <!--ADD MODAL START-->
@@ -425,7 +476,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                         </div>
                         <div class="mb-3 input-control">
                             <label for="password">Category</label>
-                            <select  class="form-select" id="password" name="password">
+                            <select class="form-select" id="password" name="password">
                                 <option value="kategorija">kategorija</option>
                                 <option value="kategorija">kategorija</option>
                                 <option value="kategorija">kategorija</option>
@@ -463,7 +514,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                         </div>
                         <div class="mb-3 input-control">
                             <label for="password">Category</label>
-                            <select  class="form-select" id="password" name="password">
+                            <select class="form-select" id="password" name="password">
                                 <option value="kategorija">kategorija</option>
                                 <option value="kategorija">kategorija</option>
                                 <option value="kategorija">kategorija</option>
@@ -511,8 +562,8 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
         </div>
     </div>
 
-    <br>
-    <br>
+<br>
+<br>
 
     <div class="card text-center">
         <div class="card-header">
