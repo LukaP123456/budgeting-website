@@ -11,45 +11,6 @@ class Signup extends Dbh
 {
 
 
-    //Sends and email for verification
-    function sendemail_verify($full_name, $email, $verify_token)
-    {
-
-        $mail = new PHPMailer(true);
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-        $mail->isSMTP();                                                        //Send using SMTP
-        //$mail->Host = "smtp.mail.yahoo.com ";                                         //Set the SMTP server to send through
-        $mail->Host = 'smtp.gmail.com';                                         //Set the SMTP server to send through
-        $mail->SMTPAuth = true;                                                 //Enable SMTP authentication
-        $mail->Username = 'lpbudgeting456@gmail.com';                              //SMTP username
-        $mail->Password = 'lpbudgetinggunduliceva63';                                 //SMTP password
-
-        $mail->SMTPSecure = "tls";                                              //Enable implicit TLS encryption
-        $mail->Port = 587;                                                      //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-        //Recipients
-        $mail->setFrom('LP_BUDGETING@gmail.com', "LP Budgeting");
-        $mail->addAddress($email, $full_name);                                  //Add a recipient
-
-        //Content
-        $mail->isHTML(true);                                                            //Set email format to HTML
-        $mail->Subject = 'Email verification from LP Budgeting';
-
-        $date_time = date("d-m-Y H:i:s");
-
-        $email_template = "
-            <h1>Click the link below to verify your account with LP Budgeting</h1>
-            <h3>Hello $full_name you have registered with LP Budgeting on $date_time with your email account $email</h3>
-            <h4>Verify your email address to Login with the below given link</h4>
-            <br><br>
-            <h1><a href='http://localhost/BUDGETING_WEBSITE/includes/verify_email.php?token=$verify_token&email=$email'>Click me to verify</a></h1>
-        ";
-        $mail->Body = $email_template;
-
-        $mail->send();
-        echo 'Message has been sent';
-
-    }
 
     public function get_group_id($group_name){
 
@@ -92,21 +53,56 @@ class Signup extends Dbh
 
             exit();
         } else {
+            header("Location:../signup_success.php");
 
-                //Sends a verification email and show a success message if the user was set successfully
+            //Sends a verification email and show a success message if the user was set successfully
                 $this->sendemail_verify($full_name, $email, $verify_token);
 
-                $_SESSION['email'] = $email;
 
-                $_SESSION[] = "<span class='success'> Signed up successfully </span>";
-
-                echo "<br>";
-                echo "success";
-
-            header("Location:../signup_success.php");
         }
 
         $stmt = null;
+
+    }
+
+
+    //Sends and email for verification
+    function sendemail_verify($full_name, $email, $verify_token)
+    {
+
+        $mail = new PHPMailer(true);
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $mail->isSMTP();                                                        //Send using SMTP
+        //$mail->Host = "smtp.mail.yahoo.com ";                                         //Set the SMTP server to send through
+        $mail->Host = 'smtp.gmail.com';                                         //Set the SMTP server to send through
+        $mail->SMTPAuth = true;                                                 //Enable SMTP authentication
+        $mail->Username = 'lpbudgeting456@gmail.com';                              //SMTP username
+        $mail->Password = 'lpbudgetinggunduliceva63';                                 //SMTP password
+
+        $mail->SMTPSecure = "tls";                                              //Enable implicit TLS encryption
+        $mail->Port = 587;                                                      //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+        //Recipients
+        $mail->setFrom('LP_BUDGETING@gmail.com', "LP Budgeting");
+        $mail->addAddress($email, $full_name);                                  //Add a recipient
+
+        //Content
+        $mail->isHTML(true);                                                            //Set email format to HTML
+        $mail->Subject = 'Email verification from LP Budgeting';
+
+        $date_time = date("d-m-Y H:i:s");
+
+        $email_template = "
+            <h1>Click the link below to verify your account with LP Budgeting</h1>
+            <h3>Hello $full_name you have registered with LP Budgeting on $date_time with your email account $email</h3>
+            <h4>Verify your email address to Login with the below given link</h4>
+            <br><br>
+            <h1><a href='http://localhost/BUDGETING_WEBSITE/includes/verify_email.php?token=$verify_token&email=$email'>Click me to verify</a></h1>
+        ";
+        $mail->Body = $email_template;
+
+        $mail->send();
+        echo 'Message has been sent';
 
     }
 
@@ -129,6 +125,7 @@ class Signup extends Dbh
             header("location:../index.php?error=stmtfailed");
             exit();
         } else {
+            header("Location:../signup_success.php");
             //Sends a verification email and show a success message if the user was set successfully
             $this->sendemail_verify($full_name, $email, $verify_token);
 
@@ -136,7 +133,7 @@ class Signup extends Dbh
 
             $_SESSION[] = "<span class='success'> Signed up successfully </span>";
 
-            header("Location:../signup_success.php");
+
 
 
         }

@@ -24,7 +24,7 @@
           integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
-    <title>LP Budgeting - reset password</title>
+    <title>LP Budgeting - add a member</title>
 </head>
 <body>
 
@@ -62,7 +62,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header bg-black text-white">
-                        <h5><span class="text-warning">Invite</span> another member to your house/group</h5>
+                        <h5><span class="text-warning">Invite</span> another member to your house/group <span class="text-warning"><?php echo $_GET['group_name']?></span> </h5>
                         <p>Fill out this form to send an <span class="text-warning"> invite </span>email to a friend,family member,coworker</p>
                     </div>
                     <div class="card-body">
@@ -87,7 +87,9 @@
 
 
                         ?>
-                        <form action="first-time-log.php" id="reset-request-form" method="POST">
+                        <form action="first-time-log2.php" id="reset-request-form" method="POST">
+                            <input type="hidden" value="<?php echo $_SESSION['email']?>" name="email-friend">
+                            <input type="hidden" value="<?php echo $_GET['group_name']?>" name="group-name">
                             <div class="form-group mb-3">
                                 <label for="email">Email address</label>
                                 <input type="email" id="email" name="email" class="form-control"
