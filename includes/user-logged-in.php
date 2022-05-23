@@ -404,15 +404,27 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
         <script type="text/javascript">
             $(document).ready(function () {
                 //use button click event
-                $("#goalBTN").click(function () {
-                    let amount = $("#amount");
-                    let goal = $("#goal_name");
-                    $.post("target-modal-code.php", {
-                        amount: amount,
-                        goal: goal
-                    }, function (data,status){
-                        $("#response").html(data);
-                    });
+                $("#goalBTN").click(function (e){
+                    e.preventDefault();
+                    let amount = $("#amount").val();
+                    let goal = $("#goal_name").val();
+                    console.log(amount);
+                    console.log(goal);
+                    $.ajax({
+                        method: "post",
+                        url: "./target-modal-code.php",
+                        data:JSON.stringify( {
+                                amount: amount,
+                                goal: goal
+                            }),
+                        contentType:"application/json",
+                        success: function (response){
+                            $("#response").text(response);
+                        },
+                        error: function(response) {
+                            alert(JSON.stringify(response));
+                        }
+                    })
                 });
             });
 
@@ -443,9 +455,9 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             </div>
                         </form>
                     </div>
+                    <p class="response" id="response"></p>
                     <div class="modal-footer">
                         <div class="response">
-                            <p class="response" id="response"></p>
                         </div>
                         <button type="button" id="goalBTN" class="btn btn-warning">Save changes</button>
                     </div>
