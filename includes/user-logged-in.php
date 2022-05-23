@@ -60,7 +60,6 @@ require_once "../classes/first-time-loggedin.classes.php";
     </style>
 
 
-
     <title>LP Budgeting</title>
 </head>
 <body>
@@ -386,7 +385,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <h5 class="card-title">Withdraw from the budget</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional
                                 content.</p>
-                            <button  class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#delete">-
+                            <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#delete">-
                             </button>
                         </div>
                     </div>
@@ -402,30 +401,22 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
     <!--CHANGE TARGET START-->
 
     <div class="modal fade" id="target" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
-    <script type="text/javascript">
-        $(document).ready(function (){
-            //use button click event
-            $("#goalBTN").on("click",".response" , function (){
-                let goal = $("#goal_name").val();
-                let amount = $("#amount").val();
-                //call ajax here
-                $.post("target-modal-code.php",{
-                        goal:goal,
-                        amount:amount
-                    },
-                    function (data,status){
-                        if (data === "success"){
-                            $("#response").html("<div>"+data+"</data>")
-                        }else {
-                            $("#response").html("<div>"+data+"</data>")
-
-                        }
-
+        <script type="text/javascript">
+            $(document).ready(function () {
+                //use button click event
+                $("#goalBTN").click(function () {
+                    let amount = $("#amount");
+                    let goal = $("#goal_name");
+                    $.post("target-modal-code.php", {
+                        amount: amount,
+                        goal: goal
+                    }, function (data,status){
+                        $("#response").html(data);
                     });
+                });
             });
-        });
 
-    </script>
+        </script>
 
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -436,25 +427,25 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                 <form action="">
                     <div class="modal-body">
                         <form action="">
-                        <div class="mb-3 input-control">
-                            <label for="amount">Cost</label>
-                            <input type="number" class="form-control" id="amount" name="amount"
-                                   placeholder="Amount">
-                            <small class="message" id="message-password"></small>
-                            <br>
-                        </div>
-                        <div class="mb-3 input-control">
-                            <label for="goal_name">Goal</label>
-                            <input type="text" class="form-control" id="goal_name" name="goal_name"
-                                   placeholder="Goal">
-                            <small class="message" id="message-password"></small>
-                            <br>
-                        </div>
+                            <div class="mb-3 input-control">
+                                <label for="amount">Cost</label>
+                                <input type="number" class="form-control" id="amount" name="amount"
+                                       placeholder="Amount">
+                                <small class="message" id="message-password"></small>
+                                <br>
+                            </div>
+                            <div class="mb-3 input-control">
+                                <label for="goal_name">Goal</label>
+                                <input type="text" class="form-control" id="goal_name" name="goal_name"
+                                       placeholder="Goal">
+                                <small class="message" id="message-password"></small>
+                                <br>
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <div class="response">
-                            <p class="response"></p>
+                            <p class="response" id="response"></p>
                         </div>
                         <button type="button" id="goalBTN" class="btn btn-warning">Save changes</button>
                     </div>
