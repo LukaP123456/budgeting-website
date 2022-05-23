@@ -3,6 +3,7 @@
         "phpmailer/phpmailer": "^6.6",
       "ext-couchbase": "*",
       "ext-pdo": "*",
-        "whichbrowser/parser": "^2.1"
+        "whichbrowser/parser": "^2.1",
+      "ext-json": "*"
     }
 }
