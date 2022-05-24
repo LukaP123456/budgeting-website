@@ -107,6 +107,7 @@ class first_time_logged extends Dbh
 
     }
 
+
     function check_household_exists($house_name)
     {
         $check_stmt = $this->connect()->prepare("SELECT * FROM household WHERE household_name=?;");
