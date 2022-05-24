@@ -408,18 +408,23 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     e.preventDefault();
                     let amount = $("#amount").val();
                     let goal = $("#goal_name").val();
-                    console.log(amount);
-                    console.log(goal);
+
                     $.ajax({
                         method: "post",
-                        url: "./target-modal-code.php",
-                        data:JSON.stringify( {
+                        url: "target-modal-code.php",
+                        data: {
                                 amount: amount,
                                 goal: goal
-                            }),
-                        contentType:"application/json",
+                            },
+                        // contentType:"application/json",
                         success: function (response){
-                            $("#response").text(response);
+                            console.log(amount);
+                            console.log(goal);
+                            console.log(response);
+                            if(response === "success"){
+                                $("#response").html("<div class='alert alert-success' role='alert'>Successfully changed target</div>");
+
+                            }
                         },
                         error: function(response) {
                             alert(JSON.stringify(response));
@@ -436,7 +441,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     <h5 class="modal-title" id="enrollLabel">Change your goal</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="">
+                <form action="target-modal-code.php" name="target-form" id="target-form">
                     <div class="modal-body">
                         <form action="">
                             <div class="mb-3 input-control">

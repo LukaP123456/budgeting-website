@@ -1,5 +1,5 @@
 <?php
-var_dump($_POST);
+
 if (isset($_POST['goal']) && isset($_POST['amount'])){
 
 
@@ -8,12 +8,7 @@ if (isset($_POST['goal']) && isset($_POST['amount'])){
 
 
 
-    $array = array(
-      "goal" => $goal,
-      "amount" => $amount
 
-    );
-    echo json_encode($array);
-
+    die("success");
 
 }
