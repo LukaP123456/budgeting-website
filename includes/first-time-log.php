@@ -10,7 +10,7 @@ if (isset($_POST['submit']) or isset($_POST['reset-request-submit'])) {
 
     $_SESSION['group-name'] = $_POST['group-name'];
     //Immortal cookie lasts
-    setcookie("group_name", $group_name, time() + time() + (10 * 365 * 24 * 60 * 60), "/", "");
+    setcookie("group_name", $group_name, time() + (10 * 365 * 24 * 60 * 60), "/", "");
 
 
     if (!isset($_POST['alone-box'])) {

@@ -6,6 +6,7 @@ if (!isset($_SESSION['authenticated'])) {
 }
 
 require_once "../classes/first-time-loggedin.classes.php";
+require_once "../classes/insert-get-class.php";
 
 
 ?>
@@ -105,6 +106,9 @@ require_once "../classes/first-time-loggedin.classes.php";
 <!--navbar end-->
 <!--USER HEADER END-->
 <?php
+
+setcookie("users_id", $_SESSION["users_id"], time() + (10 * 365 * 24 * 60 * 60), "/", "");
+
 if (!$first_log->log_first_time($_SESSION["users_id"])) {
 
     ?>
@@ -352,8 +356,21 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                         <h5 class="card-title text-black">Target</h5>
                     </div>
                     <p class="card-text text-center">Your target is: </p>
-                    <p class="card-text text-center">A car, </p>
-                    <p class="card-text text-center">It's value is: $35,000 </p>
+                    <?php
+                    $get = new Insert_get();
+
+                    $goal = $_COOKIE['goal'];
+                    $amount = $_COOKIE['amount'];
+                    $user_id = $_COOKIE['user_id'];
+
+//                    if ($get->get_goal($user_id,$amount,$goal)){
+                        ?>
+                    <p class="card-text text-center" id="goal_response"><?php if (isset( $goal)){ echo $goal;} ?></p>
+                    <p class="card-text text-center" id="amount_response">It's value is: $<?php if (isset( $amount)){ echo $amount;}?></p>
+                    <?php
+                    //}
+                    ?>
+
                     <div class="text-center">
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                         <button class="btn btn-warning  text-black btn-lg" data-bs-toggle="modal"
@@ -422,8 +439,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             console.log(goal);
                             console.log(response);
                             if(response === "success"){
-                                $("#response").html("<div class='alert alert-success' role='alert'>Successfully changed target</div>");
-
+                                $("#response").html("<div class='alert alert-success' role='alert'>Successfully changed target,refresh the page to see your goal</div>");
                             }
                         },
                         error: function(response) {
@@ -444,18 +460,20 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                 <form action="target-modal-code.php" name="target-form" id="target-form">
                     <div class="modal-body">
                         <form action="">
-                            <div class="mb-3 input-control">
-                                <label for="amount">Cost</label>
-                                <input type="number" class="form-control" id="amount" name="amount"
-                                       placeholder="Amount">
-                                <small class="message" id="message-password"></small>
-                                <br>
-                            </div>
+
                             <div class="mb-3 input-control">
                                 <label for="goal_name">Goal</label>
                                 <input type="text" class="form-control" id="goal_name" name="goal_name"
                                        placeholder="Goal">
-                                <small class="message" id="message-password"></small>
+                                <small class="message" id="message-goal_name"></small>
+                                <br>
+                            </div>
+
+                            <div class="mb-3 input-control">
+                                <label for="amount">Cost</label>
+                                <input type="number" class="form-control" id="amount" name="amount"
+                                       placeholder="Amount">
+                                <small class="message" id="message-amount"></small>
                                 <br>
                             </div>
                         </form>
