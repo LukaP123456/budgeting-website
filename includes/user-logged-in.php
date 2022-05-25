@@ -519,8 +519,18 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <small class="message" id="message-password"></small>
                             <br>
                         </div>
+                        <div class="mb-3 input-control">
+                            <label for="password">Date added</label>
+                            <input type="date" class="form-control" id="password" name="password"
+                                   placeholder="Password">
+                            <small class="message" id="message-password"></small>
+                            <br>
+                        </div>
+
                     </div>
+
                     <div class="modal-footer">
+                        <a class="btn btn-success" href="add-new-category.php" role="button">Link</a>
                         <button type="button" class="btn btn-success">Save changes</button>
                     </div>
                 </form>
@@ -554,6 +564,13 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                                 <option value="kategorija">kategorija</option>
                                 <option value="kategorija">kategorija</option>
                             </select>
+                            <small class="message" id="message-password"></small>
+                            <br>
+                        </div>
+                        <div class="mb-3 input-control">
+                            <label for="password">Date added</label>
+                            <input type="date" class="form-control" id="password" name="password"
+                                   placeholder="Password">
                             <small class="message" id="message-password"></small>
                             <br>
                         </div>
