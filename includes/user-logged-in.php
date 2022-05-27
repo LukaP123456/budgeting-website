@@ -322,24 +322,25 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                      style="background: url('../img/money-stack.jpg'); background-size: cover ; height: 30vh">
                 </div>
                 <div class="card-body p-0">
-                    <div class="bg-success p-1">
-                        <h5 class="card-title text-white">Budget</h5>
+                    <div class="text-center">
+                        <h5 class="card-title text-white" style="background: url('../img/bg_money.jpg'); background-size: cover; height: 10vh">Budget</h5>
                     </div>
-                    <p class="card-text text-center">Your current Budget is:</p>
+                    <p class="card-text text-center">Your current budget is:</p>
                     <p class="card-text text-center text-success" style="font-size: 45px">$0</p>
                     <div class="text-center">
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-header "
                      style="background: url('../img/money-fire.jpg'); background-size: cover;  height: 30vh ">
 
                 </div>
                 <div class="card-body p-0">
-                    <div class="bg-danger p-1">
-                        <h5 class="card-title text-white ">Expenses</h5>
+                    <div class="">
+                        <h5 class="card-title text-white text-center" style="background: url('../img/red-bg.jpg'); background-size: cover; height: 10vh">Expenses</h5>
                     </div>
                     <p class="card-text text-center">Your expenses are:</p>
                     <p class="card-text text-center text-danger" style="font-size: 45px">$0</p>
@@ -348,13 +349,14 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     </div>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-header "
                      style="background: url('../img/target.jpg'); background-size: cover ; height: 30vh">
                 </div>
                 <div class="card-body p-0">
-                    <div class="bg-warning p-1">
-                        <h5 class="card-title text-black">Target</h5>
+                    <div class="text-center">
+                        <h5 class="card-title text-black" style="background: url('../img/bg-target.jpg'); background-size: cover; height: 10vh">Target</h5>
                     </div>
                     <p class="card-text text-center">Your target is: </p>
                     <?php
@@ -363,14 +365,10 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     $goal = $_COOKIE['goal'];
                     $amount = $_COOKIE['amount'];
                     $user_id = $_COOKIE['user_id'];
-
-//                    if ($get->get_goal($user_id,$amount,$goal)){
-                        ?>
+                    ?>
                     <p class="card-text text-center" id="goal_response"><?php if (isset( $goal)){ echo $goal;} ?></p>
                     <p class="card-text text-center" id="amount_response">It's value is: $<?php if (isset( $amount)){ echo $amount;}?></p>
-                    <?php
-                    //}
-                    ?>
+
 
                     <div class="text-center">
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
@@ -423,9 +421,9 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="enrollLabel">Change your goal</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header" style="background: url('../img/bg-target.jpg'); background-size: cover; height: 10vh">
+                    <h5 class="modal-title" id="enrollLabel"  >Change your goal</h5>
+                    <button type="button" id="load_btn" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="target-modal-code.php" name="target-form" id="target-form">
                     <div class="modal-body">
@@ -465,7 +463,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
             <div class="modal-content">
                 <div class="modal-header text-white" style="background: url('../img/bg_money.jpg'); background-size: cover; height: 10vh">
                     <h5 class="modal-title" id="enrollLabel">Add to the budget</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="add-positive-value.php">
                     <script type="text/javascript">

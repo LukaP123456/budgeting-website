@@ -16,6 +16,11 @@ $(document).ready(function () {
                 console.log(response);
                 if(response === "success"){
                     $("#response").html("<div class='alert alert-success' role='alert'>Successfully changed target,refresh the page to see your goal</div>");
+
+                    $("#load_btn").click(function (e){
+                        $("#goal_response").html("<p>"+goal+"</p>");
+                        $("#amount_response").html("<p>It's value is: $"+amount+"</p>");
+                    });
                 }
             },
             error: function(response) {
