@@ -450,8 +450,6 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     </div>
                     <p class="response" id="response"></p>
                     <div class="modal-footer">
-                        <div class="response">
-                        </div>
                         <button type="button" id="goalBTN" class="btn btn-warning">Save changes</button>
                     </div>
                 </form>
@@ -465,28 +463,28 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
     <div class="modal fade" id="enroll" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="enrollLabel">User signup</h5>
+                <div class="modal-header text-white" style="background: url('../img/bg_money.jpg'); background-size: cover; height: 10vh">
+                    <h5 class="modal-title" id="enrollLabel">Add to the budget</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="add-negative-value.php">
+                <form action="add-positive-value.php">
                     <script type="text/javascript">
 
                         $(document).ready(function () {
                             //use button click event
                             $("#pos_submit").click(function (e){
                                 e.preventDefault();
-                                let amount = $("#neg_amount").val();
-                                let neg_category = $("#neg_category").val();
-                                let neg_date = $("#neg_date").val();
+                                let pos_amount = $("#pos_amount").val();
+                                let pos_category = $("#pos_category").val();
+                                let pos_date = $("#pos_date").val();
 
                                 $.ajax({
                                     method: "post",
-                                    url: "add-negative-value.php",
+                                    url: "add-positive-value.php",
                                     data: {
-                                        amount: amount,
-                                        neg_category: neg_category,
-                                        neg_date:neg_date
+                                        pos_amount: pos_amount,
+                                        pos_category: pos_category,
+                                        pos_date:pos_date
                                     },
                                     success: function (response){
                                         console.log(response);
@@ -524,15 +522,13 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                         </div>
                         <div class="mb-3 input-control">
                             <label for="pos_date">Date added</label>
-                            <input type="datetime-local" class="form-control" id="pos_date" name="pos_date"
-                                   placeholder="Password">
-                            <small class="message" id="message-password"></small>
+                            <input type="datetime-local" class="form-control" id="pos_date" name="pos_date">
+                            <small class="message" id="message-pos_date"></small>
                             <br>
                         </div>
 
                     </div>
-                    <div class="response">
-                    </div>
+                    <div class="response" id="response"></div>
 
                     <div class="modal-footer">
                         <a class="btn btn-success" href="add-new-category.php" role="button">Add a new category</a>
@@ -548,8 +544,8 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
     <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteLabel">User signup</h5>
+                <div class="modal-header  text-white" style="background: url('../img/red-bg.jpg'); background-size: cover; height: 10vh">
+                    <h5 class="modal-title" id="deleteLabel">Add new cost</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="add-negative-value.php">
@@ -575,7 +571,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                                     success: function (response){
                                         console.log(response);
                                         if(response === "success"){
-                                            $("#response").html("<div class='alert alert-success' role='alert'>Successfully changed target,refresh the page to see your goal</div>");
+                                            $("#neg_response").html("<div class='alert alert-danger' role='alert'>Successfully added a new cost</div>");
                                         }
                                     },
                                     error: function(response) {
@@ -589,7 +585,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     </script>
                     <div class="modal-body">
                         <div class="mb-3 input-control">
-                            <label for="amount">Amount</label>
+                            <label for="neg_amount">Amount</label>
                             <input type="number" class="form-control" id="neg_amount" name="neg_amount"
                                    placeholder="Amount">
                             <small class="message" id="message-neg_amount"></small>
@@ -612,6 +608,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <small class="message" id="message-neg_date"></small>
                             <br>
                         </div>
+                        <div class="neg_response" id="neg_response"></div>
                     </div>
                     <div class="modal-footer">
                         <a class="btn btn-danger" href="add-new-negative-category.php" role="button">Add a new category</a>
