@@ -1,11 +1,11 @@
 <?php
 require_once "../classes/insert-get-class.php";
 
-if (isset($_POST['category_type']) && isset($_POST['category_name'])){
+if (isset($_POST['category_type2']) && isset($_POST['category_name2'])){
 
-    $category_type = $_POST['category_type'];
-    $category_name = $_POST['category_name'];
-    $house_id = $_POST['house_hold_id'];
+    $category_type = $_POST['category_type2'];
+    $category_name = $_POST['category_name2'];
+    $house_id = $_POST['house_hold_id2'];
 
     $date_time = date('Y-m-d H:i:s');
 

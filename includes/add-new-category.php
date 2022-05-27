@@ -66,7 +66,7 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
 </nav>
 <!--navbar end-->
 <!--HEADER END-->
-<!--FORGOTTEN PASSWORD FORM START-->
+<!--ADD CATEGORY FORM START-->
 <div class="py-5">
     <div class="container">
         <div class="row justify-content-center">
@@ -95,9 +95,6 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
                                                 house_hold_id: house_hold_id
                                             },
                                             success: function (response){
-                                                console.log(category_name);
-                                                console.log(category_type);
-                                                console.log(house_hold_id);
                                                 console.log(response);
                                                 if(response === "success"){
                                                     $("#response").html("<div class='alert alert-success' role='alert'>Successfully added a new category</div>");
@@ -121,7 +118,7 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
                                 <small class="message" id="message-category_name"></small>
                             </div>
                             <div class="form-group mb-3">
-                                <button type="submit" name="add_btn" id="add_btn" class="btn btn-primary">Submit
+                                <button type="submit" name="add_btn" id="add_btn" class="btn btn-success">Submit
                                 </button>
                             </div>
 <!--                            <script src="../js/reset-password-error-handler.js"></script>-->
@@ -133,7 +130,7 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
     </div>
 </div>
 
-<!--FORGOTTEN PASSWORD FORM END-->
+<!--ADD CATEGORY  FORM END-->
 
 
 <!--Javascript/Bootstrap links-->

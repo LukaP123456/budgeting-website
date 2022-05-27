@@ -576,6 +576,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <a class="btn btn-danger" href="add-new-negative-category.php" role="button">Add a new category</a>
                         <button type="button" class="btn btn-danger">Save changes</button>
                     </div>
                 </form>
