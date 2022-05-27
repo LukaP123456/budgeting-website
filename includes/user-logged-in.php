@@ -434,7 +434,6 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                                 amount: amount,
                                 goal: goal
                             },
-                        // contentType:"application/json",
                         success: function (response){
                             console.log(amount);
                             console.log(goal);
@@ -531,7 +530,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     </div>
 
                     <div class="modal-footer">
-                        <a class="btn btn-success" href="add-new-category.php" role="button">Link</a>
+                        <a class="btn btn-success" href="add-new-category.php" role="button">Add a new category</a>
                         <button type="button" class="btn btn-success">Save changes</button>
                     </div>
                 </form>
@@ -565,7 +564,6 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             $get->get_category1();
                             echo "</select>";
                             ?>
-
                             <small class="message" id="message-password"></small>
                             <br>
                         </div>
