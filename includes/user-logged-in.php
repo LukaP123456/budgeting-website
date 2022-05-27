@@ -7,6 +7,7 @@ if (!isset($_SESSION['authenticated'])) {
 
 require_once "../classes/first-time-loggedin.classes.php";
 require_once "../classes/insert-get-class.php";
+require_once "../classes/dbh.classes.php";
 
 
 ?>
@@ -504,18 +505,18 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                         <div class="mb-3 input-control">
                             <label for="password">Amount</label>
                             <input type="number" class="form-control" id="password" name="password"
-                                   placeholder="Password">
+                                   placeholder="Amount">
                             <small class="message" id="message-password"></small>
                             <br>
                         </div>
                         <div class="mb-3 input-control">
                             <label for="password">Category</label>
-                            <select class="form-select" id="password" name="password">
-                                <option value="kategorija">kategorija</option>
-                                <option value="kategorija">kategorija</option>
-                                <option value="kategorija">kategorija</option>
-                                <option value="kategorija">kategorija</option>
-                            </select>
+                            <?php
+                            echo "<select class='form-select' id='password' name='password'>";
+                            echo "<option value='kategorija'>--CHOOSE--</option>";
+                            $get->get_category2();
+                            echo "</select>";
+                            ?>
                             <small class="message" id="message-password"></small>
                             <br>
                         </div>
@@ -552,18 +553,19 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                         <div class="mb-3 input-control">
                             <label for="password">Amount</label>
                             <input type="number" class="form-control" id="password" name="password"
-                                   placeholder="Password">
+                                   placeholder="Amount">
                             <small class="message" id="message-password"></small>
                             <br>
                         </div>
                         <div class="mb-3 input-control">
                             <label for="password">Category</label>
-                            <select class="form-select" id="password" name="password">
-                                <option value="kategorija">kategorija</option>
-                                <option value="kategorija">kategorija</option>
-                                <option value="kategorija">kategorija</option>
-                                <option value="kategorija">kategorija</option>
-                            </select>
+                            <?php
+                            echo "<select class='form-select' id='password' name='password'>";
+                            echo "<option value='kategorija'>--CHOOSE--</option>";
+                            $get->get_category1();
+                            echo "</select>";
+                            ?>
+
                             <small class="message" id="message-password"></small>
                             <br>
                         </div>

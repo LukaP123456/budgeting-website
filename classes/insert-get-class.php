@@ -36,4 +36,36 @@ class Insert_get extends Dbh
 
         }
     }
+
+
+    function get_category1(){
+
+        $get_stmt = $this->connect()->prepare( "SELECT category_id,category_name FROM cateogries WHERE category_type=0;");
+
+        $get_stmt->execute();
+
+        while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)){
+            for ($i = 0; $i < $get_stmt->rowCount(); $i++){
+                echo '<option value="' . $selector[$i]['category_id'] . '">' . $selector[$i]['category_name'] . '</option>';
+            }
+        }
+
+    }
+
+    function get_category2(){
+
+        $get_stmt = $this->connect()->prepare( "SELECT category_id,category_name FROM cateogries WHERE category_type=1;");
+
+        $get_stmt->execute();
+
+        while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)){
+            for ($i = 0; $i < $get_stmt->rowCount(); $i++){
+                echo '<option value="' . $selector[$i]['category_id'] . '">' . $selector[$i]['category_name'] . '</option>';
+            }
+        }
+
+    }
+
+
+
 }
