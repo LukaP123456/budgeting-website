@@ -138,6 +138,42 @@ class Insert_get extends Dbh
 
     function get_budget(){
 
+        $budget = 0000;
+
+        $get_stmt = $this->connect()->prepare("SELECT SUM(amount) FROM cash_flow WHERE positive_negative=1 ");
+
+        if ($get_stmt->execute()){
+            if ($get_stmt->rowCount() > 0){
+                while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)){
+                    for ($i = 0; $i < $get_stmt->rowCount(); $i++){
+                        $budget = $selector[$i]["SUM(amount)"];
+                    }
+                }
+            }
+        }
+
+        return $budget;
+
+    }
+
+    function get_expenses(){
+
+        $expenses = 0000;
+
+        $get_stmt = $this->connect()->prepare("SELECT SUM(amount) FROM cash_flow WHERE positive_negative=0");
+
+        if ($get_stmt->execute()){
+            if ($get_stmt->rowCount() > 0){
+                while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)){
+                    for ($i = 0; $i < $get_stmt->rowCount(); $i++){
+                        $expenses = $selector[$i]["SUM(amount)"];
+                    }
+                }
+            }
+        }
+
+        return $expenses;
+
     }
 
 }

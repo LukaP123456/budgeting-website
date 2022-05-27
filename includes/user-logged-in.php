@@ -323,10 +323,17 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                 </div>
                 <div class="card-body p-0">
                     <div class="text-center">
-                        <h5 class="card-title text-white" style="background: url('../img/bg_money.jpg'); background-size: cover; height: 10vh">Budget</h5>
+                        <h5 class="card-title text-white"
+                            style="background: url('../img/bg_money.jpg'); background-size: cover; height: 10vh">
+                            Budget</h5>
                     </div>
                     <p class="card-text text-center">Your current budget is:</p>
-                    <p class="card-text text-center text-success" style="font-size: 45px">$0</p>
+                    <?php
+                    $get = new Insert_get();
+                    $budget = $get->get_budget();
+                    ?>
+                    <p class="card-text text-center text-success" id="full_budget" style="font-size: 45px">
+                        $<?php echo $budget; ?></p>
                     <div class="text-center">
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
@@ -340,10 +347,16 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                 </div>
                 <div class="card-body p-0">
                     <div class="">
-                        <h5 class="card-title text-white text-center" style="background: url('../img/red-bg.jpg'); background-size: cover; height: 10vh">Expenses</h5>
+                        <h5 class="card-title text-white text-center"
+                            style="background: url('../img/red-bg.jpg'); background-size: cover; height: 10vh">
+                            Expenses</h5>
                     </div>
                     <p class="card-text text-center">Your expenses are:</p>
-                    <p class="card-text text-center text-danger" style="font-size: 45px">$0</p>
+                    <?php
+                    $expenses = $get->get_expenses();
+
+                    ?>
+                    <p class="card-text text-center text-danger" id="full_expenses" style="font-size: 45px">$-<?php echo $expenses; ?></p>
                     <div class="text-center">
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
@@ -356,18 +369,24 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                 </div>
                 <div class="card-body p-0">
                     <div class="text-center">
-                        <h5 class="card-title text-black" style="background: url('../img/bg-target.jpg'); background-size: cover; height: 10vh">Target</h5>
+                        <h5 class="card-title text-black"
+                            style="background: url('../img/bg-target.jpg'); background-size: cover; height: 10vh">
+                            Target</h5>
                     </div>
                     <p class="card-text text-center">Your target is: </p>
                     <?php
-                    $get = new Insert_get();
+
 
                     $goal = $_COOKIE['goal'];
                     $amount = $_COOKIE['amount'];
                     $user_id = $_COOKIE['user_id'];
                     ?>
-                    <p class="card-text text-center" id="goal_response"><?php if (isset( $goal)){ echo $goal;} ?></p>
-                    <p class="card-text text-center" id="amount_response">It's value is: $<?php if (isset( $amount)){ echo $amount;}?></p>
+                    <p class="card-text text-center" id="goal_response"><?php if (isset($goal)) {
+                            echo $goal;
+                        } ?></p>
+                    <p class="card-text text-center" id="amount_response">It's value is: $<?php if (isset($amount)) {
+                            echo $amount;
+                        } ?></p>
 
 
                     <div class="text-center">
@@ -421,9 +440,11 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header" style="background: url('../img/bg-target.jpg'); background-size: cover; height: 10vh">
-                    <h5 class="modal-title" id="enrollLabel"  >Change your goal</h5>
-                    <button type="button" id="load_btn" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header"
+                     style="background: url('../img/bg-target.jpg'); background-size: cover; height: 10vh">
+                    <h5 class="modal-title" id="enrollLabel">Change your goal</h5>
+                    <button type="button" id="load_btn" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                 </div>
                 <form action="target-modal-code.php" name="target-form" id="target-form">
                     <div class="modal-body">
@@ -461,16 +482,18 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
     <div class="modal fade" id="enroll" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header text-white" style="background: url('../img/bg_money.jpg'); background-size: cover; height: 10vh">
+                <div class="modal-header text-white"
+                     style="background: url('../img/bg_money.jpg'); background-size: cover; height: 10vh">
                     <h5 class="modal-title" id="enrollLabel">Add to the budget</h5>
-                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close bg-white" id="load_budget" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                 </div>
                 <form action="add-positive-value.php">
                     <script type="text/javascript">
 
                         $(document).ready(function () {
                             //use button click event
-                            $("#pos_submit").click(function (e){
+                            $("#pos_submit").click(function (e) {
                                 e.preventDefault();
                                 let pos_amount = $("#pos_amount").val();
                                 let pos_category = $("#pos_category").val();
@@ -482,20 +505,34 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                                     data: {
                                         pos_amount: pos_amount,
                                         pos_category: pos_category,
-                                        pos_date:pos_date
+                                        pos_date: pos_date
                                     },
-                                    success: function (response){
+                                    success: function (response) {
                                         console.log(response);
-                                        if(response === "success"){
-                                            $("#response").html("<div class='alert alert-success' role='alert'>Successfully changed target,refresh the page to see your goal</div>");
+                                        if (response === "success") {
+                                            $("#pos_response").html("<div class='alert alert-success' role='alert'>Successfully added an amount of $" + pos_amount + "</div>");
+
+                                            $.ajax({
+                                                type: "GET",
+                                                url: "get_budget.php",
+                                                success: function (response) {
+                                                    $("#load_budget").click(function (e) {
+                                                        $("#full_budget").html("<p>$" + response + "</p>");
+                                                    });
+                                                }
+
+
+                                            })
                                         }
+
                                     },
-                                    error: function(response) {
+                                    error: function (response) {
                                         alert(JSON.stringify(response));
                                     }
                                 })
-                            });
+                            })
                         });
+
 
 
                     </script>
@@ -526,7 +563,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                         </div>
 
                     </div>
-                    <div class="response" id="response"></div>
+                    <div class="pos_response" id="pos_response"></div>
 
                     <div class="modal-footer">
                         <a class="btn btn-success" href="add-new-category.php" role="button">Add a new category</a>
@@ -542,9 +579,10 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
     <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header  text-white" style="background: url('../img/red-bg.jpg'); background-size: cover; height: 10vh">
+                <div class="modal-header  text-white"
+                     style="background: url('../img/red-bg.jpg'); background-size: cover; height: 10vh">
                     <h5 class="modal-title" id="deleteLabel">Add new cost</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" id="load_expenses" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="add-negative-value.php">
 
@@ -552,7 +590,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 
                         $(document).ready(function () {
                             //use button click event
-                            $("#neg_submit").click(function (e){
+                            $("#neg_submit").click(function (e) {
                                 e.preventDefault();
                                 let amount = $("#neg_amount").val();
                                 let neg_category = $("#neg_category").val();
@@ -564,15 +602,28 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                                     data: {
                                         amount: amount,
                                         neg_category: neg_category,
-                                        neg_date:neg_date
+                                        neg_date: neg_date
                                     },
-                                    success: function (response){
+                                    success: function (response) {
                                         console.log(response);
-                                        if(response === "success"){
-                                            $("#neg_response").html("<div class='alert alert-danger' role='alert'>Successfully added a new cost</div>");
+                                        if (response === "success") {
+                                            $("#neg_response").html("<div class='alert alert-danger' role='alert'>Successfully added a new cost of $" + amount + "</div>");
+
+                                            $.ajax({
+                                                type: "GET",
+                                                url: "get_expenses.php",
+                                                success: function (response) {
+                                                    $("#load_expenses").click(function (e) {
+                                                        $("#full_expenses").html("<p>$-" + response + "</p>");
+                                                    });
+                                                }
+
+
+                                            })
+
                                         }
                                     },
-                                    error: function(response) {
+                                    error: function (response) {
                                         alert(JSON.stringify(response));
                                     }
                                 })
@@ -609,7 +660,8 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                         <div class="neg_response" id="neg_response"></div>
                     </div>
                     <div class="modal-footer">
-                        <a class="btn btn-danger" href="add-new-negative-category.php" role="button">Add a new category</a>
+                        <a class="btn btn-danger" href="add-new-negative-category.php" role="button">Add a new
+                            category</a>
                         <button type="button" class="btn btn-danger" id="neg_submit">Submit</button>
                     </div>
                 </form>
