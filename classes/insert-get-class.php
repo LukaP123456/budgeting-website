@@ -101,5 +101,18 @@ class Insert_get extends Dbh
 
     }
 
+    function insert_neg_money($neg_date,$neg_category,$amount,$user_id){
+
+        $insert_neg_stmt = $this->connect()->prepare("INSERT INTO `cash_flow`( `amount`, `users_id`, `category_id`, `positive_negative`, `date_added`) VALUES (?,?,?,0,?);");
+
+        if ($insert_neg_stmt->execute(array($amount,$user_id,$neg_category,$neg_date))){
+            if ($insert_neg_stmt->rowCount() > 0){
+                return true;
+            }
+
+        }
+        return false;
+
+    }
 
 }

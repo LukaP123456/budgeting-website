@@ -419,37 +419,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
     <!--CHANGE TARGET START-->
 
     <div class="modal fade" id="target" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
-        <script type="text/javascript">
-            $(document).ready(function () {
-                //use button click event
-                $("#goalBTN").click(function (e){
-                    e.preventDefault();
-                    let amount = $("#amount").val();
-                    let goal = $("#goal_name").val();
-
-                    $.ajax({
-                        method: "post",
-                        url: "target-modal-code.php",
-                        data: {
-                                amount: amount,
-                                goal: goal
-                            },
-                        success: function (response){
-                            console.log(amount);
-                            console.log(goal);
-                            console.log(response);
-                            if(response === "success"){
-                                $("#response").html("<div class='alert alert-success' role='alert'>Successfully changed target,refresh the page to see your goal</div>");
-                            }
-                        },
-                        error: function(response) {
-                            alert(JSON.stringify(response));
-                        }
-                    })
-                });
-            });
-
-        </script>
+        <script type="text/javascript" src="../js/change-target.js"></script>
 
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -499,39 +469,74 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     <h5 class="modal-title" id="enrollLabel">User signup</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="">
+                <form action="add-negative-value.php">
+                    <script type="text/javascript">
+
+                        $(document).ready(function () {
+                            //use button click event
+                            $("#pos_submit").click(function (e){
+                                e.preventDefault();
+                                let amount = $("#neg_amount").val();
+                                let neg_category = $("#neg_category").val();
+                                let neg_date = $("#neg_date").val();
+
+                                $.ajax({
+                                    method: "post",
+                                    url: "add-negative-value.php",
+                                    data: {
+                                        amount: amount,
+                                        neg_category: neg_category,
+                                        neg_date:neg_date
+                                    },
+                                    success: function (response){
+                                        console.log(response);
+                                        if(response === "success"){
+                                            $("#response").html("<div class='alert alert-success' role='alert'>Successfully changed target,refresh the page to see your goal</div>");
+                                        }
+                                    },
+                                    error: function(response) {
+                                        alert(JSON.stringify(response));
+                                    }
+                                })
+                            });
+                        });
+
+
+                    </script>
                     <div class="modal-body">
                         <div class="mb-3 input-control">
-                            <label for="password">Amount</label>
-                            <input type="number" class="form-control" id="password" name="password"
+                            <label for="pos_amount">Amount</label>
+                            <input type="number" class="form-control" id="pos_amount" name="pos_amount"
                                    placeholder="Amount">
-                            <small class="message" id="message-password"></small>
+                            <small class="message" id="message-pos_amount"></small>
                             <br>
                         </div>
                         <div class="mb-3 input-control">
-                            <label for="password">Category</label>
+                            <label for="pos_category">Category</label>
                             <?php
-                            echo "<select class='form-select' id='password' name='password'>";
+                            echo "<select class='form-select' id='pos_category' name='pos_category'>";
                             echo "<option value='kategorija'>--CHOOSE--</option>";
                             $get->get_category2();
                             echo "</select>";
                             ?>
-                            <small class="message" id="message-password"></small>
+                            <small class="message" id="message-pos_category"></small>
                             <br>
                         </div>
                         <div class="mb-3 input-control">
-                            <label for="password">Date added</label>
-                            <input type="date" class="form-control" id="password" name="password"
+                            <label for="pos_date">Date added</label>
+                            <input type="datetime-local" class="form-control" id="pos_date" name="pos_date"
                                    placeholder="Password">
                             <small class="message" id="message-password"></small>
                             <br>
                         </div>
 
                     </div>
+                    <div class="response">
+                    </div>
 
                     <div class="modal-footer">
                         <a class="btn btn-success" href="add-new-category.php" role="button">Add a new category</a>
-                        <button type="button" class="btn btn-success">Save changes</button>
+                        <button type="button" class="btn btn-success" id="pos_submit">Submit</button>
                     </div>
                 </form>
             </div>
@@ -547,37 +552,70 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     <h5 class="modal-title" id="deleteLabel">User signup</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="">
+                <form action="add-negative-value.php">
+
+                    <script type="text/javascript">
+
+                        $(document).ready(function () {
+                            //use button click event
+                            $("#neg_submit").click(function (e){
+                                e.preventDefault();
+                                let amount = $("#neg_amount").val();
+                                let neg_category = $("#neg_category").val();
+                                let neg_date = $("#neg_date").val();
+
+                                $.ajax({
+                                    method: "post",
+                                    url: "add-negative-value.php",
+                                    data: {
+                                        amount: amount,
+                                        neg_category: neg_category,
+                                        neg_date:neg_date
+                                    },
+                                    success: function (response){
+                                        console.log(response);
+                                        if(response === "success"){
+                                            $("#response").html("<div class='alert alert-success' role='alert'>Successfully changed target,refresh the page to see your goal</div>");
+                                        }
+                                    },
+                                    error: function(response) {
+                                        alert(JSON.stringify(response));
+                                    }
+                                })
+                            });
+                        });
+
+
+                    </script>
                     <div class="modal-body">
                         <div class="mb-3 input-control">
-                            <label for="password">Amount</label>
-                            <input type="number" class="form-control" id="password" name="password"
+                            <label for="amount">Amount</label>
+                            <input type="number" class="form-control" id="neg_amount" name="neg_amount"
                                    placeholder="Amount">
-                            <small class="message" id="message-password"></small>
+                            <small class="message" id="message-neg_amount"></small>
                             <br>
                         </div>
                         <div class="mb-3 input-control">
-                            <label for="password">Category</label>
+                            <label for="neg_category">Category</label>
                             <?php
-                            echo "<select class='form-select' id='password' name='password'>";
+                            echo "<select class='form-select' id='neg_category' name='neg_category'>";
                             echo "<option value='kategorija'>--CHOOSE--</option>";
                             $get->get_category1();
                             echo "</select>";
                             ?>
-                            <small class="message" id="message-password"></small>
+                            <small class="message" id="message-neg_category"></small>
                             <br>
                         </div>
                         <div class="mb-3 input-control">
-                            <label for="password">Date added</label>
-                            <input type="date" class="form-control" id="password" name="password"
-                                   placeholder="Password">
-                            <small class="message" id="message-password"></small>
+                            <label for="neg_date">Date added</label>
+                            <input type="datetime-local" class="form-control" id="neg_date" name="neg_date">
+                            <small class="message" id="message-neg_date"></small>
                             <br>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <a class="btn btn-danger" href="add-new-negative-category.php" role="button">Add a new category</a>
-                        <button type="button" class="btn btn-danger">Save changes</button>
+                        <button type="button" class="btn btn-danger" id="neg_submit">Submit</button>
                     </div>
                 </form>
             </div>
