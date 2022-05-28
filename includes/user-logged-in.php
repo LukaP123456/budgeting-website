@@ -51,6 +51,9 @@ require_once "../classes/dbh.classes.php";
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
 
+    <!--Chart.js link-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
     <style>
 
@@ -597,18 +600,89 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
     <!--WITHDRAW MODAL END-->
 
     <div class="card text-center">
-        <div class="card-header">
-            GRAPH
-        </div>
+<!--        <div class="card-header">-->
+<!--            GRAPH-->
+<!--        </div>-->
         <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-        <div class="card-footer text-muted">
-            2 days ago
+            <div class="container">
+                <canvas id="myChart">
+
+                </canvas>
+            </div>
         </div>
     </div>
+    <script>
+        let my_chart = document.getElementById("myChart").getContext('2d');
+
+        //Global options
+        Chart.defaults.global = {
+            FontFamily:"Lato",
+            defaultFontSize:18,
+            defaultFontColor: "#00ff00"
+        }
+
+
+
+        let massPopChart = new Chart(my_chart,{
+            type: 'bar', //bar, horizontal bar, pie, line ,doughnut, radar, polar area
+            data:{
+                labels:['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
+                datasets:[{
+                    label: 'Population',
+                    data:[
+                        617594,
+                       	181045,
+                       	153060,
+                       	106519,
+                       	105162,
+                       	95072
+                    ],
+                    //backgroundColor:'green'
+                    backgroundColor:[
+                        'red',
+                        'green',
+                        'blue',
+                        'yellow',
+                        'brown',
+                        'orange'
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#ff0000',
+                    hoverBorderWidth:3,
+                    hoverBorderColor:'black'
+                }]
+            },
+            options:{
+                plugins:{
+                    title:{
+                        display:true,
+                        text:'Largest Cities in Massachusetts',
+                        font:{
+                            size:30
+                        }
+                    },
+                    legend:{
+                        position:'right',
+                        labels:{
+                            fontColor: "black"
+                        }
+                    },
+                    layout:{
+                        padding:{
+                            left:50,
+                            right:0,
+                            bottom:0,
+                            top:0
+                        }
+                    },
+                    tooltips:{
+                        enabled:false
+                    }
+                }
+
+            }
+        });
+    </script>
 <br>
 <br>
     <div class="card text-center">
