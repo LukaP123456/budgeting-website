@@ -4,6 +4,7 @@
       "ext-couchbase": "*",
       "ext-pdo": "*",
         "whichbrowser/parser": "^2.1",
-      "ext-json": "*"
+      "ext-json": "*",
+      "ext-ctype": "*"
     }
 }

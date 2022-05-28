@@ -64,7 +64,7 @@ require_once "../classes/dbh.classes.php";
 
     <title>LP Budgeting</title>
 </head>
-<body>
+<body class="bg-dark">
 <!--USER HEADER START-->
 <!--navbar start-->
 <nav class="navbar navbar-expand-lg bg-black navbar-dark py-3 fixed-top">
@@ -434,7 +434,10 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
     <!--CHANGE TARGET START-->
 
     <div class="modal fade" id="target" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
+    <!--AJAX script for target-->
         <script type="text/javascript" src="../js/change-target.js"></script>
+    <!--Error handling for target modal-->
+        <script src="../js/change-target-error-handling.js"></script>
 
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content" id="target_modal">
@@ -457,7 +460,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             </div>
 
                             <div class="mb-3 input-control">
-                                <label for="amount">Cost</label>
+                                <label for="amount">Amount</label>
                                 <input type="number" class="form-control" id="amount" name="amount"
                                        placeholder="Amount">
                                 <small class="message" id="message-amount"></small>

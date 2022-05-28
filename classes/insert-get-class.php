@@ -7,6 +7,15 @@ class Insert_get extends Dbh
 
     function insert_goal($user_id, $amount, $goal)
     {
+        if (empty($amount) || empty($goal)){
+            return false;
+            die();
+        }
+
+        if (!ctype_alpha($goal)){
+            return false;
+            die();
+        }
 
         $insert_stmt = $this->connect()->prepare("INSERT INTO goals(goal_name, goal_price, user_id) VALUES (?,?,?)");
 

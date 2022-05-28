@@ -1,6 +1,4 @@
 $(document).ready(function () {
-
-
     //use button click event
     $("#goalBTN").click(function (e){
         e.preventDefault();
@@ -24,9 +22,9 @@ $(document).ready(function () {
                         $("#amount_response").html("<p>It's value is: $"+amount+"</p>");
                         amount = "";
                         goal = "";
-
-
                     });
+                }else {
+                    $("#response").html(response);
                 }
             },
             error: function(response) {
