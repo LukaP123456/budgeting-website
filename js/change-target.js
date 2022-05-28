@@ -1,4 +1,6 @@
 $(document).ready(function () {
+
+
     //use button click event
     $("#goalBTN").click(function (e){
         e.preventDefault();
@@ -15,11 +17,15 @@ $(document).ready(function () {
             success: function (response){
                 console.log(response);
                 if(response === "success"){
-                    $("#response").html("<div class='alert alert-success' role='alert'>Successfully changed target,refresh the page to see your goal</div>");
+                    $("#response").html("<p class='alert alert-success' role='alert'>Successfully changed target</p>");
 
-                    $("#load_btn").click(function (e){
+                    $("#target").on("hidden.bs.modal",function (e){
                         $("#goal_response").html("<p>"+goal+"</p>");
                         $("#amount_response").html("<p>It's value is: $"+amount+"</p>");
+                        amount = "";
+                        goal = "";
+
+
                     });
                 }
             },

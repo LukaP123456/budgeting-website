@@ -29,6 +29,7 @@ if (isset($_POST['submit'])) {
     $pwdRepeat = $_POST["pwdRepeat"];
     $email = $_POST["email"];
     $ip = get_client_ip();
+    $_SESSION['email'] = $email;
 
     require '../vendor/autoload.php';
 

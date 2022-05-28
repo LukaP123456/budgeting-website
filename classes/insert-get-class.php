@@ -21,14 +21,14 @@ class Insert_get extends Dbh
                 for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
                     $goal = $selector[$i]['goal_name'];
                     $amount = $selector[$i]['goal_price'];
-                    $user_id = $selector[$i]['user_id'];
+//                    $user_id = $selector[$i]['user_id'];
                     $goal_achieved = $selector[$i]['goal_achieved'];
 
                 }
 
                 setcookie("goal", $goal, time() + (10 * 365 * 24 * 60 * 60), "/", "");
                 setcookie("amount", $amount, time() + (10 * 365 * 24 * 60 * 60), "/", "");
-                setcookie("user_id", $user_id, time() + (10 * 365 * 24 * 60 * 60), "/", "");
+//                setcookie("user_id", $user_id, time() + (10 * 365 * 24 * 60 * 60), "/", "");
                 setcookie("goal_achieved", $goal_achieved, time() + (10 * 365 * 24 * 60 * 60), "/", "");
 
                 return true;
@@ -138,8 +138,6 @@ class Insert_get extends Dbh
 
     function get_budget(){
 
-        $budget = 0000;
-
         $get_stmt = $this->connect()->prepare("SELECT SUM(amount) FROM cash_flow WHERE positive_negative=1 ");
 
         if ($get_stmt->execute()){
@@ -147,18 +145,17 @@ class Insert_get extends Dbh
                 while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)){
                     for ($i = 0; $i < $get_stmt->rowCount(); $i++){
                         $budget = $selector[$i]["SUM(amount)"];
+                        $return_value=number_format((float)$budget,2,'.','');
                     }
                 }
             }
         }
 
-        return $budget;
+        return $return_value;
 
     }
 
     function get_expenses(){
-
-        $expenses = 0000;
 
         $get_stmt = $this->connect()->prepare("SELECT SUM(amount) FROM cash_flow WHERE positive_negative=0");
 
@@ -167,12 +164,13 @@ class Insert_get extends Dbh
                 while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)){
                     for ($i = 0; $i < $get_stmt->rowCount(); $i++){
                         $expenses = $selector[$i]["SUM(amount)"];
+                        $return_value=number_format((float)$expenses,2,'.','');
                     }
                 }
             }
         }
 
-        return $expenses;
+        return $return_value;
 
     }
 

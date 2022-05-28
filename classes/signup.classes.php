@@ -36,7 +36,7 @@ class Signup extends Dbh
     {
         $stmt = $this->connect()->prepare(
             "BEGIN;
-         INSERT INTO accounts(users_pwd,users_email,full_name,verify_token,role) values (?,?,?,?,0);
+         INSERT INTO accounts(users_pwd,users_email,full_name,verify_token,role,date_time_signup) values (?,?,?,?,0,now());
          SET @users_id = LAST_INSERT_ID();
          INSERT INTO log_data(users_id,ip_adress,web_browser_OS) values(@users_id,?,?);
          INSERT INTO household_accounts(user_id,house_hold_id)values(@users_id,?);
@@ -53,7 +53,7 @@ class Signup extends Dbh
 
             exit();
         } else {
-            header("Location:../signup_success.php");
+            header("Location:../signup_success.php?user_email=".$email);
 
             //Sends a verification email and show a success message if the user was set successfully
                 $this->sendemail_verify($full_name, $email, $verify_token);
@@ -111,7 +111,7 @@ class Signup extends Dbh
     {
         $stmt = $this->connect()->prepare(
             "BEGIN;
-         INSERT INTO accounts(users_pwd,users_email,full_name,verify_token) values (?,?,?,?);
+         INSERT INTO accounts(users_pwd,users_email,full_name,verify_token,date_time_signup) values (?,?,?,?,now());
          INSERT INTO log_data(users_id,ip_adress,web_browser_OS) values(LAST_INSERT_ID(),?,?);
          COMMIT;");
 

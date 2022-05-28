@@ -375,11 +375,9 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     </div>
                     <p class="card-text text-center">Your target is: </p>
                     <?php
-
-
                     $goal = $_COOKIE['goal'];
                     $amount = $_COOKIE['amount'];
-                    $user_id = $_COOKIE['user_id'];
+                    $user_id = $_COOKIE['users_id'];
                     ?>
                     <p class="card-text text-center" id="goal_response"><?php if (isset($goal)) {
                             echo $goal;
@@ -439,7 +437,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
         <script type="text/javascript" src="../js/change-target.js"></script>
 
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
+            <div class="modal-content" id="target_modal">
                 <div class="modal-header"
                      style="background: url('../img/bg-target.jpg'); background-size: cover; height: 10vh">
                     <h5 class="modal-title" id="enrollLabel">Change your goal</h5>
@@ -467,7 +465,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             </div>
                         </form>
                     </div>
-                    <p class="response" id="response"></p>
+                    <div class="response" id="response"></div>
                     <div class="modal-footer">
                         <button type="button" id="goalBTN" class="btn btn-warning">Save changes</button>
                     </div>
@@ -489,53 +487,9 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             aria-label="Close"></button>
                 </div>
                 <form action="add-positive-value.php">
-                    <script type="text/javascript">
 
-                        $(document).ready(function () {
-                            //use button click event
-                            $("#pos_submit").click(function (e) {
-                                e.preventDefault();
-                                let pos_amount = $("#pos_amount").val();
-                                let pos_category = $("#pos_category").val();
-                                let pos_date = $("#pos_date").val();
+                    <script type="text/javascript" src="../js/add_positive_value.js"></script>
 
-                                $.ajax({
-                                    method: "post",
-                                    url: "add-positive-value.php",
-                                    data: {
-                                        pos_amount: pos_amount,
-                                        pos_category: pos_category,
-                                        pos_date: pos_date
-                                    },
-                                    success: function (response) {
-                                        console.log(response);
-                                        if (response === "success") {
-                                            $("#pos_response").html("<div class='alert alert-success' role='alert'>Successfully added an amount of $" + pos_amount + "</div>");
-
-                                            $.ajax({
-                                                type: "GET",
-                                                url: "get_budget.php",
-                                                success: function (response) {
-                                                    $("#load_budget").click(function (e) {
-                                                        $("#full_budget").html("<p>$" + response + "</p>");
-                                                    });
-                                                }
-
-
-                                            })
-                                        }
-
-                                    },
-                                    error: function (response) {
-                                        alert(JSON.stringify(response));
-                                    }
-                                })
-                            })
-                        });
-
-
-
-                    </script>
                     <div class="modal-body">
                         <div class="mb-3 input-control">
                             <label for="pos_amount">Amount</label>
@@ -566,7 +520,12 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     <div class="pos_response" id="pos_response"></div>
 
                     <div class="modal-footer">
+                        <?php
+                            if ($first_log->check_if_house_admin($email)){
+                        ?>
                         <a class="btn btn-success" href="add-new-category.php" role="button">Add a new category</a>
+                        <?php }
+                            ?>
                         <button type="button" class="btn btn-success" id="pos_submit">Submit</button>
                     </div>
                 </form>
@@ -586,52 +545,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                 </div>
                 <form action="add-negative-value.php">
 
-                    <script type="text/javascript">
-
-                        $(document).ready(function () {
-                            //use button click event
-                            $("#neg_submit").click(function (e) {
-                                e.preventDefault();
-                                let amount = $("#neg_amount").val();
-                                let neg_category = $("#neg_category").val();
-                                let neg_date = $("#neg_date").val();
-
-                                $.ajax({
-                                    method: "post",
-                                    url: "add-negative-value.php",
-                                    data: {
-                                        amount: amount,
-                                        neg_category: neg_category,
-                                        neg_date: neg_date
-                                    },
-                                    success: function (response) {
-                                        console.log(response);
-                                        if (response === "success") {
-                                            $("#neg_response").html("<div class='alert alert-danger' role='alert'>Successfully added a new cost of $" + amount + "</div>");
-
-                                            $.ajax({
-                                                type: "GET",
-                                                url: "get_expenses.php",
-                                                success: function (response) {
-                                                    $("#load_expenses").click(function (e) {
-                                                        $("#full_expenses").html("<p>$-" + response + "</p>");
-                                                    });
-                                                }
-
-
-                                            })
-
-                                        }
-                                    },
-                                    error: function (response) {
-                                        alert(JSON.stringify(response));
-                                    }
-                                })
-                            });
-                        });
-
-
-                    </script>
+                    <script type="text/javascript" src="../js/add_negtive_value.js"></script>
                     <div class="modal-body">
                         <div class="mb-3 input-control">
                             <label for="neg_amount">Amount</label>
@@ -660,8 +574,12 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                         <div class="neg_response" id="neg_response"></div>
                     </div>
                     <div class="modal-footer">
-                        <a class="btn btn-danger" href="add-new-negative-category.php" role="button">Add a new
-                            category</a>
+                        <?php
+                        if ($first_log->check_if_house_admin($email)){
+                        ?>
+                        <a class="btn btn-danger" href="add-new-negative-category.php" role="button">Add a new category</a>
+                        <?php }
+                        ?>
                         <button type="button" class="btn btn-danger" id="neg_submit">Submit</button>
                     </div>
                 </form>
