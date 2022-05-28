@@ -9,12 +9,36 @@ if (isset($_POST['category_type2']) && isset($_POST['category_name2'])){
 
     $date_time = date('Y-m-d H:i:s');
 
-    $insert_category = new Insert_get();
+    $error_empty = false;
 
-    if ($insert_category->insert_category($category_name, $category_type, $house_id, $date_time)){
-        echo "success";
+    if (empty($category_name)) {
+        echo "<p class='alert alert-danger' role='alert'>Please fill in the field.</p>";
+        $error_empty = true;
     }else{
-        echo "false";
+        $insert_category = new Insert_get();
+
+        if ($insert_category->insert_category($category_name, $category_type, $house_id, $date_time)){
+            die("success");
+        }else{
+            die("false");
+        }
+    }
+}else{
+    echo "<p class='alert alert-danger' role='alert'>There was an error</p>";
+}?>
+
+<script type="text/javascript">
+
+    $(`#neg_category,#neg_amount`).removeClass("border border-danger");
+
+    let error_empty = "<?php echo $error_empty;?>"
+
+    if (error_empty === true) {
+        $("#category_name").addClass("border border-danger")
     }
 
-}
+    if (error_empty === false && neg_category_error === false && neg_date_error === false){
+        $("#goal_name,#amount,#neg_date").val("");
+    }
+
+</script>

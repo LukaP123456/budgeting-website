@@ -356,7 +356,8 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     $expenses = $get->get_expenses();
 
                     ?>
-                    <p class="card-text text-center text-danger" id="full_expenses" style="font-size: 45px">$-<?php echo $expenses; ?></p>
+                    <p class="card-text text-center text-danger" id="full_expenses" style="font-size: 45px">
+                        $-<?php echo $expenses; ?></p>
                     <div class="text-center">
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
@@ -434,10 +435,9 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
     <!--CHANGE TARGET START-->
 
     <div class="modal fade" id="target" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
-    <!--AJAX script for target-->
+
+        <!--AJAX script for target-->
         <script type="text/javascript" src="../js/change-target.js"></script>
-    <!--Error handling for target modal-->
-        <script src="../js/change-target-error-handling.js"></script>
 
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content" id="target_modal">
@@ -491,6 +491,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                 </div>
                 <form action="add-positive-value.php">
 
+                    <!--Add to the budget script-->
                     <script type="text/javascript" src="../js/add_positive_value.js"></script>
 
                     <div class="modal-body">
@@ -505,7 +506,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <label for="pos_category">Category</label>
                             <?php
                             echo "<select class='form-select' id='pos_category' name='pos_category'>";
-                            echo "<option value='kategorija'>--CHOOSE--</option>";
+                            echo "<option value='category'>--CHOOSE--</option>";
                             $get->get_category2();
                             echo "</select>";
                             ?>
@@ -524,11 +525,11 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 
                     <div class="modal-footer">
                         <?php
-                            if ($first_log->check_if_house_admin($email)){
-                        ?>
-                        <a class="btn btn-success" href="add-new-category.php" role="button">Add a new category</a>
-                        <?php }
+                        if ($first_log->check_if_house_admin($email)) {
                             ?>
+                            <a class="btn btn-success" href="add-new-category.php" role="button">Add a new category</a>
+                        <?php }
+                        ?>
                         <button type="button" class="btn btn-success" id="pos_submit">Submit</button>
                     </div>
                 </form>
@@ -544,11 +545,14 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                 <div class="modal-header  text-white"
                      style="background: url('../img/red-bg.jpg'); background-size: cover; height: 10vh">
                     <h5 class="modal-title" id="deleteLabel">Add new cost</h5>
-                    <button type="button" class="btn-close" id="load_expenses" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" id="load_expenses" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                 </div>
                 <form action="add-negative-value.php">
 
-                    <script type="text/javascript" src="../js/add_negtive_value.js"></script>
+                    <!--Add a new cost -->
+                    <script type="text/javascript" src="../js/add_negative_value.js"></script>
+
                     <div class="modal-body">
                         <div class="mb-3 input-control">
                             <label for="neg_amount">Amount</label>
@@ -561,7 +565,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <label for="neg_category">Category</label>
                             <?php
                             echo "<select class='form-select' id='neg_category' name='neg_category'>";
-                            echo "<option value='kategorija'>--CHOOSE--</option>";
+                            echo "<option value='category'>--CHOOSE--</option>";
                             $get->get_category1();
                             echo "</select>";
                             ?>
@@ -578,9 +582,10 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     </div>
                     <div class="modal-footer">
                         <?php
-                        if ($first_log->check_if_house_admin($email)){
-                        ?>
-                        <a class="btn btn-danger" href="add-new-negative-category.php" role="button">Add a new category</a>
+                        if ($first_log->check_if_house_admin($email)) {
+                            ?>
+                            <a class="btn btn-danger" href="add-new-negative-category.php" role="button">Add a new
+                                category</a>
                         <?php }
                         ?>
                         <button type="button" class="btn btn-danger" id="neg_submit">Submit</button>

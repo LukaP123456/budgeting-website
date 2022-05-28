@@ -1,7 +1,7 @@
 <?php
 require_once "../classes/insert-get-class.php";
 
-if (isset($_POST['goal']) && isset($_POST['amount'])) {
+if (isset($_POST['goal']) && isset($_POST['amount']) && isset($_COOKIE['users_id'])) {
 
 
     $goal = $_POST['goal'];

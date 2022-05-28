@@ -1,5 +1,3 @@
-
-
 $(document).ready(function () {
     //use button click event
     $("#neg_submit").click(function (e) {
@@ -19,20 +17,19 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
                 if (response === "success") {
-                    $("#neg_response").html("<div class='alert alert-danger' role='alert'>Successfully added a new cost of $" + amount + "</div>");
+                    $("#neg_response").html("<div class='alert alert-success' role='alert'>Successfully added a new cost of $" + amount + "</div>");
 
                     $.ajax({
                         type: "GET",
                         url: "get_expenses.php",
                         success: function (response) {
-                            $("#delete").on("hidden.bs.modal",function (e) {
+                            $("#delete").on("hidden.bs.modal", function (e) {
                                 $("#full_expenses").html("<p>$-" + response + "</p>");
                             });
                         }
-
-
                     })
-
+                } else {
+                    $("#neg_response").html(response);
                 }
             },
             error: function (response) {

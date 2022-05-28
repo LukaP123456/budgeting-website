@@ -1,5 +1,3 @@
-
-
 $(document).ready(function () {
     //use button click event
     $("#pos_submit").click(function (e) {
@@ -32,6 +30,8 @@ $(document).ready(function () {
 
 
                     })
+                }else {
+                    $("#pos_response").html(response);
                 }
 
             },

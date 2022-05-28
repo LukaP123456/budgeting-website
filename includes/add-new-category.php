@@ -3,7 +3,7 @@ require_once "../classes/insert-get-class.php";
 
 
 $house_name = $_COOKIE['group_name'];
-$user_id = $_COOKIE['user_id'];
+$user_id = $_COOKIE['users_id'];
 $get = new Insert_get();
 $house_id = $get->get_house_id($user_id);
 setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "");
@@ -98,6 +98,8 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
                                                 console.log(response);
                                                 if(response === "success"){
                                                     $("#response").html("<div class='alert alert-success' role='alert'>Successfully added a new category</div>");
+                                                }else{
+                                                    $("#response").html(response);
                                                 }
                                             },
                                             error: function(response) {

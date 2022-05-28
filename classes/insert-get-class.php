@@ -7,7 +7,7 @@ class Insert_get extends Dbh
 
     function insert_goal($user_id, $amount, $goal)
     {
-        if (empty($amount) || empty($goal)){
+        if (empty($amount) || empty($goal) || empty($user_id)){
             return false;
             die();
         }
@@ -98,6 +98,13 @@ class Insert_get extends Dbh
 
     function insert_category($category_name, $category_type, $house_id, $category_date_added)
     {
+        if (empty($category_name) || empty($category_type) || empty($house_id) || empty($category_date_added)){
+            die();
+        }
+
+        if ($category_type != 0 || $category_type!= 1){
+            die();
+        }
 
         $insert_category = $this->connect()->prepare("INSERT INTO cateogries( `category_name`, `category_type`, `household_id`, `category_date_added`) VALUES (?,?,?,?)");
 
@@ -111,6 +118,14 @@ class Insert_get extends Dbh
     }
 
     function insert_neg_money($neg_date,$neg_category,$amount,$user_id){
+        //Server side error handlers
+        if (empty($neg_date) || empty($neg_category) || empty($amount) || empty($user_id)){
+            die();
+        }
+
+        if (!is_numeric($amount)){
+            die();
+        }
 
         $insert_neg_stmt = $this->connect()->prepare("INSERT INTO `cash_flow`( `amount`, `users_id`, `category_id`, `positive_negative`, `date_added`) VALUES (?,?,?,0,?);");
 
@@ -128,6 +143,14 @@ class Insert_get extends Dbh
     }
 
     function insert_pos_money($pos_date,$pos_category,$pos_amount,$user_id){
+
+        if (empty($pos_amount) || empty($pos_category) || empty($user_id) || empty($pos_date)){
+            die();
+        }
+
+        if (!is_numeric($pos_amount)){
+            die();
+        }
 
         $insert_neg_stmt = $this->connect()->prepare("INSERT INTO `cash_flow`( `amount`, `users_id`, `category_id`, `positive_negative`, `date_added`) VALUES (?,?,?,1,?);");
 
