@@ -25,6 +25,7 @@ $(document).ready(function () {
                         success: function (response) {
                             $("#enroll").on("hidden.bs.modal",function (e) {
                                 $("#full_budget").html("<p>$" + response + "</p>");
+                                const budget = response;
                             });
                         }
 

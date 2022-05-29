@@ -25,6 +25,7 @@ $(document).ready(function () {
                         success: function (response) {
                             $("#delete").on("hidden.bs.modal", function (e) {
                                 $("#full_expenses").html("<p>$-" + response + "</p>");
+                                const expenses = response;
                             });
                         }
                     })

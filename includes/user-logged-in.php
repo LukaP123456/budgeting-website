@@ -600,9 +600,6 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
     <!--WITHDRAW MODAL END-->
 
     <div class="card text-center">
-<!--        <div class="card-header">-->
-<!--            GRAPH-->
-<!--        </div>-->
         <div class="card-body">
             <div class="container">
                 <canvas id="myChart">
@@ -626,25 +623,17 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
         let massPopChart = new Chart(my_chart,{
             type: 'bar', //bar, horizontal bar, pie, line ,doughnut, radar, polar area
             data:{
-                labels:['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
+                labels:['Budget', 'Expenses'],
                 datasets:[{
-                    label: 'Population',
+                    label: 'Budget'
                     data:[
-                        617594,
-                       	181045,
-                       	153060,
-                       	106519,
-                       	105162,
-                       	95072
+                        123123,
+                        123123123
                     ],
                     //backgroundColor:'green'
                     backgroundColor:[
                         'red',
-                        'green',
-                        'blue',
-                        'yellow',
-                        'brown',
-                        'orange'
+                        'green'
                     ],
                     borderWidth: 1,
                     borderColor: '#ff0000',
