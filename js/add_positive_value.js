@@ -23,10 +23,17 @@ $(document).ready(function () {
                         type: "GET",
                         url: "get_budget.php",
                         success: function (response) {
-                            $("#enroll").on("hidden.bs.modal",function (e) {
+                            $("#enroll").on("hidden.bs.modal",function () {
                                 $("#full_budget").html("<p>$" + response + "</p>");
-                                const budget = response;
+
+                                console.log(budget_expenses_chart.data.datasets[0].data[1]);
+                                budget_expenses_chart.data.datasets[0].data[0] = response;
+                                budget_expenses_chart.update('active');
                             });
+
+
+
+
                         }
 
 

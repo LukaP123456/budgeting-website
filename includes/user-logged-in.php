@@ -619,24 +619,21 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
         }
 
 
-
-        let massPopChart = new Chart(my_chart,{
-            type: 'bar', //bar, horizontal bar, pie, line ,doughnut, radar, polar area
+        let budget_expenses_chart = new Chart(my_chart,{
+            type: 'pie', //bar, horizontal bar, pie, line ,doughnut, radar, polar area
             data:{
                 labels:['Budget', 'Expenses'],
                 datasets:[{
-                    label: 'Budget'
+                    // label: 'Budget',
                     data:[
-                        123123,
-                        123123123
+                        <?php echo $budget; ?>,
+                        <?php echo $expenses; ?>
                     ],
-                    //backgroundColor:'green'
                     backgroundColor:[
-                        'red',
-                        'green'
+                        'green',
+                        'red'
                     ],
                     borderWidth: 1,
-                    borderColor: '#ff0000',
                     hoverBorderWidth:3,
                     hoverBorderColor:'black'
                 }]
@@ -645,32 +642,35 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                 plugins:{
                     title:{
                         display:true,
-                        text:'Largest Cities in Massachusetts',
+                        text:'Your balance',
                         font:{
                             size:30
                         }
                     },
                     legend:{
-                        position:'right',
+                        position:'bottom',
                         labels:{
-                            fontColor: "black"
+                            fontColor: "black",
+                            font:{
+                                size: 20
+                            }
                         }
                     },
                     layout:{
                         padding:{
-                            left:50,
+                            left:0,
                             right:0,
                             bottom:0,
                             top:0
                         }
                     },
-                    tooltips:{
-                        enabled:false
-                    }
                 }
 
             }
         });
+
+
+
     </script>
 <br>
 <br>
