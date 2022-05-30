@@ -3,6 +3,9 @@
 class Dbh
 {
 
+    /**
+     * @return PDO|void
+     */
     protected function connect()
     {
         try {

@@ -10,7 +10,11 @@ require '../vendor/autoload.php';
 class first_time_logged extends Dbh
 {
 
-    function log_first_time($user_id)
+    /**
+     * @param $user_id
+     * @return bool
+     */
+    function log_first_time($user_id): bool
     {
 
         $select_stmt = $this->connect()->prepare("SELECT * FROM household_accounts WHERE user_id=?");
@@ -50,6 +54,13 @@ class first_time_logged extends Dbh
     }
 
     //Sends and email for verification
+
+    /**
+     * @param $email
+     * @param $friends_email
+     * @param $group_name
+     * @throws \PHPMailer\PHPMailer\Exception
+     */
     function sendemail_verify($email, $friends_email, $group_name)
     {
 
@@ -88,7 +99,11 @@ class first_time_logged extends Dbh
 
     }
 
-    function check_user_exists($users_email)
+    /**
+     * @param $users_email
+     * @return bool
+     */
+    function check_user_exists($users_email): bool
     {
         $return_value = false;
 
@@ -108,7 +123,11 @@ class first_time_logged extends Dbh
     }
 
 
-    function check_household_exists($house_name)
+    /**
+     * @param $house_name
+     * @return bool
+     */
+    function check_household_exists($house_name): bool
     {
         $check_stmt = $this->connect()->prepare("SELECT * FROM household WHERE household_name=?;");
 
@@ -126,7 +145,12 @@ class first_time_logged extends Dbh
 
     }
 
-    function create_household($group_name, $user_id)
+    /**
+     * @param $group_name
+     * @param $user_id
+     * @return bool
+     */
+    function create_household($group_name, $user_id): bool
     {
 
         $create_stmt = $this->connect()->prepare("BEGIN; 
@@ -149,7 +173,11 @@ class first_time_logged extends Dbh
 
     }
 
-    function check_if_house_admin($users_email)
+    /**
+     * @param $users_email
+     * @return bool
+     */
+    function check_if_house_admin($users_email): bool
     {
         $check_stmt = $this->connect()->prepare("SELECT * FROM cost.accounts WHERE users_email=? AND role=1;");
 
