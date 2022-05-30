@@ -336,7 +336,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     $budget = $get->get_budget();
                     ?>
                     <p class="card-text text-center text-success" id="full_budget" style="font-size: 45px">
-                        $<?php echo $budget; ?></p>
+                        $<?php  if(isset($budget)){echo $budget;}  ?></p>
                     <div class="text-center">
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
@@ -360,7 +360,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 
                     ?>
                     <p class="card-text text-center text-danger" id="full_expenses" style="font-size: 45px">
-                        $-<?php echo $expenses; ?></p>
+                        $-<?php if (isset($expenses)) {echo $expenses; } ?></p>
                     <div class="text-center">
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>

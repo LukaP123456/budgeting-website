@@ -5,6 +5,12 @@ class Insert_get extends Dbh
 {
 
 
+    /**
+     * @param $user_id
+     * @param $amount
+     * @param $goal
+     * @return bool|void
+     */
     function insert_goal($user_id, $amount, $goal)
     {
         if (empty($amount) || empty($goal) || empty($user_id)){
