@@ -4,6 +4,19 @@ require_once "dbh.classes.php";
 class Insert_get extends Dbh
 {
 
+    function get_group_name($user_id)
+    {
+
+        $get_stmt = $this->connect()->prepare("SELECT household_name from household WHERE household_id in(SELECT house_hold_id from household_accounts where user_id = ?);");
+
+        if ($get_stmt->execute(array($user_id))) {
+
+            $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $_SESSION['group_name'] = $selector[0]['household_name'];
+        }
+    }
+
 
     /**
      * @param $user_id
@@ -13,12 +26,12 @@ class Insert_get extends Dbh
      */
     function insert_goal($user_id, $amount, $goal)
     {
-        if (empty($amount) || empty($goal) || empty($user_id)){
+        if (empty($amount) || empty($goal) || empty($user_id)) {
             return false;
             die();
         }
 
-        if (!ctype_alpha($goal)){
+        if (!ctype_alpha($goal)) {
             return false;
             die();
         }
@@ -104,11 +117,11 @@ class Insert_get extends Dbh
 
     function insert_category($category_name, $category_type, $house_id, $category_date_added)
     {
-        if (empty($category_name) || empty($category_type) || empty($house_id) || empty($category_date_added)){
+        if (empty($category_name) || empty($category_type) || empty($house_id) || empty($category_date_added)) {
             die();
         }
 
-        if ($category_type != 0 || $category_type!= 1){
+        if ($category_type != 0 || $category_type != 1) {
             die();
         }
 
@@ -116,74 +129,77 @@ class Insert_get extends Dbh
 
         if ($insert_category->execute(array($category_name, $category_type, $house_id, $category_date_added))) {
             if ($insert_category->rowCount() > 0) {
-               return true;
+                return true;
             }
         }
         return false;
 
     }
 
-    function insert_neg_money($neg_date,$neg_category,$amount,$user_id){
+    function insert_neg_money($neg_date, $neg_category, $amount, $user_id)
+    {
         //Server side error handlers
-        if (empty($neg_date) || empty($neg_category) || empty($amount) || empty($user_id)){
+        if (empty($neg_date) || empty($neg_category) || empty($amount) || empty($user_id)) {
             die();
         }
 
-        if (!is_numeric($amount)){
+        if (!is_numeric($amount)) {
             die();
         }
 
         $insert_neg_stmt = $this->connect()->prepare("INSERT INTO `cash_flow`( `amount`, `users_id`, `category_id`, `positive_negative`, `date_added`) VALUES (?,?,?,0,?);");
 
-        if ($insert_neg_stmt->execute(array($amount,$user_id,$neg_category,$neg_date))){
-            if ($insert_neg_stmt->rowCount() > 0){
+        if ($insert_neg_stmt->execute(array($amount, $user_id, $neg_category, $neg_date))) {
+            if ($insert_neg_stmt->rowCount() > 0) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
 
-        }else{
+        } else {
             return false;
         }
 
     }
 
-    function insert_pos_money($pos_date,$pos_category,$pos_amount,$user_id){
+    function insert_pos_money($pos_date, $pos_category, $pos_amount, $user_id)
+    {
 
-        if (empty($pos_amount) || empty($pos_category) || empty($user_id) || empty($pos_date)){
+        if (empty($pos_amount) || empty($pos_category) || empty($user_id) || empty($pos_date)) {
             die();
         }
 
-        if (!is_numeric($pos_amount)){
+        if (!is_numeric($pos_amount)) {
             die();
         }
 
         $insert_neg_stmt = $this->connect()->prepare("INSERT INTO `cash_flow`( `amount`, `users_id`, `category_id`, `positive_negative`, `date_added`) VALUES (?,?,?,1,?);");
 
-        if ($insert_neg_stmt->execute(array($pos_amount,$user_id,$pos_category,$pos_date))){
-            if ($insert_neg_stmt->rowCount() > 0){
+        if ($insert_neg_stmt->execute(array($pos_amount, $user_id, $pos_category, $pos_date))) {
+            if ($insert_neg_stmt->rowCount() > 0) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
 
-        }else{
+        } else {
             return false;
         }
 
 
     }
 
-    function get_budget(){
+    function get_budget()
+    {
 
         $get_stmt = $this->connect()->prepare("SELECT SUM(amount) FROM cash_flow WHERE positive_negative=1 ");
 
-        if ($get_stmt->execute()){
-            if ($get_stmt->rowCount() > 0){
-                while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)){
-                    for ($i = 0; $i < $get_stmt->rowCount(); $i++){
+        if ($get_stmt->execute()) {
+            if ($get_stmt->rowCount() > 0) {
+                while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
+                    for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
                         $budget = $selector[$i]["SUM(amount)"];
-                        $return_value=number_format((float)$budget,2,'.','');
+                        $return_value = number_format((float)$budget, 2, '.', '');
                     }
                 }
             }
@@ -193,16 +209,17 @@ class Insert_get extends Dbh
 
     }
 
-    function get_expenses(){
+    function get_expenses()
+    {
 
         $get_stmt = $this->connect()->prepare("SELECT SUM(amount) FROM cash_flow WHERE positive_negative=0");
 
-        if ($get_stmt->execute()){
-            if ($get_stmt->rowCount() > 0){
-                while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)){
-                    for ($i = 0; $i < $get_stmt->rowCount(); $i++){
+        if ($get_stmt->execute()) {
+            if ($get_stmt->rowCount() > 0) {
+                while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
+                    for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
                         $expenses = $selector[$i]["SUM(amount)"];
-                        $return_value=number_format((float)$expenses,2,'.','');
+                        $return_value = number_format((float)$expenses, 2, '.', '');
                     }
                 }
             }

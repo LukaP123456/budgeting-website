@@ -9,6 +9,8 @@ require_once "../classes/first-time-loggedin.classes.php";
 require_once "../classes/insert-get-class.php";
 require_once "../classes/dbh.classes.php";
 
+$get = new Insert_get();
+$get->get_group_name($_COOKIE['users_id']);
 
 ?>
 <!doctype html>
@@ -52,7 +54,9 @@ require_once "../classes/dbh.classes.php";
             crossorigin="anonymous"></script>
 
     <!--Chart.js link-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"
+            integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
     <style>
@@ -97,11 +101,13 @@ require_once "../classes/dbh.classes.php";
 
                     ?>
                 <li class='nav-item'>
-                    <a href='add-new-user.php?group_name=<?php echo $_COOKIE['group_name']; ?>'
+                    <a href='add-new-user.php?group_name=<?php  if (isset($_SESSION['group_name'])){echo  $_SESSION['group_name']; } ?>'
                        class='nav-link text-white'>Add a member</a>
                 </li>
                 <?php
                 }
+
+
                 ?>
             </ul>
         </div>
@@ -220,7 +226,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
          id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" style="width: 280px;">
         <div class="offcanvas-header bg-black text-white">
-            <h5 class="offcanvas-title" id="offcanvasScrollingLabel"><?php echo $_COOKIE['group_name']; ?></h5>
+            <h5 class="offcanvas-title" id="offcanvasScrollingLabel"><?php if (isset($_SESSION['group_name'])){echo $_SESSION['group_name'];} ?></h5>
             <button type="button" class="btn-close text-reset bg-white" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
         </div>
@@ -332,11 +338,15 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     </div>
                     <p class="card-text text-center">Your current budget is:</p>
                     <?php
-                    $get = new Insert_get();
+
+                    var_dump($_SESSION['group_name']);
+
                     $budget = $get->get_budget();
                     ?>
                     <p class="card-text text-center text-success" id="full_budget" style="font-size: 45px">
-                        $<?php  if(isset($budget)){echo $budget;}  ?></p>
+                        $<?php if (isset($budget)) {
+                            echo $budget;
+                        } ?></p>
                     <div class="text-center">
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
@@ -360,7 +370,9 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 
                     ?>
                     <p class="card-text text-center text-danger" id="full_expenses" style="font-size: 45px">
-                        $-<?php if (isset($expenses)) {echo $expenses; } ?></p>
+                        $-<?php if (isset($expenses)) {
+                            echo $expenses;
+                        } ?></p>
                     <div class="text-center">
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
@@ -601,7 +613,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 
     <div class="card text-center">
         <div class="card-body">
-            <div class="container">
+            <div class="container" style="height: 645px">
                 <canvas id="myChart">
 
                 </canvas>
@@ -611,64 +623,59 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
     <script>
         let my_chart = document.getElementById("myChart").getContext('2d');
 
-        //Global options
-        Chart.defaults.global = {
-            FontFamily:"Lato",
-            defaultFontSize:18,
-            defaultFontColor: "#00ff00"
-        }
-
-
-        let budget_expenses_chart = new Chart(my_chart,{
+        let budget_expenses_chart = new Chart(my_chart, {
             type: 'pie', //bar, horizontal bar, pie, line ,doughnut, radar, polar area
-            data:{
-                labels:['Budget', 'Expenses'],
-                datasets:[{
+            data: {
+                labels: ['Budget', 'Expenses'],
+                datasets: [{
                     // label: 'Budget',
-                    data:[
+                    data: [
                         <?php echo $budget; ?>,
                         <?php echo $expenses; ?>
                     ],
-                    backgroundColor:[
+                    backgroundColor: [
                         'green',
                         'red'
                     ],
                     borderWidth: 1,
-                    hoverBorderWidth:3,
-                    hoverBorderColor:'black'
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: 'black'
                 }]
             },
-            options:{
-                plugins:{
-                    title:{
-                        display:true,
-                        text:'Your balance',
-                        font:{
-                            size:30
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Your balance',
+                        color: 'black',
+                        font: {
+                            size: 30
                         }
                     },
-                    legend:{
-                        position:'bottom',
-                        labels:{
-                            fontColor: "black",
-                            font:{
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: 'black',
+                            font: {
                                 size: 20
                             }
                         }
                     },
-                    layout:{
-                        padding:{
-                            left:0,
-                            right:0,
-                            bottom:0,
-                            top:0
+                    layout: {
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            top: 0
                         }
                     },
+
                 }
 
             }
         });
-
 
 
     </script>

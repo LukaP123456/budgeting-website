@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "../classes/first-time-loggedin.classes.php";
+require_once "../classes/insert-get-class.php";
 
 if (isset($_POST['submit']) or isset($_POST['reset-request-submit'])) {
 
@@ -9,9 +10,6 @@ if (isset($_POST['submit']) or isset($_POST['reset-request-submit'])) {
     $group_name = $_POST['group-name'];
 
     $_SESSION['group-name'] = $_POST['group-name'];
-    //Immortal cookie
-    //TODO:group_name cookie ne radi kako treba jer njegova vrednost se setuje kada se upise ime na onoj first time logged in formi sto je lose jer onda svaki put kad se neko prvi put loginuje menja svima ime kuce na ispisu
-    setcookie("group_name", $group_name, time() + (10 * 365 * 24 * 60 * 60), "/", "");
 
 
     if (!isset($_POST['alone-box'])) {
