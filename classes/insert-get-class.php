@@ -66,33 +66,36 @@ class Insert_get extends Dbh
         }
     }
 
-    function get_category1()
+    function get_category0($group_id)
     {
 
-        $get_stmt = $this->connect()->prepare("SELECT category_id,category_name FROM cateogries WHERE category_type=0;");
+        $get_stmt = $this->connect()->prepare("SELECT category_id,category_name FROM cateogries WHERE category_type=0 AND household_id IS NULL OR household_id=?");
 
-        $get_stmt->execute();
 
-        while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
-            for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
-                echo '<option value="' . $selector[$i]['category_id'] . '">' . $selector[$i]['category_name'] . '</option>';
+        if ($get_stmt->execute(array($group_id))){
+            while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
+                for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
+                    echo '<option value="' . $selector[$i]['category_id'] . '">' . $selector[$i]['category_name'] . '</option>';
+                }
             }
         }
-
     }
 
-    function get_category2()
+    function get_category1($group_id)
     {
 
-        $get_stmt = $this->connect()->prepare("SELECT category_id,category_name FROM cateogries WHERE category_type=1;");
+        $get_stmt = $this->connect()->prepare("SELECT category_id,category_name FROM cateogries WHERE category_type=1 AND  household_id IS NULL OR  household_id=?;");
 
-        $get_stmt->execute();
-
-        while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
-            for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
-                echo '<option value="' . $selector[$i]['category_id'] . '">' . $selector[$i]['category_name'] . '</option>';
+        if ( $get_stmt->execute(array($group_id))){
+            while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
+                for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
+                    echo '<option value="' . $selector[$i]['category_id'] . '">' . $selector[$i]['category_name'] . '</option>';
+                }
             }
         }
+
+
+
 
     }
 
@@ -106,6 +109,7 @@ class Insert_get extends Dbh
                 while ($selector = $select_stmt->fetchAll(PDO::FETCH_ASSOC)) {
                     for ($i = 0; $i < $select_stmt->rowCount(); $i++) {
                         $house_id = $selector[$i]["house_hold_id"];
+
                     }
                 }
 
@@ -189,12 +193,12 @@ class Insert_get extends Dbh
 
     }
 
-    function get_budget()
+    function get_budget($group_id)
     {
 
-        $get_stmt = $this->connect()->prepare("SELECT SUM(amount) FROM cash_flow WHERE positive_negative=1 ");
+        $get_stmt = $this->connect()->prepare("SELECT SUM(amount) FROM cash_flow WHERE positive_negative=1 AND users_id IN(SELECT users_id FROM household_accounts WHERE house_hold_id = ?);");
 
-        if ($get_stmt->execute()) {
+        if ($get_stmt->execute(array($group_id))) {
             if ($get_stmt->rowCount() > 0) {
                 while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
                     for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
@@ -209,12 +213,12 @@ class Insert_get extends Dbh
 
     }
 
-    function get_expenses()
+    function get_expenses($group_id)
     {
 
-        $get_stmt = $this->connect()->prepare("SELECT SUM(amount) FROM cash_flow WHERE positive_negative=0");
+        $get_stmt = $this->connect()->prepare("SELECT SUM(amount) FROM cash_flow WHERE positive_negative=0 AND users_id IN(SELECT users_id FROM household_accounts WHERE house_hold_id = ?);");
 
-        if ($get_stmt->execute()) {
+        if ($get_stmt->execute(array($group_id))) {
             if ($get_stmt->rowCount() > 0) {
                 while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
                     for ($i = 0; $i < $get_stmt->rowCount(); $i++) {

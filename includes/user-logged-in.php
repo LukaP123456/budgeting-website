@@ -341,7 +341,13 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 
                     var_dump($_SESSION['group_name']);
 
-                    $budget = $get->get_budget();
+                    $user_id = $_COOKIE['users_id'];
+                    $house_id = $get->get_house_id($user_id);
+                    var_dump($house_id);
+                    var_dump($_COOKIE['users_id']);
+                    $_SESSION['house_id'] = $house_id;
+
+                    $budget = $get->get_budget($house_id);
                     ?>
                     <p class="card-text text-center text-success" id="full_budget" style="font-size: 45px">
                         $<?php if (isset($budget)) {
@@ -366,7 +372,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     </div>
                     <p class="card-text text-center">Your expenses are:</p>
                     <?php
-                    $expenses = $get->get_expenses();
+                    $expenses = $get->get_expenses($house_id);
 
                     ?>
                     <p class="card-text text-center text-danger" id="full_expenses" style="font-size: 45px">
@@ -393,7 +399,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     <?php
                     $goal = $_COOKIE['goal'];
                     $amount = $_COOKIE['amount'];
-                    $user_id = $_COOKIE['users_id'];
+
                     ?>
                     <p class="card-text text-center" id="goal_response"><?php if (isset($goal)) {
                             echo $goal;
@@ -522,7 +528,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <?php
                             echo "<select class='form-select' id='pos_category' name='pos_category'>";
                             echo "<option value='category'>--CHOOSE--</option>";
-                            $get->get_category2();
+                            $get->get_category1($house_id);
                             echo "</select>";
                             ?>
                             <small class="message" id="message-pos_category"></small>
@@ -581,7 +587,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <?php
                             echo "<select class='form-select' id='neg_category' name='neg_category'>";
                             echo "<option value='category'>--CHOOSE--</option>";
-                            $get->get_category1();
+                            $get->get_category0($house_id);
                             echo "</select>";
                             ?>
                             <small class="message" id="message-neg_category"></small>
