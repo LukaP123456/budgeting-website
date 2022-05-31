@@ -29,6 +29,10 @@ $(document).ready(function () {
                                 console.log(budget_expenses_chart.data.datasets[0].data[0]);
                                 budget_expenses_chart.data.datasets[0].data[1] = response;
                                 budget_expenses_chart.update('active');
+
+                                $("#neg_amount").val(" ");
+                                $("#neg_category").val(" ");
+                                $("#neg_date").val(" ");
                             });
                         }
                     })

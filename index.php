@@ -45,8 +45,6 @@ include_once "includes/login-modal.php";
 
 //TODO: Prepraviti mozda server side error handlere da su switch case umesto if else
 //TODO:Napraviti error handling za dodavanje u budget, uzimanje iz budgeta, dodavanje poz i neg kategorije, client i server side
-//TODO: Napraviti cash_slow house_id da samo clanovi odredjene kuce mogu videti svoj budzet
-//TODO: Isto napraviti za kategorije
 
 ?>
 <!--BODY END-->

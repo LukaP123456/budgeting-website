@@ -14,6 +14,8 @@ class Insert_get extends Dbh
             $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
 
             $_SESSION['group_name'] = $selector[0]['household_name'];
+
+            setcookie("group_name", $selector[0]['household_name'], time() + (10 * 365 * 24 * 60 * 60), "/", "");
         }
     }
 
@@ -36,7 +38,9 @@ class Insert_get extends Dbh
             die();
         }
 
-        $insert_stmt = $this->connect()->prepare("INSERT INTO goals(goal_name, goal_price, user_id) VALUES (?,?,?)");
+        //select date max
+
+        $insert_stmt = $this->connect()->prepare("INSERT INTO goals(goal_name, goal_price, user_id,added_date) VALUES (?,?,?,now())");
 
         if ($insert_stmt->execute(array($goal, $amount, $user_id))) {
 
@@ -193,10 +197,10 @@ class Insert_get extends Dbh
 
     }
 
-    function get_budget($group_id)
+    function get_budget($group_id): string
     {
 
-        $get_stmt = $this->connect()->prepare("SELECT SUM(amount) FROM cash_flow WHERE positive_negative=1 AND users_id IN(SELECT users_id FROM household_accounts WHERE house_hold_id = ?);");
+        $get_stmt = $this->connect()->prepare("SELECT SUM(amount) FROM cash_flow WHERE positive_negative=1 AND users_id IN(SELECT user_id FROM household_accounts WHERE house_hold_id = ?);");
 
         if ($get_stmt->execute(array($group_id))) {
             if ($get_stmt->rowCount() > 0) {
@@ -213,10 +217,10 @@ class Insert_get extends Dbh
 
     }
 
-    function get_expenses($group_id)
+    function get_expenses($group_id): string
     {
 
-        $get_stmt = $this->connect()->prepare("SELECT SUM(amount) FROM cash_flow WHERE positive_negative=0 AND users_id IN(SELECT users_id FROM household_accounts WHERE house_hold_id = ?);");
+        $get_stmt = $this->connect()->prepare("SELECT SUM(amount) FROM cash_flow WHERE positive_negative=0 AND users_id IN(SELECT user_id FROM household_accounts WHERE house_hold_id = ?);");
 
         if ($get_stmt->execute(array($group_id))) {
             if ($get_stmt->rowCount() > 0) {

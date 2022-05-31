@@ -1,7 +1,6 @@
 <?php
 require_once "../classes/insert-get-class.php";
 
-
 $house_name = $_COOKIE['group_name'];
 $user_id = $_COOKIE['users_id'];
 $get = new Insert_get();

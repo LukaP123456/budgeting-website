@@ -6,6 +6,21 @@ $(document).ready(function () {
         let pos_category = $("#pos_category").val();
         let pos_date = $("#pos_date").val();
 
+        //
+        // if (pos_amount.val() !== " "){
+        //     $("#pos_amount").removeClass("border border-danger").addClass("border border-success border-2");
+        // }
+        //
+        // if (pos_category.val() !== " "){
+        //     $("#pos_amount").removeClass("border border-danger").addClass("border border-success border-2");
+        // }
+        //
+        // if (pos_category.val() !== " "){
+        //     $("#pos_amount").removeClass("border border-danger").addClass("border border-success border-2");
+        // }
+
+
+
         $.ajax({
             method: "post",
             url: "add-positive-value.php",
@@ -19,6 +34,9 @@ $(document).ready(function () {
                 if (response === "success") {
                     $("#pos_response").html("<div class='alert alert-success' role='alert'>Successfully added an amount of $" + pos_amount + "</div>");
 
+                    $('#pos_response').html(" ");
+
+
                     $.ajax({
                         type: "GET",
                         url: "get_budget.php",
@@ -29,17 +47,21 @@ $(document).ready(function () {
                                 console.log(budget_expenses_chart.data.datasets[0].data[1]);
                                 budget_expenses_chart.data.datasets[0].data[0] = response;
                                 budget_expenses_chart.update('active');
+
+                                $("#pos_date").val(" ");
+                                $("#pos_category").val(" ");
+                                $("#pos_amount").val(" ");
                             });
-
-
-
-
                         }
-
-
                     })
                 }else {
                     $("#pos_response").html(response);
+
+
+                    $("#pos_amount").addClass("border border-danger border-2");
+                    $("#pos_category").addClass("border border-danger border-2");
+                    $("#pos_date").addClass("border border-danger border-2");
+
                 }
 
             },

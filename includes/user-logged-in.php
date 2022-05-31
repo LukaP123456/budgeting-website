@@ -12,6 +12,8 @@ require_once "../classes/dbh.classes.php";
 $get = new Insert_get();
 $get->get_group_name($_COOKIE['users_id']);
 
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -393,9 +395,9 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     <div class="text-center">
                         <h5 class="card-title text-black"
                             style="background: url('../img/bg-target.jpg'); background-size: cover; height: 10vh">
-                            Target</h5>
+                            Goal</h5>
                     </div>
-                    <p class="card-text text-center">Your target is: </p>
+                    <p class="card-text text-center">Your goal is: </p>
                     <?php
                     $goal = $_COOKIE['goal'];
                     $amount = $_COOKIE['amount'];
@@ -412,8 +414,12 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     <div class="text-center">
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                         <button class="btn btn-warning  text-black btn-lg" data-bs-toggle="modal"
-                                data-bs-target="#target">Change target
+                                data-bs-target="#target">Change goal
                         </button>
+                        <button class="btn btn-warning  text-black btn-lg" data-bs-toggle="modal"
+                                data-bs-target="#previous_target">View previous goals
+                        </button>
+
                     </div>
                 </div>
             </div>
@@ -452,8 +458,38 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 <br>
 <br>
 <br>
+    <!--PREVIOUS GOAL START-->
 
-    <!--CHANGE TARGET START-->
+    <div class="modal fade" id="previous_target" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
+
+        <!--AJAX script for previous goals-->
+        <script type="text/javascript" >
+
+        </script>
+
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="target_modal">
+                <div class="modal-header"
+                     style="background: url('../img/bg-target.jpg'); background-size: cover; height: 10vh">
+                    <h5 class="modal-title" id="enrollLabel">Previous</h5>
+                    <button type="button" id="load_btn" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="response" id="response_previous"></div>
+                    <div class="modal-footer">
+
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!--PREVIOUS GOAL END-->
+
+
+
+    <!--CHANGE GOAL START-->
 
     <div class="modal fade" id="target" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
 
@@ -470,7 +506,6 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                 </div>
                 <form action="target-modal-code.php" name="target-form" id="target-form">
                     <div class="modal-body">
-                        <form action="">
 
                             <div class="mb-3 input-control">
                                 <label for="goal_name">Goal</label>
@@ -487,7 +522,6 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                                 <small class="message" id="message-amount"></small>
                                 <br>
                             </div>
-                        </form>
                     </div>
                     <div class="response" id="response"></div>
                     <div class="modal-footer">
@@ -497,7 +531,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
             </div>
         </div>
     </div>
-    <!--CHANGE TARGET END-->
+    <!--CHANGE GOAL END-->
 
 
     <!--ADD MODAL START-->
