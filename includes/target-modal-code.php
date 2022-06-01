@@ -29,27 +29,7 @@ if (isset($_POST['goal']) && isset($_POST['amount']) && isset($_COOKIE['users_id
     }
 } else {
     echo "<p class='alert alert-danger' role='alert'>There was an error</p>";
-} ?>
+}
 
-<script type="text/javascript">
-
-    $(`#goal_name,#amount`).removeClass("border border-danger");
-
-    let error_empty = "<?php echo $error_empty;?>"
-    let goal_error = "<?php echo $goal_error;?>"
-
-    if (error_empty === true) {
-        $("#goal_name").addClass("border border-danger")
-    }
-
-    if (goal_error === true){
-        $("#amount").addClass("border border-danger")
-    }
-
-    if (error_empty === false && goal_error === false){
-        $("#goal_name,#amount").val("");
-    }
-
-</script>
 
 

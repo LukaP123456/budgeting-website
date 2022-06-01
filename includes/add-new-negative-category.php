@@ -1,7 +1,6 @@
 <?php
 require_once "../classes/insert-get-class.php";
 
-
 $house_name = $_COOKIE['group_name'];
 $user_id = $_COOKIE['users_id'];
 $get = new Insert_get();
@@ -82,30 +81,45 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
                                 //use button click event
                                 $("#add_btn2").click(function (e){
                                     e.preventDefault();
-                                    let category_name2 = $("#category_name2").val();
+                                    let category_name2 = $("#category_name2").val().trim();
                                     let category_type2 = $("#category_type2").val();
                                     let house_hold_id2 = $("#household_id2").val();
 
-                                    $.ajax({
-                                        method: "post",
-                                        url: "add-new-negative-category-code.php",
-                                        data: {
-                                            category_name2: category_name2,
-                                            category_type2: category_type2,
-                                            house_hold_id2: house_hold_id2
-                                        },
-                                        success: function (response){
-                                            console.log(response);
-                                            if(response === "success"){
-                                                $("#response").html("<div class='alert alert-success' role='alert'>Successfully added a new category</div>");
-                                            }else{
-                                                $("#response").html(response);
+                                    let check_name = 0;
+
+                                    if (category_name2 === ""){
+                                        $("#category_name2").addClass("border border-danger border-2");
+                                        $("#error_category_name2").text(" Please write the name of your category ").addClass("text-danger fas fa-exclamation-circle ");
+                                        check_name = 1;
+                                    }else {
+                                        $('#category_name2').addClass("border border-success border-2").removeClass("border border-danger border-2");
+                                        $("#error_category_name2").text("Looks good!").removeClass("text-danger fas fa-exclamation-circle ").addClass("text-success fas fas fa-check-circle");
+                                    }
+
+                                    if (check_name !==1 ){
+                                        $.ajax({
+                                            method: "post",
+                                            url: "add-new-negative-category-code.php",
+                                            data: {
+                                                category_name2: category_name2,
+                                                category_type2: category_type2,
+                                                house_hold_id2: house_hold_id2
+                                            },
+                                            success: function (response){
+                                                console.log(response);
+                                                if(response === "success"){
+                                                    $("#response").html("<div class='alert alert-success' role='alert'>Successfully added a new category</div>");
+                                                }else{
+                                                    $("#response").html(response);
+                                                }
+                                            },
+                                            error: function(response) {
+                                                alert(JSON.stringify(response));
                                             }
-                                        },
-                                        error: function(response) {
-                                            alert(JSON.stringify(response));
-                                        }
-                                    })
+                                        })
+                                    }
+
+
                                 });
                             });
                         </script>
@@ -113,11 +127,12 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
                         <input type="hidden" value="0" name="category_type2" id="category_type2">
                         <input type="hidden"  value="<?php if (isset($_COOKIE['house_hold_id'])){  echo $_COOKIE['house_hold_id'];}?>" name="household_id2" id="household_id2">
                         <div class="form-group mb-3">
-                            <p id="response" ></p>
-                            <label for="category_name">Category name</label>
+
+                            <label for="category_name2">Category name</label>
                             <input type="text" id="category_name2" name="category_name2" class="form-control"
                                    placeholder="Enter new category name">
-                            <small class="message" id="message-category_name2"></small>
+                            <small class="message" id="error_category_name2"></small>
+                            <div id="response" ></div>
                         </div>
                         <div class="form-group mb-3">
                             <button type="submit" name="add_btn2" id="add_btn2" class="btn btn-danger">Submit
@@ -130,7 +145,7 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
         </div>
     </div>
 </div>
-</div>
+
 
 <!--ADD CATEGORY  FORM END-->
 

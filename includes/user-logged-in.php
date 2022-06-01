@@ -12,6 +12,8 @@ require_once "../classes/dbh.classes.php";
 $get = new Insert_get();
 $get->get_group_name($_COOKIE['users_id']);
 
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -393,9 +395,9 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     <div class="text-center">
                         <h5 class="card-title text-black"
                             style="background: url('../img/bg-target.jpg'); background-size: cover; height: 10vh">
-                            Target</h5>
+                            Goal</h5>
                     </div>
-                    <p class="card-text text-center">Your target is: </p>
+                    <p class="card-text text-center">Your goal is: </p>
                     <?php
                     $goal = $_COOKIE['goal'];
                     $amount = $_COOKIE['amount'];
@@ -412,8 +414,12 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     <div class="text-center">
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                         <button class="btn btn-warning  text-black btn-lg" data-bs-toggle="modal"
-                                data-bs-target="#target">Change target
+                                data-bs-target="#target" id="change_goal">Change goal
                         </button>
+                        <button class="btn btn-warning  text-black btn-lg" data-bs-toggle="modal"
+                                data-bs-target="#previous_target">View previous goals
+                        </button>
+
                     </div>
                 </div>
             </div>
@@ -429,7 +435,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <h5 class="card-title">Add an amount to the budget</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional
                                 content.</p>
-                            <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#enroll">+
+                            <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#enroll" id="add_btn">+
                             </button>
                         </div>
                     </div>
@@ -440,7 +446,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <h5 class="card-title">Withdraw from the budget</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional
                                 content.</p>
-                            <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#delete">-
+                            <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#delete" id="delete_btn">-
                             </button>
                         </div>
                     </div>
@@ -452,8 +458,38 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 <br>
 <br>
 <br>
+    <!--PREVIOUS GOAL START-->
 
-    <!--CHANGE TARGET START-->
+    <div class="modal fade" id="previous_target" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
+
+        <!--AJAX script for previous goals-->
+        <script type="text/javascript" >
+
+        </script>
+
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="target_modal">
+                <div class="modal-header"
+                     style="background: url('../img/bg-target.jpg'); background-size: cover; height: 10vh">
+                    <h5 class="modal-title" id="enrollLabel">Previous</h5>
+                    <button type="button" id="load_btn" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="response" id="response_previous"></div>
+                    <div class="modal-footer">
+
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!--PREVIOUS GOAL END-->
+
+
+
+    <!--CHANGE GOAL START-->
 
     <div class="modal fade" id="target" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
 
@@ -470,13 +506,12 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                 </div>
                 <form action="target-modal-code.php" name="target-form" id="target-form">
                     <div class="modal-body">
-                        <form action="">
 
                             <div class="mb-3 input-control">
                                 <label for="goal_name">Goal</label>
                                 <input type="text" class="form-control" id="goal_name" name="goal_name"
-                                       placeholder="Goal">
-                                <small class="message" id="message-goal_name"></small>
+                                       placeholder="Goal" pattern="[a-zA-Z]+">
+                                <small class="message text-danger" id="error_goal_name"></small>
                                 <br>
                             </div>
 
@@ -484,10 +519,9 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                                 <label for="amount">Amount</label>
                                 <input type="number" class="form-control" id="amount" name="amount"
                                        placeholder="Amount">
-                                <small class="message" id="message-amount"></small>
+                                <small id="error_amount"></small>
                                 <br>
                             </div>
-                        </form>
                     </div>
                     <div class="response" id="response"></div>
                     <div class="modal-footer">
@@ -497,7 +531,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
             </div>
         </div>
     </div>
-    <!--CHANGE TARGET END-->
+    <!--CHANGE GOAL END-->
 
 
     <!--ADD MODAL START-->
@@ -520,7 +554,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <label for="pos_amount">Amount</label>
                             <input type="number" class="form-control" id="pos_amount" name="pos_amount"
                                    placeholder="Amount">
-                            <small class="message" id="message-pos_amount"></small>
+                            <small class="message" id="error_pos_amount"></small>
                             <br>
                         </div>
                         <div class="mb-3 input-control">
@@ -531,13 +565,13 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             $get->get_category1($house_id);
                             echo "</select>";
                             ?>
-                            <small class="message" id="message-pos_category"></small>
+                            <small class="message" id="error_pos_category"></small>
                             <br>
                         </div>
                         <div class="mb-3 input-control">
                             <label for="pos_date">Date added</label>
                             <input type="datetime-local" class="form-control" id="pos_date" name="pos_date">
-                            <small class="message" id="message-pos_date"></small>
+                            <small class="message" id="error_pos_date"></small>
                             <br>
                         </div>
 
@@ -579,7 +613,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <label for="neg_amount">Amount</label>
                             <input type="number" class="form-control" id="neg_amount" name="neg_amount"
                                    placeholder="Amount">
-                            <small class="message" id="message-neg_amount"></small>
+                            <small class="message" id="error_neg_amount"></small>
                             <br>
                         </div>
                         <div class="mb-3 input-control">
@@ -590,13 +624,13 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             $get->get_category0($house_id);
                             echo "</select>";
                             ?>
-                            <small class="message" id="message-neg_category"></small>
+                            <small class="message" id="error_neg_category"></small>
                             <br>
                         </div>
                         <div class="mb-3 input-control">
                             <label for="neg_date">Date added</label>
                             <input type="datetime-local" class="form-control" id="neg_date" name="neg_date">
-                            <small class="message" id="message-neg_date"></small>
+                            <small class="message" id="error_neg_date"></small>
                             <br>
                         </div>
                         <div class="neg_response" id="neg_response"></div>
