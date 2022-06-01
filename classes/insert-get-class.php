@@ -44,7 +44,7 @@ class Insert_get extends Dbh
 
         if ($insert_stmt->execute(array($goal, $amount, $user_id))) {
 
-            $get_stmt = $this->connect()->prepare("SELECT * FROM goals WHERE goal_name=? AND goal_price=? AND user_id=? ");
+            $get_stmt = $this->connect()->prepare("SELECT * FROM goals WHERE goal_name=? AND goal_price=? AND user_id=? AND added_date = (SELECT MAX(added_date) FROM goals) ");
 
             if ($get_stmt->execute(array($goal, $amount, $user_id))) {
 
@@ -68,6 +68,24 @@ class Insert_get extends Dbh
             return false;
 
         }
+    }
+
+    function get_previous_goals($user_id,$house_id){
+
+        $get_stmt = $this->connect()->prepare("SELECT * FROM goals WHERE added_date=(SELECT added_date from goals WHERE added_date < NOW()) AND user_id = (SELECT house_hold_id from household_accounts where household_accounts.user_id = ? AND house_hold_id = ?) ") ;
+
+        if ($get_stmt->execute(array($user_id,$house_id))){
+
+            $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            for ($i = 0; $i < $get_stmt->rowCount(); $i++){
+
+                echo $selector[$i]['goal_name'];
+                echo $selector[$i]['added_date'];
+            }
+
+        }
+
     }
 
     function get_category0($group_id)

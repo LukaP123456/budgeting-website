@@ -479,6 +479,8 @@ $get->get_group_name($_COOKIE['users_id']);
                 </div>
                     <div class="modal-body">
 
+                        <?php $get->get_previous_goals($user_id,$house_id); ?>
+
                     </div>
                     <div class="response" id="response_previous"></div>
                     <div class="modal-footer">
@@ -728,12 +730,71 @@ $get->get_group_name($_COOKIE['users_id']);
             LAST 7 DAYS
         </div>
         <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-        <div class="card-footer text-muted">
-            2 days ago
+            <div class="container" style="height: 645px">
+                <canvas id="weekChart">
+
+                </canvas>
+
+                <script>
+
+                    let week_chart = document.getElementById("weekChart").getContext('2d');
+
+                    let one_week_chart = new Chart(week_chart, {
+                        type: 'line', //bar, horizontal bar, pie, line ,doughnut, radar, polar area
+                        data: {
+                            labels: ['Monday', 'Tuesday', 'Wednesday' , 'Friday' , 'Saturday', 'Sunday'],
+                            datasets: [{
+                                data: [
+                                    <?php echo $budget; ?>,
+                                    <?php echo $expenses; ?>
+                                ],
+                                backgroundColor: [
+                                    'green',
+                                    'red'
+                                ],
+                                borderWidth: 1,
+                                hoverBorderWidth: 3,
+                                hoverBorderColor: 'black'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'Expenses in the last week',
+                                    color: 'black',
+                                    font: {
+                                        size: 30
+                                    }
+                                },
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+                                        color: 'black',
+                                        font: {
+                                            size: 20
+                                        }
+                                    }
+                                },
+                                layout: {
+                                    padding: {
+                                        left: 0,
+                                        right: 0,
+                                        bottom: 0,
+                                        top: 0
+                                    }
+                                },
+
+                            }
+
+                        }
+                    });
+
+
+                </script>
+            </div>
         </div>
     </div>
 
