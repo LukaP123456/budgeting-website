@@ -82,30 +82,44 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
                                     //use button click event
                                     $("#add_btn").click(function (e){
                                         e.preventDefault();
-                                        let category_name = $("#category_name").val();
+                                        let category_name = $("#category_name").val().trim();
                                         let category_type = $("#category_type").val();
                                         let house_hold_id = $("#household_id").val();
 
-                                        $.ajax({
-                                            method: "post",
-                                            url: "add-category-code.php",
-                                            data: {
-                                                category_name: category_name,
-                                                category_type: category_type,
-                                                house_hold_id: house_hold_id
-                                            },
-                                            success: function (response){
-                                                console.log(response);
-                                                if(response === "success"){
-                                                    $("#response").html("<div class='alert alert-success' role='alert'>Successfully added a new category</div>");
-                                                }else{
-                                                    $("#response").html(response);
+                                        let check_name = 0;
+
+                                        if (category_name === ""){
+                                            $("#category_name").addClass("border border-danger border-2");
+                                            $("#error_category_name").text(" Please add an amount ").addClass("text-danger fas fa-exclamation-circle ");
+                                            check_name = 1;
+                                        }else {
+                                            $('#category_name').addClass("border border-success border-2").removeClass("border border-danger border-2");
+                                            $("#error_category_name").text("Looks good!").removeClass("text-danger fas fa-exclamation-circle ").addClass("text-success fas fas fa-check-circle");
+                                        }
+
+                                        if (check_name !==1 ){
+                                            $.ajax({
+                                                method: "post",
+                                                url: "add-category-code.php",
+                                                data: {
+                                                    category_name: category_name,
+                                                    category_type: category_type,
+                                                    house_hold_id: house_hold_id
+                                                },
+                                                success: function (response){
+                                                    console.log(response);
+                                                    if(response === "success"){
+                                                        $("#response").html("<div class='alert alert-success' role='alert'>Successfully added a new category</div>");
+                                                    }else{
+                                                        $("#response").html(response);
+                                                    }
+                                                },
+                                                error: function(response) {
+                                                    alert(JSON.stringify(response));
                                                 }
-                                            },
-                                            error: function(response) {
-                                                alert(JSON.stringify(response));
-                                            }
-                                        })
+                                            })
+                                        }
+
                                     });
                                 });
                             </script>
@@ -113,11 +127,12 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
                             <input type="hidden" value="1" name="category_type" id="category_type">
                             <input type="hidden"  value="<?php if (isset($_COOKIE['house_hold_id'])){  echo $_COOKIE['house_hold_id'];}?>" name="household_id" id="household_id">
                             <div class="form-group mb-3">
-                                <p id="response" ></p>
                                 <label for="category_name">Category name</label>
                                 <input type="text" id="category_name" name="category_name" class="form-control"
                                        placeholder="Enter new category name">
-                                <small class="message" id="message-category_name"></small>
+                                <small class="message" id="error_category_name"></small>
+
+                                <div id="response"></div>
                             </div>
                             <div class="form-group mb-3">
                                 <button type="submit" name="add_btn" id="add_btn" class="btn btn-success">Submit

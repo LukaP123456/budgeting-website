@@ -35,30 +35,4 @@ if (isset($_POST['amount']) AND isset($_POST['neg_category']) AND isset($_POST['
 
 }else{
     echo "<p class='alert alert-danger' role='alert'>There was an error</p>";
-}?>
-
-<script type="text/javascript">
-
-    $(`#neg_category,#neg_amount`).removeClass("border border-danger");
-
-    let error_empty = "<?php echo $error_empty;?>"
-    let neg_category_error = "<?php echo $neg_category_error;?>"
-    let neg_date_error = "<?php echo $neg_date_error;?>"
-
-    if (error_empty === true) {
-        $("#neg_amount").addClass("border border-danger")
-    }
-
-    if (goal_error === true){
-        $("#neg_category").addClass("border border-danger")
-    }
-
-    if (neg_date_error === true){
-        $("#neg_date").addClass("border border-danger")
-    }
-
-    if (error_empty === false && neg_category_error === false && neg_date_error === false){
-        $("#goal_name,#amount,#neg_date").val("");
-    }
-
-</script>
+}
