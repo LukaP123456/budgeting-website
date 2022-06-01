@@ -414,7 +414,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                     <div class="text-center">
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                         <button class="btn btn-warning  text-black btn-lg" data-bs-toggle="modal"
-                                data-bs-target="#target">Change goal
+                                data-bs-target="#target" id="change_goal">Change goal
                         </button>
                         <button class="btn btn-warning  text-black btn-lg" data-bs-toggle="modal"
                                 data-bs-target="#previous_target">View previous goals
@@ -511,7 +511,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                                 <label for="goal_name">Goal</label>
                                 <input type="text" class="form-control" id="goal_name" name="goal_name"
                                        placeholder="Goal">
-                                <small class="message" id="message-goal_name"></small>
+                                <small class="message text-danger" id="error_goal_name"></small>
                                 <br>
                             </div>
 
@@ -519,7 +519,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                                 <label for="amount">Amount</label>
                                 <input type="number" class="form-control" id="amount" name="amount"
                                        placeholder="Amount">
-                                <small class="message" id="message-amount"></small>
+                                <small id="error_amount"></small>
                                 <br>
                             </div>
                     </div>
