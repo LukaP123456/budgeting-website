@@ -435,7 +435,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <h5 class="card-title">Add an amount to the budget</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional
                                 content.</p>
-                            <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#enroll">+
+                            <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#enroll" id="add_btn">+
                             </button>
                         </div>
                     </div>
@@ -446,7 +446,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <h5 class="card-title">Withdraw from the budget</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional
                                 content.</p>
-                            <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#delete">-
+                            <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#delete" id="delete_btn">-
                             </button>
                         </div>
                     </div>
@@ -510,7 +510,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <div class="mb-3 input-control">
                                 <label for="goal_name">Goal</label>
                                 <input type="text" class="form-control" id="goal_name" name="goal_name"
-                                       placeholder="Goal">
+                                       placeholder="Goal" pattern="[a-zA-Z]+">
                                 <small class="message text-danger" id="error_goal_name"></small>
                                 <br>
                             </div>
@@ -554,7 +554,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <label for="pos_amount">Amount</label>
                             <input type="number" class="form-control" id="pos_amount" name="pos_amount"
                                    placeholder="Amount">
-                            <small class="message" id="message-pos_amount"></small>
+                            <small class="message" id="error_pos_amount"></small>
                             <br>
                         </div>
                         <div class="mb-3 input-control">
@@ -565,13 +565,13 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             $get->get_category1($house_id);
                             echo "</select>";
                             ?>
-                            <small class="message" id="message-pos_category"></small>
+                            <small class="message" id="error_pos_category"></small>
                             <br>
                         </div>
                         <div class="mb-3 input-control">
                             <label for="pos_date">Date added</label>
                             <input type="datetime-local" class="form-control" id="pos_date" name="pos_date">
-                            <small class="message" id="message-pos_date"></small>
+                            <small class="message" id="error_pos_date"></small>
                             <br>
                         </div>
 
@@ -613,7 +613,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             <label for="neg_amount">Amount</label>
                             <input type="number" class="form-control" id="neg_amount" name="neg_amount"
                                    placeholder="Amount">
-                            <small class="message" id="message-neg_amount"></small>
+                            <small class="message" id="error_neg_amount"></small>
                             <br>
                         </div>
                         <div class="mb-3 input-control">
@@ -624,13 +624,13 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
                             $get->get_category0($house_id);
                             echo "</select>";
                             ?>
-                            <small class="message" id="message-neg_category"></small>
+                            <small class="message" id="error_neg_category"></small>
                             <br>
                         </div>
                         <div class="mb-3 input-control">
                             <label for="neg_date">Date added</label>
                             <input type="datetime-local" class="form-control" id="neg_date" name="neg_date">
-                            <small class="message" id="message-neg_date"></small>
+                            <small class="message" id="error_neg_date"></small>
                             <br>
                         </div>
                         <div class="neg_response" id="neg_response"></div>
