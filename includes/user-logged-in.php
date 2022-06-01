@@ -6,11 +6,6 @@ if (!isset($_SESSION['authenticated'])) {
 }
 
 require_once "../classes/first-time-loggedin.classes.php";
-require_once "../classes/insert-get-class.php";
-require_once "../classes/dbh.classes.php";
-
-$get = new Insert_get();
-$get->get_group_name($_COOKIE['users_id']);
 
 
 
@@ -125,7 +120,7 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 
     ?>
     <!--FIRST TIME USER LOGGED IN START-->
-    <div class="py-5">
+    <div class="p-5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
@@ -189,6 +184,13 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
     <!--FIRST TIME USER LOGGED IN END-->
 <?php
 } else {
+
+require_once "../classes/insert-get-class.php";
+require_once "../classes/dbh.classes.php";
+
+$get = new Insert_get();
+$get->get_group_name($_COOKIE['users_id']);
+
 ?>
     <!--SIDEBAR START-->
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">

@@ -78,18 +78,18 @@ class first_time_logged extends Dbh
 
         //Recipients
         $mail->setFrom($friends_email);
-        $mail->addAddress($friends_email);                                  //Add a recipient
+        $mail->addAddress($email);                                  //Add a recipient
 
         //Content
         $mail->isHTML(true);                                                            //Set email format to HTML
-        $mail->Subject = 'Invite from ' . $email . ' for our website LPBudgeting';
+        $mail->Subject = 'Invite from ' . $friends_email . ' for our website LPBudgeting';
 
         $user_id = $_SESSION['users_id'];
 
 
         $email_template = "
-            <h1>Hello! You have been invited by $email to save money on our <a href='http://localhost/BUDGETING_WEBSITE/includes/invited-signup.php?email=$email&group_name=$group_name&userID=$user_id'<a>website</a></h1>
-            <h3>Plese click on the link below to sign up if you do not want to save money using our services please ignore this e-mail.</h3>
+            <h1>Hello! You have been invited by $friends_email to save money on our <a href='http://localhost/BUDGETING_WEBSITE/includes/invited-signup.php?email=$email&group_name=$group_name&userID=$user_id'<a>website</a></h1>
+            <h3>Plese click on the link to sign up if you do not want to save money using our services please ignore this e-mail.</h3>
             <h4>Verify your email address to Login with the below given link</h4>
         ";
         $mail->Body = $email_template;
@@ -150,7 +150,7 @@ class first_time_logged extends Dbh
      * @param $user_id
      * @return bool
      */
-    function create_household($group_name, $user_id): bool
+    function insert_into_household($group_name, $user_id): bool
     {
 
         $create_stmt = $this->connect()->prepare("BEGIN; 

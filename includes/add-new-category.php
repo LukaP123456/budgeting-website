@@ -1,6 +1,6 @@
 <?php
 require_once "../classes/insert-get-class.php";
-
+//TODO: Skontati zasto se ne dodaju kategorije
 
 $house_name = $_COOKIE['group_name'];
 $user_id = $_COOKIE['users_id'];
@@ -44,7 +44,7 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
 <!--navbar start-->
 <nav class="navbar navbar-expand-lg bg-black navbar-dark py-3 fixed-top">
     <div class="container">
-        <a href="../index.php" class="navbar-brand">LP<span class="text-warning">Budgeting</span></a>
+        <a href="user-logged-in.php" class="navbar-brand">LP<span class="text-warning">Budgeting</span></a>
 
         <button class="navbar-toggler"
                 type="button"

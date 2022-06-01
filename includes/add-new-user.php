@@ -87,7 +87,7 @@
 
 
                         ?>
-                        <form action="first-time-log2.php" id="reset-request-form" method="POST">
+                        <form action="invite-new-user.php" id="add-new-user-form" method="POST">
                             <input type="hidden" value="<?php echo $_SESSION['email']?>" name="email-friend">
                             <input type="hidden" value="<?php echo $_GET['group_name']?>" name="group-name">
                             <div class="form-group mb-3">
@@ -97,7 +97,7 @@
                                 <small class="message" id="message-email"></small>
                             </div>
                             <div class="form-group mb-3">
-                                <button type="submit" name="reset-request-submit" class="btn btn-primary">Submit
+                                <button type="submit" name="add_new_user_btn" class="btn btn-primary">Submit
                                 </button>
                             </div>
                             <script src="../js/reset-password-error-handler.js"></script>

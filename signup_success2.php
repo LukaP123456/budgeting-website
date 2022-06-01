@@ -44,7 +44,7 @@ session_start();
         </svg>
         Well done!
     </h4>
-    <p>You have successfully signed up. Please check your email account <b><?php echo $_GET["email"] ?></b> and
+    <p>You have successfully signed up. Please check your email account <b><?php echo $_GET["user_email"] ?></b> and
         follow the instructions in the email to verify your account and log in <a href="index.php">Click me</a></p>
     <hr>
     <p class="mb-0"><b>We will have you saving money in no time</b></p>

@@ -5,7 +5,7 @@ $(document).ready(function () {
         $('#neg_date').removeClass("border border-danger border-2").removeClass("border border-success border-2");
 
         $("#error_neg_amount").html("").removeClass("text-danger fas fa-exclamation-circle ");
-        $("#error_neg_category").html("").removeClass("text-danger fas fa-exclamation-circle ");
+        $("#error_neg_category").val("").removeClass("text-danger fas fa-exclamation-circle ");
         $("#error_neg_date").html("").removeClass("text-danger fas fa-exclamation-circle ");
 
         $("#neg_response").html("");
