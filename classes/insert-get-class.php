@@ -65,15 +65,14 @@ class Insert_get extends Dbh
 
                 return true;
             }
-            return false;
+             return false;
 
         }
     }
 
     function get_previous_goals($house_id){
 
-        $get_stmt = $this->connect()->prepare("SELECT * FROM goals WHERE added_date < NOW() AND user_id = (SELECT user_id from household_accounts where household_accounts.house_hold_id = ? )");
-
+        $get_stmt = $this->connect()->prepare("SELECT * FROM goals WHERE added_date < NOW() AND user_id = (SELECT user_id from household_accounts where household_accounts.house_hold_id = ? )") ;
 
         if ($get_stmt->execute(array($house_id))){
 
