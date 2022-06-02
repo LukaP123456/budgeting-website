@@ -144,7 +144,7 @@ class Signup extends Dbh
 
     protected function checkUser($full_name, $email)
     {
-        $stmt = $this->connect()->prepare("SELECT full_name FROM accounts where full_name = ? OR users_email	= ?");
+        $stmt = $this->connect()->prepare("SELECT full_name FROM accounts where full_name = ? AND users_email	= ?");
         //Provera da je kveri izvrsen execute vraca true kad uspe false kad ne uspe ako ne uspe ! ce obrniti i izvrsice se error handler
         //telo if-a ce se pokrenuti samo ako nesto ne uspe sa kverijem
         //!$stmt->execute(array($full_name,$email) returns true if user doesn't exist in DB

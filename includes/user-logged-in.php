@@ -405,10 +405,10 @@ $get->get_group_name($_COOKIE['users_id']);
                     $amount = $_COOKIE['amount'];
 
                     ?>
-                    <p class="card-text text-center" id="goal_response"><?php if (isset($goal)) {
+                    <p class="card-text text-center" id="goal_response"><?php if (isset($goal) ) {
                             echo $goal;
                         } ?></p>
-                    <p class="card-text text-center" id="amount_response">It's value is: $<?php if (isset($amount)) {
+                    <p class="card-text text-center" id="amount_response">It's value is: $<?php if (isset($amount) ) {
                             echo $amount;
                         } ?></p>
 
