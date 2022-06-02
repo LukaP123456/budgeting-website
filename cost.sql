@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2022 at 06:30 PM
+-- Generation Time: Jun 02, 2022 at 10:35 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.0
 
@@ -47,7 +47,8 @@ CREATE TABLE `accounts` (
 INSERT INTO `accounts` (`users_id`, `users_pwd`, `users_email`, `full_name`, `verify_status`, `verify_token`, `role`, `password_reset_token`, `first_login`, `date_time_signup`) VALUES
 (1112, '$2y$10$ax1uVZmgeLCkW1MAuaS2V.gfd/LNk8CcbiQ06QeGuyORur0OgEmcG', 'bobomejl123@gmail.com', 'bobo ime ', 1, '$2y$10$aJNuU6VSsaXFp1GK75hdOO.GxeXw5Wbl.hyYhDdh46PZ9xYANgGVe', 1, NULL, NULL, '2022-06-01 18:11:17.000000'),
 (1113, '$2y$10$xvQ01yfA5eMOHQK21I4r6um6iF50ZZahUUUXrUp1GZ2xwqosO2EGy', 'mejlzadra123jv@gmail.com', 'mejl za drajv ', 1, '$2y$10$bn9TkTO.qTJXdJdd0NdtZuqN8aKm4hFEmOqj1SJkQQD/0QYp3W.3i', 1, NULL, NULL, '2022-06-01 18:18:05.000000'),
-(1114, '$2y$10$pXj.gVJpsAih/qAs.Q.9uuclu/C56.X9yRwK./Slw6oqTScjn1NZi', 'bobsagott17@gmail.com', 'luka prcic', 1, '$2y$10$jSBHxWVnuNAwsGkr1awlQ.9UjbbDoiHm0hkdau29OS.0QJDHluzfa', 0, NULL, NULL, '2022-06-01 18:23:39.000000');
+(1114, '$2y$10$pXj.gVJpsAih/qAs.Q.9uuclu/C56.X9yRwK./Slw6oqTScjn1NZi', 'bobsagott17@gmail.com', 'luka prcic', 1, '$2y$10$jSBHxWVnuNAwsGkr1awlQ.9UjbbDoiHm0hkdau29OS.0QJDHluzfa', 0, NULL, NULL, '2022-06-01 18:23:39.000000'),
+(1115, '$2y$10$JWKC/R6XZDlBeTKHx.tsXeIjADd3GfbQWSgDDpc8fDKge3NuW8nSC', 'luka.prcic01@gmail.com', 'markovic marko ', 1, '$2y$10$FjSfuzirIA5Nnigr62vC/uNpOPnv5JDtTUICJZX75msYCFv4Ec8/y', 0, NULL, NULL, '2022-06-01 18:34:03.000000');
 
 -- --------------------------------------------------------
 
@@ -69,8 +70,10 @@ CREATE TABLE `cash_flow` (
 --
 
 INSERT INTO `cash_flow` (`amount_id`, `amount`, `users_id`, `category_id`, `positive_negative`, `date_added`) VALUES
-(78, 100, 1112, 9, 1, '2022-06-22 18:27:00'),
-(79, 50, 1112, 3, 0, '2022-06-24 18:27:00');
+(82, 5, 1113, 9, 1, '2022-06-09 20:45:00'),
+(83, 8, 1113, 7, 0, '2022-06-15 20:45:00'),
+(84, 4, 1112, 9, 1, '2022-06-15 20:46:00'),
+(85, 3, 1112, 8, 0, '2022-06-17 20:46:00');
 
 -- --------------------------------------------------------
 
@@ -124,7 +127,11 @@ CREATE TABLE `goals` (
 --
 
 INSERT INTO `goals` (`goal_id`, `goal_name`, `goal_price`, `user_id`, `goal_achieved`, `added_date`) VALUES
-(70, 'table', 111, 1112, NULL, '2022-06-01 18:30:34');
+(70, 'table', 111, 1112, NULL, '2022-06-01 18:30:34'),
+(71, 'car', 222, 1112, NULL, '2022-06-01 21:04:10'),
+(72, 'car', 123, 1112, NULL, '2022-06-01 21:07:06'),
+(73, 'table', 222, 1112, NULL, '2022-06-01 21:07:13'),
+(74, 'bike', 333, 1112, NULL, '2022-06-01 21:07:21');
 
 -- --------------------------------------------------------
 
@@ -143,7 +150,8 @@ CREATE TABLE `household` (
 
 INSERT INTO `household` (`household_id`, `household_name`) VALUES
 (39, 'KUCA123'),
-(41, 'zajednicka kuca ');
+(41, 'zajednicka kuca '),
+(42, 'KUCA123');
 
 -- --------------------------------------------------------
 
@@ -162,8 +170,10 @@ CREATE TABLE `household_accounts` (
 
 INSERT INTO `household_accounts` (`user_id`, `house_hold_id`) VALUES
 (1112, 39),
+(1112, 42),
 (1113, 41),
-(1114, 41);
+(1114, 41),
+(1115, 39);
 
 -- --------------------------------------------------------
 
@@ -185,7 +195,8 @@ CREATE TABLE `log_data` (
 
 INSERT INTO `log_data` (`data_id`, `ip_adress`, `web_browser_OS`, `signup_time`, `users_id`) VALUES
 (224, '::1', 'an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10', NULL, 1112),
-(226, '::1', 'an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10', NULL, 1114);
+(226, '::1', 'an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10', NULL, 1114),
+(227, '::1', 'an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10', NULL, 1115);
 
 -- --------------------------------------------------------
 
@@ -276,13 +287,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1115;
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1116;
 
 --
 -- AUTO_INCREMENT for table `cash_flow`
 --
 ALTER TABLE `cash_flow`
-  MODIFY `amount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `amount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `cateogries`
@@ -294,19 +305,19 @@ ALTER TABLE `cateogries`
 -- AUTO_INCREMENT for table `goals`
 --
 ALTER TABLE `goals`
-  MODIFY `goal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `goal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `household`
 --
 ALTER TABLE `household`
-  MODIFY `household_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `household_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `log_data`
 --
 ALTER TABLE `log_data`
-  MODIFY `data_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
+  MODIFY `data_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=228;
 
 --
 -- Constraints for dumped tables
