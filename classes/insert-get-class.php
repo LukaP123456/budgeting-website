@@ -70,11 +70,12 @@ class Insert_get extends Dbh
         }
     }
 
-    function get_previous_goals($user_id,$house_id){
+    function get_previous_goals($house_id){
 
-        $get_stmt = $this->connect()->prepare("SELECT * FROM goals WHERE added_date=(SELECT added_date from goals WHERE added_date < NOW()) AND user_id = (SELECT house_hold_id from household_accounts where household_accounts.user_id = ? AND house_hold_id = ?) ") ;
+        $get_stmt = $this->connect()->prepare("SELECT * FROM goals WHERE added_date < NOW() AND user_id = (SELECT user_id from household_accounts where household_accounts.house_hold_id = ? ) 
+") ;
 
-        if ($get_stmt->execute(array($user_id,$house_id))){
+        if ($get_stmt->execute(array($house_id))){
 
             $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
 
