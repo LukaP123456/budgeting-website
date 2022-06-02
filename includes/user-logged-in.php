@@ -479,7 +479,7 @@ $get->get_group_name($_COOKIE['users_id']);
                 </div>
                     <div class="modal-body">
 
-                        <?php $get->get_previous_goals($user_id,$house_id); ?>
+                        <?php $get->get_previous_goals($house_id); ?>
 
                     </div>
                     <div class="response" id="response_previous"></div>
