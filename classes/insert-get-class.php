@@ -67,22 +67,24 @@ class Insert_get extends Dbh
 
         }
     }
-    //TODO: Napraviti da radi za usere koji nisu sami u kuci
-    function get_previous_goals($house_id){
 
-        $get_stmt = $this->connect()->prepare("SELECT * FROM goals WHERE added_date < NOW() AND user_id = (SELECT user_id from household_accounts where household_accounts.house_hold_id = ? )") ;
+    //TODO: Napraviti da se prikazuje i ime usera ne samo id
+    function get_previous_goals($house_id)
+    {
 
-        if ($get_stmt->execute(array($house_id))){
+        $get_stmt = $this->connect()->prepare("SELECT * FROM goals WHERE added_date < NOW() AND user_id = (SELECT user_id from household_accounts where household_accounts.house_hold_id = ? LIMIT 1) ");
+        //AND @user_name :=(SELECT users_email FROM cost.accounts where user_id = ?);
+        if ($get_stmt->execute(array($house_id))) {
 
             $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            for ($i = 0; $i < $get_stmt->rowCount(); $i++){
+            for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
                 echo "Goal: ";
-                echo $selector[$i]['goal_name']."<br>";
+                echo $selector[$i]['goal_name'] . "<br>";
                 echo " Amount: ";
-                echo "$".$selector[$i]['goal_price']."<br>";
+                echo "$" . $selector[$i]['goal_price'] . "<br>";
                 echo " Date added: ";
-                echo $selector[$i]['added_date']."<br>";
+                echo $selector[$i]['added_date'] . "<br>";
                 echo " Added by: ";
                 echo $selector[$i]['user_id'];//temp
                 echo "<br><hr>";
@@ -92,15 +94,54 @@ class Insert_get extends Dbh
 
     }
 
-    function get_all_costs(){
+    //TODO: Popraviti da kveriji pokazuju sve vrednosti ne samo one koje je jedan user stavio
+    function get_all_costs($house_id)
+    {
+        $get_stmt = $this->connect()->prepare("SELECT * FROM cash_flow WHERE users_id = (SELECT user_id from household_accounts where house_hold_id = ? LIMIT 1) AND positive_negative = 0;");
 
-        $get_stmt = $this->connect()->prepare("");
+        if ($get_stmt->execute(array($house_id))) {
+
+            $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
+                echo "Amount: $";
+                echo $selector[$i]['amount'] . "<br>";
+                echo " Category: ";
+                echo $selector[$i]['category_id'] . "<br>";
+                echo " Date added: ";
+                echo $selector[$i]['date_added'] . "<br>";
+                echo " Added by: ";
+                echo $selector[$i]['users_id'] . "<br>";
+                echo "<br><hr>";
+
+            }
+        }
+
 
     }
 
-    function get_all_additions(){
+    function get_all_additions($house_id)
+    {
 
-        $get_stmt = $this->connect()->prepare("");
+        $get_stmt = $this->connect()->prepare("SELECT * FROM cash_flow WHERE users_id = (SELECT user_id from household_accounts where house_hold_id = ? LIMIT 1) AND positive_negative = 1;");
+
+        if ($get_stmt->execute(array($house_id))) {
+
+            $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
+                echo "Amount: $";
+                echo $selector[$i]['amount'] . "<br>";
+                echo " Category: ";
+                echo $selector[$i]['category_id'] . "<br>";
+                echo " Date added: ";
+                echo $selector[$i]['date_added'] . "<br>";
+                echo " Added by: ";
+                echo $selector[$i]['users_id'] . "<br>";
+                echo "<br><hr>";
+
+            }
+        }
 
     }
 
@@ -110,7 +151,7 @@ class Insert_get extends Dbh
         $get_stmt = $this->connect()->prepare("SELECT category_id,category_name FROM cateogries WHERE category_type=0 AND household_id IS NULL OR household_id=?");
 
 
-        if ($get_stmt->execute(array($group_id))){
+        if ($get_stmt->execute(array($group_id))) {
             while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
                 for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
                     echo '<option value="' . $selector[$i]['category_id'] . '">' . $selector[$i]['category_name'] . '</option>';
@@ -124,15 +165,13 @@ class Insert_get extends Dbh
 
         $get_stmt = $this->connect()->prepare("SELECT category_id,category_name FROM cateogries WHERE category_type=1 AND  household_id IS NULL OR  household_id=?;");
 
-        if ( $get_stmt->execute(array($group_id))){
+        if ($get_stmt->execute(array($group_id))) {
             while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
                 for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
                     echo '<option value="' . $selector[$i]['category_id'] . '">' . $selector[$i]['category_name'] . '</option>';
                 }
             }
         }
-
-
 
 
     }

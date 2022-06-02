@@ -8,7 +8,6 @@ if (!isset($_SESSION['authenticated'])) {
 require_once "../classes/first-time-loggedin.classes.php";
 
 
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -95,16 +94,18 @@ require_once "../classes/first-time-loggedin.classes.php";
                     $email = $_SESSION['email'];
 
                     if ($first_log->check_if_house_admin($email)){
-                        if ($first_log->check_alone($_SESSION["users_id"],$_SESSION['house_id'])){
+                    if ($first_log->check_alone($_SESSION["users_id"], $_SESSION['house_id'])){
 
 
                     ?>
                 <li class='nav-item'>
-                    <a href='add-new-user.php?group_name=<?php  if (isset($_SESSION['group_name'])){echo  $_SESSION['group_name']; } ?>'
+                    <a href='add-new-user.php?group_name=<?php if (isset($_SESSION['group_name'])) {
+                        echo $_SESSION['group_name'];
+                    } ?>'
                        class='nav-link text-white'>Add a member</a>
                 </li>
                 <?php
-                    }
+                }
                 }
 
 
@@ -232,7 +233,9 @@ $get->get_group_name($_COOKIE['users_id']);
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
          id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" style="width: 280px;">
         <div class="offcanvas-header bg-black text-white">
-            <h5 class="offcanvas-title" id="offcanvasScrollingLabel"><?php if (isset($_SESSION['group_name'])){echo $_SESSION['group_name'];} ?></h5>
+            <h5 class="offcanvas-title" id="offcanvasScrollingLabel"><?php if (isset($_SESSION['group_name'])) {
+                    echo $_SESSION['group_name'];
+                } ?></h5>
             <button type="button" class="btn-close text-reset bg-white" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
         </div>
@@ -407,16 +410,21 @@ $get->get_group_name($_COOKIE['users_id']);
                     $amount = $_COOKIE['amount'];
 
                     ?>
-                    <p class="card-text text-center" id="goal_response"><?php if (isset($goal) ) {
+                    <p class="card-text text-center" id="goal_response"><?php if (isset($goal)) {
                             echo $goal;
                         } ?></p>
-                    <p class="card-text text-center" id="amount_response">It's value is: $<?php if (isset($amount) ) {
+                    <p class="card-text text-center" id="amount_response">It's value is: $<?php if (isset($amount)) {
                             echo $amount;
                         } ?></p>
 
-
                     <div class="text-center">
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <br>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="0"
+                                 aria-valuemin="0" aria-valuemax="100">25%
+                            </div>
+                        </div>
+                        <br>
                         <button class="btn btn-warning  text-black btn-lg" data-bs-toggle="modal"
                                 data-bs-target="#target" id="change_goal">Change goal
                         </button>
@@ -439,8 +447,12 @@ $get->get_group_name($_COOKIE['users_id']);
                             <h5 class="card-title">Add an amount to the budget</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional
                                 content.</p>
-                            <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#enroll" id="add_btn">+</button>
-                            <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#previous_additions" id="additions_btn">Show all additions</button>
+                            <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#enroll"
+                                    id="add_btn">+
+                            </button>
+                            <button class="btn btn-success btn-lg" data-bs-toggle="modal"
+                                    data-bs-target="#previous_additions" id="additions_btn">Show all additions
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -450,8 +462,12 @@ $get->get_group_name($_COOKIE['users_id']);
                             <h5 class="card-title">Withdraw from the budget</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional
                                 content.</p>
-                            <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#delete" id="delete_btn">-</button>
-                            <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#previous_costs" id="costs_btn">Show all costs</button>
+                            <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#delete"
+                                    id="delete_btn">-
+                            </button>
+                            <button class="btn btn-danger btn-lg" data-bs-toggle="modal"
+                                    data-bs-target="#previous_costs" id="costs_btn">Show all costs
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -467,7 +483,7 @@ $get->get_group_name($_COOKIE['users_id']);
     <div class="modal fade" id="previous_costs" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
 
         <!--AJAX script for previous goals-->
-        <script type="text/javascript" >
+        <script type="text/javascript">
 
         </script>
 
@@ -481,7 +497,7 @@ $get->get_group_name($_COOKIE['users_id']);
                 </div>
                 <div class="modal-body">
 
-
+                    <?php $get->get_all_costs($house_id) ?>
 
                 </div>
                 <div class="response" id="response_previous"></div>
@@ -498,7 +514,7 @@ $get->get_group_name($_COOKIE['users_id']);
     <div class="modal fade" id="previous_additions" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
 
         <!--AJAX script for previous goals-->
-        <script type="text/javascript" >
+        <script type="text/javascript">
 
         </script>
 
@@ -512,7 +528,7 @@ $get->get_group_name($_COOKIE['users_id']);
                 </div>
                 <div class="modal-body">
 
-
+                    <?php $get->get_all_additions($house_id) ?>
 
                 </div>
                 <div class="response" id="response_previous"></div>
@@ -529,7 +545,7 @@ $get->get_group_name($_COOKIE['users_id']);
     <div class="modal fade" id="previous_target" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
 
         <!--AJAX script for previous goals-->
-        <script type="text/javascript" >
+        <script type="text/javascript">
 
         </script>
 
@@ -541,20 +557,19 @@ $get->get_group_name($_COOKIE['users_id']);
                     <button type="button" id="load_btn" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                 </div>
-                    <div class="modal-body">
+                <div class="modal-body">
 
-                        <?php $get->get_previous_goals($house_id); ?>
+                    <?php $get->get_previous_goals($house_id); ?>
 
-                    </div>
-                    <div class="response" id="response_previous"></div>
-                    <div class="modal-footer">
+                </div>
+                <div class="response" id="response_previous"></div>
+                <div class="modal-footer">
 
-                    </div>
+                </div>
             </div>
         </div>
     </div>
     <!--PREVIOUS GOAL END-->
-
 
 
     <!--CHANGE GOAL START-->
@@ -575,21 +590,21 @@ $get->get_group_name($_COOKIE['users_id']);
                 <form action="target-modal-code.php" name="target-form" id="target-form">
                     <div class="modal-body">
 
-                            <div class="mb-3 input-control">
-                                <label for="goal_name">Goal</label>
-                                <input type="text" class="form-control" id="goal_name" name="goal_name"
-                                       placeholder="Goal" pattern="[a-zA-Z]+">
-                                <small class="message text-danger" id="error_goal_name"></small>
-                                <br>
-                            </div>
+                        <div class="mb-3 input-control">
+                            <label for="goal_name">Goal</label>
+                            <input type="text" class="form-control" id="goal_name" name="goal_name"
+                                   placeholder="Goal" pattern="[a-zA-Z]+">
+                            <small class="message text-danger" id="error_goal_name"></small>
+                            <br>
+                        </div>
 
-                            <div class="mb-3 input-control">
-                                <label for="amount">Amount</label>
-                                <input type="number" class="form-control" id="amount" name="amount"
-                                       placeholder="Amount">
-                                <small id="error_amount"></small>
-                                <br>
-                            </div>
+                        <div class="mb-3 input-control">
+                            <label for="amount">Amount</label>
+                            <input type="number" class="form-control" id="amount" name="amount"
+                                   placeholder="Amount">
+                            <small id="error_amount"></small>
+                            <br>
+                        </div>
                     </div>
                     <div class="response" id="response"></div>
                     <div class="modal-footer">
@@ -806,7 +821,7 @@ $get->get_group_name($_COOKIE['users_id']);
                     let one_week_chart = new Chart(week_chart, {
                         type: 'line', //bar, horizontal bar, pie, line ,doughnut, radar, polar area
                         data: {
-                            labels: ['Monday', 'Tuesday', 'Wednesday' , 'Friday' , 'Saturday', 'Sunday'],
+                            labels: ['Monday', 'Tuesday', 'Wednesday', 'Friday', 'Saturday', 'Sunday'],
                             datasets: [{
                                 data: [
                                     <?php echo $budget; ?>,
