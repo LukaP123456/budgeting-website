@@ -86,6 +86,50 @@ class SignupContr extends Signup
 
     }
 
+    public function signupAdmin()
+    {
+
+        if ($this->emptyInput() == false) {
+            $_SESSION['error1'] = true;
+            header("location:../includes/admin-signup.php?error=empty_input");
+            exit();
+        }
+
+        if ($this->invalid_fullname() == false) {
+            //Invalid full name
+            $_SESSION['error1'] = true;
+            header("location:../includes/admin-signup.php?error=full_name");
+            exit();
+        }
+
+        if ($this->invalidEmail() == false) {
+            //invalid email
+            $_SESSION['error1'] = true;
+            header("location:../includes/admin-signup.php?error=invalidemail");
+            exit();
+        }
+
+        if ($this->pwdMatch() == false) {
+            //passwords do not match
+            $_SESSION['error1'] = true;
+            header("location:../includes/admin-signup.php?error=password_match");
+            exit();
+        }
+
+        if ($this->email_TakenCheck() == false) {
+            //passwords do not match
+            $_SESSION['error1'] = true;
+            header("location:../includes/admin-signup.php?error=email_taken");
+            exit();
+        }
+
+
+        //Part that will sign up the user to the website
+        $this->setAdmin($this->pwd, $this->email, $this->full_name, $this->verify_token, $this->ip, $this->browser);
+
+
+    }
+
     public function signup_user_invite()
     {
 

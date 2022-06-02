@@ -29,7 +29,8 @@ if (isset($_POST['submit'])) {
     $pwdRepeat = $_POST["pwdRepeat"];
     $email = $_POST["email"];
     $ip = get_client_ip();
-    setcookie("email", $email, time() + (10 * 365 * 24 * 60 * 60), "/", "");
+    setcookie("admin_email", $email, time() + (10 * 365 * 24 * 60 * 60), "/", "");
+
 
     require '../vendor/autoload.php';
 
@@ -52,7 +53,7 @@ if (isset($_POST['submit'])) {
     $signup = SignupContr::create()->set_vanilla_user($full_name,$pwd,$pwdRepeat,$email,$verify_token,$ip,$browser);
 
     //Runs error handlers and inserts the user into the database
-    $signup->signupUser();
+    $signup->signupAdmin();
 
     //Povratak na glavnu stranu
     header("location../index.php?error=none");

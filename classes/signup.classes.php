@@ -76,14 +76,14 @@ class Signup extends Dbh
         //$mail->Host = "smtp.mail.yahoo.com ";                                         //Set the SMTP server to send through
         $mail->Host = 'smtp.gmail.com';                                         //Set the SMTP server to send through
         $mail->SMTPAuth = true;                                                 //Enable SMTP authentication
-        $mail->Username = 'lpbudgeting456@gmail.com';                              //SMTP username
-        $mail->Password = 'lpbudgetingcankareva11';                                 //SMTP password
+        $mail->Username = 'lpbudgeting987@gmail.com';                              //SMTP username
+        $mail->Password = 'LpBudgeting987gunduliceva';                                 //SMTP password
 
         $mail->SMTPSecure = "tls";                                              //Enable implicit TLS encryption
         $mail->Port = 587;                                                      //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
         //Recipients
-        $mail->setFrom('LP_BUDGETING@gmail.com', "LP Budgeting");
+        $mail->setFrom('lpbudgeting456@gmail.com', "LP Budgeting");
         $mail->addAddress($email, $full_name);                                  //Add a recipient
 
         //Content
@@ -131,10 +131,36 @@ class Signup extends Dbh
 
             $_SESSION['email'] = $email;
 
-            $_SESSION[] = "<span class='success'> Signed up successfully </span>";
+        }
 
+        $stmt = null;
 
+    }
 
+    protected function setAdmin($pwd, $email, $full_name, $verify_token, $ip, $browser)
+    {
+        $stmt = $this->connect()->prepare(
+            "BEGIN;
+         INSERT INTO accounts(users_pwd,users_email,full_name,verify_token,date_time_signup,role) values (?,?,?,?,now(),2);
+         INSERT INTO log_data(users_id,ip_adress,web_browser_OS) values(LAST_INSERT_ID(),?,?);
+         COMMIT;");
+
+        $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+
+        //The result of the execute function is true or false based on the succes of the execution
+        if (!$stmt->execute(array($hashedPwd, $email, $full_name, $verify_token, $ip, $browser))) {
+            //Throws an error message in the url if it fails setting a user
+            $stmt = null;
+            $_SESSION['error1'] = true;
+            header("location:../includes/admin-signup.php?error=stmtfailed");
+            exit();
+        } else {
+
+            //header("Location:../signup_success_admin.php");
+            //Sends a verification email and show a success message if the user was set successfully
+            $this->sendemail_verify($full_name, $email, $verify_token);
+
+            $_SESSION['admin_email'] = $email;
 
         }
 
