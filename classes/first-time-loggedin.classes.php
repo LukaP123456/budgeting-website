@@ -52,6 +52,21 @@ class first_time_logged extends Dbh
 
 
     }
+    //TODO: Napraviti da funckionise check_alone da add member moze samo da uradi house admin koji nije sam
+    function check_alone($user_id,$house_id){
+
+        $select_stmt = $this->connect()->prepare("SELECT * FROM household_accounts WHERE user_id=? AND house_hold_id = ?");
+
+        if ($select_stmt->execute(array($user_id,$house_id))){
+
+            if ($select_stmt->rowCount() > 1){
+                return false;
+            }
+
+        }
+
+        return true;
+    }
 
     //Sends and email for verification
 

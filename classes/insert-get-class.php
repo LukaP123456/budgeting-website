@@ -53,14 +53,12 @@ class Insert_get extends Dbh
                 for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
                     $goal = $selector[$i]['goal_name'];
                     $amount = $selector[$i]['goal_price'];
-//                    $user_id = $selector[$i]['user_id'];
                     $goal_achieved = $selector[$i]['goal_achieved'];
 
                 }
 
                 setcookie("goal", $goal, time() + (10 * 365 * 24 * 60 * 60), "/", "");
                 setcookie("amount", $amount, time() + (10 * 365 * 24 * 60 * 60), "/", "");
-//                setcookie("user_id", $user_id, time() + (10 * 365 * 24 * 60 * 60), "/", "");
                 setcookie("goal_achieved", $goal_achieved, time() + (10 * 365 * 24 * 60 * 60), "/", "");
 
                 return true;
@@ -69,7 +67,7 @@ class Insert_get extends Dbh
 
         }
     }
-
+    //TODO: Napraviti da radi za usere koji nisu sami u kuci
     function get_previous_goals($house_id){
 
         $get_stmt = $this->connect()->prepare("SELECT * FROM goals WHERE added_date < NOW() AND user_id = (SELECT user_id from household_accounts where household_accounts.house_hold_id = ? )") ;
@@ -79,12 +77,30 @@ class Insert_get extends Dbh
             $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
 
             for ($i = 0; $i < $get_stmt->rowCount(); $i++){
-
-                echo $selector[$i]['goal_name'];
-                echo $selector[$i]['added_date'];
+                echo "Goal: ";
+                echo $selector[$i]['goal_name']."<br>";
+                echo " Amount: ";
+                echo "$".$selector[$i]['goal_price']."<br>";
+                echo " Date added: ";
+                echo $selector[$i]['added_date']."<br>";
+                echo " Added by: ";
+                echo $selector[$i]['user_id'];//temp
+                echo "<br><hr>";
             }
 
         }
+
+    }
+
+    function get_all_costs(){
+
+        $get_stmt = $this->connect()->prepare("");
+
+    }
+
+    function get_all_additions(){
+
+        $get_stmt = $this->connect()->prepare("");
 
     }
 
@@ -131,7 +147,6 @@ class Insert_get extends Dbh
                 while ($selector = $select_stmt->fetchAll(PDO::FETCH_ASSOC)) {
                     for ($i = 0; $i < $select_stmt->rowCount(); $i++) {
                         $house_id = $selector[$i]["house_hold_id"];
-
                     }
                 }
 

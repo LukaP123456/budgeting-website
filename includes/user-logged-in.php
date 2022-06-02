@@ -95,6 +95,8 @@ require_once "../classes/first-time-loggedin.classes.php";
                     $email = $_SESSION['email'];
 
                     if ($first_log->check_if_house_admin($email)){
+                        if ($first_log->check_alone($_SESSION["users_id"],$_SESSION['house_id'])){
+
 
                     ?>
                 <li class='nav-item'>
@@ -102,6 +104,7 @@ require_once "../classes/first-time-loggedin.classes.php";
                        class='nav-link text-white'>Add a member</a>
                 </li>
                 <?php
+                    }
                 }
 
 
@@ -436,8 +439,8 @@ $get->get_group_name($_COOKIE['users_id']);
                             <h5 class="card-title">Add an amount to the budget</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional
                                 content.</p>
-                            <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#enroll" id="add_btn">+
-                            </button>
+                            <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#enroll" id="add_btn">+</button>
+                            <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#previous_additions" id="additions_btn">Show all additions</button>
                         </div>
                     </div>
                 </div>
@@ -447,8 +450,8 @@ $get->get_group_name($_COOKIE['users_id']);
                             <h5 class="card-title">Withdraw from the budget</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional
                                 content.</p>
-                            <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#delete" id="delete_btn">-
-                            </button>
+                            <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#delete" id="delete_btn">-</button>
+                            <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#previous_costs" id="costs_btn">Show all costs</button>
                         </div>
                     </div>
                 </div>
@@ -459,6 +462,68 @@ $get->get_group_name($_COOKIE['users_id']);
 <br>
 <br>
 <br>
+    <!--PREVIOUS COSTS START-->
+
+    <div class="modal fade" id="previous_costs" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
+
+        <!--AJAX script for previous goals-->
+        <script type="text/javascript" >
+
+        </script>
+
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="costs_modal">
+                <div class="modal-header"
+                     style="background: url('../img/red-bg.jpg'); background-size: cover; height: 10vh">
+                    <h5 class="modal-title text-white" id="enrollLabel">Previous costs to the house expenses</h5>
+                    <button type="button" id="load_btn" class="btn-close bg-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+
+                </div>
+                <div class="response" id="response_previous"></div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--PREVIOUS COSTS END-->
+
+    <!--PREVIOUS ADDITIONS START-->
+
+    <div class="modal fade" id="previous_additions" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
+
+        <!--AJAX script for previous goals-->
+        <script type="text/javascript" >
+
+        </script>
+
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="additions_modal">
+                <div class="modal-header"
+                     style="background: url('../img/bg_money.jpg'); background-size: cover; height: 10vh">
+                    <h5 class="modal-title text-white" id="enrollLabel">Previous additions to the house budget</h5>
+                    <button type="button" id="load_btn" class="btn-close bg-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+
+                </div>
+                <div class="response" id="response_previous"></div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--PREVIOUS ADDITIONS END-->
+
     <!--PREVIOUS GOAL START-->
 
     <div class="modal fade" id="previous_target" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
