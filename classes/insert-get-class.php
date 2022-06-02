@@ -178,6 +178,7 @@ class Insert_get extends Dbh
 
     function get_house_id($user_id)
     {
+        $house_id = 0;
 
         $select_stmt = $this->connect()->prepare("SELECT * FROM household_accounts  WHERE user_id=? LIMIT 1;");
 
@@ -271,6 +272,7 @@ class Insert_get extends Dbh
 
     function get_budget($group_id): string
     {
+        $return_value = 0;
 
         $get_stmt = $this->connect()->prepare("SELECT SUM(amount) FROM cash_flow WHERE positive_negative=1 AND users_id IN(SELECT user_id FROM household_accounts WHERE house_hold_id = ?);");
 
@@ -291,6 +293,7 @@ class Insert_get extends Dbh
 
     function get_expenses($group_id): string
     {
+        $return_value = 0;
 
         $get_stmt = $this->connect()->prepare("SELECT SUM(amount) FROM cash_flow WHERE positive_negative=0 AND users_id IN(SELECT user_id FROM household_accounts WHERE house_hold_id = ?);");
 
@@ -307,6 +310,23 @@ class Insert_get extends Dbh
 
         return $return_value;
 
+    }
+
+    function get_expense_week($house_id){
+        $return_value = 0;
+        //TODO:limit 1 ovde vraca samo jeddnu vrednost a bez njega ne radi
+        $get_stmt =$this->connect()->prepare("SELECT * FROM cash_flow WHERE users_id IN (SELECT user_id FROM household_accounts where house_hold_id = ?) AND date_added >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY AND date_added < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY AND positive_negative = 0;") ;
+
+        if ($get_stmt->execute(array($house_id))){
+
+            while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)){
+                for ($i = 0; $i < $get_stmt->rowCount(); $i++){
+                    $return_value = $selector['amount'];
+                }
+            }
+        }
+
+        return $return_value;
     }
 
 }

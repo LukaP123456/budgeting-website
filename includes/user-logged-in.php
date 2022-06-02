@@ -804,6 +804,11 @@ $get->get_group_name($_COOKIE['users_id']);
     </script>
 <br>
 <br>
+
+    <?php
+        $expenses_weekly = $get->get_expense_week($house_id);
+
+    ?>
     <div class="card text-center">
         <div class="card-header">
             LAST 7 DAYS
@@ -824,11 +829,9 @@ $get->get_group_name($_COOKIE['users_id']);
                             labels: ['Monday', 'Tuesday', 'Wednesday', 'Friday', 'Saturday', 'Sunday'],
                             datasets: [{
                                 data: [
-                                    <?php echo $budget; ?>,
-                                    <?php echo $expenses; ?>
+                                    <?php echo $expenses_weekly; ?>
                                 ],
                                 backgroundColor: [
-                                    'green',
                                     'red'
                                 ],
                                 borderWidth: 1,
