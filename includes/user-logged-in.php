@@ -226,7 +226,6 @@ $get->get_group_name($_COOKIE['users_id']);
     </svg>
 
     <script src="../js/sidebars.js"></script>
-
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
          id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" style="width: 280px;">
         <div class="offcanvas-header bg-black text-white">
