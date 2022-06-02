@@ -19,8 +19,8 @@ class resend extends Dbh
         $mail->isSMTP();                                                        //Send using SMTP
         $mail->Host = 'smtp.gmail.com';                                         //Set the SMTP server to send through
         $mail->SMTPAuth = true;                                                 //Enable SMTP authentication
-        $mail->Username = 'lpbudgeting456@gmail.com';                              //SMTP username
-        $mail->Password = 'lpbudgetingcankareva11';                                 //SMTP password
+        $mail->Username = '26120060@vts.su.ac.rs';                              //SMTP username
+        $mail->Password = '0204001820014';                                 //SMTP password
 
         $mail->SMTPSecure = "tls";                                              //Enable implicit TLS encryption
         $mail->Port = 587;                                                      //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`

@@ -76,8 +76,8 @@ class Signup extends Dbh
         //$mail->Host = "smtp.mail.yahoo.com ";                                         //Set the SMTP server to send through
         $mail->Host = 'smtp.gmail.com';                                         //Set the SMTP server to send through
         $mail->SMTPAuth = true;                                                 //Enable SMTP authentication
-        $mail->Username = 'lpbudgeting987@gmail.com';                              //SMTP username
-        $mail->Password = 'LpBudgeting987gunduliceva';                                 //SMTP password
+        $mail->Username = '26120060@vts.su.ac.rs';                              //SMTP username
+        $mail->Password = '0204001820014';                                 //SMTP password
 
         $mail->SMTPSecure = "tls";                                              //Enable implicit TLS encryption
         $mail->Port = 587;                                                      //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
