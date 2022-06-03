@@ -6,8 +6,6 @@ if (!isset($_SESSION['authenticated'])) {
 }
 
 require_once "../classes/first-time-loggedin.classes.php";
-
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -94,9 +92,7 @@ require_once "../classes/first-time-loggedin.classes.php";
                     $email = $_SESSION['email'];
 
                     if ($first_log->check_if_house_admin($email)){
-                    if ($first_log->check_alone($_SESSION["users_id"], $_SESSION['house_id'])){
-
-
+                        if ($first_log->check_alone($_SESSION["users_id"], $_SESSION['house_id'])){
                     ?>
                 <li class='nav-item'>
                     <a href='add-new-user.php?group_name=<?php if (isset($_SESSION['group_name'])) {
@@ -105,7 +101,7 @@ require_once "../classes/first-time-loggedin.classes.php";
                        class='nav-link text-white'>Add a member</a>
                 </li>
                 <?php
-                }
+                    }
                 }
 
 
@@ -233,8 +229,8 @@ $get->get_group_name($_COOKIE['users_id']);
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
          id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" style="width: 280px;">
         <div class="offcanvas-header bg-black text-white">
-            <h5 class="offcanvas-title" id="offcanvasScrollingLabel"><?php if (isset($_COOKIE['group_name'])) {
-                    echo $_COOKIE['group_name'];
+            <h5 class="offcanvas-title" id="offcanvasScrollingLabel"><?php if (isset($_SESSION['group_name'])) {
+                    echo $_SESSION['group_name'];
                 } ?></h5>
             <button type="button" class="btn-close text-reset bg-white" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
@@ -902,6 +898,15 @@ $expenses_weekly = $get->get_expense_week($house_id);
 }
 ?>
 
+<script type="text/javascript">
 
+    window.onload = function() {
+        if(!window.location.hash) {
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
+    }
+
+</script>
 </body>
 </html>

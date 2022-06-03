@@ -15,7 +15,8 @@ class Insert_get extends Dbh
 
             $_SESSION['group_name'] = $selector[0]['household_name'];
 
-            setcookie("group_name", $selector[0]['household_name'], time() + (10 * 365 * 24 * 60 * 60), "/", "");
+//            setcookie("group_name", $selector[0]['household_name'], time() + (10 * 365 * 24 * 60 * 60), "/", "");
+            //TODO:$_COOKIE['group_name'] sam izbrisao jer zapravo ne radi kako treba, kod korisnika koji su u kuci "sama kuca" ispisuje naziv suprotne i obrnuto
         }
     }
 

@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 include_once "dbh.classes.php";
 
 class Login extends Dbh
@@ -50,19 +50,16 @@ class Login extends Dbh
                 exit();
             }
 
-//            $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//
-//            $_SESSION["email"] = $user[0]["users_email"];
-//            $_SESSION["users_email"] = $user[0]["users_email"];
-//            $_SESSION["users_id"] = $user[0]["users_id"];
+            $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            while ($user = $stmt->fetchAll(PDO::FETCH_ASSOC)){
-                for ($i = 0; $i < $stmt->rowCount(); $i++){
-                    $_SESSION["email"] = $user[$i]["users_email"];
-                    $_SESSION["users_email"] = $user[$i]["users_email"];
-                    $_SESSION["users_id"] = $user[$i]["users_id"];
-                }
-            }
+            $_SESSION["email"] = $user[0]["users_email"];
+            $_SESSION["users_email"] = $user[0]["users_email"];
+            $_SESSION["users_id"] = $user[0]["users_id"];//TODO:Problem ovde pocinje kada var_dumpujem sve vrednosti vrati iste one koje su u bazi tj sve je ok
+
+            var_dump($_SESSION["users_id"]);
+            var_dump($_SESSION["users_email"]);
+            var_dump($_SESSION["email"]);
+
 
             $stmt = null;
 
