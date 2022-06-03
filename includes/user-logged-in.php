@@ -422,7 +422,7 @@ $get->get_group_name($_COOKIE['users_id']);
                                 data-bs-target="#target" id="change_goal">Change goal
                         </button>
                         <button class="btn btn-warning  text-black btn-lg" data-bs-toggle="modal"
-                                data-bs-target="#previous_target">View previous goals
+                                data-bs-target="#previous_target" id="view_previous_goals">View previous goals
                         </button>
 
                     </div>
@@ -472,13 +472,29 @@ $get->get_group_name($_COOKIE['users_id']);
 <br>
 <br>
     <!--PREVIOUS COSTS START-->
+    <!--Ajax previous withdraws -->
+    <script type="text/javascript">
+
+    $(document).ready(function (){
+        $("#costs_btn").click(function (){
+
+            $.ajax({
+                method:"post",
+                url:"get_previous_costs.php",
+                success: function (response){
+                    $("#all_costs_body").html(response);
+                },
+                error:function (response){
+                    alert(JSON.stringify(response));
+                }
+            })
+        });
+    });
+
+
+    </script>
 
     <div class="modal fade" id="previous_costs" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
-
-        <!--AJAX script for previous goals-->
-        <script type="text/javascript">
-
-        </script>
 
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content" id="costs_modal">
@@ -488,7 +504,7 @@ $get->get_group_name($_COOKIE['users_id']);
                     <button type="button" id="load_btn" class="btn-close bg-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="all_costs_body">
 
                     <?php $get->get_all_costs($house_id) ?>
 
@@ -504,12 +520,29 @@ $get->get_group_name($_COOKIE['users_id']);
 
     <!--PREVIOUS ADDITIONS START-->
 
+    <!--Ajax previous additions -->
+    <script type="text/javascript">
+
+    $(document).ready(function (){
+        $("#additions_btn").click(function (){
+
+                $.ajax({
+                    method:"post",
+                    url:"get_previous_additions.php",
+                    success: function (response){
+                            $("#all_additions_body").html(response);
+                    },
+                    error:function (response){
+                        alert(JSON.stringify(response));
+                    }
+                })
+        });
+    });
+
+
+    </script>
+
     <div class="modal fade" id="previous_additions" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
-
-        <!--AJAX script for previous goals-->
-        <script type="text/javascript">
-
-        </script>
 
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content" id="additions_modal">
@@ -519,7 +552,7 @@ $get->get_group_name($_COOKIE['users_id']);
                     <button type="button" id="load_btn" class="btn-close bg-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="all_additions_body">
 
                     <?php $get->get_all_additions($house_id) ?>
 
@@ -536,11 +569,26 @@ $get->get_group_name($_COOKIE['users_id']);
     <!--PREVIOUS GOAL START-->
 
     <div class="modal fade" id="previous_target" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
+    <!--AJAX script for previous goals-->
+    <script type="text/javascript">
 
-        <!--AJAX script for previous goals-->
-        <script type="text/javascript">
+        $(document).ready(function (){
+            $("#view_previous_goals").click(function (){
 
-        </script>
+                $.ajax({
+                    method:"post",
+                    url:"get_previous_goals.php",
+                    success: function (response){
+                            $("#previous_goals_body").html(response);
+                    },
+                    error:function (response){
+                        alert(JSON.stringify(response));
+                    }
+                })
+            });
+        });
+
+    </script>
 
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content" id="target_modal">
@@ -550,7 +598,8 @@ $get->get_group_name($_COOKIE['users_id']);
                     <button type="button" id="load_btn" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="previous_goals_body">
+                    <input type="hidden" id="house_id_goals">
 
                     <?php $get->get_previous_goals($house_id); ?>
 
@@ -581,7 +630,7 @@ $get->get_group_name($_COOKIE['users_id']);
                             aria-label="Close"></button>
                 </div>
                 <form action="target-modal-code.php" name="target-form" id="target-form">
-                    <div class="modal-body">
+                    <div class="modal-body" >
 
                         <div class="mb-3 input-control">
                             <label for="goal_name">Goal</label>
@@ -866,8 +915,6 @@ $expenses_weekly = $get->get_expense_week($house_id);
 
                         }
                     });
-
-
                 </script>
             </div>
         </div>
@@ -893,30 +940,12 @@ $expenses_weekly = $get->get_expense_week($house_id);
 }
 ?>
 
-<div class="loader-container">
-    <img src="../img/loader.gif"  alt="loader">
-</div>
+<!--<div class="loader-container">-->
+<!--    <img src="../img/loader.gif"  alt="loader">-->
+<!--</div>-->
 
-<script type="text/javascript">
-
-    $(document).ready(function (){
-        fadeOut()
-    },window.onload = function() {
-        if(!window.location.hash) {
-            window.location = window.location + '#loaded';
-            window.location.reload();
-        }
-    })
-
-    function loader(){
-        document.querySelector('.loader-container').classList.add('fade-out');
-    }
-
-    function fadeOut(){
-        setInterval(loader,1500);
-    }
-
-</script>
+<!--Loader script for loader gif and refresh page-->
+<!--<script type="text/javascript" src="../js/loader-refresh.js"></script>-->
 
 </body>
 </html>

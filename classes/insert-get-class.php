@@ -72,7 +72,6 @@ class Insert_get extends Dbh
     //TODO:Napraviti da se prikazuje i ime usera ne samo id
     function get_previous_goals($house_id)
     {
-
         $get_stmt = $this->connect()->prepare("SELECT * FROM goals WHERE added_date < NOW() AND user_id = (SELECT user_id from household_accounts where household_accounts.house_hold_id = ? LIMIT 1) ORDER BY  added_date desc ;");
         //AND @user_name :=(SELECT users_email FROM cost.accounts where user_id = ?);
         if ($get_stmt->execute(array($house_id))) {

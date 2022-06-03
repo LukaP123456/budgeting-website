@@ -68,7 +68,7 @@ $(document).ready(function () {
                         $("#neg_response").html("<div class='alert alert-success' role='alert'>Successfully added a new cost of $" + amount + "</div>");
 
                         $.ajax({
-                            type: "GET",
+                            type: "POST",
                             url: "get_expenses.php",
                             success: function (response) {
                                 $("#delete").on("hidden.bs.modal", function (e) {

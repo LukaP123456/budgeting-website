@@ -68,7 +68,7 @@ $(document).ready(function () {
                         $("#pos_response").html("<div class='alert alert-success' role='alert'>Successfully added an amount of $" + pos_amount + "</div>");
 
                         $.ajax({
-                            type: "GET",
+                            type: "POST",
                             url: "get_budget.php",
                             success: function (response) {
                                 $("#enroll").on("hidden.bs.modal",function () {
@@ -81,6 +81,8 @@ $(document).ready(function () {
                                     $("#pos_category").val("choose");
                                     $("#pos_amount").val("");
                                 });
+                            },error:function (response){
+                                alert(JSON.stringify(response));
                             }
                         })
                     }else {
