@@ -349,11 +349,6 @@ $get->get_group_name($_COOKIE['users_id']);
                     $house_id = $get->get_house_id($user_id);
                     $_SESSION['house_id'] = $house_id;
 
-                    var_dump($_SESSION['group_name']);
-                    var_dump($house_id);
-                    var_dump($_COOKIE['users_id']);
-
-
                     $budget = $get->get_budget($house_id);
                     ?>
                     <p class="card-text text-center text-success" id="full_budget" style="font-size: 45px">
@@ -898,15 +893,30 @@ $expenses_weekly = $get->get_expense_week($house_id);
 }
 ?>
 
+<div class="loader-container">
+    <img src="../img/loader.gif"  alt="loader">
+</div>
+
 <script type="text/javascript">
 
-    window.onload = function() {
+    $(document).ready(function (){
+        fadeOut()
+    },window.onload = function() {
         if(!window.location.hash) {
             window.location = window.location + '#loaded';
             window.location.reload();
         }
+    })
+
+    function loader(){
+        document.querySelector('.loader-container').classList.add('fade-out');
+    }
+
+    function fadeOut(){
+        setInterval(loader,1500);
     }
 
 </script>
+
 </body>
 </html>
