@@ -233,8 +233,8 @@ $get->get_group_name($_COOKIE['users_id']);
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
          id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" style="width: 280px;">
         <div class="offcanvas-header bg-black text-white">
-            <h5 class="offcanvas-title" id="offcanvasScrollingLabel"><?php if (isset($_SESSION['group_name'])) {
-                    echo $_SESSION['group_name'];
+            <h5 class="offcanvas-title" id="offcanvasScrollingLabel"><?php if (isset($_COOKIE['group_name'])) {
+                    echo $_COOKIE['group_name'];
                 } ?></h5>
             <button type="button" class="btn-close text-reset bg-white" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
@@ -348,13 +348,15 @@ $get->get_group_name($_COOKIE['users_id']);
                     <p class="card-text text-center">Your current budget is:</p>
                     <?php
 
-                    var_dump($_SESSION['group_name']);
 
                     $user_id = $_COOKIE['users_id'];
                     $house_id = $get->get_house_id($user_id);
+                    $_SESSION['house_id'] = $house_id;
+
+                    var_dump($_SESSION['group_name']);
                     var_dump($house_id);
                     var_dump($_COOKIE['users_id']);
-                    $_SESSION['house_id'] = $house_id;
+
 
                     $budget = $get->get_budget($house_id);
                     ?>
@@ -805,10 +807,10 @@ $get->get_group_name($_COOKIE['users_id']);
 <br>
 <br>
 
-    <?php
-        $expenses_weekly = $get->get_expense_week($house_id);
+<?php
+$expenses_weekly = $get->get_expense_week($house_id);
 
-    ?>
+?>
     <div class="card text-center">
         <div class="card-header">
             LAST 7 DAYS

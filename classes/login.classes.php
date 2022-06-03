@@ -50,16 +50,23 @@ class Login extends Dbh
                 exit();
             }
 
-            $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//            $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//
+//            $_SESSION["email"] = $user[0]["users_email"];
+//            $_SESSION["users_email"] = $user[0]["users_email"];
+//            $_SESSION["users_id"] = $user[0]["users_id"];
 
-            $_SESSION["email"] = $user[0]["users_email"];
-            $_SESSION["users_email"] = $user[0]["users_email"];
-            $_SESSION["users_id"] = $user[0]["users_id"];
+            while ($user = $stmt->fetchAll(PDO::FETCH_ASSOC)){
+                for ($i = 0; $i < $stmt->rowCount(); $i++){
+                    $_SESSION["email"] = $user[$i]["users_email"];
+                    $_SESSION["users_email"] = $user[$i]["users_email"];
+                    $_SESSION["users_id"] = $user[$i]["users_id"];
+                }
+            }
 
             $stmt = null;
 
             $_SESSION['authenticated'] = true;
-
             header("Location: ../includes/user-logged-in.php");
 
 
