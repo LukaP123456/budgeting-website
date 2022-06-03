@@ -74,7 +74,6 @@ $(document).ready(function () {
                                 $("#delete").on("hidden.bs.modal", function (e) {
                                     $("#full_expenses").html("<p>$-" + response + "</p>");
 
-                                    console.log(budget_expenses_chart.data.datasets[0].data[0]);
                                     budget_expenses_chart.data.datasets[0].data[1] = response;
                                     budget_expenses_chart.update('active');
 
