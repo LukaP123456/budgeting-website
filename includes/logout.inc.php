@@ -3,21 +3,21 @@
 //TESTIRANO: ne radi
 
 //Sa casa
-//session_start();
-//$_SESSION = array();
-//
-//if (ini_get("session.use_cookies")) {
-//    $params = session_get_cookie_params();
-//    setcookie(session_name(), '', time() - 42000,
-//        $params["path"], $params["domain"],
-//        $params["secure"], $params["httponly"]
-//    );
-//}
-//
-//session_destroy();
+session_start();
+$_SESSION = array();
 
-//header("location:../index.php?error=none");
-//exit();
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+}
+
+session_destroy();
+
+header("location:../index.php?error=none");
+exit();
 
 //TESTIRANO: ne radi
 
@@ -72,12 +72,12 @@
 
 //TESTIRANO: ne radi
 //Moj kod
-session_start();
-
-session_destroy();
-unset($_COOKIE);
-
-header("location:../index.php?error=none");
+//session_start();
+//
+//session_destroy();
+//unset($_COOKIE);
+//
+//header("location:../index.php?error=none");
 
 
 

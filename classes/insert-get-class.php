@@ -68,11 +68,11 @@ class Insert_get extends Dbh
         }
     }
 
-    //TODO: Napraviti da se prikazuje i ime usera ne samo id
+    //TODO:Napraviti da se prikazuje i ime usera ne samo id
     function get_previous_goals($house_id)
     {
 
-        $get_stmt = $this->connect()->prepare("SELECT * FROM goals WHERE added_date < NOW() AND user_id = (SELECT user_id from household_accounts where household_accounts.house_hold_id = ? LIMIT 1) ");
+        $get_stmt = $this->connect()->prepare("SELECT * FROM goals WHERE added_date < NOW() AND user_id = (SELECT user_id from household_accounts where household_accounts.house_hold_id = ? LIMIT 1) ORDER BY  added_date desc ;");
         //AND @user_name :=(SELECT users_email FROM cost.accounts where user_id = ?);
         if ($get_stmt->execute(array($house_id))) {
 
@@ -94,10 +94,10 @@ class Insert_get extends Dbh
 
     }
 
-    //TODO: Popraviti da kveriji pokazuju sve vrednosti ne samo one koje je jedan user stavio
+    //TODO:Popraviti da kveriji pokazuju sve vrednosti ne samo one koje je jedan user stavio
     function get_all_costs($house_id)
     {
-        $get_stmt = $this->connect()->prepare("SELECT * FROM cash_flow WHERE users_id = (SELECT user_id from household_accounts where house_hold_id = ? LIMIT 1) AND positive_negative = 0;");
+        $get_stmt = $this->connect()->prepare("SELECT * FROM cash_flow WHERE users_id = (SELECT user_id from household_accounts where house_hold_id = ? LIMIT 1) AND positive_negative = 0 ORDER BY  date_added desc;");
 
         if ($get_stmt->execute(array($house_id))) {
 
@@ -123,7 +123,7 @@ class Insert_get extends Dbh
     function get_all_additions($house_id)
     {
 
-        $get_stmt = $this->connect()->prepare("SELECT * FROM cash_flow WHERE users_id = (SELECT user_id from household_accounts where house_hold_id = ? LIMIT 1) AND positive_negative = 1;");
+        $get_stmt = $this->connect()->prepare("SELECT * FROM cash_flow WHERE users_id = (SELECT user_id from household_accounts where house_hold_id = ? LIMIT 1) AND positive_negative = 1 ORDER BY  date_added desc;");
 
         if ($get_stmt->execute(array($house_id))) {
 
