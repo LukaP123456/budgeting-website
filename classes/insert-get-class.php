@@ -333,4 +333,21 @@ class Insert_get extends Dbh
         return $return_value;
     }
 
+    //TODO:Napraviti da radi
+    function set_goal_achieved($house_id){
+
+        $set_stmt = $this->connect()->prepare("UPDATE goals set goal_achieved = 1 WHERE user_id IN (SELECT * FROM household_accounts WHERE house_hold_id = ? )");
+
+        if ($set_stmt->execute()){
+            echo "true";
+        }else{
+            echo "false";
+        }
+
+
+    }
+
+
+
+
 }

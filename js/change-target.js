@@ -55,6 +55,7 @@ $(document).ready(function () {
                         $("#target").on("hidden.bs.modal",function (e){
                             $("#goal_response").html("<p>"+goal+"</p>");
                             $("#amount_response").html("<p>It's value is: $"+amount+"</p>");
+                            $("#hidden_amount").val(amount);
 
                             $("#goal_name").val("").removeClass("border border-danger border-2").addClass("border border-success border-2");
                             $("#amount").val("").removeClass("border border-danger border-2").addClass("border border-success border-2");

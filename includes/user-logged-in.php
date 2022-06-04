@@ -52,7 +52,6 @@ require_once "../classes/first-time-loggedin.classes.php";
             integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
     <style>
 
         .bi {
@@ -411,14 +410,70 @@ $get->get_group_name($_COOKIE['users_id']);
                     <p class="card-text text-center" id="goal_response"><?php if (isset($goal)) {
                             echo $goal;
                         } ?></p>
+
                     <p class="card-text text-center" id="amount_response">It's value is: $<?php if (isset($amount)) {
-                            echo $amount;
+                            echo $amount;//TODO:Zasto jquery ne dodaje vrednost na ovaj hidden input
                         } ?></p>
 
+                    <input type="hidden" value="0" id="hidden_amount">
+
                     <div class="text-center">
+
+                        <!--Script for reaching the goal-->
+                        <script type="text/javascript">
+
+                            let full_budget = $("#full_budget").val();
+                            let full_expenses = $("#full_expenses").val();
+                            let goal_value = $("#hidden_amount").val();
+
+                            console.log(goal_value);
+
+                            let ratio = full_budget - full_expenses;
+                            let direction = 0;
+
+                            if(ratio < goal_value){
+                                direction = 1;
+                            }
+
+                            if (!direction){
+
+                                console.log("Goal reached");
+
+                                $(document).ready(function (){
+
+                                    $.ajax({
+                                        method: "POST",
+                                        url:"set_goal_achieved.php",
+                                        data:{
+                                            full_budget: full_budget,
+                                            full_expenses: full_expenses,
+                                            goal_value: goal_value
+                                        },
+                                        success: function (response){
+                                            if (response === "success"){
+                                                console.log(response)
+
+
+                                            }else {
+                                                console.log(response)
+                                            }
+                                        },
+                                        error:function (response){
+                                            alert(response);
+                                        }
+                                    })
+                                });
+                            }
+                            else {
+                                console.log("Goal not reached");
+                            }
+
+
+                        </script>
+
                         <br>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="0"
+                        <div class="progress" style="height: 50px">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 25%; font-size: 25px" aria-valuenow="0"
                                  aria-valuemin="0" aria-valuemax="100">25%
                             </div>
                         </div>
