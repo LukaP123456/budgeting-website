@@ -347,6 +347,18 @@ class Insert_get extends Dbh
 
     }
 
+    function delete_category($category_id){
+
+        $delete_stmt = $this->connect()->prepare("DELETE FROM cateogries WHERE category_id=?;");
+
+        if ($delete_stmt->execute(array($category_id))){
+            die(true);
+        }else{
+            die(false);
+        }
+
+    }
+
 
 
 

@@ -500,6 +500,7 @@ $get->get_group_name($_COOKIE['users_id']);
                             <h5 class="card-title">Add an amount to the budget</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional
                                 content.</p>
+
                             <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#enroll"
                                     id="add_btn">+
                             </button>
@@ -767,12 +768,56 @@ $get->get_group_name($_COOKIE['users_id']);
                         <?php
                         if ($first_log->check_if_house_admin($email)) {
                             ?>
+                            <button type="button" class="btn btn-danger fas fa-exclamation-circle" id="delete_category"> Delete a category</button>
                             <a class="btn btn-success" href="add-new-category.php" role="button">Add a new category</a>
                         <?php }
                         ?>
                         <button type="button" class="btn btn-success" id="pos_submit">Submit</button>
                     </div>
                 </form>
+                <!--Delete category from list-->
+                <script type="text/javascript">
+
+                    $(document).ready(function (){
+
+                        $("#delete_category").click(function () {
+
+                            let category = $("#pos_category").val();
+
+                            let check_neg_category2 = 0;
+
+                            if (category=== "category"){
+                                $("#pos_category").addClass("border border-danger border-2");
+                                $("#error_neg_category").html("<small> Please select a categroy from the list and click the <b>Delete a category button again</b> </small>").addClass("text-danger fas fa-exclamation-circle ");
+                                check_neg_category2 = 1;
+                            }else{
+                                $('#pos_category').addClass("border border-success border-2").removeClass("border border-danger border-2");
+                                $("#error_pos_category").text("Looks good!").removeClass("text-danger fas fa-exclamation-circle ").addClass("text-success fas fas fa-check-circle");
+                            }
+
+                            if(check_neg_category2 !== 1){
+                                $.ajax({
+                                    method: "post",
+                                    url:"delete-category.php",
+                                    data:{
+                                        category:category
+                                    },
+                                    success: function (response){
+                                        if(response === "success"){
+                                            $("#pos_response").html("<div class='alert alert-danger' role='alert'>Category deleted successfully</div>");
+
+                                        }
+                                    },
+                                    error:function (response){
+                                        alert(response);
+                                    }
+                                })
+                            }
+                        })
+                    });
+
+                </script>
+
             </div>
         </div>
     </div>
@@ -824,6 +869,7 @@ $get->get_group_name($_COOKIE['users_id']);
                         <?php
                         if ($first_log->check_if_house_admin($email)) {
                             ?>
+                            <button type="button" class="btn btn-warning fas fa-exclamation-circle" id="delete_category_neg"> Delete a category</button>
                             <a class="btn btn-danger" href="add-new-negative-category.php" role="button">Add a new
                                 category</a>
                         <?php }
@@ -831,6 +877,48 @@ $get->get_group_name($_COOKIE['users_id']);
                         <button type="button" class="btn btn-danger" id="neg_submit">Submit</button>
                     </div>
                 </form>
+                <!--Delete negative category from list-->
+                <script type="text/javascript">
+
+                    $(document).ready(function (){
+
+                        $("#delete_category_neg").click(function () {
+
+                            let category = $("#neg_category").val();
+
+                            let check_neg_category2 = 0;
+
+                            if (category=== "category"){
+                                $("#neg_category").addClass("border border-danger border-2");
+                                $("#error_neg_category").html("<small> Please select a categroy from the list and click the <b>Delete a category button again</b> </small>").addClass("text-danger fas fa-exclamation-circle ");
+                                check_neg_category2 = 1;
+                            }else{
+                                $('#neg_category').addClass("border border-success border-2").removeClass("border border-danger border-2");
+                                $("#error_neg_category").text("Looks good!").removeClass("text-danger fas fa-exclamation-circle ").addClass("text-success fas fas fa-check-circle");
+                            }
+
+                            if(check_neg_category2 !== 1){
+                                $.ajax({
+                                    method: "post",
+                                    url:"delete-category.php",
+                                    data:{
+                                        category:category
+                                    },
+                                    success: function (response){
+                                        if(response === "success"){
+                                            $("#neg_response").html("<p class='alert alert-danger' role='alert'><b>Attention!</b> Category has been deleted</p>");
+                                            //TODO: Da li postoji laksi nacin da se brise vrednost iz select liste ili moram praviti novi ajax cal da bi updejtovo listu kada se izbrise vrednost
+                                        }
+                                    },
+                                    error:function (response){
+                                        alert(response);
+                                    }
+                                })
+                            }
+                        })
+                    });
+
+                </script>
             </div>
         </div>
     </div>
