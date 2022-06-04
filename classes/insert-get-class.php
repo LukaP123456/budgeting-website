@@ -69,10 +69,10 @@ class Insert_get extends Dbh
         }
     }
 
-    //TODO:Daje samo gooals koje je jedan(house admin) user uneo zbog LIMIT 1 a bez njega ne radi
+
     function get_previous_goals($house_id)
     {
-        $get_stmt = $this->connect()->prepare("SELECT accounts.users_email,goals.goal_name,goals.added_date,goals.goal_price FROM accounts INNER JOIN goals on accounts.users_id = goals.user_id WHERE user_id = (SELECT user_id from household_accounts where household_accounts.house_hold_id = ? LIMIT 1) ORDER BY  added_date desc LIMIT 100 OFFSET 1");
+        $get_stmt = $this->connect()->prepare("SELECT accounts.users_email,goals.goal_name,goals.added_date,goals.goal_price FROM accounts INNER JOIN goals on accounts.users_id = goals.user_id WHERE user_id IN (SELECT user_id from household_accounts where household_accounts.house_hold_id = ?) ORDER BY  added_date desc LIMIT 100 OFFSET 1");
 
         if ($get_stmt->execute(array($house_id))) {
 
@@ -94,7 +94,7 @@ class Insert_get extends Dbh
 
     }
 
-    //TODO:Popraviti da kveriji pokazuju sve vrednosti ne samo one koje je jedan user stavio, ovo blokira LIMIT 1 u pod selectu koji mi dobavlja user id iz household_accounts
+
     function get_all_costs($house_id)
     {
         $get_stmt = $this->connect()->prepare("
@@ -104,10 +104,10 @@ class Insert_get extends Dbh
                                                 cash_flow.category_id,
                                                 cash_flow.cost_description
                                                 FROM accounts 
-                                                INNER JOIN cash_flow On accounts.users_id = cash_flow.users_id WHERE cash_flow.users_id = (SELECT user_id 
+                                                INNER JOIN cash_flow On accounts.users_id = cash_flow.users_id WHERE cash_flow.users_id IN (SELECT user_id 
                                                                                                                                                 FROM household_accounts 
                                                                                                                                                 WHERE household_accounts.house_hold_id = ?
-                                                                                                                                            LIMIT 1)
+                                                                                                                                            )
                                                 AND cash_flow.positive_negative = 0
                                                 ORDER BY cash_flow.date_added DESC LIMIT 200");
 
@@ -134,7 +134,6 @@ class Insert_get extends Dbh
 
     }
 
-    //TODO: funkcija vraca samo one vrednosti koje je house admin uneo sto ne valja opet sumnjam na limit 1
     function get_all_additions($house_id)
     {
 
@@ -143,10 +142,10 @@ class Insert_get extends Dbh
                                                 cash_flow.date_added,
                                                 cash_flow.category_id 
                                                 FROM accounts 
-                                                INNER JOIN cash_flow On accounts.users_id = cash_flow.users_id WHERE cash_flow.users_id = (SELECT user_id 
+                                                INNER JOIN cash_flow On accounts.users_id = cash_flow.users_id WHERE cash_flow.users_id IN (SELECT user_id 
                                                                                                                                                 FROM household_accounts 
                                                                                                                                                 WHERE household_accounts.house_hold_id=?
-                                                                                                                                            LIMIT 1)
+                                                                                                                                            )
                                                 AND cash_flow.positive_negative = 1
                                                 ORDER BY cash_flow.date_added DESC LIMIT 200");
 
@@ -344,7 +343,7 @@ class Insert_get extends Dbh
     function get_expense_week($house_id){
         $return_value = 0;
 
-        $get_stmt =$this->connect()->prepare("SELECT * FROM cash_flow WHERE users_id IN (SELECT user_id FROM household_accounts where house_hold_id = ?) AND date_added >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY AND date_added < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY AND positive_negative = 0;") ;
+        $get_stmt =$this->connect()->prepare("SELECT * FROM cash_flow WHERE users_id IN (SELECT user_id FROM household_accounts where house_hold_id = ?) AND MONTH(date_added) = MONTH(curdate()) AND YEAR(date_added) = YEAR(curdate())  AND positive_negative = 0;") ;
 
         if ($get_stmt->execute(array($house_id))){
 

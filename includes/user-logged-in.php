@@ -343,11 +343,10 @@ $get->get_group_name($_COOKIE['users_id']);
                     <div class="text-center">
                         <h5 class="card-title text-white"
                             style="background: url('../img/bg_money.jpg'); background-size: cover; height: 10vh">
-                            Budget</h5>
+                            Income</h5>
                     </div>
-                    <p class="card-text text-center">Your current budget is:</p>
+                    <p class="card-text text-center">Your current income is:</p>
                     <?php
-
 
                     $user_id = $_COOKIE['users_id'];
                     $house_id = $get->get_house_id($user_id);
@@ -412,21 +411,21 @@ $get->get_group_name($_COOKIE['users_id']);
                         } ?></p>
 
                     <p class="card-text text-center" id="amount_response">It's value is: $<?php if (isset($amount)) {
-                            echo $amount;//TODO:Zasto jquery ne dodaje vrednost na ovaj hidden input
+                            echo $amount;
                         } ?></p>
 
                     <input type="hidden" value="0" id="hidden_amount">
 
                     <div class="text-center">
 
-                        <!--Script for reaching the goal-->
+                        <!--Script for calculating the goal-->
                         <script type="text/javascript">
 
-                            let full_budget = $("#full_budget").val();
-                            let full_expenses = $("#full_expenses").val();
-                            let goal_value = $("#hidden_amount").val();
+                            let full_budget = parseFloat($("#full_budget").val().replace(/$/g, ''));
+                            let full_expenses = parseFloat($("#full_budget").val().replace(/$/g, ''));
+                            let goal_value = <?php echo $amount;?>;
 
-                            console.log(goal_value);
+                            console.log(full_budget);
 
                             let ratio = full_budget - full_expenses;
                             let direction = 0;
@@ -497,7 +496,7 @@ $get->get_group_name($_COOKIE['users_id']);
                 <div class="col-sm-6">
                     <div class="card" style="border: green solid 2px">
                         <div class="card-body">
-                            <h5 class="card-title">Add an amount to the budget</h5>
+                            <h5 class="card-title">Add an amount to the income</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional
                                 content.</p>
 
@@ -804,6 +803,7 @@ $get->get_group_name($_COOKIE['users_id']);
                                     },
                                     success: function (response){
                                         if(response === "success"){
+                                            console.log("asdasdasdasd")
                                             $("#pos_response").html("<div class='alert alert-danger' role='alert'>Category deleted successfully</div>");
 
                                         }
