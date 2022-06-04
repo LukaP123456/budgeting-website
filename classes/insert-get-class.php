@@ -107,9 +107,8 @@ class Insert_get extends Dbh
                                                 INNER JOIN cash_flow On accounts.users_id = cash_flow.users_id WHERE cash_flow.users_id IN (SELECT user_id 
                                                                                                                                                 FROM household_accounts 
                                                                                                                                                 WHERE household_accounts.house_hold_id = ?
-                                                                                                                                            )
-                                                AND cash_flow.positive_negative = 0
-                                                ORDER BY cash_flow.date_added DESC LIMIT 200");
+                                                                                                                                            )AND cash_flow.positive_negative = 0 ORDER BY cash_flow.date_added DESC LIMIT 200
+                                                ");
 
         if ($get_stmt->execute(array($house_id))) {
 
@@ -137,7 +136,8 @@ class Insert_get extends Dbh
     function get_all_additions($house_id)
     {
 
-        $get_stmt = $this->connect()->prepare("SELECT accounts.users_email,
+        $get_stmt = $this->connect()->prepare("
+                                                SELECT accounts.users_email,
                                                 cash_flow.amount,
                                                 cash_flow.date_added,
                                                 cash_flow.category_id 
@@ -372,14 +372,19 @@ class Insert_get extends Dbh
     }
 
     function delete_category($category_id){
-
         $delete_stmt = $this->connect()->prepare("DELETE FROM cateogries WHERE category_id=?;");
 
-        if ($delete_stmt->execute(array($category_id))){
-            die(true);
-        }else{
-            die(false);
+        try {
+            if ($delete_stmt->execute(array($category_id))){
+                die("<div class='alert alert-success' role='alert'>Deleted the category</div>");
+            }else{
+                die("<div class='alert alert-danger' role='alert'>Failed to delete category <b>Warning!</b> Cannot delete category which has been used</div>");
+            }
+        }catch (PDOException $e){
+            die("<div class='alert alert-danger' role='alert'>Failed to delete category <b>Warning!</b> Cannot delete category which has been used</div>");
         }
+
+
 
     }
 

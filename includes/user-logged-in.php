@@ -421,51 +421,51 @@ $get->get_group_name($_COOKIE['users_id']);
                         <!--Script for calculating the goal-->
                         <script type="text/javascript">
 
-                            let full_budget = parseFloat($("#full_budget").val().replace(/$/g, ''));
-                            let full_expenses = parseFloat($("#full_budget").val().replace(/$/g, ''));
-                            let goal_value = <?php echo $amount;?>;
-
-                            console.log(full_budget);
-
-                            let ratio = full_budget - full_expenses;
-                            let direction = 0;
-
-                            if(ratio < goal_value){
-                                direction = 1;
-                            }
-
-                            if (!direction){
-
-                                console.log("Goal reached");
-
-                                $(document).ready(function (){
-
-                                    $.ajax({
-                                        method: "POST",
-                                        url:"set_goal_achieved.php",
-                                        data:{
-                                            full_budget: full_budget,
-                                            full_expenses: full_expenses,
-                                            goal_value: goal_value
-                                        },
-                                        success: function (response){
-                                            if (response === "success"){
-                                                console.log(response)
-
-
-                                            }else {
-                                                console.log(response)
-                                            }
-                                        },
-                                        error:function (response){
-                                            alert(response);
-                                        }
-                                    })
-                                });
-                            }
-                            else {
-                                console.log("Goal not reached");
-                            }
+                            //let full_budget = parseFloat($("#full_budget").val().replace(/$/g, ''));
+                            //let full_expenses = parseFloat($("#full_budget").val().replace(/$/g, ''));
+                            //let goal_value = <?php //echo $amount;?>//;
+                            //
+                            //console.log(full_budget);
+                            //
+                            //let ratio = full_budget - full_expenses;
+                            //let direction = 0;
+                            //
+                            //if(ratio < goal_value){
+                            //    direction = 1;
+                            //}
+                            //
+                            //if (!direction){
+                            //
+                            //    console.log("Goal reached");
+                            //
+                            //    $(document).ready(function (){
+                            //
+                            //        $.ajax({
+                            //            method: "POST",
+                            //            url:"set_goal_achieved.php",
+                            //            data:{
+                            //                full_budget: full_budget,
+                            //                full_expenses: full_expenses,
+                            //                goal_value: goal_value
+                            //            },
+                            //            success: function (response){
+                            //                if (response === "success"){
+                            //                    console.log(response)
+                            //
+                            //
+                            //                }else {
+                            //                    console.log(response)
+                            //                }
+                            //            },
+                            //            error:function (response){
+                            //                alert(response);
+                            //            }
+                            //        })
+                            //    });
+                            //}
+                            //else {
+                            //    console.log("Goal not reached");
+                            //}
 
 
                         </script>
@@ -586,7 +586,7 @@ $get->get_group_name($_COOKIE['users_id']);
             <div class="modal-content" id="additions_modal">
                 <div class="modal-header"
                      style="background: url('../img/bg_money.jpg'); background-size: cover; height: 10vh">
-                    <h5 class="modal-title text-white" id="enrollLabel">Previous additions to the house budget</h5>
+                    <h5 class="modal-title text-white" id="enrollLabel">Previous additions to the income</h5>
                     <button type="button" id="load_btn" class="btn-close bg-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                 </div>
@@ -783,6 +783,8 @@ $get->get_group_name($_COOKIE['users_id']);
 
                             let category = $("#pos_category").val();
 
+                            console.log(category)
+
                             let check_neg_category2 = 0;
 
                             if (category=== "category"){
@@ -802,14 +804,13 @@ $get->get_group_name($_COOKIE['users_id']);
                                         category:category
                                     },
                                     success: function (response){
-                                        if(response === "success"){
                                             console.log("asdasdasdasd")
-                                            $("#pos_response").html("<div class='alert alert-danger' role='alert'>Category deleted successfully</div>");
-
-                                        }
+                                            $("#pos_response").html(response);
                                     },
                                     error:function (response){
-                                        alert(response);
+                                        console.log(response)
+                                        $("#pos_response").html(response);
+
                                     }
                                 })
                             }
@@ -897,7 +898,7 @@ $get->get_group_name($_COOKIE['users_id']);
 
                             if (category=== "category"){
                                 $("#neg_category").addClass("border border-danger border-2");
-                                $("#error_neg_category").html("<small> Please select a categroy from the list and click the <b>Delete a category button again</b> </small>").addClass("text-danger fas fa-exclamation-circle ");
+                                $("#error_neg_category").html("<small> Please select a category from the list and click the <b>Delete a category button again</b> </small>").addClass("text-danger fas fa-exclamation-circle ");
                                 check_neg_category2 = 1;
                             }else{
                                 $('#neg_category').addClass("border border-success border-2").removeClass("border border-danger border-2");
@@ -912,13 +913,13 @@ $get->get_group_name($_COOKIE['users_id']);
                                         category:category
                                     },
                                     success: function (response){
-                                        if(response === "success"){
-                                            $("#neg_response").html("<p class='alert alert-danger' role='alert'><b>Attention!</b> Category has been deleted</p>");
-                                            //TODO: Da li postoji laksi nacin da se brise vrednost iz select liste ili moram praviti novi ajax cal da bi updejtovo listu kada se izbrise vrednost
-                                        }
+                                        console.log("asdasdasdasd")
+                                        $("#neg_response").html(response);
                                     },
                                     error:function (response){
-                                        alert(response);
+                                        console.log(response)
+                                        $("#neg_response").html(response);
+
                                     }
                                 })
                             }
