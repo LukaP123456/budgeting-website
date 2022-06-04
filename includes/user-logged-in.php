@@ -948,7 +948,7 @@ $expenses_weekly = $get->get_expense_week($house_id);
 
 
 <!--Loader script for loader gif and refresh page-->
-<script type="text/javascript" src="../js/loader-refresh.js"></script>
+<!--<script type="text/javascript" src="../js/loader-refresh.js"></script>-->
 
 </body>
 </html>

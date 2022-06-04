@@ -17,5 +17,7 @@
     <orderEntry type="library" name="mapbox-gl" level="application" />
     <orderEntry type="library" name="jquery-3.6.0" level="application" />
     <orderEntry type="library" name="Chart.js" level="application" />
+    <orderEntry type="library" name="jqueryui" level="application" />
+    <orderEntry type="library" name="jquery-ui" level="application" />
   </component>
 </module>

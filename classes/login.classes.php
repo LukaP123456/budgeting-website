@@ -7,7 +7,7 @@ class Login extends Dbh
 
     protected function getUser($email, $pwd)
     {
-        $stmt = $this->connect()->prepare("SELECT users_pwd from accounts where  users_email = ? AND verify_status = 1;");
+        $stmt = $this->connect()->prepare("SELECT users_pwd from accounts where  users_email = ? AND verify_status = 1 AND role !=2;");
 
         if (!$stmt->execute(array($email))) {
             $stmt = null;
@@ -77,7 +77,7 @@ class Login extends Dbh
 
     protected function getAdmin($email, $pwd)
     {
-        $stmt = $this->connect()->prepare("SELECT users_pwd from accounts where  users_email = ? AND verify_status = 1;");
+        $stmt = $this->connect()->prepare("SELECT users_pwd from accounts where  users_email = ? AND verify_status = 1 AND role=2;");
 
         if (!$stmt->execute(array($email))) {
             $stmt = null;
