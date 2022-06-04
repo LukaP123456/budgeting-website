@@ -153,7 +153,7 @@ class Signup extends Dbh
             exit();
         } else {
 
-            //header("Location:../signup_success_admin.php");
+            header("Location:../signup_success_admin.php");
             //Sends a verification email and show a success message if the user was set successfully
             $this->sendemail_verify($full_name, $email, $verify_token);
 

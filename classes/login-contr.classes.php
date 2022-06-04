@@ -33,6 +33,27 @@ class LoginContr extends Login
 
     }
 
+    public function loginAdmin()
+    {
+        if ($this->emptyInput() == false) {
+            //empty input
+            $_SESSION['error2'] = true;
+            header("location:../admin-login.php?error=emptyinput");
+            exit();
+        }
+
+
+        if ($this->invalidEmail() == false) {
+            //invalid email
+            $_SESSION['error2'] = true;
+            header("location:../admin-login.php?error=email");
+            exit();
+        }
+
+        $this->getAdmin($this->email, $this->pwd);
+
+    }
+
     private function emptyInput()
     {
         $result = null;

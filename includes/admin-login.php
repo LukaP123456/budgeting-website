@@ -59,11 +59,11 @@
             <div class="col-md-6 border-black">
                 <div class="card">
                     <div class="card-header bg-black text-white">
-                        <h5><span class="text-danger">Admin</span> signup</h5>
-                        <p>Fill out this form to signup </p>
+                        <h5><span class="text-danger">Admin</span> login</h5>
+                        <p>Fill out this form to login </p>
                     </div>
                     <div class="card-body">
-                        <form id="login-form" action="../includes/admin-login.php" method="POST">
+                        <form id="login-form" action="../includes/admin-login.inc.php" method="POST">
                             <?php
                             $fullUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 

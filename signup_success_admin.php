@@ -45,7 +45,7 @@ session_start();
         Well done!
     </h4>
     <p>You have successfully signed up. Please check your email account <b><?php echo $_COOKIE["admin_email"] ?></b> and
-        follow the instructions in the email to verify your account and log in <a href="index.php">Click me</a></p>
+        follow the instructions in the email to verify your account and log in <a href="includes/admin-login.php">Click me</a></p>
     <hr>
     <p class="mb-0"><b>We will have you saving money in no time</b></p>
 </div>

@@ -69,7 +69,7 @@ class Insert_get extends Dbh
         }
     }
 
-
+    //TODO:Daje samo gooals koje je jedan user uneo zbog LIMIT 1 a bez njega ne radi
     function get_previous_goals($house_id)
     {
         $get_stmt = $this->connect()->prepare("SELECT accounts.users_email,goals.goal_name,goals.added_date,goals.goal_price FROM accounts INNER JOIN goals on accounts.users_id = goals.user_id WHERE user_id = (SELECT user_id from household_accounts where household_accounts.house_hold_id = ? LIMIT 1) ORDER BY  added_date desc LIMIT 100 OFFSET 1");
@@ -86,7 +86,7 @@ class Insert_get extends Dbh
                 echo " Date added: ";
                 echo $selector[$i]['added_date'] . "<br>";
                 echo " Added by: ";
-                echo $selector[$i]['users_email'];//temp
+                echo $selector[$i]['users_email'];
                 echo "<br><hr>";
             }
 
@@ -148,7 +148,7 @@ class Insert_get extends Dbh
     function get_category0($group_id)
     {
 
-        $get_stmt = $this->connect()->prepare("SELECT category_id,category_name FROM cateogries WHERE category_type=0 AND household_id IS NULL OR household_id=?");
+        $get_stmt = $this->connect()->prepare("SELECT category_id,category_name FROM cateogries WHERE category_type=0 AND  household_id=? OR household_id IS NULL");
 
 
         if ($get_stmt->execute(array($group_id))) {
@@ -163,7 +163,7 @@ class Insert_get extends Dbh
     function get_category1($group_id)
     {
 
-        $get_stmt = $this->connect()->prepare("SELECT category_id,category_name FROM cateogries WHERE category_type=1 AND  household_id IS NULL OR  household_id=?;");
+        $get_stmt = $this->connect()->prepare("SELECT category_id,category_name FROM cateogries WHERE category_type=1 AND  household_id=? OR household_id IS NULL");
 
         if ($get_stmt->execute(array($group_id))) {
             while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
@@ -219,10 +219,6 @@ class Insert_get extends Dbh
         }else{
             die("<p class='alert alert-danger' role='alert'>Insert failed</p>");
         }
-
-
-
-
     }
 
     function insert_neg_money($neg_date, $neg_category, $amount, $user_id)
@@ -322,7 +318,7 @@ class Insert_get extends Dbh
 
     function get_expense_week($house_id){
         $return_value = 0;
-        //TODO:limit 1 ovde vraca samo jeddnu vrednost a bez njega ne radi
+
         $get_stmt =$this->connect()->prepare("SELECT * FROM cash_flow WHERE users_id IN (SELECT user_id FROM household_accounts where house_hold_id = ?) AND date_added >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY AND date_added < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY AND positive_negative = 0;") ;
 
         if ($get_stmt->execute(array($house_id))){

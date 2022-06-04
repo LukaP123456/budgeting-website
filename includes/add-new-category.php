@@ -43,7 +43,7 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
 <!--navbar start-->
 <nav class="navbar navbar-expand-lg bg-black navbar-dark py-3 fixed-top">
     <div class="container">
-        <a href="user-logged-in.php" class="navbar-brand">LP<span class="text-warning">Budgeting</span></a>
+        <a href="#" class="navbar-brand">LP<span class="text-warning">Budgeting</span></a>
 
         <button class="navbar-toggler"
                 type="button"
