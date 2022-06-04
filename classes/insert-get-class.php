@@ -69,11 +69,11 @@ class Insert_get extends Dbh
         }
     }
 
-    //TODO:Napraviti da se prikazuje i ime usera ne samo id
+
     function get_previous_goals($house_id)
     {
-        $get_stmt = $this->connect()->prepare("SELECT * FROM goals WHERE added_date < NOW() AND user_id = (SELECT user_id from household_accounts where household_accounts.house_hold_id = ? LIMIT 1) ORDER BY  added_date desc ;");
-        //AND @user_name :=(SELECT users_email FROM cost.accounts where user_id = ?);
+        $get_stmt = $this->connect()->prepare("SELECT accounts.users_email,goals.goal_name,goals.added_date,goals.goal_price FROM accounts INNER JOIN goals on accounts.users_id = goals.user_id WHERE user_id = (SELECT user_id from household_accounts where household_accounts.house_hold_id = ? LIMIT 1) ORDER BY  added_date desc LIMIT 100 OFFSET 1");
+
         if ($get_stmt->execute(array($house_id))) {
 
             $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -86,7 +86,7 @@ class Insert_get extends Dbh
                 echo " Date added: ";
                 echo $selector[$i]['added_date'] . "<br>";
                 echo " Added by: ";
-                echo $selector[$i]['user_id'];//temp
+                echo $selector[$i]['users_email'];//temp
                 echo "<br><hr>";
             }
 
@@ -198,22 +198,30 @@ class Insert_get extends Dbh
 
     function insert_category($category_name, $category_type, $house_id, $category_date_added)
     {
-        if (empty($category_name) || empty($category_type) || empty($house_id) || empty($category_date_added)) {
-            die();
+        if (empty($category_name) || empty($house_id) || empty($category_date_added)) {
+            die("<p class='alert alert-danger' role='alert'>One of the inserted values is empty</p>");
         }
 
-        if ($category_type != 0 || $category_type != 1) {
-            die();
-        }
+        if (isset($category_type)) {
+            if ($category_type == 0 OR $category_type == 1) {
 
-        $insert_category = $this->connect()->prepare("INSERT INTO cateogries( `category_name`, `category_type`, `household_id`, `category_date_added`) VALUES (?,?,?,?)");
+                $insert_category = $this->connect()->prepare("INSERT INTO cateogries( `category_name`, `category_type`, `household_id`, `category_date_added`) VALUES (?,?,?,?)");
 
-        if ($insert_category->execute(array($category_name, $category_type, $house_id, $category_date_added))) {
-            if ($insert_category->rowCount() > 0) {
-                return true;
+                if ($insert_category->execute(array($category_name, $category_type, $house_id, $category_date_added))) {
+                    if ($insert_category->rowCount() > 0) {
+                        return true;
+                    }
+                }
+
+            } else{
+                die("<p class='alert alert-danger' role='alert'>Category type is invalid</p>");
             }
+        }else{
+            die("<p class='alert alert-danger' role='alert'>Insert failed</p>");
         }
-        return false;
+
+
+
 
     }
 

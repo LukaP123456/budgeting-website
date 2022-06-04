@@ -12,7 +12,6 @@ if (isset($_POST['category_type']) && isset($_POST['category_name'])){
 
     if (empty($category_name)) {
         echo "<p class='alert alert-danger' role='alert'>Please fill in the field.</p>";
-
     }else{
         $insert_category = new Insert_get();
 

@@ -66,6 +66,11 @@ require_once "../classes/first-time-loggedin.classes.php";
     <title>LP Budgeting</title>
 </head>
 <body class="bg-dark">
+
+<!--<div class="loader-container">-->
+<!--    <img src="../img/loader.gif"  alt="loader">-->
+<!--</div>-->
+
 <!--USER HEADER START-->
 <!--navbar start-->
 <nav class="navbar navbar-expand-lg bg-black navbar-dark py-3 fixed-top">
@@ -940,12 +945,10 @@ $expenses_weekly = $get->get_expense_week($house_id);
 }
 ?>
 
-<!--<div class="loader-container">-->
-<!--    <img src="../img/loader.gif"  alt="loader">-->
-<!--</div>-->
+
 
 <!--Loader script for loader gif and refresh page-->
-<!--<script type="text/javascript" src="../js/loader-refresh.js"></script>-->
+<script type="text/javascript" src="../js/loader-refresh.js"></script>
 
 </body>
 </html>

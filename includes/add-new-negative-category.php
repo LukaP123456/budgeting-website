@@ -75,7 +75,7 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
                     <h5>Add new category</h5>
                 </div>
                 <div class="card-body">
-                    <form action="add-category-code.php" id="add_form" method="POST">
+                    <form action="add-new-negative-category-code.php" id="add_form" method="POST">
                         <script>
                             $(document).ready(function () {
                                 //use button click event
@@ -90,6 +90,7 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
                                     if (category_name2 === ""){
                                         $("#category_name2").addClass("border border-danger border-2");
                                         $("#error_category_name2").text(" Please write the name of your category ").addClass("text-danger fas fa-exclamation-circle ");
+                                        $("#response").html(" ");
                                         check_name = 1;
                                     }else {
                                         $('#category_name2').addClass("border border-success border-2").removeClass("border border-danger border-2");
@@ -125,7 +126,7 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
                         </script>
 
                         <input type="hidden" value="0" name="category_type2" id="category_type2">
-                        <input type="hidden"  value="<?php if (isset($_COOKIE['house_hold_id'])){  echo $_COOKIE['house_hold_id'];}?>" name="household_id2" id="household_id2">
+                        <input type="hidden"  value="<?php if (isset($house_id)){  echo $house_id;}?>" name="household_id2" id="household_id2">
                         <div class="form-group mb-3">
 
                             <label for="category_name2">Category name</label>

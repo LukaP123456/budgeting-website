@@ -1,6 +1,5 @@
 <?php
 require_once "../classes/insert-get-class.php";
-//TODO: Skontati zasto se ne dodaju kategorije
 
 $house_name = $_COOKIE['group_name'];
 $user_id = $_COOKIE['users_id'];
@@ -91,6 +90,7 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
                                         if (category_name === ""){
                                             $("#category_name").addClass("border border-danger border-2");
                                             $("#error_category_name").text(" Please add an amount ").addClass("text-danger fas fa-exclamation-circle ");
+                                            $("#response").html(" ");
                                             check_name = 1;
                                         }else {
                                             $('#category_name').addClass("border border-success border-2").removeClass("border border-danger border-2");
