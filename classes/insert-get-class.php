@@ -69,7 +69,7 @@ class Insert_get extends Dbh
         }
     }
 
-    //TODO:Daje samo gooals koje je jedan user uneo zbog LIMIT 1 a bez njega ne radi
+    //TODO:Daje samo gooals koje je jedan(house admin) user uneo zbog LIMIT 1 a bez njega ne radi
     function get_previous_goals($house_id)
     {
         $get_stmt = $this->connect()->prepare("SELECT accounts.users_email,goals.goal_name,goals.added_date,goals.goal_price FROM accounts INNER JOIN goals on accounts.users_id = goals.user_id WHERE user_id = (SELECT user_id from household_accounts where household_accounts.house_hold_id = ? LIMIT 1) ORDER BY  added_date desc LIMIT 100 OFFSET 1");
@@ -94,10 +94,22 @@ class Insert_get extends Dbh
 
     }
 
-    //TODO:Popraviti da kveriji pokazuju sve vrednosti ne samo one koje je jedan user stavio
+    //TODO:Popraviti da kveriji pokazuju sve vrednosti ne samo one koje je jedan user stavio, ovo blokira LIMIT 1 u pod selectu koji mi dobavlja user id iz household_accounts
     function get_all_costs($house_id)
     {
-        $get_stmt = $this->connect()->prepare("SELECT * FROM cash_flow WHERE users_id = (SELECT user_id from household_accounts where house_hold_id = ? LIMIT 1) AND positive_negative = 0 ORDER BY  date_added desc;");
+        $get_stmt = $this->connect()->prepare("
+                                                SELECT accounts.users_email,
+                                                cash_flow.amount,
+                                                cash_flow.date_added,
+                                                cash_flow.category_id,
+                                                cash_flow.cost_description
+                                                FROM accounts 
+                                                INNER JOIN cash_flow On accounts.users_id = cash_flow.users_id WHERE cash_flow.users_id = (SELECT user_id 
+                                                                                                                                                FROM household_accounts 
+                                                                                                                                                WHERE household_accounts.house_hold_id = ?
+                                                                                                                                            LIMIT 1)
+                                                AND cash_flow.positive_negative = 0
+                                                ORDER BY cash_flow.date_added DESC LIMIT 200");
 
         if ($get_stmt->execute(array($house_id))) {
 
@@ -111,8 +123,10 @@ class Insert_get extends Dbh
                 echo " Date added: ";
                 echo $selector[$i]['date_added'] . "<br>";
                 echo " Added by: ";
-                echo $selector[$i]['users_id'] . "<br>";
-                echo "<br><hr>";
+                echo $selector[$i]['users_email'] . "<br>";
+                echo " Cost description: ";
+                echo $selector[$i]['cost_description'] . "<br>";
+                echo "<hr>";
 
             }
         }
@@ -120,10 +134,21 @@ class Insert_get extends Dbh
 
     }
 
+    //TODO: funkcija vraca samo one vrednosti koje je house admin uneo sto ne valja opet sumnjam na limit 1
     function get_all_additions($house_id)
     {
 
-        $get_stmt = $this->connect()->prepare("SELECT * FROM cash_flow WHERE users_id = (SELECT user_id from household_accounts where house_hold_id = ? LIMIT 1) AND positive_negative = 1 ORDER BY  date_added desc;");
+        $get_stmt = $this->connect()->prepare("SELECT accounts.users_email,
+                                                cash_flow.amount,
+                                                cash_flow.date_added,
+                                                cash_flow.category_id 
+                                                FROM accounts 
+                                                INNER JOIN cash_flow On accounts.users_id = cash_flow.users_id WHERE cash_flow.users_id = (SELECT user_id 
+                                                                                                                                                FROM household_accounts 
+                                                                                                                                                WHERE household_accounts.house_hold_id=?
+                                                                                                                                            LIMIT 1)
+                                                AND cash_flow.positive_negative = 1
+                                                ORDER BY cash_flow.date_added DESC LIMIT 200");
 
         if ($get_stmt->execute(array($house_id))) {
 
@@ -137,8 +162,8 @@ class Insert_get extends Dbh
                 echo " Date added: ";
                 echo $selector[$i]['date_added'] . "<br>";
                 echo " Added by: ";
-                echo $selector[$i]['users_id'] . "<br>";
-                echo "<br><hr>";
+                echo $selector[$i]['users_email'] . "<br>";
+                echo "<hr>";
 
             }
         }
@@ -221,10 +246,10 @@ class Insert_get extends Dbh
         }
     }
 
-    function insert_neg_money($neg_date, $neg_category, $amount, $user_id)
+    function insert_neg_money($neg_date, $neg_category, $amount, $user_id,$cost_description)
     {
         //Server side error handlers
-        if (empty($neg_date) || empty($neg_category) || empty($amount) || empty($user_id)) {
+        if (empty($neg_date) || empty($neg_category) || empty($amount) || empty($user_id) || empty($cost_description)) {
             die();
         }
 
@@ -232,9 +257,9 @@ class Insert_get extends Dbh
             die();
         }
 
-        $insert_neg_stmt = $this->connect()->prepare("INSERT INTO `cash_flow`( `amount`, `users_id`, `category_id`, `positive_negative`, `date_added`) VALUES (?,?,?,0,?);");
+        $insert_neg_stmt = $this->connect()->prepare("INSERT INTO `cash_flow`( `amount`, `users_id`, `category_id`, `positive_negative`, `date_added`,cost_description) VALUES (?,?,?,0,?,?);");
 
-        if ($insert_neg_stmt->execute(array($amount, $user_id, $neg_category, $neg_date))) {
+        if ($insert_neg_stmt->execute(array($amount, $user_id, $neg_category, $neg_date,$cost_description))) {
             if ($insert_neg_stmt->rowCount() > 0) {
                 return true;
             } else {

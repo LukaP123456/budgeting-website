@@ -581,28 +581,6 @@ $get->get_group_name($_COOKIE['users_id']);
 
     <!--PREVIOUS ADDITIONS START-->
 
-    <!--Ajax previous additions -->
-    <script type="text/javascript">
-
-    $(document).ready(function (){
-        $("#additions_btn").click(function (){
-
-                $.ajax({
-                    method:"post",
-                    url:"get_previous_additions.php",
-                    success: function (response){
-                            $("#all_additions_body").html(response);
-                    },
-                    error:function (response){
-                        alert(JSON.stringify(response));
-                    }
-                })
-        });
-    });
-
-
-    </script>
-
     <div class="modal fade" id="previous_additions" tabindex="-1" aria-labelledby="enrollLabel" aria-hidden="true">
 
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -620,6 +598,28 @@ $get->get_group_name($_COOKIE['users_id']);
                 </div>
                 <div class="response" id="response_previous"></div>
                 <div class="modal-footer">
+
+                    <!--Ajax previous additions -->
+                    <script type="text/javascript">
+
+                        $(document).ready(function (){
+                            $("#additions_btn").click(function (){
+
+                                $.ajax({
+                                    method:"post",
+                                    url:"get_previous_additions.php",
+                                    success: function (response){
+                                        $("#all_additions_body").html(response);
+                                    },
+                                    error:function (response){
+                                        alert(JSON.stringify(response));
+                                    }
+                                })
+                            });
+                        });
+
+
+                    </script>
 
                 </div>
             </div>
@@ -861,6 +861,13 @@ $get->get_group_name($_COOKIE['users_id']);
                             <label for="neg_date">Date added</label>
                             <input type="datetime-local" class="form-control" id="neg_date" name="neg_date">
                             <small class="message" id="error_neg_date"></small>
+                            <br>
+                        </div>
+
+                        <div class="mb-3 input-control">
+                            <label for="cost_description">Cost description</label>
+                            <textarea class="form-control" id="cost_description" name="cost_description"></textarea>
+                            <small class="message" id="error_cost_description"></small>
                             <br>
                         </div>
                         <div class="neg_response" id="neg_response"></div>

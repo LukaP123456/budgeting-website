@@ -21,10 +21,12 @@ $(document).ready(function () {
         let amount = $("#neg_amount").val().trim();
         let neg_category = $("#neg_category").val();
         let neg_date = $("#neg_date").val();
+        let cost_description = $("#cost_description").val().trim();
 
         let check_neg_amount = 0;
         let check_neg_category = 0;
         let check_neg_date = 0;
+        let check_cost_description = 0;
 
         if (amount === ""){
             $("#neg_amount").addClass("border border-danger border-2");
@@ -33,6 +35,15 @@ $(document).ready(function () {
         }else {
             $('#neg_amount').addClass("border border-success border-2").removeClass("border border-danger border-2");
             $("#error_neg_amount").text("Looks good!").removeClass("text-danger fas fa-exclamation-circle ").addClass("text-success fas fas fa-check-circle");
+        }
+
+        if (cost_description === ""){
+            $("#cost_description").addClass("border border-danger border-2");
+            $("#error_cost_description").html("<small> Please describe your cost </small>").addClass("text-danger fas fa-exclamation-circle ");
+            check_cost_description = 1;
+        }else {
+            $('#cost_description').addClass("border border-success border-2").removeClass("border border-danger border-2");
+            $("#error_cost_description").text("Looks good!").removeClass("text-danger fas fa-exclamation-circle ").addClass("text-success fas fas fa-check-circle");
         }
 
         if (neg_category=== "category"){
@@ -53,14 +64,15 @@ $(document).ready(function () {
             $("#error_neg_date").text("Looks good!").removeClass("text-danger fas fa-exclamation-circle ").addClass("text-success fas fas fa-check-circle");
         }
 
-        if (check_neg_amount !==1 && check_neg_category !==1  && check_neg_date !==1 ){
+        if (check_neg_amount !==1 && check_neg_category !==1  && check_neg_date !==1 && check_cost_description !==1  ){
             $.ajax({
                 method: "post",
                 url: "add-negative-value.php",
                 data: {
                     amount: amount,
                     neg_category: neg_category,
-                    neg_date: neg_date
+                    neg_date: neg_date,
+                    cost_description : cost_description
                 },
                 success: function (response) {
                     console.log(response);
