@@ -168,10 +168,40 @@ ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_
 
     }
 
+
+    function get_3_categories($house_id){
+
+        $get_stmt = $this->connect()->prepare("
+SELECT amount,
+date_added,
+category_name,
+users_email
+FROM cash_flow cf
+INNER JOIN cateogries cat 
+ON cf.category_id = cat.category_id
+INNER JOIN accounts a 
+ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_accounts WHERE household_accounts.house_hold_id = ?) AND cf.positive_negative = 0 GROUP BY amount DESC LIMIT 3");
+
+        if ($get_stmt->execute(array($house_id))){
+
+            $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            for ($i = 0; $i < $get_stmt->rowCount(); $i++){
+
+                echo $selector[$i]['category_name']."<br>";
+                echo "<br>";
+            }
+
+        }else{
+            die("Error");
+        }
+    }
+
+
     function get_category0($group_id)
     {
 
-        $get_stmt = $this->connect()->prepare("SELECT category_id,category_name FROM cateogries WHERE category_type=0 AND  household_id=? OR household_id IS NULL");
+        $get_stmt = $this->connect()->prepare("SELECT category_id,category_name,household_id FROM cateogries WHERE category_type=0 AND household_id=? OR household_id IS NULL AND NOT category_name = 'Salary' AND NOT category_name = 'Pension'  AND NOT category_name = 'Gift'  AND NOT category_name = 'Odd jobs' ");
 
 
         if ($get_stmt->execute(array($group_id))) {
@@ -186,7 +216,7 @@ ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_
     function get_category1($group_id)
     {
 
-        $get_stmt = $this->connect()->prepare("SELECT category_id,category_name FROM cateogries WHERE category_type=1 AND  household_id=? OR household_id IS NULL");
+        $get_stmt = $this->connect()->prepare("SELECT category_id,category_name,household_id FROM cateogries WHERE category_type=1 AND household_id=? OR household_id IS NULL AND NOT category_name = 'Eating out' AND NOT category_name = 'Shopping'  AND NOT category_name = 'Transportation'  AND NOT category_name = 'Entertainment'  AND NOT category_name = 'Family' AND NOT category_name = 'Health/Sport' AND NOT category_name = 'Pets' AND NOT category_name = 'Travels'");
 
         if ($get_stmt->execute(array($group_id))) {
             while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
@@ -339,27 +369,41 @@ ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_
 
     }
 
-    function get_expense_week($house_id){
-        $return_value = 0;
+    function get_expense_month($house_id){
 
-        $get_stmt =$this->connect()->prepare("SELECT * FROM cash_flow WHERE users_id IN (SELECT user_id FROM household_accounts where house_hold_id = ?) AND MONTH(date_added) = MONTH(curdate()) AND YEAR(date_added) = YEAR(curdate())  AND positive_negative = 0;") ;
+
+        $get_stmt =$this->connect()->prepare("
+SELECT 
+SUM(amount)
+FROM cash_flow 
+WHERE MONTH(date_added) = MONTH(CURRENT_DATE()) 
+AND YEAR(date_added) = YEAR(CURRENT_DATE())
+AND positive_negative = 0 AND users_id IN(SELECT user_id FROM household_accounts WHERE house_hold_id = ?)");
 
         if ($get_stmt->execute(array($house_id))){
 
-            while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)){
-                for ($i = 0; $i < $get_stmt->rowCount(); $i++){
-                    $return_value = $selector['amount'];
-                }
+            $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            for ($i =0; $i < $get_stmt->rowCount(); $i++){
+                echo $selector[$i]['SUM(amount)'];
             }
+
+
         }
 
-        return $return_value;
+
     }
 
-    //TODO:Napraviti da radi
+    //TODO:Napraviti da radi mozda
     function set_goal_achieved($house_id){
 
-        $set_stmt = $this->connect()->prepare("UPDATE goals set goal_achieved = 1 WHERE user_id IN (SELECT * FROM household_accounts WHERE house_hold_id = ? )");
+        $set_stmt = $this->connect()->prepare("
+SELECT 
+SUM(amount)
+FROM cash_flow 
+WHERE MONTH(date_added) = MONTH(CURRENT_DATE()) 
+AND YEAR(date_added) = YEAR(CURRENT_DATE())
+AND positive_negative = 0 AND users_id IN(SELECT users_id FROM household_accounts WHERE house_hold_id = ?)");
 
         if ($set_stmt->execute()){
             echo "true";

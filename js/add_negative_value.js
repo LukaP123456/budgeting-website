@@ -3,17 +3,17 @@ $(document).ready(function () {
         $('#neg_amount').removeClass("border border-danger border-2").removeClass("border border-success border-2");
         $('#neg_category').removeClass("border border-danger border-2").removeClass("border border-success border-2");
         $('#neg_date').removeClass("border border-danger border-2").removeClass("border border-success border-2");
+        $('#cost_description').removeClass("border border-danger border-2").removeClass("border border-success border-2");
 
         $("#error_neg_amount").html("").removeClass("text-danger fas fa-exclamation-circle ");
         $("#error_neg_category").val("").removeClass("text-danger fas fa-exclamation-circle ");
         $("#error_neg_date").html("").removeClass("text-danger fas fa-exclamation-circle ");
+        $("#error_cost_description").html("").removeClass("text-danger fas fa-exclamation-circle ");
 
         $("#neg_response").html("");
 
 
     });
-
-
 
     //use button click event
     $("#neg_submit").click(function (e) {
@@ -94,6 +94,7 @@ $(document).ready(function () {
                                     $("#neg_amount").val(" ");
                                     $("#neg_category").val(" ");
                                     $("#neg_date").val(" ");
+                                    $("#cost_description").val(" ");
                                 });
                             }
                         })

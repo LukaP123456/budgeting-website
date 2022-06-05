@@ -380,9 +380,33 @@ $get->get_group_name($_COOKIE['users_id']);
                         $-<?php if (isset($expenses)) {
                             echo $expenses;
                         } ?></p>
-                    <div class="text-center">
-                        <p class="card-text"><small class="text-muted">Three Most popular categories</small></p>
+                    <div class="text-center text-3">
+                        <h4 class="text-danger">Three most popular categories</h4>
+                        <h5 class="text-danger" id="three_categories"><?php $get->get_3_categories($house_id);  ?></h5>
                     </div>
+
+                    <script type="text/javascript">
+
+                        $(document).ready(function (){
+
+                            $("#neg_submit").click(function (){
+
+                                $.ajax({
+                                    method: "post",
+                                    url: "3-popular-categories.php",
+                                    success:function (response){
+                                        $("#three_categories").html(response);
+                                    },
+                                    error:function (response){
+                                        alert(response);
+                                    }
+                                })
+                            })
+                        });
+
+
+                    </script>
+
                 </div>
             </div>
 
@@ -1000,13 +1024,11 @@ $get->get_group_name($_COOKIE['users_id']);
 <br>
 
 <?php
-$expenses_weekly = $get->get_expense_week($house_id);
+//$expenses_weekly = $get->get_expense_week($house_id);
 
 ?>
     <div class="card text-center">
-        <div class="card-header">
-            LAST 7 DAYS
-        </div>
+        <div class="card-header"><?php $get->get_expense_month($house_id); ?></div>
         <div class="card-body">
             <div class="container" style="height: 645px">
                 <canvas id="weekChart">
@@ -1023,7 +1045,7 @@ $expenses_weekly = $get->get_expense_week($house_id);
                             labels: ['Monday', 'Tuesday', 'Wednesday', 'Friday', 'Saturday', 'Sunday'],
                             datasets: [{
                                 data: [
-                                    <?php echo $expenses_weekly; ?>
+                                    <?php //echo $expenses_weekly; ?>
                                 ],
                                 backgroundColor: [
                                     'red'
