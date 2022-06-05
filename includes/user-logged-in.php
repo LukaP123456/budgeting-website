@@ -580,17 +580,55 @@ $get->get_group_name($_COOKIE['users_id']);
             <div class="modal-content" id="costs_modal">
                 <div class="modal-header"
                      style="background: url('../img/red-bg.jpg'); background-size: cover; height: 10vh">
-                    <h5 class="modal-title text-white" id="enrollLabel">Previous costs to the house expenses</h5>
+                    <h5 class="modal-title text-white" id="enrollLabel" style="margin-right: 20px">Previous expenses</h5>
+                    <br>
+                    <input type="text" name="search_text" id="search_text" style="margin-right: 20px" class="form-control" placeholder="Previous expenses search">
+                    <br>
                     <button type="button" id="load_btn" class="btn-close bg-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="all_costs_body">
+
 
                     <?php $get->get_all_costs($house_id) ?>
 
                 </div>
                 <div class="response" id="response_previous"></div>
                 <div class="modal-footer">
+
+                    <script type="text/javascript">
+
+                        $(document).ready(function (){
+
+                            $("#search_text").keyup(function (){
+
+                                let search_text = $("#search_text").val().trim();
+
+                                if(search_text !== ""){
+
+                                }else{
+                                    $("#all_costs_body").html('')
+
+                                    $.ajax({
+
+                                       method:"post",
+                                        url:"search_costs.php",
+                                        data:{
+                                           search_text:search_text
+                                        },
+                                        success:function (response){
+                                            $("#all_costs_body").html(response)
+                                        },
+                                        error:function (response){
+                                           alert(response);
+                                        }
+
+                                    });
+                                }
+                            });
+                        });
+
+                    </script>
 
                 </div>
             </div>

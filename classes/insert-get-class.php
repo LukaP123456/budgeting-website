@@ -425,6 +425,11 @@ AND positive_negative = 0 AND users_id IN(SELECT users_id FROM household_account
     }
 
 
+    function search_costs(){
+
+    }
+
+
 
 
 }
