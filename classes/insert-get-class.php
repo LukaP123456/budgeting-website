@@ -91,7 +91,7 @@ class Insert_get extends Dbh
         }
 
     }
-    //TODO:Vraca samo jedan trosak proveriti kako radi
+
     function search_costs($house_id, $search_text)
     {
 
@@ -105,12 +105,11 @@ INNER JOIN cateogries cat
 ON cf.category_id = cat.category_id
 INNER JOIN accounts a 
 ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_accounts WHERE household_accounts.house_hold_id = :house_id) AND cf.positive_negative = 0 
-AND category_name LIKE  CONCAT('%',:search_text,'%') 
+AND (category_name LIKE  CONCAT('%',:search_text,'%') 
 OR amount LIKE CONCAT('%',:search_text,'%') 
 OR date_added like CONCAT('%',:search_text,'%')
 OR users_email LIKE CONCAT('%',:search_text,'%')
-OR cost_description LIKE CONCAT('%',:search_text,'%') 
-
+OR cost_description LIKE CONCAT('%',:search_text,'%')) 
 ORDER By cf.date_added DESC");
 
         $get_stmt->bindParam(':search_text', $search_text, PDO::PARAM_STR);
@@ -144,7 +143,8 @@ ORDER By cf.date_added DESC");
     function search_costs_asc_desc($house_id, $asc_desc)
     {
 
-        $get_stmt = $this->connect()->prepare("SELECT amount,
+        if ($asc_desc === "asc" OR $asc_desc === "desc"){
+            $get_stmt = $this->connect()->prepare("SELECT amount,
 date_added,
 category_name,
 users_email,
@@ -154,10 +154,12 @@ INNER JOIN cateogries cat
 ON cf.category_id = cat.category_id
 INNER JOIN accounts a 
 ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_accounts WHERE household_accounts.house_hold_id = ? ) AND cf.positive_negative = 0 
-ORDER By cf.date_added ?");
+ORDER By cf.date_added ".$asc_desc);
+        }
 
 
-        if ($get_stmt->execute(array($house_id,$asc_desc))) {
+
+        if ($get_stmt->execute(array($house_id))) {
 
 
             while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
@@ -539,7 +541,6 @@ AND positive_negative = 0 AND users_id IN(SELECT user_id FROM household_accounts
         }
     }
 
-    //TODO:Napraviti da radi mozda
     function set_goal_achieved($house_id)
     {
 
@@ -556,8 +557,6 @@ AND positive_negative = 0 AND users_id IN(SELECT users_id FROM household_account
         } else {
             echo "false";
         }
-
-
     }
 
     function delete_category($category_id)
@@ -573,6 +572,95 @@ AND positive_negative = 0 AND users_id IN(SELECT users_id FROM household_account
         } catch (PDOException $e) {
             die("<div class='alert alert-danger' role='alert'>Failed to delete category <b>Warning!</b> Cannot delete category which has been used</div>");
         }
+    }
+
+    function get_all_houses(){
+
+        $get_stmt = $this->connect()->prepare("
+SELECT
+household.household_name,
+household.blocked,
+accounts.users_email,
+accounts.full_name,
+accounts.verify_status,
+accounts.role,
+accounts.date_time_signup,
+accounts.first_login,
+log_data.ip_adress,
+log_data.web_browser_OS,
+roles.role
+FROM accounts
+INNER JOIN household_accounts 
+ON accounts.users_id = household_accounts.user_id
+INNER JOIN roles
+on accounts.role = roles.roles_id
+INNER JOIN log_data
+On log_data.users_id = accounts.users_id
+INNER JOIN household
+On household.household_id = household_accounts.house_hold_id
+");
+
+        if ($get_stmt->execute()){
+            while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)){
+                for ($i=0; $i < $get_stmt->rowCount(); $i++){
+
+                    if ($selector[$i]['role'] == 1){
+                        $house_admin = $selector[$i]['users_email'];
+                    }else{
+                        $regular_user = $selector[$i]["users_email"];
+                    }
+
+
+                    if ($selector[$i]["verify_status"] === 1){
+                        $verify_status = "User is verified";
+                    }else{
+                        $verify_status = "User is not verified";
+                    }
+
+                    if ($selector[$i]['first_login'] === "NULL"){
+                        $first_login = "User has yet to login for the first time";
+                    }else{
+                        $first_login = "User has logged in for the first time";
+                    }
+
+                    if ($selector[$i]['blocked'] === 1){
+                        $blocked = "This house is blocked";
+                    }else{
+                        $blocked = "This house is not blocked";
+                    }
+
+                    if ($selector[$i]['role'] === 1){
+                        $house_admin = true;
+                    }
+
+                    if ($selector[$i]['role'] === 0){
+                        $house_admin = false;
+                    }
+
+
+                    $my_house_object = array(
+                        'house_name' => $selector[$i]['household_name'],
+                        'house_admin' => $house_admin,
+                        'full_name'=>$selector[$i]['full_name'],
+                        'date_time_signup'=>$selector[$i]['date_time_signup'],
+                        'web_browser_OS'=>$selector[$i]['web_browser_OS'],
+                        'first_login'=>$first_login,
+                        'blocked'=>$blocked,
+                        'verify_status'=>$verify_status
+
+                    );
+
+                    file_put_contents('full_house.json',json_encode($my_house_object));
+
+                    return json_encode($my_house_object);
+                }
+
+            }
+        }else{
+            die("There has been an error");
+        }
+
+
     }
 
 

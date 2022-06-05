@@ -126,10 +126,6 @@ class Login extends Dbh
             $_SESSION["users_email"] = $user[0]["users_email"];
             $_SESSION["users_id"] = $user[0]["users_id"];
 
-            var_dump($_SESSION["users_id"]);
-            var_dump($_SESSION["users_email"]);
-            var_dump($_SESSION["email"]);
-
             $stmt = null;
 
             $_SESSION['authenticated'] = true;

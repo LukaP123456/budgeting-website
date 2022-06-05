@@ -1,7 +1,7 @@
 <?php session_start();
 if (!isset($_SESSION['authenticated'])) {
     $_SESSION['status'] = "Please login to access user side";
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 
@@ -492,11 +492,11 @@ $get->get_group_name($_COOKIE['users_id']);
                         </script>
 
                         <br>
-                        <div class="progress" style="height: 50px">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 25%; font-size: 25px" aria-valuenow="0"
-                                 aria-valuemin="0" aria-valuemax="100">25%
-                            </div>
-                        </div>
+<!--                        <div class="progress" style="height: 50px">-->
+<!--                            <div class="progress-bar bg-danger" role="progressbar" style="width: 25%; font-size: 25px" aria-valuenow="0"-->
+<!--                                 aria-valuemin="0" aria-valuemax="100">25%-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <br>
                         <button class="btn btn-warning  text-black btn-lg" data-bs-toggle="modal"
                                 data-bs-target="#target" id="change_goal">Change goal
@@ -628,12 +628,15 @@ $get->get_group_name($_COOKIE['users_id']);
                             $("#asc_desc").on('change',function (){
                                 let asc_desc_val = $("#asc_desc").val();
 
-                                if(asc_desc_val === 1){
+                                console.log(asc_desc_val)
+
+                                if(asc_desc_val == 1){
+                                    console.log("asd")
                                     $.ajax({
                                         method:"post",
                                         url:"asc_desc_costs.php",
                                         data:{
-                                            asc: "ascending"
+                                            asc: "asc"
                                         },
                                         success:function (response){
                                             $("#all_costs_body").html(response);
@@ -645,12 +648,13 @@ $get->get_group_name($_COOKIE['users_id']);
                                 }
 
 
-                                if(asc_desc_val === 2){
+                                if(asc_desc_val == 2){
+                                    console.log("desc")
                                     $.ajax({
                                         method:"post",
                                         url:"asc_desc_costs.php",
                                         data:{
-                                            desc: "descending"
+                                            desc: "desc"
                                         },
                                         success:function (response){
                                             $("#all_costs_body").html(response);
@@ -1202,17 +1206,13 @@ $expenses_month = $get->get_expense_month($house_id);
                     let week_chart = document.getElementById("weekChart").getContext('2d');
 
                     let one_week_chart = new Chart(week_chart, {
-                        type: 'line', //bar, horizontal bar, pie, line ,doughnut, radar, polar area
+                        type: 'bar', //bar, horizontal bar, pie, line ,doughnut, radar, polar area
                         data: {
-                            labels: ['Monday', 'Tuesday', 'Wednesday', 'Friday', 'Saturday', 'Sunday'],
+                            labels: ['5.', '10.', '15.', '20.', '25.', '30.'],
                             datasets: [{
                                 data: [
-                                    <?php echo $expenses_month; ?>,
-                                    800,
-                                    429,
-                                    12.2,
-                                    231,
-                                    10.902
+                                    <?php echo $expenses_month; ?>
+
                                 ],
                                 backgroundColor: [
                                     'red'
@@ -1228,7 +1228,7 @@ $expenses_month = $get->get_expense_month($house_id);
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: 'Expenses in the last week',
+                                    text: 'Expenses for the current month',
                                     color: 'black',
                                     font: {
                                         size: 30
@@ -1261,28 +1261,9 @@ $expenses_month = $get->get_expense_month($house_id);
         </div>
     </div>
 
-<br>
-<br>
-
-    <div class="card text-center">
-        <div class="card-header">
-            LAST 7 DAYS
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-        <div class="card-footer text-muted">
-            2 days ago
-        </div>
-    </div>
     <?php
 }
 ?>
-
-
-
 <!--Loader script for loader gif and refresh page-->
 <!--<script type="text/javascript" src="../js/loader-refresh.js"></script>-->
 

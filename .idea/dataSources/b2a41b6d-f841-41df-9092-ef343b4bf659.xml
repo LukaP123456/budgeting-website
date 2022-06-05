@@ -1426,87 +1426,94 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;single person&apos;</DefaultExpression>
     </column>
-    <key id="393" parent="343" name="PRIMARY">
+    <column id="393" parent="343" name="blocked">
+      <Position>3</Position>
+      <Comment>0 = not blocked, 1 = blocked</Comment>
+      <DataType>tinyint(4)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <key id="394" parent="343" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>household_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="394" parent="344" name="user_id">
+    <column id="395" parent="344" name="user_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="395" parent="344" name="house_hold_id">
+    <column id="396" parent="344" name="house_hold_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="396" parent="344" name="user_id">
+    <index id="397" parent="344" name="user_id">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="397" parent="344" name="household1_id">
+    <index id="398" parent="344" name="household1_id">
       <ColNames>house_hold_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="398" parent="344" name="PRIMARY">
+    <key id="399" parent="344" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_id
 house_hold_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="399" parent="344" name="user_id">
+    <foreign-key id="400" parent="344" name="user_id">
       <ColNames>user_id</ColNames>
       <RefTableName>accounts</RefTableName>
       <RefColNames>users_id</RefColNames>
     </foreign-key>
-    <foreign-key id="400" parent="344" name="household1_id">
+    <foreign-key id="401" parent="344" name="household1_id">
       <ColNames>house_hold_id</ColNames>
       <RefTableName>household</RefTableName>
       <RefColNames>household_id</RefColNames>
     </foreign-key>
-    <column id="401" parent="345" name="data_id">
+    <column id="402" parent="345" name="data_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="402" parent="345" name="ip_adress">
+    <column id="403" parent="345" name="ip_adress">
       <Position>2</Position>
       <DataType>varchar(200)|0s</DataType>
     </column>
-    <column id="403" parent="345" name="web_browser_OS">
+    <column id="404" parent="345" name="web_browser_OS">
       <Position>3</Position>
       <DataType>varchar(200)|0s</DataType>
     </column>
-    <column id="404" parent="345" name="signup_time">
+    <column id="405" parent="345" name="signup_time">
       <Position>4</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <column id="405" parent="345" name="users_id">
+    <column id="406" parent="345" name="users_id">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <index id="406" parent="345" name="users_id">
+    <index id="407" parent="345" name="users_id">
       <ColNames>users_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="407" parent="345" name="PRIMARY">
+    <key id="408" parent="345" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>data_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="408" parent="345" name="log_data_ibfk_1">
+    <foreign-key id="409" parent="345" name="log_data_ibfk_1">
       <ColNames>users_id</ColNames>
       <RefTableName>accounts</RefTableName>
       <RefColNames>users_id</RefColNames>
     </foreign-key>
-    <column id="409" parent="346" name="roles_id">
+    <column id="410" parent="346" name="roles_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="410" parent="346" name="role">
+    <column id="411" parent="346" name="role">
       <Position>2</Position>
       <Comment>0 = regular user&#xd;
 1 = household admin &#xd;
@@ -1515,7 +1522,7 @@ house_hold_id</ColNames>
       <NotNull>1</NotNull>
       <DefaultExpression>1</DefaultExpression>
     </column>
-    <key id="411" parent="346" name="PRIMARY">
+    <key id="412" parent="346" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>roles_id</ColNames>
       <Primary>1</Primary>

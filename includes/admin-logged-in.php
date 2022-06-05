@@ -1,7 +1,7 @@
 <?php session_start();
 if (!isset($_SESSION['authenticated'])) {
     $_SESSION['status'] = "Please login to access user side";
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 
@@ -55,7 +55,7 @@ require_once "../classes/first-time-loggedin.classes.php";
 
     <title>LP Budgeting</title>
 </head>
-<body class="bg-dark">
+<body>
 
 <!--<div class="loader-container">-->
 <!--    <img src="../img/loader.gif"  alt="loader">-->
@@ -87,32 +87,26 @@ require_once "../classes/first-time-loggedin.classes.php";
 <!--navbar end-->
 <!--HEADER END-->
 <br><br>
-<div class="card text-center">
-    <div class="card-header">
-        Kuca1
-    </div>
-    <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-danger">Block</a>
-    </div>
-    <div class="card-footer text-muted">
-        2 days ago
-    </div>
-</div>
-<div class="card text-center">
-    <div class="card-header">
-        Kuca2
-    </div>
-    <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-danger">Block</a>
-    </div>
-    <div class="card-footer text-muted">
-        2 days ago
-    </div>
-</div>
+<?php
+require_once "../classes/insert-get-class.php";
+
+$get = new Insert_get();
+
+$JSON = $get->get_all_houses();
+
+$str = file_get_contents('full_house.json');
+$house_object = json_decode($str,true);
+echo print_r($house_object,true);
+
+while ($house_object){
+    echo $house_object[][];
+}
+
+
+
+
+
+?>
 
 
 
