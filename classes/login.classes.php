@@ -54,7 +54,7 @@ class Login extends Dbh
 
             $_SESSION["email"] = $user[0]["users_email"];
             $_SESSION["users_email"] = $user[0]["users_email"];
-            $_SESSION["users_id"] = $user[0]["users_id"];//TODO:Problem ovde pocinje kada var_dumpujem sve vrednosti vrati iste one koje su u bazi tj sve je ok
+            $_SESSION["users_id"] = $user[0]["users_id"];
 
             var_dump($_SESSION["users_id"]);
             var_dump($_SESSION["users_email"]);
@@ -124,7 +124,7 @@ class Login extends Dbh
 
             $_SESSION["email"] = $user[0]["users_email"];
             $_SESSION["users_email"] = $user[0]["users_email"];
-            $_SESSION["users_id"] = $user[0]["users_id"];//TODO:Problem ovde pocinje kada var_dumpujem sve vrednosti vrati iste one koje su u bazi tj sve je ok
+            $_SESSION["users_id"] = $user[0]["users_id"];
 
             var_dump($_SESSION["users_id"]);
             var_dump($_SESSION["users_email"]);

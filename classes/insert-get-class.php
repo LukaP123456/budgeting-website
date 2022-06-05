@@ -15,8 +15,6 @@ class Insert_get extends Dbh
 
             $_SESSION['group_name'] = $selector[0]['household_name'];
 
-//            setcookie("group_name", $selector[0]['household_name'], time() + (10 * 365 * 24 * 60 * 60), "/", "");
-            //TODO:$_COOKIE['group_name'] sam izbrisao jer zapravo ne radi kako treba, kod korisnika koji su u kuci "sama kuca" ispisuje naziv suprotne i obrnuto
         }
     }
 
@@ -79,13 +77,13 @@ class Insert_get extends Dbh
             $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
 
             for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
-                echo "Goal: ";
+                echo "<b>Goal:</b> ";
                 echo $selector[$i]['goal_name'] . "<br>";
-                echo " Amount: ";
+                echo " <b>Amount:</b> ";
                 echo "$" . $selector[$i]['goal_price'] . "<br>";
-                echo " Date added: ";
+                echo " <b>Date added:</b> ";
                 echo $selector[$i]['added_date'] . "<br>";
-                echo " Added by: ";
+                echo " <b>Added by:</b> ";
                 echo $selector[$i]['users_email'];
                 echo "<br><hr>";
             }
@@ -93,7 +91,7 @@ class Insert_get extends Dbh
         }
 
     }
-
+    //TODO:Vraca samo jedan trosak proveriti kako radi
     function search_costs($house_id, $search_text)
     {
 
@@ -113,7 +111,7 @@ OR date_added like CONCAT('%',:search_text,'%')
 OR users_email LIKE CONCAT('%',:search_text,'%')
 OR cost_description LIKE CONCAT('%',:search_text,'%') 
 
-ORDER By cf.date_added DESC LIMIT 200");
+ORDER By cf.date_added DESC");
 
         $get_stmt->bindParam(':search_text', $search_text, PDO::PARAM_STR);
         $get_stmt->bindParam(':house_id', $house_id, PDO::PARAM_STR);
@@ -123,15 +121,56 @@ ORDER By cf.date_added DESC LIMIT 200");
 
             while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
                 for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
-                    echo "Amount: $";
+                    echo "<b>Amount:</b> $";
                     echo $selector[$i]['amount'] . "<br>";
-                    echo " Category: ";
+                    echo " <b>Category:</b> ";
                     echo $selector[$i]['category_name'] . "<br>";
-                    echo " Date added: ";
+                    echo " <b>Date added:</b> ";
                     echo $selector[$i]['date_added'] . "<br>";
-                    echo " Added by: ";
+                    echo " <b>Added by:</b> ";
                     echo $selector[$i]['users_email'] . "<br>";
-                    echo " Cost description: ";
+                    echo " <b>Cost description:</b> ";
+                    echo $selector[$i]['cost_description'] . "<br>";
+                    echo "<hr>";
+
+                }
+            }
+
+        }else{
+            die("There was an error");
+        }
+    }
+
+    function search_costs_asc_desc($house_id, $asc_desc)
+    {
+
+        $get_stmt = $this->connect()->prepare("SELECT amount,
+date_added,
+category_name,
+users_email,
+cost_description
+FROM cash_flow cf
+INNER JOIN cateogries cat 
+ON cf.category_id = cat.category_id
+INNER JOIN accounts a 
+ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_accounts WHERE household_accounts.house_hold_id = ? ) AND cf.positive_negative = 0 
+ORDER By cf.date_added ?");
+
+
+        if ($get_stmt->execute(array($house_id,$asc_desc))) {
+
+
+            while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
+                for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
+                    echo "<b>Amount:</b> $";
+                    echo $selector[$i]['amount'] . "<br>";
+                    echo " <b>Category:</b> ";
+                    echo $selector[$i]['category_name'] . "<br>";
+                    echo " <b>Date added:</b> ";
+                    echo $selector[$i]['date_added'] . "<br>";
+                    echo " <b>Added by:</b> ";
+                    echo $selector[$i]['users_email'] . "<br>";
+                    echo " <b>Cost description:</b> ";
                     echo $selector[$i]['cost_description'] . "<br>";
                     echo "<hr>";
 
@@ -171,7 +210,7 @@ INNER JOIN accounts a
 ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_accounts WHERE household_accounts.house_hold_id = :house_id) AND cf.positive_negative = 0 
 AND (date_added between :start_date and :end_date)
 
-ORDER By cf.date_added DESC LIMIT 200");
+ORDER By cf.date_added DESC");
 
         $get_stmt->bindParam(':house_id', $house_id, PDO::PARAM_STR);
         $get_stmt->bindParam(':start_date', $start_date, PDO::PARAM_STR);
@@ -182,15 +221,15 @@ ORDER By cf.date_added DESC LIMIT 200");
 
             while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
                 for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
-                    echo "Amount: $";
+                    echo "<b>Amount:</b> $";
                     echo $selector[$i]['amount'] . "<br>";
-                    echo " Category: ";
+                    echo " <b>Category:</b> ";
                     echo $selector[$i]['category_name'] . "<br>";
-                    echo " Date added: ";
+                    echo " <b>Date added:</b> ";
                     echo $selector[$i]['date_added'] . "<br>";
-                    echo " Added by: ";
+                    echo " <b>Added by:</b> ";
                     echo $selector[$i]['users_email'] . "<br>";
-                    echo " Cost description: ";
+                    echo " <b>Cost description:</b> ";
                     echo $selector[$i]['cost_description'] . "<br>";
                     echo "<hr>";
 
@@ -215,7 +254,7 @@ FROM cash_flow cf
 INNER JOIN cateogries cat 
 ON cf.category_id = cat.category_id
 INNER JOIN accounts a 
-ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_accounts WHERE household_accounts.house_hold_id = ?) AND cf.positive_negative = 0 ORDER By cf.date_added DESC LIMIT 200
+ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_accounts WHERE household_accounts.house_hold_id = ?) AND cf.positive_negative = 0 ORDER By cf.date_added DESC
 ");
 
         if ($get_stmt->execute(array($house_id))) {
@@ -223,15 +262,15 @@ ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_
             $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
 
             for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
-                echo "Amount: $";
+                echo "<b>Amount:</b> $";
                 echo $selector[$i]['amount'] . "<br>";
-                echo " Category: ";
+                echo " <b>Category:</b> ";
                 echo $selector[$i]['category_name'] . "<br>";
-                echo " Date added: ";
+                echo " <b>Date added:</b> ";
                 echo $selector[$i]['date_added'] . "<br>";
-                echo " Added by: ";
+                echo " <b>Added by:</b> ";
                 echo $selector[$i]['users_email'] . "<br>";
-                echo " Cost description: ";
+                echo " <b>Cost description:</b> ";
                 echo $selector[$i]['cost_description'] . "<br>";
                 echo "<hr>";
 
@@ -261,13 +300,13 @@ ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_
             $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
 
             for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
-                echo "Amount: $";
+                echo "<b>Amount:</b> $";
                 echo $selector[$i]['amount'] . "<br>";
-                echo " Category: ";
+                echo " <b>Category:</b> ";
                 echo $selector[$i]['category_name'] . "<br>";
-                echo " Date added: ";
+                echo " <b>Date added:</b> ";
                 echo $selector[$i]['date_added'] . "<br>";
-                echo " Added by: ";
+                echo " <b>Added by:</b> ";
                 echo $selector[$i]['users_email'] . "<br>";
                 echo "<hr>";
 

@@ -587,7 +587,18 @@ $get->get_group_name($_COOKIE['users_id']);
                     <br>
                     <button type="button" id="load_btn" class="btn-close bg-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
+                    
                 </div>
+
+                <div class="modal-header">
+                    <select class="form-select" id="asc_desc">
+                        <option value="0">Ascending or descending</option>
+                        <option value="1">Ascending</option>
+                        <option value="2">Desceding</option>
+                    </select>
+                    <small class="message" id="error_asc_desc"></small>
+                </div>
+
                 <div class="modal-body" id="all_costs_body">
 
 
@@ -613,6 +624,46 @@ $get->get_group_name($_COOKIE['users_id']);
                     <script type="text/javascript">
 
                         $(document).ready(function (){
+                            //TODO:Ne smenjuje se ovde opadajuci i rastuic niz
+                            $("#asc_desc").on('change',function (){
+                                let asc_desc_val = $("#asc_desc").val();
+
+                                if(asc_desc_val === 1){
+                                    $.ajax({
+                                        method:"post",
+                                        url:"asc_desc_costs.php",
+                                        data:{
+                                            asc: "ascending"
+                                        },
+                                        success:function (response){
+                                            $("#all_costs_body").html(response);
+                                        },
+                                        error:function (response){
+                                            alert(response);
+                                        }
+                                    });
+                                }
+
+
+                                if(asc_desc_val === 2){
+                                    $.ajax({
+                                        method:"post",
+                                        url:"asc_desc_costs.php",
+                                        data:{
+                                            desc: "descending"
+                                        },
+                                        success:function (response){
+                                            $("#all_costs_body").html(response);
+                                        },
+                                        error:function (response){
+                                            alert(response);
+                                        }
+                                    });
+                                }
+
+                            });
+
+
                             $("#search_btn").click(function (e){
                                 e.preventDefault();
                                 $("#error_start_date").html(" ").removeClass("text-success fas fa-exclamation-circle").removeClass("text-danger fas fa-exclamation-circle ");
