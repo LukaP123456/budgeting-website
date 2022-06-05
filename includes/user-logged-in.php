@@ -382,6 +382,7 @@ $get->get_group_name($_COOKIE['users_id']);
                         } ?></p>
                     <div class="text-center text-3">
                         <h4 class="text-danger">Three most popular categories</h4>
+                        <hr>
                         <h5 class="text-danger" id="three_categories"><?php $get->get_3_categories($house_id);  ?></h5>
                     </div>
 
@@ -594,40 +595,110 @@ $get->get_group_name($_COOKIE['users_id']);
 
                 </div>
                 <div class="response" id="response_previous"></div>
-                <div class="modal-footer">
+                <div class="modal-footer" style="justify-content: start">
+                    <div>
+                        <label for="start_date">Start date</label>
+                        <input type="datetime-local" id="start_date" class="form-control">
+                        <small class="message" id="error_start_date"></small>
+                    </div>
+
+                    <div style="margin-left: 10px">
+                        <label for="end_date" >End date</label>
+                        <input type="datetime-local" id="end_date" class="form-control">
+                        <small class="message" id="error_end_date"></small>
+                    </div>
+
+                    <button class="btn btn-danger btn-lg" id="search_btn">Search on date</button>
 
                     <script type="text/javascript">
 
                         $(document).ready(function (){
+                            $("#search_btn").click(function (e){
+                                e.preventDefault();
+                                $("#error_start_date").html(" ").removeClass("text-success fas fa-exclamation-circle").removeClass("text-danger fas fa-exclamation-circle ");
+                                $("#error_end_date").html(" ").removeClass("text-success fas fa-exclamation-circle").removeClass("text-danger fas fa-exclamation-circle ");
+                                $("#start_date").removeClass("border border-danger border-2");
+                                $("#end_date").removeClass("border border-danger border-2");
 
-                            $("#search_text").keyup(function (){
 
-                                let search_text = $("#search_text").val().trim();
+                                let start_date = $("#start_date").val();
+                                let end_date = $("#end_date").val();
 
-                                if(search_text === " "){
-                                    console.log(search_text)
-                                    console.log(2131231)
+                                let check_start_date = 0;
+                                let check_end_date = 0;
 
-                                }else{
+                                if(start_date === ""){
+                                    $("#start_date").addClass("border border-danger border-2");
+                                    $("#error_start_date").html("<small> Please select a start date </small>").addClass("text-danger fas fa-exclamation-circle ");
+                                    check_start_date = 1;
+                                }
+
+                                if(end_date === ""){
+                                    $("#end_date").addClass("border border-danger border-2");
+                                    $("#error_end_date").html("<small> Please select a start date </small>").addClass("text-danger fas fa-exclamation-circle ");
+                                    check_start_date = 1;
+                                }
+
+                                if(check_start_date !== 1 && check_end_date !== 1){
                                     $("#all_costs_body").html('')
 
                                     $.ajax({
-
-                                       method:"post",
-                                        url:"search_costs.php",
+                                        method:"post",
+                                        url:"search_costs_date.php",
                                         data:{
-                                           search_text:search_text
+                                            start_date: start_date,
+                                            end_date: end_date
                                         },
                                         success:function (response){
-                                            $("#all_costs_body").html(response)
+                                            $("#all_costs_body").html(response);
+                                            $("#start_date").removeClass("border border-danger border-2").addClass("border border-success border-2");
+                                            $("#end_date").removeClass("border border-danger border-2").addClass("border border-success border-2");
+
+                                            $("#error_start_date").html("<small> Looks good! </small>").addClass("text-success fas fa-exclamation-circle ");
+                                            $("#error_end_date").html("<small> Looks good!</small>").addClass("text-success fas fa-exclamation-circle ");
+
+
+                                            $("#start_date").val(" ");
+                                            $("#end_date").val(" ");
+
+
                                         },
                                         error:function (response){
-                                           alert(response);
+                                            alert(response);
                                         }
 
                                     });
                                 }
-                            });
+                            })
+
+                                $("#search_text").keyup(function (){
+
+                                    let search_text = $("#search_text").val().trim();
+
+                                    if(search_text === " "){
+                                        console.log(search_text)
+                                        console.log(2131231)
+
+                                    }else{
+                                        $("#all_costs_body").html('')
+
+                                        $.ajax({
+                                            method:"post",
+                                            url:"search_costs.php",
+                                            data:{
+                                                search_text:search_text
+                                            },
+                                            success:function (response){
+
+                                                $("#all_costs_body").html(response);
+                                            },
+                                            error:function (response){
+                                                alert(response);
+                                            }
+
+                                        });
+                                    }
+                                });
                         });
 
                     </script>

@@ -5,12 +5,12 @@ $(document).ready(function () {
         $('#neg_date').removeClass("border border-danger border-2").removeClass("border border-success border-2");
         $('#cost_description').removeClass("border border-danger border-2").removeClass("border border-success border-2");
 
-        $("#error_neg_amount").html("").removeClass("text-danger fas fa-exclamation-circle ");
-        $("#error_neg_category").val("").removeClass("text-danger fas fa-exclamation-circle ");
-        $("#error_neg_date").html("").removeClass("text-danger fas fa-exclamation-circle ");
-        $("#error_cost_description").html("").removeClass("text-danger fas fa-exclamation-circle ");
+        $("#error_neg_amount").html(" ").removeClass("text-danger fas fa-exclamation-circle ");
+        $("#error_neg_category").val(" ").removeClass("text-danger fas fa-exclamation-circle ");
+        $("#error_neg_date").html(" ").removeClass("text-danger fas fa-exclamation-circle ");
+        $("#error_cost_description").html(" ").removeClass("text-danger fas fa-exclamation-circle ");
 
-        $("#neg_response").html("");
+        $("#neg_response").html(" ");
 
 
     });

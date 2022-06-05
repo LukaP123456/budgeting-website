@@ -107,7 +107,11 @@ INNER JOIN cateogries cat
 ON cf.category_id = cat.category_id
 INNER JOIN accounts a 
 ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_accounts WHERE household_accounts.house_hold_id = :house_id) AND cf.positive_negative = 0 
-AND category_name LIKE  CONCAT('%',:search_text,'%')
+AND category_name LIKE  CONCAT('%',:search_text,'%') 
+OR amount LIKE CONCAT('%',:search_text,'%') 
+OR date_added like CONCAT('%',:search_text,'%')
+OR users_email LIKE CONCAT('%',:search_text,'%')
+OR cost_description LIKE CONCAT('%',:search_text,'%') 
 
 ORDER By cf.date_added DESC LIMIT 200");
 
@@ -134,6 +138,67 @@ ORDER By cf.date_added DESC LIMIT 200");
                 }
             }
 
+        }else{
+            die("There was an error");
+        }
+    }
+
+
+    function search_costs_date($house_id, $start_date,$end_date)
+    {
+
+        if (empty($house_id)){
+            die("House id is empty");
+        }
+
+        if (empty($start_date)){
+            die("Date is empty");
+        }
+
+        if (empty($end_date)){
+            die("Date is empty");
+        }
+
+        $get_stmt = $this->connect()->prepare("SELECT amount,
+date_added,
+category_name,
+users_email,
+cost_description
+FROM cash_flow cf
+INNER JOIN cateogries cat 
+ON cf.category_id = cat.category_id
+INNER JOIN accounts a 
+ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_accounts WHERE household_accounts.house_hold_id = :house_id) AND cf.positive_negative = 0 
+AND (date_added between :start_date and :end_date)
+
+ORDER By cf.date_added DESC LIMIT 200");
+
+        $get_stmt->bindParam(':house_id', $house_id, PDO::PARAM_STR);
+        $get_stmt->bindParam(':start_date', $start_date, PDO::PARAM_STR);
+        $get_stmt->bindParam(':end_date', $end_date, PDO::PARAM_STR);
+
+        if ($get_stmt->execute()) {
+
+
+            while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
+                for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
+                    echo "Amount: $";
+                    echo $selector[$i]['amount'] . "<br>";
+                    echo " Category: ";
+                    echo $selector[$i]['category_name'] . "<br>";
+                    echo " Date added: ";
+                    echo $selector[$i]['date_added'] . "<br>";
+                    echo " Added by: ";
+                    echo $selector[$i]['users_email'] . "<br>";
+                    echo " Cost description: ";
+                    echo $selector[$i]['cost_description'] . "<br>";
+                    echo "<hr>";
+
+                }
+            }
+
+        }else{
+            die("There was an error");
         }
     }
 
