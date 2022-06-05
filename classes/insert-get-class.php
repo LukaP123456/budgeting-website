@@ -94,6 +94,49 @@ class Insert_get extends Dbh
 
     }
 
+    function search_costs($house_id, $search_text)
+    {
+
+        $get_stmt = $this->connect()->prepare("SELECT amount,
+date_added,
+category_name,
+users_email,
+cost_description
+FROM cash_flow cf
+INNER JOIN cateogries cat 
+ON cf.category_id = cat.category_id
+INNER JOIN accounts a 
+ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_accounts WHERE household_accounts.house_hold_id = :house_id) AND cf.positive_negative = 0 
+AND category_name LIKE  CONCAT('%',:search_text,'%')
+
+ORDER By cf.date_added DESC LIMIT 200");
+
+        $get_stmt->bindParam(':search_text', $search_text, PDO::PARAM_STR);
+        $get_stmt->bindParam(':house_id', $house_id, PDO::PARAM_STR);
+
+        if ($get_stmt->execute()) {
+
+
+            while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
+                for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
+                    echo "Amount: $";
+                    echo $selector[$i]['amount'] . "<br>";
+                    echo " Category: ";
+                    echo $selector[$i]['category_name'] . "<br>";
+                    echo " Date added: ";
+                    echo $selector[$i]['date_added'] . "<br>";
+                    echo " Added by: ";
+                    echo $selector[$i]['users_email'] . "<br>";
+                    echo " Cost description: ";
+                    echo $selector[$i]['cost_description'] . "<br>";
+                    echo "<hr>";
+
+                }
+            }
+
+        }
+    }
+
 
     function get_all_costs($house_id)
     {
@@ -169,7 +212,8 @@ ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_
     }
 
 
-    function get_3_categories($house_id){
+    function get_3_categories($house_id)
+    {
 
         $get_stmt = $this->connect()->prepare("
 SELECT amount,
@@ -182,17 +226,17 @@ ON cf.category_id = cat.category_id
 INNER JOIN accounts a 
 ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_accounts WHERE household_accounts.house_hold_id = ?) AND cf.positive_negative = 0 GROUP BY amount DESC LIMIT 3");
 
-        if ($get_stmt->execute(array($house_id))){
+        if ($get_stmt->execute(array($house_id))) {
 
             $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            for ($i = 0; $i < $get_stmt->rowCount(); $i++){
+            for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
 
-                echo $selector[$i]['category_name']."<br>";
+                echo $selector[$i]['category_name'] . "<br>";
                 echo "<br>";
             }
 
-        }else{
+        } else {
             die("Error");
         }
     }
@@ -256,7 +300,7 @@ ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_
         }
 
         if (isset($category_type)) {
-            if ($category_type == 0 OR $category_type == 1) {
+            if ($category_type == 0 or $category_type == 1) {
 
                 $insert_category = $this->connect()->prepare("INSERT INTO cateogries( `category_name`, `category_type`, `household_id`, `category_date_added`) VALUES (?,?,?,?)");
 
@@ -266,15 +310,15 @@ ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_
                     }
                 }
 
-            } else{
+            } else {
                 die("<p class='alert alert-danger' role='alert'>Category type is invalid</p>");
             }
-        }else{
+        } else {
             die("<p class='alert alert-danger' role='alert'>Insert failed</p>");
         }
     }
 
-    function insert_neg_money($neg_date, $neg_category, $amount, $user_id,$cost_description)
+    function insert_neg_money($neg_date, $neg_category, $amount, $user_id, $cost_description)
     {
         //Server side error handlers
         if (empty($neg_date) || empty($neg_category) || empty($amount) || empty($user_id) || empty($cost_description)) {
@@ -287,7 +331,7 @@ ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_
 
         $insert_neg_stmt = $this->connect()->prepare("INSERT INTO `cash_flow`( `amount`, `users_id`, `category_id`, `positive_negative`, `date_added`,cost_description) VALUES (?,?,?,0,?,?);");
 
-        if ($insert_neg_stmt->execute(array($amount, $user_id, $neg_category, $neg_date,$cost_description))) {
+        if ($insert_neg_stmt->execute(array($amount, $user_id, $neg_category, $neg_date, $cost_description))) {
             if ($insert_neg_stmt->rowCount() > 0) {
                 return true;
             } else {
@@ -369,10 +413,11 @@ ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_
 
     }
 
-    function get_expense_month($house_id){
+    function get_expense_month($house_id)
+    {
 
 
-        $get_stmt =$this->connect()->prepare("
+        $get_stmt = $this->connect()->prepare("
 SELECT 
 SUM(amount)
 FROM cash_flow 
@@ -380,18 +425,19 @@ WHERE MONTH(date_added) = MONTH(CURRENT_DATE())
 AND YEAR(date_added) = YEAR(CURRENT_DATE())
 AND positive_negative = 0 AND users_id IN(SELECT user_id FROM household_accounts WHERE house_hold_id = ?)");
 
-        if ($get_stmt->execute(array($house_id))){
+        if ($get_stmt->execute(array($house_id))) {
 
             $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            for ($i =0; $i < $get_stmt->rowCount(); $i++){
+            for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
                 return $selector[$i]['SUM(amount)'];
             }
         }
     }
 
     //TODO:Napraviti da radi mozda
-    function set_goal_achieved($house_id){
+    function set_goal_achieved($house_id)
+    {
 
         $set_stmt = $this->connect()->prepare("
 SELECT 
@@ -401,35 +447,29 @@ WHERE MONTH(date_added) = MONTH(CURRENT_DATE())
 AND YEAR(date_added) = YEAR(CURRENT_DATE())
 AND positive_negative = 0 AND users_id IN(SELECT users_id FROM household_accounts WHERE house_hold_id = ?)");
 
-        if ($set_stmt->execute()){
+        if ($set_stmt->execute()) {
             echo "true";
-        }else{
+        } else {
             echo "false";
         }
 
 
     }
 
-    function delete_category($category_id){
+    function delete_category($category_id)
+    {
         $delete_stmt = $this->connect()->prepare("DELETE FROM cateogries WHERE category_id=?;");
 
         try {
-            if ($delete_stmt->execute(array($category_id))){
+            if ($delete_stmt->execute(array($category_id))) {
                 die("<div class='alert alert-success' role='alert'>Deleted the category</div>");
-            }else{
+            } else {
                 die("<div class='alert alert-danger' role='alert'>Failed to delete category <b>Warning!</b> Cannot delete category which has been used</div>");
             }
-        }catch (PDOException $e){
+        } catch (PDOException $e) {
             die("<div class='alert alert-danger' role='alert'>Failed to delete category <b>Warning!</b> Cannot delete category which has been used</div>");
         }
     }
-
-
-    function search_costs(){
-
-    }
-
-
 
 
 }

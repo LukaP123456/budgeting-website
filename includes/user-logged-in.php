@@ -604,7 +604,9 @@ $get->get_group_name($_COOKIE['users_id']);
 
                                 let search_text = $("#search_text").val().trim();
 
-                                if(search_text !== ""){
+                                if(search_text === " "){
+                                    console.log(search_text)
+                                    console.log(2131231)
 
                                 }else{
                                     $("#all_costs_body").html('')
