@@ -1024,11 +1024,11 @@ $get->get_group_name($_COOKIE['users_id']);
 <br>
 
 <?php
-//$expenses_weekly = $get->get_expense_week($house_id);
+$expenses_month = $get->get_expense_month($house_id);
 
 ?>
     <div class="card text-center">
-        <div class="card-header"><?php $get->get_expense_month($house_id); ?></div>
+        <div class="card-header"><?php echo $expenses_month; ?></div>
         <div class="card-body">
             <div class="container" style="height: 645px">
                 <canvas id="weekChart">
@@ -1045,7 +1045,12 @@ $get->get_group_name($_COOKIE['users_id']);
                             labels: ['Monday', 'Tuesday', 'Wednesday', 'Friday', 'Saturday', 'Sunday'],
                             datasets: [{
                                 data: [
-                                    <?php //echo $expenses_weekly; ?>
+                                    <?php echo $expenses_month; ?>,
+                                    800,
+                                    429,
+                                    12.2,
+                                    231,
+                                    10.902
                                 ],
                                 backgroundColor: [
                                     'red'

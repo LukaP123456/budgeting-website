@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2022 at 07:52 PM
+-- Generation Time: Jun 05, 2022 at 11:55 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.0
 
@@ -62,33 +62,25 @@ CREATE TABLE `cash_flow` (
   `users_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `positive_negative` tinyint(4) NOT NULL COMMENT '0 = withdrawing amount from the budget, 1 = adding amount to the goal/budget',
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  `cost_description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `cash_flow`
 --
 
-INSERT INTO `cash_flow` (`amount_id`, `amount`, `users_id`, `category_id`, `positive_negative`, `date_added`) VALUES
-(99, 50, 1124, 9, 1, '2022-06-23 20:23:00'),
-(100, 12.56, 1124, 1, 0, '2022-06-16 20:23:00'),
-(101, 10, 1124, 1, 0, '2022-06-29 20:23:00'),
-(102, 56, 1124, 5, 0, '2022-06-28 20:23:00'),
-(103, 23, 1124, 5, 0, '2022-06-27 20:23:00'),
-(104, 66, 1124, 7, 0, '2022-07-01 20:23:00'),
-(105, 2, 1124, 9, 1, '2022-06-03 18:27:00'),
-(106, 3, 1124, 9, 1, '2022-06-23 18:47:00'),
-(107, 4, 1124, 10, 1, '2022-06-02 18:47:00'),
-(108, 11, 1124, 12, 1, '2022-06-09 18:48:00'),
-(109, 1, 1124, 12, 1, '2022-06-03 18:58:00'),
-(110, 11.11, 1124, 10, 1, '2022-06-03 19:10:00'),
-(111, 22.22, 1124, 9, 1, '2022-06-03 19:16:00'),
-(112, 33.33, 1124, 9, 1, '2022-06-03 19:19:00'),
-(113, 222222000, 1124, 12, 1, '2022-08-07 19:44:00'),
-(114, 11, 1124, 10, 1, '2022-09-17 19:45:00'),
-(115, 123, 1124, 2, 0, '2022-07-09 19:48:00'),
-(116, 11111100, 1124, 1, 0, '2022-07-09 19:48:00'),
-(117, 55.55, 1124, 1, 0, '2023-10-03 19:50:00');
+INSERT INTO `cash_flow` (`amount_id`, `amount`, `users_id`, `category_id`, `positive_negative`, `date_added`, `cost_description`) VALUES
+(145, 100, 1139, 1, 0, '2022-06-05 10:50:00', 'asdasdasd'),
+(146, 200, 1139, 2, 0, '2022-06-05 10:50:00', 'wwwww'),
+(147, 200, 1139, 2, 0, '2022-06-05 10:51:00', 'eeeee'),
+(148, 400, 1139, 3, 0, '2022-06-06 10:51:00', 'qweqwe'),
+(149, 12, 1139, 5, 0, '2022-06-05 10:52:00', 'asdasd'),
+(150, 12, 1139, 4, 0, '2022-06-05 10:53:00', 'qweqwe'),
+(151, 20, 1139, 7, 0, '2022-05-01 11:10:00', 'asdasda'),
+(152, 123, 1125, 1, 0, '2022-06-05 11:14:00', 'asdasdas'),
+(153, 222, 1125, 3, 0, '2022-06-05 11:14:00', 'asdawdsdas'),
+(154, 340, 1125, 4, 0, '2022-06-05 11:14:00', 'asdawdsdawd');
 
 -- --------------------------------------------------------
 
@@ -120,7 +112,15 @@ INSERT INTO `cateogries` (`category_id`, `category_name`, `category_type`, `hous
 (9, 'Salary', 1, NULL, NULL),
 (10, 'Pension', 1, NULL, NULL),
 (11, 'Odd jobs', 1, NULL, NULL),
-(12, 'Gift', 1, NULL, NULL);
+(12, 'Gift', 1, NULL, NULL),
+(31, 'pozitivan kategorija 1', 1, 50, '2022-06-04 10:48:22'),
+(32, 'pozitivan kategorija 2', 1, 50, '2022-06-04 10:48:27'),
+(33, 'pozitivan kategorija 3', 1, 50, '2022-06-04 10:48:30'),
+(34, 'negativna kategorija 1', 0, 50, '2022-06-04 10:48:43'),
+(35, 'negativna kategorija 2', 0, 50, '2022-06-04 10:48:47'),
+(36, 'negativna kategorija 3', 0, 50, '2022-06-04 10:48:49'),
+(45, 'asdasdasd', 1, 50, '2022-06-04 20:00:58'),
+(46, 'sama u kuci kategorija', 1, 52, '2022-06-04 20:02:46');
 
 -- --------------------------------------------------------
 
@@ -152,7 +152,19 @@ INSERT INTO `goals` (`goal_id`, `goal_name`, `goal_price`, `user_id`, `goal_achi
 (96, 'asdasda', 111111, 1124, NULL, '2022-06-03 19:27:25'),
 (97, 'dddddd', 222, 1124, NULL, '2022-06-03 19:27:41'),
 (98, 'aaaa', 1111, 1124, NULL, '2022-06-03 19:37:39'),
-(99, 'bbb', 222, 1124, NULL, '2022-06-03 19:42:37');
+(99, 'bbb', 222, 1124, NULL, '2022-06-03 19:42:37'),
+(100, 'asdasdasd', 1212, 1125, NULL, '2022-06-04 11:04:05'),
+(101, 'chair', 222, 1139, NULL, '2022-06-04 14:18:28'),
+(102, 'table', 111, 1139, NULL, '2022-06-04 14:23:56'),
+(103, 'chair', 222, 1139, NULL, '2022-06-04 14:26:10'),
+(104, 'car', 333, 1139, NULL, '2022-06-04 14:27:04'),
+(105, 'asdasda', 111, 1139, NULL, '2022-06-04 14:27:53'),
+(106, 'table', 222, 1139, NULL, '2022-06-04 14:29:36'),
+(107, 'chair', 222, 1139, NULL, '2022-06-04 14:30:27'),
+(108, 'table', 111, 1139, NULL, '2022-06-04 14:30:42'),
+(109, 'car', 222, 1139, NULL, '2022-06-04 14:35:32'),
+(110, 'table', 111, 1125, NULL, '2022-06-04 19:10:26'),
+(111, 'chair', 222, 1125, NULL, '2022-06-04 19:32:32');
 
 -- --------------------------------------------------------
 
@@ -307,37 +319,37 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1140;
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1143;
 
 --
 -- AUTO_INCREMENT for table `cash_flow`
 --
 ALTER TABLE `cash_flow`
-  MODIFY `amount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `amount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
 --
 -- AUTO_INCREMENT for table `cateogries`
 --
 ALTER TABLE `cateogries`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `goals`
 --
 ALTER TABLE `goals`
-  MODIFY `goal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `goal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `household`
 --
 ALTER TABLE `household`
-  MODIFY `household_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `household_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `log_data`
 --
 ALTER TABLE `log_data`
-  MODIFY `data_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=251;
+  MODIFY `data_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=254;
 
 --
 -- Constraints for dumped tables

@@ -385,13 +385,9 @@ AND positive_negative = 0 AND users_id IN(SELECT user_id FROM household_accounts
             $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
 
             for ($i =0; $i < $get_stmt->rowCount(); $i++){
-                echo $selector[$i]['SUM(amount)'];
+                return $selector[$i]['SUM(amount)'];
             }
-
-
         }
-
-
     }
 
     //TODO:Napraviti da radi mozda
