@@ -96,7 +96,6 @@ require_once "../classes/first-time-loggedin.classes.php";
                     $email = $_SESSION['email'];
 
                     if ($first_log->check_if_house_admin($email)){
-                        if ($first_log->check_alone($_SESSION["users_id"], $_SESSION['house_id'])){
                     ?>
                 <li class='nav-item'>
                     <a href='add-new-user.php?group_name=<?php if (isset($_SESSION['group_name'])) {
@@ -105,10 +104,7 @@ require_once "../classes/first-time-loggedin.classes.php";
                        class='nav-link text-white'>Add a member</a>
                 </li>
                 <?php
-                    }
                 }
-
-
                 ?>
             </ul>
         </div>
@@ -385,7 +381,7 @@ $get->get_group_name($_COOKIE['users_id']);
                             echo $expenses;
                         } ?></p>
                     <div class="text-center">
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <p class="card-text"><small class="text-muted">Three Most popular categories</small></p>
                     </div>
                 </div>
             </div>

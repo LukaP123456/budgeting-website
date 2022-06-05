@@ -98,17 +98,17 @@ class Insert_get extends Dbh
     function get_all_costs($house_id)
     {
         $get_stmt = $this->connect()->prepare("
-                                                SELECT accounts.users_email,
-                                                cash_flow.amount,
-                                                cash_flow.date_added,
-                                                cash_flow.category_id,
-                                                cash_flow.cost_description
-                                                FROM accounts 
-                                                INNER JOIN cash_flow On accounts.users_id = cash_flow.users_id WHERE cash_flow.users_id IN (SELECT user_id 
-                                                                                                                                                FROM household_accounts 
-                                                                                                                                                WHERE household_accounts.house_hold_id = ?
-                                                                                                                                            )AND cash_flow.positive_negative = 0 ORDER BY cash_flow.date_added DESC LIMIT 200
-                                                ");
+SELECT amount,
+date_added,
+category_name,
+users_email,
+cost_description
+FROM cash_flow cf
+INNER JOIN cateogries cat 
+ON cf.category_id = cat.category_id
+INNER JOIN accounts a 
+ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_accounts WHERE household_accounts.house_hold_id = ?) AND cf.positive_negative = 0 ORDER By cf.date_added DESC LIMIT 200
+");
 
         if ($get_stmt->execute(array($house_id))) {
 
@@ -118,7 +118,7 @@ class Insert_get extends Dbh
                 echo "Amount: $";
                 echo $selector[$i]['amount'] . "<br>";
                 echo " Category: ";
-                echo $selector[$i]['category_id'] . "<br>";
+                echo $selector[$i]['category_name'] . "<br>";
                 echo " Date added: ";
                 echo $selector[$i]['date_added'] . "<br>";
                 echo " Added by: ";
@@ -137,17 +137,16 @@ class Insert_get extends Dbh
     {
 
         $get_stmt = $this->connect()->prepare("
-                                                SELECT accounts.users_email,
-                                                cash_flow.amount,
-                                                cash_flow.date_added,
-                                                cash_flow.category_id 
-                                                FROM accounts 
-                                                INNER JOIN cash_flow On accounts.users_id = cash_flow.users_id WHERE cash_flow.users_id IN (SELECT user_id 
-                                                                                                                                                FROM household_accounts 
-                                                                                                                                                WHERE household_accounts.house_hold_id=?
-                                                                                                                                            )
-                                                AND cash_flow.positive_negative = 1
-                                                ORDER BY cash_flow.date_added DESC LIMIT 200");
+SELECT amount,
+date_added,
+category_name,
+users_email
+FROM cash_flow cf
+INNER JOIN cateogries cat 
+ON cf.category_id = cat.category_id
+INNER JOIN accounts a 
+ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_accounts WHERE household_accounts.house_hold_id = ?) AND cf.positive_negative = 1 ORDER By cf.date_added DESC LIMIT 200
+");
 
         if ($get_stmt->execute(array($house_id))) {
 
@@ -157,7 +156,7 @@ class Insert_get extends Dbh
                 echo "Amount: $";
                 echo $selector[$i]['amount'] . "<br>";
                 echo " Category: ";
-                echo $selector[$i]['category_id'] . "<br>";
+                echo $selector[$i]['category_name'] . "<br>";
                 echo " Date added: ";
                 echo $selector[$i]['date_added'] . "<br>";
                 echo " Added by: ";
@@ -383,9 +382,6 @@ class Insert_get extends Dbh
         }catch (PDOException $e){
             die("<div class='alert alert-danger' role='alert'>Failed to delete category <b>Warning!</b> Cannot delete category which has been used</div>");
         }
-
-
-
     }
 
 
