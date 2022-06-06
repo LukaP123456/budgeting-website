@@ -601,56 +601,63 @@ On household.household_id = household_accounts.house_hold_id
 ");
 
         if ($get_stmt->execute()){
-            $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                for ($i=0; $i < $get_stmt->rowCount(); $i++){
-
-                    if (!$selector[$i]['first_login']===null){
-                        $first_login = "User has yet to login for the first time";
-                    }else{
-                        $first_login = "User has logged in for the first time";
-                    }
-
-                    if ($selector[$i]['blocked']===0){
-                        $blocked = "House isn't blocked";
-                    }else{
-                        $blocked = "House is blocked";
-                    }
-
-                    if ($selector[$i]['role']===0){
-                        $role = "Regular user";
-                    }else{
-                        $role = "House admin";
-                    }
-
-                    if ($selector[$i]['verify_status']===0){
-                        $verify_status = "User has not verified";
-                    }else{
-                        $verify_status = "User has verified";
-                    }
 
 
-                    $house_date = array(
-                      'house_name'=> $selector[$i]['household_name'],
-                      'blocked'=> $blocked,
-                      'users_email'=> $selector[$i]['users_email'],
-                      'full_name'=> $selector[$i]['full_name'],
-                      'verify_status'=> $verify_status,
-                      'role'=> $role,
-                      'date_time_signup'=> $selector[$i]['date_time_signup'],
-                      'first_login'=> $first_login,
-                      'ip_adress'=> $selector[$i]['ip_adress'],
-                      'web_browser_OS'=> $selector[$i]['web_browser_OS']
-                    );
+//                for ($i=0; $i < $get_stmt->rowCount(); $i++){
+//
+//                    if (!$selector[$i]['first_login']===null){
+//                        $first_login = "User has yet to login for the first time";
+//                    }else{
+//                        $first_login = "User has logged in for the first time";
+//                    }
+//
+//                    if ($selector[$i]['blocked']===0){
+//                        $blocked = "House isn't blocked";
+//                    }else{
+//                        $blocked = "House is blocked";
+//                    }
+//
+//                    if ($selector[$i]['role']===0){
+//                        $role = "Regular user";
+//                    }else{
+//                        $role = "House admin";
+//                    }
+//
+//                    if ($selector[$i]['verify_status']===0){
+//                        $verify_status = "User has not verified";
+//                    }else{
+//                        $verify_status = "User has verified";
+//                    }
+//
+//
+//                    $house_date = array(
+//                      'house_name'=> $selector[$i]['household_name'],
+//                      'blocked'=> $blocked,
+//                      'users_email'=> $selector[$i]['users_email'],
+//                      'full_name'=> $selector[$i]['full_name'],
+//                      'verify_status'=> $verify_status,
+//                      'role'=> $role,
+//                      'date_time_signup'=> $selector[$i]['date_time_signup'],
+//                      'first_login'=> $first_login,
+//                      'ip_adress'=> $selector[$i]['ip_adress'],
+//                      'web_browser_OS'=> $selector[$i]['web_browser_OS']
+//                    );
+//                }
+
+//            while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)){
+//
+//                $house_date[] = $selector;
+//            }
+
+            while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)){
+
+                return $selector;
+            }
 
 
 
-                    return $house_date;
-                }
 
-
-
-
+            //return $house_date;
         }else{
             die("There has been an error");
         }

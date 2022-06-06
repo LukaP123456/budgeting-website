@@ -94,26 +94,68 @@ $get = new Insert_get();
 
 $houses_array = $get->get_all_houses();
 
-var_dump($houses_array);
+//echo ( $get->get_all_houses())[0]['household_name'];
 
+for ($i=0; $i < count($houses_array); $i++){
 
+    echo $houses_array[$i]['household_name']."<br>";
 
+    if ($houses_array[$i]['blocked'] === 0){
+        $blocked_text = "User is blocked";
+    }else{
+        $blocked_text = "User is not blocked";
+    }
+    echo $blocked_text."<br>";
+    echo $houses_array[$i]['users_email']."<br>";
+    echo $houses_array[$i]['full_name']."<br>";
+
+    if ($houses_array[$i]['verify_status'] === 1){
+        $verify_text = "User is verified";
+    }else{
+        $verify_text = "User is not verified";
+    }
+
+    echo $verify_text."<br>";
+
+    if ($houses_array[$i]['role'] === 1){
+        $role_text = "House admin";
+    }
+
+    if ($houses_array[$i]['role'] === 1){
+        $role_text = "Regular user";
+    }
+
+    echo $role_text."<br>";
+    echo $houses_array[$i]['date_time_signup']."<br>";
+
+    if ($houses_array[$i]['first_login'] === null){
+        $first_login_text = "User logged in for the first time";
+    }else{
+        $first_login_text = "User has yet to login";
+    }
+    echo $first_login_text."<br>";
+    echo $houses_array[$i]['ip_adress']."<br>";
+    echo $houses_array[$i]['web_browser_OS']."<br>";
+    echo "<hr>";
+}
+
+//print_r($houses_array);
 ?>
 
 
-<!--<div class="card text-center">-->
-<!--    <div class="card-header">-->
-<!--        -->
-<!--    </div>-->
-<!--    <div class="card-body">-->
-<!--        <h5 class="card-title">Special title treatment</h5>-->
-<!--        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
-<!--        <a href="#" class="btn btn-primary">Go somewhere</a>-->
-<!--    </div>-->
-<!--    <div class="card-footer text-muted">-->
-<!--        2 days ago-->
-<!--    </div>-->
-<!--</div>-->
+<div class="card text-center">
+    <div class="card-header">
+
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    <div class="card-footer text-muted">
+        2 days ago
+    </div>
+</div>
 
 </body>
 </html>

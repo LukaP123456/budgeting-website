@@ -66,9 +66,9 @@ require_once "../classes/first-time-loggedin.classes.php";
 </head>
 <body class="bg-dark">
 
-<!--<div class="loader-container">-->
-<!--    <img src="../img/loader.gif"  alt="loader">-->
-<!--</div>-->
+<div class="loader-container">
+    <img src="../img/loader.gif"  alt="loader">
+</div>
 
 <!--USER HEADER START-->
 <!--navbar start-->
@@ -1193,71 +1193,11 @@ $get->get_group_name($_COOKIE['users_id']);
 $expenses_month = $get->get_expense_month($house_id);
 
 ?>
-    <div class="card text-center">
-        <div class="card-header"><?php echo $expenses_month; ?></div>
-        <div class="card-body">
-            <div class="container" style="height: 645px">
-                <canvas id="weekChart">
-
-                </canvas>
-
-                <script>
-
-                    let week_chart = document.getElementById("weekChart").getContext('2d');
-
-                    let one_week_chart = new Chart(week_chart, {
-                        type: 'doughnut', //bar, horizontal bar, pie, line ,doughnut, radar, polar area
-                        data: {
-                            labels: ['5.', '10.', '15.', '20.', '25.', '30.'],
-                            datasets: [{
-                                data: [
-                                    <?php echo $expenses_month; ?>
-
-                                ],
-                                backgroundColor: [
-                                    'red'
-                                ],
-                                borderWidth: 1,
-                                hoverBorderWidth: 3,
-                                hoverBorderColor: 'black'
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                title: {
-                                    display: true,
-                                    text: 'Expenses for the current month',
-                                    color: 'black',
-                                    font: {
-                                        size: 30
-                                    }
-                                },
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        color: 'black',
-                                        font: {
-                                            size: 20
-                                        }
-                                    }
-                                },
-                                layout: {
-                                    padding: {
-                                        left: 0,
-                                        right: 0,
-                                        bottom: 0,
-                                        top: 0
-                                    }
-                                },
-
-                            }
-
-                        }
-                    });
-                </script>
-            </div>
+    <div class="card bg-dark text-white" style="text-align: center">
+        <img src="../img/red-bg%20-%20Copy.jpg" class="card-img"  alt="..." >
+        <div class="card-img-overlay">
+            <h5 class="card-title">Expenses for the current month</h5>
+            <h1 class="text-white" style="font-size: 150px">$<?php echo $expenses_month;?></h1>
         </div>
     </div>
 
@@ -1265,7 +1205,7 @@ $expenses_month = $get->get_expense_month($house_id);
 }
 ?>
 <!--Loader script for loader gif and refresh page-->
-<!--<script type="text/javascript" src="../js/loader-refresh.js"></script>-->
+<script type="text/javascript" src="../js/loader-refresh.js"></script>
 
 </body>
 </html>
