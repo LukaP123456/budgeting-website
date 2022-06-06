@@ -92,18 +92,28 @@ require_once "../classes/insert-get-class.php";
 
 $get = new Insert_get();
 
-$get->get_all_houses();
+$houses_array = $get->get_all_houses();
 
-$str = file_get_contents('full_house.json');
-$house_object = json_decode($str,true);
+var_dump($houses_array);
+
+
 
 ?>
 
 
-
-
-
-
+<!--<div class="card text-center">-->
+<!--    <div class="card-header">-->
+<!--        -->
+<!--    </div>-->
+<!--    <div class="card-body">-->
+<!--        <h5 class="card-title">Special title treatment</h5>-->
+<!--        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+<!--        <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--    </div>-->
+<!--    <div class="card-footer text-muted">-->
+<!--        2 days ago-->
+<!--    </div>-->
+<!--</div>-->
 
 </body>
 </html>
