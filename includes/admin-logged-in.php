@@ -185,12 +185,14 @@ for ($i=0; $i < count($houses_array); $i++){
                     data:{
                        house_name:house_name
                     },
-                    success:function (){
-                       //TODO:Funkcija se izvrsi iako kuca ne postoji
-                       alert("Success house "+house_name+" has been unblocked");
+                    success:function (response){
+                        window.location.reload(true);
+                        //TODO:Funkcija se izvrsi iako kuca ne postoji
+                        alert(response);
                     },
-                    error:function (){
-                       alert("Block failed");
+                    error:function (response){
+                        window.location.reload(true);
+                        alert(response);
                     }
                 })
             }
@@ -210,17 +212,22 @@ for ($i=0; $i < count($houses_array); $i++){
                     data:{
                         house_name:house_name
                     },
-                    success:function (){
+                    success:function (response){
+                        window.location.reload(true);
                         //TODO:Funkcija se izvrsi iako kuca ne postoji
-                        alert("Success house "+house_name+" has been blocked");
+                        alert(response);
+
                     },
-                    error:function (){
-                        alert("Block failed");
+                    error:function (response){
+                        window.location.reload(true);
+                        alert(response);
                     }
                 })
             }
         });
     });
+
+
 
 
 

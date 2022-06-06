@@ -7,7 +7,10 @@ if (!isset($_SESSION['authenticated'])) {
 require_once "../classes/first-time-loggedin.classes.php";
 require_once "../classes/insert-get-class.php";
 $get2 = new Insert_get();
-$get2->check_block($_COOKIE['house_hold_id']);
+$house_id2 = $get2->get_house_id($_COOKIE['users_id']);
+
+$get2->check_block($house_id2);
+
 
 if ($_SESSION['blocked'] === true){
     header("location:../includes/blocked_page.php");
@@ -72,9 +75,9 @@ if ($_SESSION['blocked'] === true){
 </head>
 <body class="bg-dark">
 
-<!--<div class="loader-container">-->
-<!--    <img src="../img/loader.gif"  alt="loader">-->
-<!--</div>-->
+<div class="loader-container">
+    <img src="../img/loader.gif"  alt="loader">
+</div>
 
 <!--USER HEADER START-->
 <!--navbar start-->

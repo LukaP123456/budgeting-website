@@ -622,9 +622,9 @@ On household.household_id = household_accounts.house_hold_id
         $block_stmt = $this->connect()->prepare("UPDATE household SET blocked=1 WHERE household_name=?;");
 
         if ($block_stmt->execute(array($house_name))){
-            die("Success");
+            die("House ".$house_name." has been blocked.");
         }else{
-            die("False");
+            die("Failed to delete house: ".$house_name);
         }
 
     }
@@ -634,16 +634,23 @@ On household.household_id = household_accounts.house_hold_id
         $block_stmt = $this->connect()->prepare("UPDATE household SET blocked=0 WHERE household_name=?;");
 
         if ($block_stmt->execute(array($house_name))){
-            die("Success");
+            die("House ".$house_name." has been unblocked.");
         }else{
-            die("False");
+            die("Failed to delete house: ".$house_name);
         }
 
     }
 
     function check_block($house_id){
 
-        $check_stmt =$this->connect()->prepare( "SELECT * from household WHERE blocked=1 AND household_id=?");
+        $check_stmt =$this->connect()->prepare( "
+SELECT
+household_name,
+blocked
+from household
+INNER JOIN household_accounts 
+ON household_accounts.house_hold_id=household.household_id
+WHERE blocked=1 AND household_id=?");
 
         if ($check_stmt->execute(array($house_id))){
             if ($check_stmt->rowCount() > 0){

@@ -8,6 +8,10 @@ if (isset($_POST['house_name'])){
 
     $house_name = $_POST['house_name'];
 
+    if (empty($house_name)){
+        die("Please enter a name into the field");
+    }
+
     $block->block_house($house_name);
 
 }
