@@ -629,5 +629,19 @@ On household.household_id = household_accounts.house_hold_id
 
     }
 
+    function check_block($house_id){
+
+        $check_stmt =$this->connect()->prepare( "SELECT * from household WHERE blocked=1 AND household_id=?");
+
+        if ($check_stmt->execute(array($house_id))){
+            if ($check_stmt->rowCount() > 0){
+                $_SESSION['blocked'] = true;
+            }else{
+                $_SESSION['blocked'] = false;
+            }
+        }
+
+    }
+
 
 }

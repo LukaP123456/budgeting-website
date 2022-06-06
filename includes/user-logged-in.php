@@ -4,8 +4,14 @@ if (!isset($_SESSION['authenticated'])) {
     header("Location: ../index.php");
     exit();
 }
-
 require_once "../classes/first-time-loggedin.classes.php";
+require_once "../classes/insert-get-class.php";
+$get2 = new Insert_get();
+$get2->check_block($_COOKIE['house_hold_id']);
+
+if ($_SESSION['blocked'] === true){
+    header("location:../includes/blocked_page.php");
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -66,9 +72,9 @@ require_once "../classes/first-time-loggedin.classes.php";
 </head>
 <body class="bg-dark">
 
-<div class="loader-container">
-    <img src="../img/loader.gif"  alt="loader">
-</div>
+<!--<div class="loader-container">-->
+<!--    <img src="../img/loader.gif"  alt="loader">-->
+<!--</div>-->
 
 <!--USER HEADER START-->
 <!--navbar start-->
@@ -185,7 +191,6 @@ if (!$first_log->log_first_time($_SESSION["users_id"])) {
 <?php
 } else {
 
-require_once "../classes/insert-get-class.php";
 require_once "../classes/dbh.classes.php";
 
 $get = new Insert_get();
@@ -347,6 +352,8 @@ $get->get_group_name($_COOKIE['users_id']);
                     $user_id = $_COOKIE['users_id'];
                     $house_id = $get->get_house_id($user_id);
                     $_SESSION['house_id'] = $house_id;
+
+
 
                     $budget = $get->get_budget($house_id);
                     ?>
@@ -624,7 +631,6 @@ $get->get_group_name($_COOKIE['users_id']);
                     <script type="text/javascript">
 
                         $(document).ready(function (){
-                            //TODO:Ne smenjuje se ovde opadajuci i rastuic niz
                             $("#asc_desc").on('change',function (){
                                 let asc_desc_val = $("#asc_desc").val();
 

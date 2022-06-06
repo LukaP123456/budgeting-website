@@ -105,10 +105,10 @@ for ($i=0; $i < count($houses_array); $i++){
 
 //    echo $houses_array[$i]['household_name']."<br>";
 
-    if ($houses_array[$i]['blocked'] === 0){
-        $blocked_text = "User is blocked";
+    if ($houses_array[$i]['blocked'] === 1){
+        $blocked_text = "House is blocked";
     }else{
-        $blocked_text = "User is not blocked";
+        $blocked_text = "House is not blocked";
     }
 //    echo $blocked_text."<br>";
 //    echo $houses_array[$i]['users_email']."<br>";
@@ -184,6 +184,7 @@ for ($i=0; $i < count($houses_array); $i++){
                        house_name:house_name
                     },
                     success:function (){
+                       //TODO:Funkcija se izvrsi iako kuca ne postoji
                        alert("Success house "+house_name+" has been blocked");
                     },
                     error:function (){

@@ -43,9 +43,6 @@ include_once "footer.php";
 include_once "includes/modal_form.php";
 include_once "includes/login-modal.php";
 
-//TODO: Prepraviti mozda server side error handlere da su switch case umesto if else
-//TODO: Prepraviti sesije da rade kako treba
-
 ?>
 <!--BODY END-->
 
