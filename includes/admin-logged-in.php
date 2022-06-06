@@ -68,6 +68,8 @@ require_once "../classes/first-time-loggedin.classes.php";
         <a href="#" class="navbar-brand">LP<span class="text-warning">Budgeting</span> Dashboard</a>
         <input id="house_name" placeholder="Name of house" type="text">
         <button type="submit" name="block_btn" class="btn btn-danger" id="block_btn">Block house</button>
+        <button type="submit" name="block_btn" class="btn btn-success" id="unblock_btn">Unblock house</button>
+
 
         <button class="navbar-toggler"
                 type="button"
@@ -185,10 +187,35 @@ for ($i=0; $i < count($houses_array); $i++){
                     },
                     success:function (){
                        //TODO:Funkcija se izvrsi iako kuca ne postoji
-                       alert("Success house "+house_name+" has been blocked");
+                       alert("Success house "+house_name+" has been unblocked");
                     },
                     error:function (){
                        alert("Block failed");
+                    }
+                })
+            }
+        });
+
+        $("#unblock_btn").click(function (e){
+            e.preventDefault();
+
+            let house_name = $("#house_name").val().trim();
+
+            if (house_name === ""){
+                alert("Please enter name of a house before you click the button")
+            }else {
+                $.ajax({
+                    method:"POST",
+                    url:"unblock_house.php",
+                    data:{
+                        house_name:house_name
+                    },
+                    success:function (){
+                        //TODO:Funkcija se izvrsi iako kuca ne postoji
+                        alert("Success house "+house_name+" has been blocked");
+                    },
+                    error:function (){
+                        alert("Block failed");
                     }
                 })
             }

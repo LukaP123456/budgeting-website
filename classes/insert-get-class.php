@@ -629,6 +629,18 @@ On household.household_id = household_accounts.house_hold_id
 
     }
 
+    function Unblock_house($house_name){
+
+        $block_stmt = $this->connect()->prepare("UPDATE household SET blocked=0 WHERE household_name=?;");
+
+        if ($block_stmt->execute(array($house_name))){
+            die("Success");
+        }else{
+            die("False");
+        }
+
+    }
+
     function check_block($house_id){
 
         $check_stmt =$this->connect()->prepare( "SELECT * from household WHERE blocked=1 AND household_id=?");
