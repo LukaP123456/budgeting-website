@@ -135,7 +135,7 @@ ORDER By cf.date_added DESC");
                 }
             }
 
-        }else{
+        } else {
             die("There was an error");
         }
     }
@@ -143,7 +143,7 @@ ORDER By cf.date_added DESC");
     function search_costs_asc_desc($house_id, $asc_desc)
     {
 
-        if ($asc_desc === "asc" OR $asc_desc === "desc"){
+        if ($asc_desc === "asc" or $asc_desc === "desc") {
             $get_stmt = $this->connect()->prepare("SELECT amount,
 date_added,
 category_name,
@@ -154,9 +154,8 @@ INNER JOIN cateogries cat
 ON cf.category_id = cat.category_id
 INNER JOIN accounts a 
 ON cf.users_id = a.users_id WHERE cf.users_id IN (SELECT user_id FROM household_accounts WHERE household_accounts.house_hold_id = ? ) AND cf.positive_negative = 0 
-ORDER By cf.date_added ".$asc_desc);
+ORDER By cf.date_added " . $asc_desc);
         }
-
 
 
         if ($get_stmt->execute(array($house_id))) {
@@ -179,24 +178,24 @@ ORDER By cf.date_added ".$asc_desc);
                 }
             }
 
-        }else{
+        } else {
             die("There was an error");
         }
     }
 
 
-    function search_costs_date($house_id, $start_date,$end_date)
+    function search_costs_date($house_id, $start_date, $end_date)
     {
 
-        if (empty($house_id)){
+        if (empty($house_id)) {
             die("House id is empty");
         }
 
-        if (empty($start_date)){
+        if (empty($start_date)) {
             die("Date is empty");
         }
 
-        if (empty($end_date)){
+        if (empty($end_date)) {
             die("Date is empty");
         }
 
@@ -238,7 +237,7 @@ ORDER By cf.date_added DESC");
                 }
             }
 
-        }else{
+        } else {
             die("There was an error");
         }
     }
@@ -574,7 +573,8 @@ AND positive_negative = 0 AND users_id IN(SELECT users_id FROM household_account
         }
     }
 
-    function get_all_houses(){
+    function get_all_houses()
+    {
 
         $get_stmt = $this->connect()->prepare("
 SELECT
@@ -600,69 +600,32 @@ INNER JOIN household
 On household.household_id = household_accounts.house_hold_id
 ");
 
-        if ($get_stmt->execute()){
+        if ($get_stmt->execute()) {
 
 
-//                for ($i=0; $i < $get_stmt->rowCount(); $i++){
-//
-//                    if (!$selector[$i]['first_login']===null){
-//                        $first_login = "User has yet to login for the first time";
-//                    }else{
-//                        $first_login = "User has logged in for the first time";
-//                    }
-//
-//                    if ($selector[$i]['blocked']===0){
-//                        $blocked = "House isn't blocked";
-//                    }else{
-//                        $blocked = "House is blocked";
-//                    }
-//
-//                    if ($selector[$i]['role']===0){
-//                        $role = "Regular user";
-//                    }else{
-//                        $role = "House admin";
-//                    }
-//
-//                    if ($selector[$i]['verify_status']===0){
-//                        $verify_status = "User has not verified";
-//                    }else{
-//                        $verify_status = "User has verified";
-//                    }
-//
-//
-//                    $house_date = array(
-//                      'house_name'=> $selector[$i]['household_name'],
-//                      'blocked'=> $blocked,
-//                      'users_email'=> $selector[$i]['users_email'],
-//                      'full_name'=> $selector[$i]['full_name'],
-//                      'verify_status'=> $verify_status,
-//                      'role'=> $role,
-//                      'date_time_signup'=> $selector[$i]['date_time_signup'],
-//                      'first_login'=> $first_login,
-//                      'ip_adress'=> $selector[$i]['ip_adress'],
-//                      'web_browser_OS'=> $selector[$i]['web_browser_OS']
-//                    );
-//                }
-
-//            while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)){
-//
-//                $house_date[] = $selector;
-//            }
-
-            while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)){
+            while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)) {
 
                 return $selector;
             }
 
 
-
-
             //return $house_date;
-        }else{
+        } else {
             die("There has been an error");
         }
 
 
+    }
+
+    function block_house($house_name){
+
+        $block_stmt = $this->connect()->prepare("UPDATE household SET blocked=1 WHERE household_name=?;");
+
+        if ($block_stmt->execute(array($house_name))){
+            die("Success");
+        }else{
+            die("False");
+        }
 
     }
 

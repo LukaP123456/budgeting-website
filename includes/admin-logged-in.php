@@ -66,6 +66,8 @@ require_once "../classes/first-time-loggedin.classes.php";
 <nav class="navbar navbar-expand-lg bg-black navbar-dark py-3 fixed-top">
     <div class="container">
         <a href="#" class="navbar-brand">LP<span class="text-warning">Budgeting</span> Dashboard</a>
+        <input id="house_name" placeholder="Name of house" type="text">
+        <button type="submit" name="block_btn" class="btn btn-danger" id="block_btn">Block house</button>
 
         <button class="navbar-toggler"
                 type="button"
@@ -87,6 +89,11 @@ require_once "../classes/first-time-loggedin.classes.php";
 <!--navbar end-->
 <!--HEADER END-->
 <br><br>
+<div class="fixed-bottom" style="text-align: right; padding-right: 200px; padding-bottom: 500px">
+
+</div>
+
+
 <?php
 require_once "../classes/insert-get-class.php";
 
@@ -94,20 +101,18 @@ $get = new Insert_get();
 
 $houses_array = $get->get_all_houses();
 
-//echo ( $get->get_all_houses())[0]['household_name'];
-
 for ($i=0; $i < count($houses_array); $i++){
 
-    echo $houses_array[$i]['household_name']."<br>";
+//    echo $houses_array[$i]['household_name']."<br>";
 
     if ($houses_array[$i]['blocked'] === 0){
         $blocked_text = "User is blocked";
     }else{
         $blocked_text = "User is not blocked";
     }
-    echo $blocked_text."<br>";
-    echo $houses_array[$i]['users_email']."<br>";
-    echo $houses_array[$i]['full_name']."<br>";
+//    echo $blocked_text."<br>";
+//    echo $houses_array[$i]['users_email']."<br>";
+//    echo $houses_array[$i]['full_name']."<br>";
 
     if ($houses_array[$i]['verify_status'] === 1){
         $verify_text = "User is verified";
@@ -115,7 +120,7 @@ for ($i=0; $i < count($houses_array); $i++){
         $verify_text = "User is not verified";
     }
 
-    echo $verify_text."<br>";
+//    echo $verify_text."<br>";
 
     if ($houses_array[$i]['role'] === 1){
         $role_text = "House admin";
@@ -125,37 +130,73 @@ for ($i=0; $i < count($houses_array); $i++){
         $role_text = "Regular user";
     }
 
-    echo $role_text."<br>";
-    echo $houses_array[$i]['date_time_signup']."<br>";
+//    echo $role_text."<br>";
+//    echo $houses_array[$i]['date_time_signup']."<br>";
 
     if ($houses_array[$i]['first_login'] === null){
         $first_login_text = "User logged in for the first time";
     }else{
         $first_login_text = "User has yet to login";
     }
-    echo $first_login_text."<br>";
-    echo $houses_array[$i]['ip_adress']."<br>";
-    echo $houses_array[$i]['web_browser_OS']."<br>";
-    echo "<hr>";
-}
+//    echo $first_login_text."<br>";
+//    echo $houses_array[$i]['ip_adress']."<br>";
+//    echo $houses_array[$i]['web_browser_OS']."<br>";
+//    echo '<button type="submit" id="block_btn" class="btn btn-danger" name="block_btn">Block house</button>';
+//    echo "<hr>";
 
-//print_r($houses_array);
+    echo '<div class="card">
+    <div class="card-body">
+        <h5 class="card-title"><b>House name:</b> '.$houses_array[$i]['household_name'].'</h5>
+        <p class="card-text"><b>Blocked:</b> '.$blocked_text.'</p>
+        <p class="card-text"><b>Users email:</b> '.$houses_array[$i]['users_email'].'</p>
+        <p class="card-text"><b>Full name:</b>  '.$houses_array[$i]['full_name'].'</p>
+        <p class="card-text"><b>Verification status:</b>  '.$verify_text.'</p>
+        <p class="card-text"><b>Users\'s role:</b> '.$role_text.'</p>
+        <p class="card-text"><b>Time of sign in:</b> '.$houses_array[$i]['date_time_signup'].'</p>
+        <p class="card-text"><b>First login:</b>  '.$first_login_text.'</p>
+        <p class="card-text"><b>Users\'s ip address:</b> '.$houses_array[$i]['ip_adress'].'</p>
+        <p class="card-text"><b>Users\'s web browser and OS:</b> '.$houses_array[$i]['web_browser_OS'].'</p>
+    </div>
+    <div class="card-footer text-muted">
+        
+    </div>
+</div>';
+}
 ?>
 
 
-<div class="card text-center">
-    <div class="card-header">
+<script type="text/javascript">
 
-    </div>
-    <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    <div class="card-footer text-muted">
-        2 days ago
-    </div>
-</div>
+    $(document).ready(function (){
+
+        $("#block_btn").click(function (e){
+            e.preventDefault();
+
+            let house_name = $("#house_name").val().trim();
+
+            if (house_name === ""){
+                alert("Please enter name of a house before you click the button")
+            }else {
+                $.ajax({
+                   method:"POST",
+                   url:"block_house.php",
+                    data:{
+                       house_name:house_name
+                    },
+                    success:function (){
+                       alert("Success house "+house_name+" has been blocked");
+                    },
+                    error:function (){
+                       alert("Block failed");
+                    }
+                })
+            }
+        });
+    });
+
+
+
+</script>
 
 </body>
 </html>
