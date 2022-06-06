@@ -1,1 +1,52 @@
-{"house_name":"zajednicka kuca ","house_admin":true,"full_name":"bobo ime","date_time_signup":"2022-06-02 11:33:20.000000","web_browser_OS":"an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10","first_login":"User has logged in for the first time","blocked":"This house is not blocked","verify_status":"User is verified"}
+[
+  [
+    {
+      "household_name": "zajednicka kuca ",
+      "blocked": 0,
+      "users_email": "bobomejl123@gmail.com",
+      "full_name": "bobo ime",
+      "verify_status": 1,
+      "role": 1,
+      "date_time_signup": "2022-06-02 11:33:20.000000",
+      "first_login": null,
+      "ip_adress": "::1",
+      "web_browser_OS": "an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10"
+    },
+    {
+      "household_name": "zajednicka kuca ",
+      "blocked": 0,
+      "users_email": "mejlzadra123jv@gmail.com",
+      "full_name": "luka prcic",
+      "verify_status": 1,
+      "role": 0,
+      "date_time_signup": "2022-06-02 11:34:19.000000",
+      "first_login": null,
+      "ip_adress": "::1",
+      "web_browser_OS": "an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10"
+    },
+    {
+      "household_name": "zajednicka kuca ",
+      "blocked": 0,
+      "users_email": "luka.prcic01@gmail.com",
+      "full_name": "Moje pravo ime ",
+      "verify_status": 1,
+      "role": 0,
+      "date_time_signup": "2022-06-02 11:40:19.000000",
+      "first_login": null,
+      "ip_adress": "::1",
+      "web_browser_OS": "an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10"
+    },
+    {
+      "household_name": "sama u kuci ",
+      "blocked": 0,
+      "users_email": "bobsagott17@gmail.com",
+      "full_name": "luka prcic",
+      "verify_status": 1,
+      "role": 1,
+      "date_time_signup": "2022-06-02 21:28:36.000000",
+      "first_login": null,
+      "ip_adress": "::1",
+      "web_browser_OS": "an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10"
+    }
+  ]
+]

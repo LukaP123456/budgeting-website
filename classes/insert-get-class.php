@@ -601,59 +601,29 @@ On household.household_id = household_accounts.house_hold_id
 ");
 
         if ($get_stmt->execute()){
+
+            $response = array();
+            $houses = array();
+
             while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)){
-                for ($i=0; $i < $get_stmt->rowCount(); $i++){
+//                foreach ($selector as $key=>$value){
+//                    $household_name = $selector[$key][$value];
+//                    $blocked = $selector[$key][$value];
+//                }
+//
+//                $houses[] = array(
+//                    'household_name'=>$household_name,
+//                    'blocked'=>$blocked
+//                );
+//
+//                $response['houses'] = $houses;
+//
+//                $fp = fopen('full_house.json', 'w');
+//                fwrite($fp, json_encode($response,JSON_PRETTY_PRINT));
+//                fclose($fp);
 
-                    if ($selector[$i]['role'] == 1){
-                        $house_admin = $selector[$i]['users_email'];
-                    }else{
-                        $regular_user = $selector[$i]["users_email"];
-                    }
-
-
-                    if ($selector[$i]["verify_status"] === 1){
-                        $verify_status = "User is verified";
-                    }else{
-                        $verify_status = "User is not verified";
-                    }
-
-                    if ($selector[$i]['first_login'] === "NULL"){
-                        $first_login = "User has yet to login for the first time";
-                    }else{
-                        $first_login = "User has logged in for the first time";
-                    }
-
-                    if ($selector[$i]['blocked'] === 1){
-                        $blocked = "This house is blocked";
-                    }else{
-                        $blocked = "This house is not blocked";
-                    }
-
-                    if ($selector[$i]['role'] === 1){
-                        $house_admin = true;
-                    }
-
-                    if ($selector[$i]['role'] === 0){
-                        $house_admin = false;
-                    }
-
-
-                    $my_house_object = array(
-                        'house_name' => $selector[$i]['household_name'],
-                        'house_admin' => $house_admin,
-                        'full_name'=>$selector[$i]['full_name'],
-                        'date_time_signup'=>$selector[$i]['date_time_signup'],
-                        'web_browser_OS'=>$selector[$i]['web_browser_OS'],
-                        'first_login'=>$first_login,
-                        'blocked'=>$blocked,
-                        'verify_status'=>$verify_status
-
-                    );
-
-                    file_put_contents('full_house.json',json_encode($my_house_object));
-
-                    return json_encode($my_house_object);
-                }
+                $house_array[] = $selector;
+                file_put_contents('full_house.json',json_encode($house_array));
 
             }
         }else{

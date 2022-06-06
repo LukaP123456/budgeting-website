@@ -1206,7 +1206,7 @@ $expenses_month = $get->get_expense_month($house_id);
                     let week_chart = document.getElementById("weekChart").getContext('2d');
 
                     let one_week_chart = new Chart(week_chart, {
-                        type: 'bar', //bar, horizontal bar, pie, line ,doughnut, radar, polar area
+                        type: 'doughnut', //bar, horizontal bar, pie, line ,doughnut, radar, polar area
                         data: {
                             labels: ['5.', '10.', '15.', '20.', '25.', '30.'],
                             datasets: [{

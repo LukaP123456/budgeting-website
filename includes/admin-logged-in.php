@@ -92,21 +92,14 @@ require_once "../classes/insert-get-class.php";
 
 $get = new Insert_get();
 
-$JSON = $get->get_all_houses();
+$get->get_all_houses();
 
 $str = file_get_contents('full_house.json');
 $house_object = json_decode($str,true);
-echo print_r($house_object,true);
-
-while ($house_object){
-    echo $house_object[][];
-}
-
-
-
-
 
 ?>
+
+
 
 
 
