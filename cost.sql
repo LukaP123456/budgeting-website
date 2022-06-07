@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2022 at 11:55 AM
+-- Generation Time: Jun 07, 2022 at 12:10 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.0
 
@@ -48,7 +48,8 @@ INSERT INTO `accounts` (`users_id`, `users_pwd`, `users_email`, `full_name`, `ve
 (1124, '$2y$10$4aEL/UevrtZcFJ3S1rPUwOXvSluZr5EDiHK16tGhbprasOWNmUbZe', 'bobomejl123@gmail.com', 'bobo ime', 1, '$2y$10$SYBwEyYzKG23qBTwnqRQWeyw3hLv0SHRO31jJmdFwtysbft6PCmQi', 1, NULL, NULL, '2022-06-02 11:33:20.000000'),
 (1125, '$2y$10$dSlStSINP5aQ/28mv8TiJeyeOFO4.ugmPApUNylSUPL9Gf2QpBebm', 'mejlzadra123jv@gmail.com', 'luka prcic', 1, '$2y$10$zBaGqOjLUa23KVDpXJC4LusVknrK8pIMkdkIsIA/DtYAO5a80qn6i', 0, NULL, NULL, '2022-06-02 11:34:19.000000'),
 (1126, '$2y$10$caFI.e/bIxTF.tXU2W0Ake0zDE5e67WiyEYrXAEk.3JvhIBtVpSgy', 'luka.prcic01@gmail.com', 'Moje pravo ime ', 1, '$2y$10$kcjTAMAGf.8ojmxO3SyafOuNt3YDGCvPY0IN1REX7zOv6O.o8Llo.', 0, NULL, NULL, '2022-06-02 11:40:19.000000'),
-(1139, '$2y$10$4msXnFgfHUEV2NOycKHdpeJCu625AhWms4dvFHMirwC//y6OHh2OG', 'bobsagott17@gmail.com', 'luka prcic', 1, '$2y$10$CqOlvnU2r92lVLd3bbSmLe.o2G4y6CGvtXXGM5X9Ade7T7sn0xsQa', 1, NULL, NULL, '2022-06-02 21:28:36.000000');
+(1139, '$2y$10$4msXnFgfHUEV2NOycKHdpeJCu625AhWms4dvFHMirwC//y6OHh2OG', 'bobsagott17@gmail.com', 'luka prcic', 1, '$2y$10$CqOlvnU2r92lVLd3bbSmLe.o2G4y6CGvtXXGM5X9Ade7T7sn0xsQa', 1, NULL, NULL, '2022-06-02 21:28:36.000000'),
+(1143, '$2y$10$ceXYvj8WQhviKZ93WYDpaO.Htuk/KsDrb36EmAKzeWCrBGbihyJrq', 'woltakaunt@gmail.com', 'wolt akaunt ', 1, '$2y$10$dEvkJvEMZn0ScNVpgGmwR.UVi7AuDl9u.ehKsWOOVlHUcKeG8HrOW', 2, NULL, NULL, '2022-06-05 16:43:32.000000');
 
 -- --------------------------------------------------------
 
@@ -80,7 +81,11 @@ INSERT INTO `cash_flow` (`amount_id`, `amount`, `users_id`, `category_id`, `posi
 (151, 20, 1139, 7, 0, '2022-05-01 11:10:00', 'asdasda'),
 (152, 123, 1125, 1, 0, '2022-06-05 11:14:00', 'asdasdas'),
 (153, 222, 1125, 3, 0, '2022-06-05 11:14:00', 'asdawdsdas'),
-(154, 340, 1125, 4, 0, '2022-06-05 11:14:00', 'asdawdsdawd');
+(154, 340, 1125, 4, 0, '2022-06-05 11:14:00', 'asdawdsdawd'),
+(155, 1, 1125, 2, 0, '2022-06-04 14:40:00', 'asdasd'),
+(156, 2, 1125, 34, 0, '2022-06-24 14:41:00', 'asdasd'),
+(157, 2, 1125, 35, 0, '2022-06-06 14:42:00', 'asdawdas213asda'),
+(158, 333, 1124, 36, 0, '2022-06-11 19:40:00', 'asdawdasd xz ca e wasd');
 
 -- --------------------------------------------------------
 
@@ -174,16 +179,17 @@ INSERT INTO `goals` (`goal_id`, `goal_name`, `goal_price`, `user_id`, `goal_achi
 
 CREATE TABLE `household` (
   `household_id` int(11) NOT NULL,
-  `household_name` varchar(200) NOT NULL DEFAULT 'single person'
+  `household_name` varchar(200) NOT NULL DEFAULT 'single person',
+  `blocked` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0 = not blocked, 1 = blocked'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `household`
 --
 
-INSERT INTO `household` (`household_id`, `household_name`) VALUES
-(50, 'zajednicka kuca '),
-(52, 'sama u kuci ');
+INSERT INTO `household` (`household_id`, `household_name`, `blocked`) VALUES
+(50, 'zajednicka kuca ', 0),
+(52, 'sama u kuci ', 0);
 
 -- --------------------------------------------------------
 
@@ -228,7 +234,8 @@ INSERT INTO `log_data` (`data_id`, `ip_adress`, `web_browser_OS`, `signup_time`,
 (236, '::1', 'an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10', NULL, 1124),
 (237, '::1', 'an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10', NULL, 1125),
 (238, '::1', 'an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10', NULL, 1126),
-(250, '::1', 'an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10', NULL, 1139);
+(250, '::1', 'an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10', NULL, 1139),
+(254, '::1', 'an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10', NULL, 1143);
 
 -- --------------------------------------------------------
 
@@ -319,13 +326,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1143;
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1144;
 
 --
 -- AUTO_INCREMENT for table `cash_flow`
 --
 ALTER TABLE `cash_flow`
-  MODIFY `amount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+  MODIFY `amount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
 
 --
 -- AUTO_INCREMENT for table `cateogries`
@@ -349,7 +356,7 @@ ALTER TABLE `household`
 -- AUTO_INCREMENT for table `log_data`
 --
 ALTER TABLE `log_data`
-  MODIFY `data_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=254;
+  MODIFY `data_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
 
 --
 -- Constraints for dumped tables
