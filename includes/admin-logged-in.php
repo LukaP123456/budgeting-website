@@ -131,7 +131,7 @@ for ($i = 0; $i < count($houses_array); $i++) {
 
     echo '<div class="card">
     <div class="card-body">
-    <input type="hidden" id="house_id" value="' . $houses_array[$i]['household_id'] . '">
+    <input type="hidden" class="house_id" id="house_id" value="' . $houses_array[$i]['household_id'] . '">
         <h5 class="card-title"><b>House name:</b> ' . $houses_array[$i]['household_name'] . '</h5>
         <p class="card-text"><b>Blocked:</b> ' . $blocked_text . '</p>
         <button type="submit" name="block_btn" class="btn btn-danger block" id="block_btn">Block house</button>
@@ -160,7 +160,9 @@ for ($i = 0; $i < count($houses_array); $i++) {
 
         $(".block").click(function (){
                 console.log(123123)
-            let house_id = $("#house_id").val();
+            let house_id = $(".house_id").val();
+
+                console.log(house_id);
 
             $.ajax({
                 method:"post",
