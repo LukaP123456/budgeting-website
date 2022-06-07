@@ -263,46 +263,46 @@ $get->get_group_name($_COOKIE['users_id']);
                 </a>
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active bg-warning text-black" aria-current="page">
-                            <svg class="bi pe-none me-2" width="16" height="16">
-                                <use xlink:href="#home"/>
-                            </svg>
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link text-white">
-                            <svg class="bi pe-none me-2" width="16" height="16">
-                                <use xlink:href="#speedometer2"/>
-                            </svg>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link text-white">
-                            <svg class="bi pe-none me-2" width="16" height="16">
-                                <use xlink:href="#table"/>
-                            </svg>
-                            Orders
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link text-white">
-                            <svg class="bi pe-none me-2" width="16" height="16">
-                                <use xlink:href="#grid"/>
-                            </svg>
-                            Products
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link text-white">
-                            <svg class="bi pe-none me-2" width="16" height="16">
-                                <use xlink:href="#people-circle"/>
-                            </svg>
-                            Customers
-                        </a>
-                    </li>
+<!--                    <li class="nav-item">-->
+<!--                        <a href="#" class="nav-link active bg-warning text-black" aria-current="page">-->
+<!--                            <svg class="bi pe-none me-2" width="16" height="16">-->
+<!--                                <use xlink:href="#home"/>-->
+<!--                            </svg>-->
+<!--                            Home-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="#" class="nav-link text-white">-->
+<!--                            <svg class="bi pe-none me-2" width="16" height="16">-->
+<!--                                <use xlink:href="#speedometer2"/>-->
+<!--                            </svg>-->
+<!--                            Dashboard-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="#" class="nav-link text-white">-->
+<!--                            <svg class="bi pe-none me-2" width="16" height="16">-->
+<!--                                <use xlink:href="#table"/>-->
+<!--                            </svg>-->
+<!--                            Orders-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="#" class="nav-link text-white">-->
+<!--                            <svg class="bi pe-none me-2" width="16" height="16">-->
+<!--                                <use xlink:href="#grid"/>-->
+<!--                            </svg>-->
+<!--                            Products-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="#" class="nav-link text-white">-->
+<!--                            <svg class="bi pe-none me-2" width="16" height="16">-->
+<!--                                <use xlink:href="#people-circle"/>-->
+<!--                            </svg>-->
+<!--                            Customers-->
+<!--                        </a>-->
+<!--                    </li>-->
                 </ul>
                 <hr>
                 <div class="dropdown">
@@ -312,9 +312,9 @@ $get->get_group_name($_COOKIE['users_id']);
                         <strong>mdo</strong>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+<!--                        <li><a class="dropdown-item" href="#">New project...</a></li>-->
+<!--                        <li><a class="dropdown-item" href="#">Settings</a></li>-->
+<!--                        <li><a class="dropdown-item" href="#">Profile</a></li>-->
                         <li>
                             <hr class="dropdown-divider">
                         </li>
