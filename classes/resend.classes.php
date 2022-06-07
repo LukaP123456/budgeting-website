@@ -51,7 +51,7 @@ class resend extends Dbh
 
     public function checkUser($email)
     {
-        $stmt = $this->connect()->prepare("SELECT * FROM accounts WHERE users_email=? LIMIT 1");
+        $stmt = $this->connect()->prepare("SELECT * FROM accounts WHERE users_email=? AND verify_status = 0 AND verification_expires > now() LIMIT 1");
 
         if (!$stmt->execute(array($email))) {
             $resultCheck2 = false;

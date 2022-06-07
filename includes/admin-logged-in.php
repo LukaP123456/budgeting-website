@@ -131,8 +131,8 @@ for ($i = 0; $i < count($houses_array); $i++) {
 
     echo '<div class="card">
     <div class="card-body">
-    <input type="hidden" class="house_id" id="house_id" value="' . $houses_array[$i]['household_id'] . '">
         <h5 class="card-title"><b>House name:</b> ' . $houses_array[$i]['household_name'] . '</h5>
+            <input type="hidden" class="house_id" id="house_id" value="' . $houses_array[$i]['household_id'] . '">
         <p class="card-text"><b>Blocked:</b> ' . $blocked_text . '</p>
         <button type="submit" name="block_btn" class="btn btn-danger block" id="block_btn">Block house</button>
         <button type="submit" name="unblock_btn" class="btn btn-success unblock" id="unblock_btn" style="margin-left: 20px">Unblock house</button>
