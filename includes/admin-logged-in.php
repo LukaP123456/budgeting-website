@@ -100,8 +100,6 @@ $houses_array = $get->get_all_houses();
 for ($i = 0; $i < count($houses_array); $i++) {
 
 
-
-
     if ($houses_array[$i]['verify_status'] === 1) {
         $verify_text = "User is verified";
     } else {
@@ -131,11 +129,10 @@ for ($i = 0; $i < count($houses_array); $i++) {
 
     echo '<div class="card">
     <div class="card-body">
-        <h5 class="card-title"><b>House name:</b> ' . $houses_array[$i]['household_name'] . '</h5>
-            <input type="hidden" class="house_id" id="house_id" value="' . $houses_array[$i]['household_id'] . '">
+        <h5 class="card-title" id="parent"><b>House name:</b> ' . $houses_array[$i]['household_name'] . '</h5>
         <p class="card-text"><b>Blocked:</b> ' . $blocked_text . '</p>
-        <button type="submit" name="block_btn" class="btn btn-danger block" id="block_btn">Block house</button>
-        <button type="submit" name="unblock_btn" class="btn btn-success unblock" id="unblock_btn" style="margin-left: 20px">Unblock house</button>
+        <button type="submit" name="block_btn" class="btn btn-danger block" id="block_btn" value="' . $houses_array[$i]['household_id'] . '">Block house</button>
+        <button type="submit" name="unblock_btn" class="btn btn-success unblock" id="unblock_btn" style="margin-left: 20px" value="' . $houses_array[$i]['household_id'] . '">Unblock house</button>
         <br><br>
         <p class="card-text"><b>Users email:</b> ' . $houses_array[$i]['users_email'] . '</p>
         <p class="card-text"><b>Full name:</b>  ' . $houses_array[$i]['full_name'] . '</p>
@@ -156,52 +153,54 @@ for ($i = 0; $i < count($houses_array); $i++) {
 
 <script type="text/javascript">
 
-    $(document).ready(function (){
+    $(document).ready(function () {
 
-        $(".block").click(function (){
-                console.log(123123)
-            let house_id = $(".house_id").val();
+        $(".block").click(function () {
+            console.log(123123)
 
-                console.log(house_id);
+            let house_id = $(this).val();
+
+            console.log(house_id);
 
             $.ajax({
-                method:"post",
-                url:"block_house.php",
-                data:{
-                    house_id:house_id
+                method: "post",
+                url: "block_house.php",
+                data: {
+                    house_id: house_id
                 },
-                success: function (response){
+                success: function (response) {
                     window.location.reload(true);
                     alert(response);
                 },
-                error:function (response){
+                error: function (response) {
                     alert(response);
                 }
             })
         });
 
-        $(".unblock").click(function (){
+        $(".unblock").click(function () {
             console.log(123123)
-            let house_id = $("#house_id").val();
+            let house_id = $(this).val();
+
+            console.log(house_id);
+
 
             $.ajax({
-                method:"post",
-                url:"unblock_house.php",
-                data:{
-                    house_id:house_id
+                method: "post",
+                url: "unblock_house.php",
+                data: {
+                    house_id: house_id
                 },
-                success: function (response){
+                success: function (response) {
                     window.location.reload(true);
                     alert(response);
                 },
-                error:function (response){
+                error: function (response) {
                     alert(response);
                 }
             })
         });
     });
-
-
 
 
 </script>
