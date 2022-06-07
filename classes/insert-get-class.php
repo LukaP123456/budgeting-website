@@ -588,6 +588,7 @@ accounts.date_time_signup,
 accounts.first_login,
 log_data.ip_adress,
 log_data.web_browser_OS,
+household.household_id,
 roles.role
 FROM accounts
 INNER JOIN household_accounts 
@@ -617,26 +618,26 @@ On household.household_id = household_accounts.house_hold_id
 
     }
 
-    function block_house($house_name){
+    function block_house($house_id){
 
-        $block_stmt = $this->connect()->prepare("UPDATE household SET blocked=1 WHERE household_name=?;");
+        $block_stmt = $this->connect()->prepare("UPDATE household SET blocked=1 WHERE household_id=?;");
 
-        if ($block_stmt->execute(array($house_name))){
-            die("House ".$house_name." has been blocked.");
+        if ($block_stmt->execute(array($house_id))){
+            die("House has been blocked.");
         }else{
-            die("Failed to delete house: ".$house_name);
+            die("Failed to block house");
         }
 
     }
 
-    function Unblock_house($house_name){
+    function Unblock_house($house_id){
 
-        $block_stmt = $this->connect()->prepare("UPDATE household SET blocked=0 WHERE household_name=?;");
+        $block_stmt = $this->connect()->prepare("UPDATE household SET blocked=0 WHERE household_id=?;");
 
-        if ($block_stmt->execute(array($house_name))){
-            die("House ".$house_name." has been unblocked.");
+        if ($block_stmt->execute(array($house_id))){
+            die("House  has been unblocked.");
         }else{
-            die("Failed to delete house: ".$house_name);
+            die("Failed to block house");
         }
 
     }

@@ -2,16 +2,15 @@
 require_once "../classes/insert-get-class.php";
 
 
-if (isset($_POST['house_name'])){
+if (isset($_POST['house_id'])){
 
     $block = new Insert_get();
 
-    $house_name = $_POST['house_name'];
+    $house_id = $_POST['house_id'];
 
-    if (empty($house_name)){
-        die("Please enter a name into the field");
-    }
 
-    $block->block_house($house_name);
+    $block->block_house($house_id);
 
+}else{
+    die("Failed");
 }

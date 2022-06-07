@@ -27,9 +27,9 @@ require_once "../classes/first-time-loggedin.classes.php";
 
     <!--JQUERY LINK2-->
     <script
-        src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-        crossorigin="anonymous"></script>
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
 
     <!--Custom styles link-->
     <link rel="stylesheet" href="../CSS/style.css">
@@ -66,9 +66,7 @@ require_once "../classes/first-time-loggedin.classes.php";
 <nav class="navbar navbar-expand-lg bg-black navbar-dark py-3 fixed-top">
     <div class="container">
         <a href="#" class="navbar-brand">LP<span class="text-warning">Budgeting</span> Dashboard</a>
-        <input id="house_name" placeholder="Name of house" type="text">
-        <button type="submit" name="block_btn" class="btn btn-danger" id="block_btn">Block house</button>
-        <button type="submit" name="block_btn" class="btn btn-success" id="unblock_btn">Unblock house</button>
+        <!--        <input id="house_name" placeholder="Name of house" type="text">-->
 
 
         <button class="navbar-toggler"
@@ -91,10 +89,6 @@ require_once "../classes/first-time-loggedin.classes.php";
 <!--navbar end-->
 <!--HEADER END-->
 <br><br>
-<div class="fixed-bottom" style="text-align: right; padding-right: 200px; padding-bottom: 500px">
-
-</div>
-
 
 <?php
 require_once "../classes/insert-get-class.php";
@@ -103,61 +97,54 @@ $get = new Insert_get();
 
 $houses_array = $get->get_all_houses();
 
-for ($i=0; $i < count($houses_array); $i++){
+for ($i = 0; $i < count($houses_array); $i++) {
 
-//    echo $houses_array[$i]['household_name']."<br>";
 
-    if ($houses_array[$i]['blocked'] === 1){
-        $blocked_text = "House is blocked";
-    }else{
-        $blocked_text = "House is not blocked";
-    }
-//    echo $blocked_text."<br>";
-//    echo $houses_array[$i]['users_email']."<br>";
-//    echo $houses_array[$i]['full_name']."<br>";
 
-    if ($houses_array[$i]['verify_status'] === 1){
+
+    if ($houses_array[$i]['verify_status'] === 1) {
         $verify_text = "User is verified";
-    }else{
+    } else {
         $verify_text = "User is not verified";
     }
 
-//    echo $verify_text."<br>";
-
-    if ($houses_array[$i]['role'] === 1){
+    if ($houses_array[$i]['role'] === 1) {
         $role_text = "House admin";
     }
 
-    if ($houses_array[$i]['role'] === 1){
+    if ($houses_array[$i]['role'] === 1) {
         $role_text = "Regular user";
     }
 
-//    echo $role_text."<br>";
-//    echo $houses_array[$i]['date_time_signup']."<br>";
 
-    if ($houses_array[$i]['first_login'] === null){
+    if ($houses_array[$i]['first_login'] === null) {
         $first_login_text = "User logged in for the first time";
-    }else{
+    } else {
         $first_login_text = "User has yet to login";
     }
-//    echo $first_login_text."<br>";
-//    echo $houses_array[$i]['ip_adress']."<br>";
-//    echo $houses_array[$i]['web_browser_OS']."<br>";
-//    echo '<button type="submit" id="block_btn" class="btn btn-danger" name="block_btn">Block house</button>';
-//    echo "<hr>";
+
+    if ($houses_array[$i]['blocked'] === 1) {
+        $blocked_text = "House is blocked";
+    } else {
+        $blocked_text = "House is not blocked";
+    }
 
     echo '<div class="card">
     <div class="card-body">
-        <h5 class="card-title"><b>House name:</b> '.$houses_array[$i]['household_name'].'</h5>
-        <p class="card-text"><b>Blocked:</b> '.$blocked_text.'</p>
-        <p class="card-text"><b>Users email:</b> '.$houses_array[$i]['users_email'].'</p>
-        <p class="card-text"><b>Full name:</b>  '.$houses_array[$i]['full_name'].'</p>
-        <p class="card-text"><b>Verification status:</b>  '.$verify_text.'</p>
-        <p class="card-text"><b>Users\'s role:</b> '.$role_text.'</p>
-        <p class="card-text"><b>Time of sign in:</b> '.$houses_array[$i]['date_time_signup'].'</p>
-        <p class="card-text"><b>First login:</b>  '.$first_login_text.'</p>
-        <p class="card-text"><b>Users\'s ip address:</b> '.$houses_array[$i]['ip_adress'].'</p>
-        <p class="card-text"><b>Users\'s web browser and OS:</b> '.$houses_array[$i]['web_browser_OS'].'</p>
+    <input type="hidden" id="house_id" value="' . $houses_array[$i]['household_id'] . '">
+        <h5 class="card-title"><b>House name:</b> ' . $houses_array[$i]['household_name'] . '</h5>
+        <p class="card-text"><b>Blocked:</b> ' . $blocked_text . '</p>
+        <button type="submit" name="block_btn" class="btn btn-danger block" id="block_btn">Block house</button>
+        <button type="submit" name="unblock_btn" class="btn btn-success unblock" id="unblock_btn" style="margin-left: 20px">Unblock house</button>
+        <br><br>
+        <p class="card-text"><b>Users email:</b> ' . $houses_array[$i]['users_email'] . '</p>
+        <p class="card-text"><b>Full name:</b>  ' . $houses_array[$i]['full_name'] . '</p>
+        <p class="card-text"><b>Verification status:</b>  ' . $verify_text . '</p>
+        <p class="card-text"><b>Users\'s role:</b> ' . $role_text . '</p>
+        <p class="card-text"><b>Time of sign in:</b> ' . $houses_array[$i]['date_time_signup'] . '</p>
+        <p class="card-text"><b>First login:</b>  ' . $first_login_text . '</p>
+        <p class="card-text"><b>Users\'s ip address:</b> ' . $houses_array[$i]['ip_adress'] . '</p>
+        <p class="card-text"><b>Users\'s web browser and OS:</b> ' . $houses_array[$i]['web_browser_OS'] . '</p>
     </div>
     <div class="card-footer text-muted">
         
@@ -171,62 +158,46 @@ for ($i=0; $i < count($houses_array); $i++){
 
     $(document).ready(function (){
 
-        $("#block_btn").click(function (e){
-            e.preventDefault();
+        $(".block").click(function (){
+                console.log(123123)
+            let house_id = $("#house_id").val();
 
-            let house_name = $("#house_name").val().trim();
-
-            if (house_name === ""){
-                alert("Please enter name of a house before you click the button")
-            }else {
-                $.ajax({
-                   method:"POST",
-                   url:"block_house.php",
-                    data:{
-                       house_name:house_name
-                    },
-                    success:function (response){
-                        window.location.reload(true);
-                        //TODO:Funkcija se izvrsi iako kuca ne postoji
-                        alert(response);
-                    },
-                    error:function (response){
-                        window.location.reload(true);
-                        alert(response);
-                    }
-                })
-            }
+            $.ajax({
+                method:"post",
+                url:"block_house.php",
+                data:{
+                    house_id:house_id
+                },
+                success: function (response){
+                    window.location.reload(true);
+                    alert(response);
+                },
+                error:function (response){
+                    alert(response);
+                }
+            })
         });
 
-        $("#unblock_btn").click(function (e){
-            e.preventDefault();
+        $(".unblock").click(function (){
+            console.log(123123)
+            let house_id = $("#house_id").val();
 
-            let house_name = $("#house_name").val().trim();
-
-            if (house_name === ""){
-                alert("Please enter name of a house before you click the button")
-            }else {
-                $.ajax({
-                    method:"POST",
-                    url:"unblock_house.php",
-                    data:{
-                        house_name:house_name
-                    },
-                    success:function (response){
-                        window.location.reload(true);
-                        //TODO:Funkcija se izvrsi iako kuca ne postoji
-                        alert(response);
-
-                    },
-                    error:function (response){
-                        window.location.reload(true);
-                        alert(response);
-                    }
-                })
-            }
+            $.ajax({
+                method:"post",
+                url:"unblock_house.php",
+                data:{
+                    house_id:house_id
+                },
+                success: function (response){
+                    window.location.reload(true);
+                    alert(response);
+                },
+                error:function (response){
+                    alert(response);
+                }
+            })
         });
     });
-
 
 
 
