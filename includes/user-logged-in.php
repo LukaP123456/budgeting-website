@@ -680,13 +680,20 @@ $get->get_group_name($_COOKIE['users_id']);
 
                             });
 
+                            $("#costs_btn").click(function (e){
+                                $("#start_date").removeClass("border border-danger border-2").removeClass("border border-success border-2");
+                                $("#end_date").removeClass("border border-danger border-2").removeClass("border border-success border-2");
+                                $("#error_start_date").html(" ").removeClass("text-success fas fa-exclamation-circle").removeClass("text-danger fas fa-exclamation-circle ");
+                                $("#error_end_date").html(" ").removeClass("text-success fas fa-exclamation-circle").removeClass("text-danger fas fa-exclamation-circle ");
+
+                            });
 
                             $("#search_btn").click(function (e){
                                 e.preventDefault();
                                 $("#error_start_date").html(" ").removeClass("text-success fas fa-exclamation-circle").removeClass("text-danger fas fa-exclamation-circle ");
                                 $("#error_end_date").html(" ").removeClass("text-success fas fa-exclamation-circle").removeClass("text-danger fas fa-exclamation-circle ");
-                                $("#start_date").removeClass("border border-danger border-2");
-                                $("#end_date").removeClass("border border-danger border-2");
+                                $("#start_date").removeClass("border border-danger border-2").removeClass("border border-success border-2");
+                                $("#end_date").removeClass("border border-danger border-2").removeClass("border border-success border-2");
 
 
                                 let start_date = $("#start_date").val();
@@ -695,16 +702,28 @@ $get->get_group_name($_COOKIE['users_id']);
                                 let check_start_date = 0;
                                 let check_end_date = 0;
 
+
                                 if(start_date === ""){
+                                    swal("Warning!",  "Please select start date","error");
                                     $("#start_date").addClass("border border-danger border-2");
                                     $("#error_start_date").html("<small> Please select a start date </small>").addClass("text-danger fas fa-exclamation-circle ");
                                     check_start_date = 1;
                                 }
 
                                 if(end_date === ""){
-                                    $("#end_date").addClass("border border-danger border-2");
-                                    $("#error_end_date").html("<small> Please select a start date </small>").addClass("text-danger fas fa-exclamation-circle ");
-                                    check_start_date = 1;
+                                    if( end_date=== "" && start_date === ""){
+                                        swal("Warning!",  "Please select start & end date","error");
+                                        $("#end_date").addClass("border border-danger border-2");
+                                        $("#error_end_date").html("<small> Please select a start date </small>").addClass("text-danger fas fa-exclamation-circle ");
+                                        check_start_date = 1;
+                                    }else {
+                                        swal("Warning!",  "Please select end date","error");
+                                        $("#end_date").addClass("border border-danger border-2");
+                                        $("#error_end_date").html("<small> Please select a start date </small>").addClass("text-danger fas fa-exclamation-circle ");
+                                        check_start_date = 1;
+                                    }
+
+
                                 }
 
                                 if(check_start_date !== 1 && check_end_date !== 1){
