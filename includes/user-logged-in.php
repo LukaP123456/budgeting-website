@@ -1225,18 +1225,14 @@ $expenses_month = $get->get_expense_month($house_id);
                 type: "POST",
                 url: "get_expenses_month.php",
                 success: function (response) {
-                    $("#delete").on("hidden.bs.modal", function () {
-                        $("#expense_month").val(response);
-                    });
+                    $("#expense_month").html(response);
                 },
                 error: function (response){
-                    $("#expense_month").val(response);
+                    $("#expense_month").html(response);
                 }
             })
 
-
         });
-
     });
 
 
