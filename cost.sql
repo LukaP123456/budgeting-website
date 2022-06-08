@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2022 at 12:10 PM
+-- Generation Time: Jun 08, 2022 at 09:29 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.0
 
@@ -37,19 +37,20 @@ CREATE TABLE `accounts` (
   `role` int(11) DEFAULT 1 COMMENT '0 = regular user \r\n1 = household admin \r\n2 = super admin	',
   `password_reset_token` longtext DEFAULT NULL,
   `first_login` int(11) DEFAULT NULL COMMENT 'NULL = user has yet to log in for the first time, 1 = user has already logged in once',
-  `date_time_signup` datetime(6) DEFAULT NULL
+  `date_time_signup` datetime(6) DEFAULT NULL,
+  `verification_expires` datetime(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`users_id`, `users_pwd`, `users_email`, `full_name`, `verify_status`, `verify_token`, `role`, `password_reset_token`, `first_login`, `date_time_signup`) VALUES
-(1124, '$2y$10$4aEL/UevrtZcFJ3S1rPUwOXvSluZr5EDiHK16tGhbprasOWNmUbZe', 'bobomejl123@gmail.com', 'bobo ime', 1, '$2y$10$SYBwEyYzKG23qBTwnqRQWeyw3hLv0SHRO31jJmdFwtysbft6PCmQi', 1, NULL, NULL, '2022-06-02 11:33:20.000000'),
-(1125, '$2y$10$dSlStSINP5aQ/28mv8TiJeyeOFO4.ugmPApUNylSUPL9Gf2QpBebm', 'mejlzadra123jv@gmail.com', 'luka prcic', 1, '$2y$10$zBaGqOjLUa23KVDpXJC4LusVknrK8pIMkdkIsIA/DtYAO5a80qn6i', 0, NULL, NULL, '2022-06-02 11:34:19.000000'),
-(1126, '$2y$10$caFI.e/bIxTF.tXU2W0Ake0zDE5e67WiyEYrXAEk.3JvhIBtVpSgy', 'luka.prcic01@gmail.com', 'Moje pravo ime ', 1, '$2y$10$kcjTAMAGf.8ojmxO3SyafOuNt3YDGCvPY0IN1REX7zOv6O.o8Llo.', 0, NULL, NULL, '2022-06-02 11:40:19.000000'),
-(1139, '$2y$10$4msXnFgfHUEV2NOycKHdpeJCu625AhWms4dvFHMirwC//y6OHh2OG', 'bobsagott17@gmail.com', 'luka prcic', 1, '$2y$10$CqOlvnU2r92lVLd3bbSmLe.o2G4y6CGvtXXGM5X9Ade7T7sn0xsQa', 1, NULL, NULL, '2022-06-02 21:28:36.000000'),
-(1143, '$2y$10$ceXYvj8WQhviKZ93WYDpaO.Htuk/KsDrb36EmAKzeWCrBGbihyJrq', 'woltakaunt@gmail.com', 'wolt akaunt ', 1, '$2y$10$dEvkJvEMZn0ScNVpgGmwR.UVi7AuDl9u.ehKsWOOVlHUcKeG8HrOW', 2, NULL, NULL, '2022-06-05 16:43:32.000000');
+INSERT INTO `accounts` (`users_id`, `users_pwd`, `users_email`, `full_name`, `verify_status`, `verify_token`, `role`, `password_reset_token`, `first_login`, `date_time_signup`, `verification_expires`) VALUES
+(1124, '$2y$10$4aEL/UevrtZcFJ3S1rPUwOXvSluZr5EDiHK16tGhbprasOWNmUbZe', 'bobomejl123@gmail.com', 'bobo ime', 1, '$2y$10$SYBwEyYzKG23qBTwnqRQWeyw3hLv0SHRO31jJmdFwtysbft6PCmQi', 1, NULL, NULL, '2022-06-02 11:33:20.000000', NULL),
+(1125, '$2y$10$dSlStSINP5aQ/28mv8TiJeyeOFO4.ugmPApUNylSUPL9Gf2QpBebm', 'mejlzadra123jv@gmail.com', 'luka prcic', 1, '$2y$10$zBaGqOjLUa23KVDpXJC4LusVknrK8pIMkdkIsIA/DtYAO5a80qn6i', 0, NULL, NULL, '2022-06-02 11:34:19.000000', NULL),
+(1126, '$2y$10$caFI.e/bIxTF.tXU2W0Ake0zDE5e67WiyEYrXAEk.3JvhIBtVpSgy', 'luka.prcic01@gmail.com', 'Moje pravo ime ', 1, '$2y$10$kcjTAMAGf.8ojmxO3SyafOuNt3YDGCvPY0IN1REX7zOv6O.o8Llo.', 0, NULL, NULL, '2022-06-02 11:40:19.000000', NULL),
+(1152, '$2y$10$hNdwOwSeaYPF3rDikMOs/eu1XZPqWRPqKhDZmMxut/vQ4s.KO5oVa', 'bobsagott17@gmail.com', 'bob sagot', 1, '$2y$10$99jD.1wTRhPMfoNiX5HuhOLULXcqXszfUNaXFyVFl9aAJP5YUwO7O', 1, NULL, NULL, '2022-06-07 13:34:54.000000', '2022-06-08 01:34:54.000000'),
+(1158, '$2y$10$wtjJG0j3.zD9YCaF4dVbg.WQH11GaOC3vsCEiWkgq7c8.P6nO.vA6', 'woltakaunt@gmail.com', 'wolt akaunt ', 1, '$2y$10$MHphmuC3B37jc1zjtjqBLe843u12/bJG6b2W/G.Bd08dYoa72huma', 2, NULL, NULL, '2022-06-07 17:05:39.000000', NULL);
 
 -- --------------------------------------------------------
 
@@ -66,26 +67,6 @@ CREATE TABLE `cash_flow` (
   `date_added` datetime NOT NULL,
   `cost_description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `cash_flow`
---
-
-INSERT INTO `cash_flow` (`amount_id`, `amount`, `users_id`, `category_id`, `positive_negative`, `date_added`, `cost_description`) VALUES
-(145, 100, 1139, 1, 0, '2022-06-05 10:50:00', 'asdasdasd'),
-(146, 200, 1139, 2, 0, '2022-06-05 10:50:00', 'wwwww'),
-(147, 200, 1139, 2, 0, '2022-06-05 10:51:00', 'eeeee'),
-(148, 400, 1139, 3, 0, '2022-06-06 10:51:00', 'qweqwe'),
-(149, 12, 1139, 5, 0, '2022-06-05 10:52:00', 'asdasd'),
-(150, 12, 1139, 4, 0, '2022-06-05 10:53:00', 'qweqwe'),
-(151, 20, 1139, 7, 0, '2022-05-01 11:10:00', 'asdasda'),
-(152, 123, 1125, 1, 0, '2022-06-05 11:14:00', 'asdasdas'),
-(153, 222, 1125, 3, 0, '2022-06-05 11:14:00', 'asdawdsdas'),
-(154, 340, 1125, 4, 0, '2022-06-05 11:14:00', 'asdawdsdawd'),
-(155, 1, 1125, 2, 0, '2022-06-04 14:40:00', 'asdasd'),
-(156, 2, 1125, 34, 0, '2022-06-24 14:41:00', 'asdasd'),
-(157, 2, 1125, 35, 0, '2022-06-06 14:42:00', 'asdawdas213asda'),
-(158, 333, 1124, 36, 0, '2022-06-11 19:40:00', 'asdawdasd xz ca e wasd');
 
 -- --------------------------------------------------------
 
@@ -117,15 +98,7 @@ INSERT INTO `cateogries` (`category_id`, `category_name`, `category_type`, `hous
 (9, 'Salary', 1, NULL, NULL),
 (10, 'Pension', 1, NULL, NULL),
 (11, 'Odd jobs', 1, NULL, NULL),
-(12, 'Gift', 1, NULL, NULL),
-(31, 'pozitivan kategorija 1', 1, 50, '2022-06-04 10:48:22'),
-(32, 'pozitivan kategorija 2', 1, 50, '2022-06-04 10:48:27'),
-(33, 'pozitivan kategorija 3', 1, 50, '2022-06-04 10:48:30'),
-(34, 'negativna kategorija 1', 0, 50, '2022-06-04 10:48:43'),
-(35, 'negativna kategorija 2', 0, 50, '2022-06-04 10:48:47'),
-(36, 'negativna kategorija 3', 0, 50, '2022-06-04 10:48:49'),
-(45, 'asdasdasd', 1, 50, '2022-06-04 20:00:58'),
-(46, 'sama u kuci kategorija', 1, 52, '2022-06-04 20:02:46');
+(12, 'Gift', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -141,35 +114,6 @@ CREATE TABLE `goals` (
   `goal_achieved` tinyint(3) DEFAULT NULL COMMENT '0 = goal not achieved, 1 = goal achieved',
   `added_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `goals`
---
-
-INSERT INTO `goals` (`goal_id`, `goal_name`, `goal_price`, `user_id`, `goal_achieved`, `added_date`) VALUES
-(89, 'car', 444, 1124, NULL, '2022-06-03 18:30:26'),
-(90, 'chair', 111, 1124, NULL, '2022-06-03 19:00:17'),
-(91, 'table', 123, 1124, NULL, '2022-06-03 19:05:28'),
-(92, 'stool', 111, 1124, NULL, '2022-06-03 19:10:08'),
-(93, 'bike', 444, 1124, NULL, '2022-06-03 19:10:28'),
-(94, 'boat', 342, 1124, NULL, '2022-06-03 19:17:24'),
-(95, 'table', 222, 1124, NULL, '2022-06-03 19:21:44'),
-(96, 'asdasda', 111111, 1124, NULL, '2022-06-03 19:27:25'),
-(97, 'dddddd', 222, 1124, NULL, '2022-06-03 19:27:41'),
-(98, 'aaaa', 1111, 1124, NULL, '2022-06-03 19:37:39'),
-(99, 'bbb', 222, 1124, NULL, '2022-06-03 19:42:37'),
-(100, 'asdasdasd', 1212, 1125, NULL, '2022-06-04 11:04:05'),
-(101, 'chair', 222, 1139, NULL, '2022-06-04 14:18:28'),
-(102, 'table', 111, 1139, NULL, '2022-06-04 14:23:56'),
-(103, 'chair', 222, 1139, NULL, '2022-06-04 14:26:10'),
-(104, 'car', 333, 1139, NULL, '2022-06-04 14:27:04'),
-(105, 'asdasda', 111, 1139, NULL, '2022-06-04 14:27:53'),
-(106, 'table', 222, 1139, NULL, '2022-06-04 14:29:36'),
-(107, 'chair', 222, 1139, NULL, '2022-06-04 14:30:27'),
-(108, 'table', 111, 1139, NULL, '2022-06-04 14:30:42'),
-(109, 'car', 222, 1139, NULL, '2022-06-04 14:35:32'),
-(110, 'table', 111, 1125, NULL, '2022-06-04 19:10:26'),
-(111, 'chair', 222, 1125, NULL, '2022-06-04 19:32:32');
 
 -- --------------------------------------------------------
 
@@ -189,7 +133,7 @@ CREATE TABLE `household` (
 
 INSERT INTO `household` (`household_id`, `household_name`, `blocked`) VALUES
 (50, 'zajednicka kuca ', 0),
-(52, 'sama u kuci ', 0);
+(54, 'Sam u kuci ', 0);
 
 -- --------------------------------------------------------
 
@@ -210,7 +154,7 @@ INSERT INTO `household_accounts` (`user_id`, `house_hold_id`) VALUES
 (1124, 50),
 (1125, 50),
 (1126, 50),
-(1139, 52);
+(1152, 54);
 
 -- --------------------------------------------------------
 
@@ -234,8 +178,8 @@ INSERT INTO `log_data` (`data_id`, `ip_adress`, `web_browser_OS`, `signup_time`,
 (236, '::1', 'an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10', NULL, 1124),
 (237, '::1', 'an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10', NULL, 1125),
 (238, '::1', 'an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10', NULL, 1126),
-(250, '::1', 'an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10', NULL, 1139),
-(254, '::1', 'an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10', NULL, 1143);
+(263, '::1', 'an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10', NULL, 1152),
+(269, '::1', 'an unknown browser that imitates Chrome Dev 102.0.0.0 on Windows 10', NULL, 1158);
 
 -- --------------------------------------------------------
 
@@ -326,7 +270,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1144;
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1159;
 
 --
 -- AUTO_INCREMENT for table `cash_flow`
@@ -350,13 +294,13 @@ ALTER TABLE `goals`
 -- AUTO_INCREMENT for table `household`
 --
 ALTER TABLE `household`
-  MODIFY `household_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `household_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `log_data`
 --
 ALTER TABLE `log_data`
-  MODIFY `data_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
+  MODIFY `data_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=270;
 
 --
 -- Constraints for dumped tables
