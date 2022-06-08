@@ -1,4 +1,4 @@
-const form = document.getElementById('reset-request-form');
+const form = document.getElementById('add-new-user-form');
 const email = document.getElementById('email');
 
 
@@ -7,8 +7,6 @@ form.addEventListener('submit', e=>{
 
     if (validateInputs()) {
         e.currentTarget.submit();
-
-
     } else {
         e.preventDefault();
 
@@ -28,11 +26,14 @@ function validateInputs() {
 
     if (emailValue === '') {
         //Show error and set error class
+        swal("Warning",  "Please enter a valid email address before you click submit", "error");
         setError(email, 'Email field cannot be empty');
     } else if (!isEmail(emailValue)) {
+        swal("Warning",  "Please enter a valid email address", "error");
         setError(email, 'Email is not valid');
     } else {
         //Add success class
+        swal("Good job!",  "Successfully added "+emailValue+" to your house/group", "success");
         setSuccess(email,"Looks good!");
         email_check = 1;
     }

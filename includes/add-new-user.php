@@ -24,6 +24,9 @@
           integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
+    <!--Sweet alert-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <title>LP Budgeting - add a member</title>
 </head>
 <body>
@@ -81,7 +84,12 @@
                         <strong>Warning!</strong> An account with the entered email doesn't exist.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div></p>";
-                        }else {
+                        }elseif (strpos($fullUrl, "error=user_exists_inDB") == true){
+                            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <strong>Warning!</strong> An account with the entered email already exists.
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div></p>";
+                        } else {
                             unset($_SESSION['error-message-resend']);
                         }
 
@@ -97,10 +105,14 @@
                                 <small class="message" id="message-email"></small>
                             </div>
                             <div class="form-group mb-3">
-                                <button type="submit" name="add_new_user_btn" class="btn btn-primary">Submit
+                                <button type="submit" id="add_new_user_btn" name="add_new_user_btn" class="btn btn-primary">Submit
                                 </button>
                             </div>
+
+                            <!--Vannila JS error handler-->
                             <script src="../js/reset-password-error-handler.js"></script>
+
+
                         </form>
                     </div>
                 </div>

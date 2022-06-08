@@ -20,13 +20,13 @@ if (isset($_POST['add_new_user_btn']) or isset($_POST['add-new-user-form'])) {
 
                 $first_time_log->sendemail_verify($invitee_email, $inviter_email, $group_name);
 
-                header("location:../includes/user-logged-in.php?error=none");
+                header("location:../includes/add-new-user.php?error=none&group_name=".$_COOKIE['group_name']);
             }
         }
 
     } else {
         //User doesn't exist so we will show an error message
-        header("location:../includes/user-logged-in.php?error=user_exists_inDB");
+        header("location:../includes/add-new-user.php?error=user_exists_inDB&group_name=".$_COOKIE['group_name']);
     }
 
 } else {
