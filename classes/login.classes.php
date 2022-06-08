@@ -71,7 +71,7 @@ class Login extends Dbh
 
             //PIN DEO OVDE KRECE
 
-            if ($user[0]['2FA_status'] === 1){
+            if ($user[0]['2FA_status'] === "1"){
 
                 $pin =$this->randomNumber(5);
 
