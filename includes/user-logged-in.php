@@ -301,14 +301,14 @@ $get->get_group_name($_COOKIE['users_id']);
 <!--                            Products-->
 <!--                        </a>-->
 <!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href="#" class="nav-link text-white">-->
-<!--                            <svg class="bi pe-none me-2" width="16" height="16">-->
-<!--                                <use xlink:href="#people-circle"/>-->
-<!--                            </svg>-->
-<!--                            Customers-->
-<!--                        </a>-->
-<!--                    </li>-->
+                    <li>
+                        <a href="change_profile_pic.php" class="nav-link text-white">
+                            <svg class="bi pe-none me-2" width="16" height="16">
+                                <use xlink:href="#people-circle"/>
+                            </svg>
+                            Change profile picture
+                        </a>
+                    </li>
                 </ul>
                 <hr>
                 <?php
@@ -337,7 +337,7 @@ $get->get_group_name($_COOKIE['users_id']);
                         echo '<img alt="Avatar" id="avatar" width="32" height="32" class="rounded-circle me-2">';
                         echo '<strong>'.$user_name.'</strong>';
                         }else{
-                                echo '<img alt="Avatar" src="uploads/'.$img_name.'"  width="32" height="32" class="rounded-circle me-2">';
+                                echo '<img alt="Avatar" src="../uploads/'.$img_name.'"  width="32" height="32" class="rounded-circle me-2">';
                         }
                         ?>
 

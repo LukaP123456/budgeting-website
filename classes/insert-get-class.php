@@ -3,6 +3,20 @@ require_once "dbh.classes.php";
 
 class Insert_get extends Dbh
 {
+    function insert_img($img_name,$user_id){
+        $insert_stmt = $this->connect()->prepare("UPDATE accounts SET img_status = 1 ,img_name = ?  WHERE users_id = ?");
+        try {
+            if ($insert_stmt->execute(array($img_name,$user_id))){
+                echo "uspoe";
+                header("location:../includes/change_profile_pic.php?error=none");
+            }
+        }catch (PDOException $e){
+            echo $e;
+            die();
+        }
+
+    }
+
     function get_img($user_id){
 
         $get = $this->connect()->prepare("SELECT * FROM accounts WHERE users_id= ? AND verify_status = 1 LIMIT 1");
