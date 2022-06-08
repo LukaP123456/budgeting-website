@@ -48,8 +48,55 @@ if (isset($_POST['submit'])) {
     include "../classes/signup.classes.php";
     include "../classes/signup-contr.classes.php";
 
+    //profile picture
+    if (isset($_FILES['file'])){
 
-    $signup = SignupContr::create()->set_vanilla_user($full_name,$pwd,$pwdRepeat,$email,$verify_token,$ip,$browser);
+        $file = $_FILES['file'];
+
+        $file_name = $_FILES['file']['name'];
+        $file_tmp_name = $_FILES['file']['tmp_name'];
+        $file_size = $_FILES['file']['size'];
+        $file_error = $_FILES['file']['error'];
+        $file_tmp_type = $_FILES['file']['type'];
+
+        $file_ext = explode(".",$file_name);
+        $file_actual_ext = strtolower(end($file_ext));
+
+        $allow = array('jpg','jpeg','png','pic','pdf');
+
+        if (in_array($file_actual_ext,$allow)){
+            if ($file_error === 0){
+                if ($file_size < 1000000){
+                    $img_name = $file_name;
+                    $img_status = 1;
+
+
+                    $file_destination = 'uploads/'.$img_name;
+                    move_uploaded_file($file_tmp_name, $file_destination);
+
+                }else{
+                    $_SESSION['error1'] = true;
+                    header("location:../index.php?error=file_large");
+                    die();
+                }
+
+            }else{
+                $_SESSION['error1'] = true;
+                header("location:../index.php?error=filer_error");
+                die();
+            }
+        }else{
+            $_SESSION['error1'] = true;
+            header("location:../index.php?error=wrong_img_typ");
+            die();
+        }
+    }else{
+        $img_status = 0;
+        $img_name = null;
+    }
+
+
+    $signup = SignupContr::create()->set_vanilla_user($full_name,$pwd,$pwdRepeat,$email,$verify_token,$ip,$browser,$img_name,$img_status);
 
     //Runs error handlers and inserts the user into the database
     $signup->signupUser();
@@ -60,7 +107,7 @@ if (isset($_POST['submit'])) {
 
 } else {
     $_SESSION['error1'] = true;
-    header("location:../index.php?error=signup_error");
+    //header("location:../index.php?error=signup_error");
 }
 
 

@@ -12,13 +12,15 @@ class SignupContr extends Signup
     private $browser;
     private $house_id;
     private $inviter_id;
+    private $img_name;
+    private $img_status;
 
 
     public static function create() {
         return new self();
     }
 
-    public function set_vanilla_user($full_name,$pwd,$pwdRepeat,$email,$verify_token,$ip,$browser){
+    public function set_vanilla_user($full_name,$pwd,$pwdRepeat,$email,$verify_token,$ip,$browser,$img_name,$img_status){
         $this->full_name = $full_name;
         $this->pwd = $pwd;
         $this->pwdRepeat = $pwdRepeat;
@@ -26,6 +28,8 @@ class SignupContr extends Signup
         $this->verify_token = $verify_token;
         $this->ip = $ip;
         $this->browser = $browser;
+        $this->img_name = $img_name;
+        $this->img_status = $img_status;
 
         return $this;
     }
@@ -81,7 +85,7 @@ class SignupContr extends Signup
 
 
         //Part that will sign up the user to the website
-        $this->setUser($this->pwd, $this->email, $this->full_name, $this->verify_token, $this->ip, $this->browser);
+        $this->setUser($this->pwd, $this->email, $this->full_name, $this->verify_token, $this->ip, $this->browser,$this->img_name,$this->img_status);
 
 
     }

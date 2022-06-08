@@ -322,14 +322,25 @@ $get->get_group_name($_COOKIE['users_id']);
                     $initials .= $w[0];
                 }
 
+                $img_status = $get->get_img_status($_COOKIE['users_id']);
+
+                $img_name = $get->get_img($_COOKIE['users_id']);
+
 
                 ?>
 
                 <div class="dropdown">
                     <a href="#"  class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img alt="Avatar" id="avatar" width="32" height="32" class="rounded-circle me-2">
-                        <strong><?php echo $user_name?></strong>
+                        <?php
+                        if ($img_status == 0){
+                        echo '<img alt="Avatar" id="avatar" width="32" height="32" class="rounded-circle me-2">';
+                        echo '<strong>'.$user_name.'</strong>';
+                        }else{
+                                echo '<img alt="Avatar" src="uploads/'.$img_name.'"  width="32" height="32" class="rounded-circle me-2">';
+                        }
+                        ?>
+
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
 <!--                        <li><a class="dropdown-item" href="#">New project...</a></li>-->
@@ -418,8 +429,6 @@ $get->get_group_name($_COOKIE['users_id']);
                     $user_id = $_COOKIE['users_id'];
                     $house_id = $get->get_house_id($user_id);
                     $_SESSION['house_id'] = $house_id;
-
-
 
                     $budget = $get->get_budget($house_id);
                     ?>

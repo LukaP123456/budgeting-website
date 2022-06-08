@@ -3,6 +3,41 @@ require_once "dbh.classes.php";
 
 class Insert_get extends Dbh
 {
+    function get_img($user_id){
+
+        $get = $this->connect()->prepare("SELECT * FROM accounts WHERE users_id= ? AND verify_status = 1 LIMIT 1");
+
+        if ($get->execute(array($user_id))){
+
+            if ($get->rowCount() > 0){
+                $selector = $get->fetchAll(PDO::FETCH_ASSOC);
+
+                return $selector[0]['img_name'];
+
+            }
+
+
+        }
+
+    }
+
+    function get_img_status($user_id){
+
+        $get = $this->connect()->prepare("SELECT * FROM accounts WHERE users_id= ? AND verify_status = 1 LIMIT 1");
+
+        if ($get->execute(array($user_id))){
+
+            if ($get->rowCount() > 0){
+                $selector = $get->fetchAll(PDO::FETCH_ASSOC);
+
+                return $selector[0]['img_status'];
+
+            }
+
+
+        }
+
+    }
 
     function get_group_name($user_id)
     {

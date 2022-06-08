@@ -11,7 +11,8 @@
             <div class="modal-body">
                 <p class="lead">Fill out this form we will get back to you</p>
                 <!-- Form -->
-                <form id="signup-form" class="form" method="POST" action="./includes/signup.inc.php">
+                <form id="signup-form" class="form" method="POST" action="./includes/signup.inc.php"
+                      enctype="multipart/form-data">
                     <?php
                     $fullUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
@@ -56,9 +57,24 @@
                         User has not been found
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
-                    } elseif (strpos($fullUrl, "error=token_failed") == true) {
+                    }elseif (strpos($fullUrl, "error=token_failed") == true) {
                         echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                         There is an error with your verification token
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+                    }elseif (strpos($fullUrl, "error=wrong_img_typ") == true) {
+                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                       You cannot upload that file type only jpg,jpeg,png,pic,pdf
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+                    }elseif (strpos($fullUrl, "error=filer_error") == true) {
+                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                      There was an error uploading your file.
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+                    }elseif (strpos($fullUrl, "error=file_large") == true) {
+                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                      Please select a different image the one you uploaded is too large.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
                     } else {
@@ -102,9 +118,16 @@
                         <br>
                     </div>
 
-                    <p>Did not receive Your Verification Email?
-                        <a href="./resend-email-verification.php">Resend</a>
-                    </p>
+                    <div class="mb-3 input-control">
+                        <label for="pwdRepeat">Upload your profile picture</label>
+                        <input type="file" class="form-control" id="file" name="file">
+                        <br>
+                    </div>
+
+
+
+                    Did not receive Your Verification Email?<a href="./resend-email-verification.php">Resend</a>
+
 
                     <div class="modal-footer">
                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

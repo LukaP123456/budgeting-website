@@ -56,7 +56,8 @@ include_once "includes/login-modal.php";
         echo $_SESSION['error1'];
     } else {
         echo 0;
-    } ?>;
+    }
+    ?>;
     console.log(error);
     $(document).ready(function () {
         if (error === 1) {
