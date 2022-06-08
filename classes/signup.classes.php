@@ -106,16 +106,19 @@ class Signup extends Dbh
 
     protected function setUser($pwd, $email, $full_name, $verify_token, $ip, $browser,$img_name,$img_status)
     {
+
         $stmt = $this->connect()->prepare(
             "BEGIN;
-         INSERT INTO accounts(users_pwd,users_email,full_name,verify_token,date_time_signup,verification_expires,img_name,img_status) values (?,?,?,?,now(), DATE_ADD(now(), INTERVAL 12 HOUR),?,?);
-         INSERT INTO log_data(users_id,ip_adress,web_browser_OS) values(LAST_INSERT_ID(),?,?);
+         INSERT INTO accounts(users_pwd,users_email,full_name,verify_token,date_time_signup,verification_expires,img_status, img_name,PIN_expiration)
+          values (?,?,?,?,now(), DATE_ADD(now(), INTERVAL 12 HOUR),?,?,DATE_ADD(now(),INTERVAL 30 MINUTE));
+         INSERT INTO log_data(users_id,ip_adress,web_browser_OS)
+          values(LAST_INSERT_ID(),?,?);
          COMMIT;");
 
         $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
         //The result of the execute function is true or false based on the succes of the execution
-        if (!$stmt->execute(array($hashedPwd, $email, $full_name, $verify_token, $img_name,$img_status, $ip,$browser,))) {
+        if (!$stmt->execute(array($hashedPwd, $email, $full_name, $verify_token,$img_status ,$img_name, $ip,$browser,))) {
             //Throws an error message in the url if it fails setting a user
             $stmt = null;
             $_SESSION['error1'] = true;

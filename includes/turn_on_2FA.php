@@ -24,10 +24,7 @@
           integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
-    <!--Sweet alert-->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-    <title>LP Budgeting - change profile picture</title>
+    <title>LP Budgeting - two factoru authentication</title>
 </head>
 <body>
 
@@ -36,7 +33,7 @@
 <!--navbar start-->
 <nav class="navbar navbar-expand-lg bg-black navbar-dark py-3 fixed-top">
     <div class="container">
-        <a href="#" class="navbar-brand">LP<span class="text-warning">Budgeting</span></a>
+        <a href="../index.php" class="navbar-brand">LP<span class="text-warning">Budgeting</span></a>
 
         <button class="navbar-toggler"
                 type="button"
@@ -46,10 +43,10 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse text-white" id="navmenu">
+        <div class="collapse navbar-collapse" id="navmenu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a href="../includes/user-logged-in.php" class="nav-link">Home</a>
+                    <a href="../index.php" class="nav-link">Home</a>
                 </li>
 
             </ul>
@@ -59,62 +56,63 @@
 <!--navbar end-->
 <!--HEADER END-->
 <!--FORGOTTEN PASSWORD FORM START-->
-<div class="py-5">
+<div class="p-5">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header bg-black text-white">
-                        <h5>Change your profile picture</h5>
-                        <p>Enter a file of a picture type (jpg, jpeg, png, pic)</p>
+                        <h5>Welcome to LP<span class="text-warning">Budgeting</span></h5>
+                        <p>Two factor authentication</p>
                     </div>
                     <div class="card-body">
-                        <?php
-                        session_start();
+                        <form action="2FA_code.php" name="2FA_form"
+                              id="first-time-log-form" method="POST">
+                            <br><br>
+                            <div class="form-check form-switch mb-3">
+                                <?php
+                                session_start();
 
-                        $fullUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                                $fullUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-                        if (strpos($fullUrl, "error=file_large") == true) {
-                            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        Please upload a smaller file
+                                if (strpos($fullUrl, "error=not_selected") == true) {
+                                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        Click on the radio button if you wish to turn on two factour authentication.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div></p>";
-                        }elseif (strpos($fullUrl, "error=filer_error") == true){
-                            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        Error uploading image.
+                                }elseif (strpos($fullUrl, "error=failed_stmt") == true){
+                                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        Statement failed.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div></p>";
-                        }elseif (strpos($fullUrl, "error=wrong_img_typ") == true){
-                            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                         Wrong file type please upload only jpg, jpeg, png, pic.
+                                }elseif (strpos($fullUrl, "error=not_clicked") == true){
+                                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                         Click on the submit button if you wish to turn on two factor authentication
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div></p>";
-                        }elseif (strpos($fullUrl, "error=no_pic") == true){
-                            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        Please upload a pic
+                                }elseif (strpos($fullUrl, "error=none") == true){
+                                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                         Two factor authentication is turned on.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div></p>";
-                        }elseif (strpos($fullUrl, "error=none") == true){
-                            echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                         Profile picture changed.
-                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                    </div></p>";
-                        }else {
-                            unset($_SESSION['error-message-resend']);
-                        }
+                                }else {
+                                    unset($_SESSION['error-message-resend']);
+                                }
 
 
-                        ?>
-                        <form action="change_pic_code.php" id="reset-request-form" method="POST" enctype="multipart/form-data">
-                            <div class="form-group mb-3">
-                                <label for="email">Email address</label>
-                                <input type="file" class="form-control" id="file" name="file">
+                                ?>
+                                <input type="hidden" value="<?php echo $_COOKIE['users_id']; ?>">
+                                <input class="form-check-input" type="checkbox" role="switch" name="2FA_box"
+                                       id="2FA_radio" style="transform: scale(1.3)" onclick="radioCheck()">
+                                <label class="form-check-label" for="alone-radio">Click this button to turn on two factor authentication</label>
+                                <small class="message" id="message-alone-radio"></small>
                             </div>
+                            <br>
+                            <br>
                             <div class="form-group mb-3">
-                                <button type="submit" name="pic_submit" class="btn btn-primary">Submit
+                                <button type="submit" name="2FA_submit" class="btn btn-primary">Submit
                                 </button>
                             </div>
-
                         </form>
                     </div>
                 </div>

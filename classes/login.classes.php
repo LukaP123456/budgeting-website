@@ -61,6 +61,19 @@ class Login extends Dbh
             $stmt = null;
 
             $_SESSION['authenticated'] = true;
+
+            //PIN DEO OVDE KRECE
+
+            if ($user[0]['2FA_status']){
+
+
+
+
+            }
+
+
+
+
             header("Location: ../includes/user-logged-in.php");
 
 

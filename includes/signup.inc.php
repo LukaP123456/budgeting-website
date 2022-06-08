@@ -53,6 +53,8 @@ if (isset($_POST['submit'])) {
 
         $file = $_FILES['file'];
 
+        var_dump($_FILES);
+
         $file_name = $_FILES['file']['name'];
         $file_tmp_name = $_FILES['file']['tmp_name'];
         $file_size = $_FILES['file']['size'];
@@ -62,14 +64,20 @@ if (isset($_POST['submit'])) {
         $file_ext = explode(".",$file_name);
         $file_actual_ext = strtolower(end($file_ext));
 
-        $allow = array('jpg','jpeg','png','pic','pdf');
+        $allow = array('jpg','jpeg','png','pic',' ');
 
-        if (in_array($file_actual_ext,$allow)){
-            if ($file_error === 0){
+        if (in_array($file_actual_ext,$allow)  ){
+
                 if ($file_size < 1000000){
-                    $img_name = $file_name;
-                    $img_status = 1;
+                    if ($file_name===""){
+                        $img_name = "no";
+                        $img_status = 0;
+                    }
 
+                    if (isset($file_name) AND !empty($file_name) AND $file_name != "" ){
+                        $img_name = $file_name;
+                        $img_status = 1;
+                    }
 
                     $file_destination = 'uploads/'.$img_name;
                     move_uploaded_file($file_tmp_name, $file_destination);
@@ -80,11 +88,6 @@ if (isset($_POST['submit'])) {
                     die();
                 }
 
-            }else{
-                $_SESSION['error1'] = true;
-                header("location:../index.php?error=filer_error");
-                die();
-            }
         }else{
             $_SESSION['error1'] = true;
             header("location:../index.php?error=wrong_img_typ");
@@ -92,7 +95,7 @@ if (isset($_POST['submit'])) {
         }
     }else{
         $img_status = 0;
-        $img_name = null;
+        $img_name = "no";
     }
 
 
@@ -107,7 +110,7 @@ if (isset($_POST['submit'])) {
 
 } else {
     $_SESSION['error1'] = true;
-    //header("location:../index.php?error=signup_error");
+    header("location:../index.php?error=signup_error");
 }
 
 

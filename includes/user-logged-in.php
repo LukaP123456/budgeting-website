@@ -293,14 +293,14 @@ $get->get_group_name($_COOKIE['users_id']);
 <!--                            Orders-->
 <!--                        </a>-->
 <!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href="#" class="nav-link text-white">-->
-<!--                            <svg class="bi pe-none me-2" width="16" height="16">-->
-<!--                                <use xlink:href="#grid"/>-->
-<!--                            </svg>-->
-<!--                            Products-->
-<!--                        </a>-->
-<!--                    </li>-->
+                    <li>
+                        <a href="turn_on_2FA.php" class="nav-link text-white">
+                            <svg class="bi pe-none me-2" width="16" height="16">
+                                <use xlink:href="#grid"/>
+                            </svg>
+                            Two factor authentication
+                        </a>
+                    </li>
                     <li>
                         <a href="change_profile_pic.php" class="nav-link text-white">
                             <svg class="bi pe-none me-2" width="16" height="16">
@@ -333,12 +333,18 @@ $get->get_group_name($_COOKIE['users_id']);
                     <a href="#"  class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                         <?php
-                        if ($img_status == 0){
+
+                        if ($img_status === 1){
+                            echo '<img alt="Avatar" src="../uploads/'.$img_name.'"  width="32" height="32" class="rounded-circle me-2">';
+
+                        }
+                        if ($img_status === 0){
                         echo '<img alt="Avatar" id="avatar" width="32" height="32" class="rounded-circle me-2">';
                         echo '<strong>'.$user_name.'</strong>';
-                        }else{
-                                echo '<img alt="Avatar" src="../uploads/'.$img_name.'"  width="32" height="32" class="rounded-circle me-2">';
                         }
+
+
+
                         ?>
 
                     </a>
