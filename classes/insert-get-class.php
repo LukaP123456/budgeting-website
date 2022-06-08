@@ -4,6 +4,21 @@ require_once "dbh.classes.php";
 class Insert_get extends Dbh
 {
 
+    function check_pin($pin,$users_id){
+
+        $check_stmt = $this->connect()->prepare("SELECT * from accounts WHERE users_id = ? AND PIN = ? and PIN_expiration>now();");
+
+        if ($check_stmt->execute(array($pin,$users_id))){
+
+            header("Location: ../includes/user-logged-in.php");
+
+        }else{
+            header("Location: ../includes/pin_verification.php?error=pin_invalid");
+        }
+
+
+    }
+
     function turn_on_2FA($users_id){
 
         $turn_stmt = $this->connect()->prepare("UPDATE accounts SET 2FA_status = 1 WHERE users_id =?;");

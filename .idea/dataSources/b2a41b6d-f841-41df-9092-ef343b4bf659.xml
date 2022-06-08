@@ -1273,273 +1273,277 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="362" parent="339" name="users_email">
+    <column id="362" parent="339" name="PIN">
+      <Position>16</Position>
+      <DataType>int(7)|0s</DataType>
+    </column>
+    <index id="363" parent="339" name="users_email">
       <ColNames>users_email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="363" parent="339" name="role_fk">
+    <index id="364" parent="339" name="role_fk">
       <ColNames>role</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="364" parent="339" name="PRIMARY">
+    <key id="365" parent="339" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>users_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="365" parent="339" name="users_email">
+    <key id="366" parent="339" name="users_email">
       <ColNames>users_email</ColNames>
       <UnderlyingIndexName>users_email</UnderlyingIndexName>
     </key>
-    <foreign-key id="366" parent="339" name="role_fk">
+    <foreign-key id="367" parent="339" name="role_fk">
       <ColNames>role</ColNames>
       <RefTableName>roles</RefTableName>
       <RefColNames>roles_id</RefColNames>
     </foreign-key>
-    <column id="367" parent="340" name="amount_id">
+    <column id="368" parent="340" name="amount_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="368" parent="340" name="amount">
+    <column id="369" parent="340" name="amount">
       <Position>2</Position>
       <DataType>float|0s</DataType>
     </column>
-    <column id="369" parent="340" name="users_id">
+    <column id="370" parent="340" name="users_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="370" parent="340" name="category_id">
+    <column id="371" parent="340" name="category_id">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="371" parent="340" name="positive_negative">
+    <column id="372" parent="340" name="positive_negative">
       <Position>5</Position>
       <Comment>0 = withdrawing amount from the budget, 1 = adding amount to the goal/budget</Comment>
       <DataType>tinyint(4)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="372" parent="340" name="date_added">
+    <column id="373" parent="340" name="date_added">
       <Position>6</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="373" parent="340" name="cost_description">
+    <column id="374" parent="340" name="cost_description">
       <Position>7</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="374" parent="340" name="users_id">
+    <index id="375" parent="340" name="users_id">
       <ColNames>users_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="375" parent="340" name="category_id">
+    <index id="376" parent="340" name="category_id">
       <ColNames>category_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="376" parent="340" name="PRIMARY">
+    <key id="377" parent="340" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>amount_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="377" parent="340" name="cash_flow_ibfk_1">
+    <foreign-key id="378" parent="340" name="cash_flow_ibfk_1">
       <ColNames>users_id</ColNames>
       <RefTableName>accounts</RefTableName>
       <RefColNames>users_id</RefColNames>
     </foreign-key>
-    <foreign-key id="378" parent="340" name="category_id">
+    <foreign-key id="379" parent="340" name="category_id">
       <ColNames>category_id</ColNames>
       <RefTableName>cateogries</RefTableName>
       <RefColNames>category_id</RefColNames>
     </foreign-key>
-    <column id="379" parent="341" name="category_id">
+    <column id="380" parent="341" name="category_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="380" parent="341" name="category_name">
+    <column id="381" parent="341" name="category_name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="381" parent="341" name="category_type">
+    <column id="382" parent="341" name="category_type">
       <Position>3</Position>
       <Comment>0 = withdraw category&#xd;
 1 = add category</Comment>
       <DataType>tinyint(2)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="382" parent="341" name="household_id">
+    <column id="383" parent="341" name="household_id">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <column id="383" parent="341" name="category_date_added">
+    <column id="384" parent="341" name="category_date_added">
       <Position>5</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <index id="384" parent="341" name="household_id">
+    <index id="385" parent="341" name="household_id">
       <ColNames>household_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="385" parent="341" name="PRIMARY">
+    <key id="386" parent="341" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>category_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="386" parent="341" name="cateogries_ibfk_1">
+    <foreign-key id="387" parent="341" name="cateogries_ibfk_1">
       <ColNames>household_id</ColNames>
       <RefTableName>household</RefTableName>
       <RefColNames>household_id</RefColNames>
     </foreign-key>
-    <column id="387" parent="342" name="goal_id">
+    <column id="388" parent="342" name="goal_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="388" parent="342" name="goal_name">
+    <column id="389" parent="342" name="goal_name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="389" parent="342" name="goal_price">
+    <column id="390" parent="342" name="goal_price">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="390" parent="342" name="user_id">
+    <column id="391" parent="342" name="user_id">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="391" parent="342" name="goal_achieved">
+    <column id="392" parent="342" name="goal_achieved">
       <Position>5</Position>
       <Comment>0 = goal not achieved, 1 = goal achieved</Comment>
       <DataType>tinyint(3)|0s</DataType>
     </column>
-    <column id="392" parent="342" name="added_date">
+    <column id="393" parent="342" name="added_date">
       <Position>6</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="393" parent="342" name="user_id">
+    <index id="394" parent="342" name="user_id">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="394" parent="342" name="PRIMARY">
+    <key id="395" parent="342" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>goal_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="395" parent="342" name="goals_ibfk_1">
+    <foreign-key id="396" parent="342" name="goals_ibfk_1">
       <ColNames>user_id</ColNames>
       <RefTableName>accounts</RefTableName>
       <RefColNames>users_id</RefColNames>
     </foreign-key>
-    <column id="396" parent="343" name="household_id">
+    <column id="397" parent="343" name="household_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="397" parent="343" name="household_name">
+    <column id="398" parent="343" name="household_name">
       <Position>2</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;single person&apos;</DefaultExpression>
     </column>
-    <column id="398" parent="343" name="blocked">
+    <column id="399" parent="343" name="blocked">
       <Position>3</Position>
       <Comment>0 = not blocked, 1 = blocked</Comment>
       <DataType>tinyint(4)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <key id="399" parent="343" name="PRIMARY">
+    <key id="400" parent="343" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>household_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="400" parent="344" name="user_id">
+    <column id="401" parent="344" name="user_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="401" parent="344" name="house_hold_id">
+    <column id="402" parent="344" name="house_hold_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="402" parent="344" name="user_id">
+    <index id="403" parent="344" name="user_id">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="403" parent="344" name="household1_id">
+    <index id="404" parent="344" name="household1_id">
       <ColNames>house_hold_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="404" parent="344" name="PRIMARY">
+    <key id="405" parent="344" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_id
 house_hold_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="405" parent="344" name="user_id">
+    <foreign-key id="406" parent="344" name="user_id">
       <ColNames>user_id</ColNames>
       <RefTableName>accounts</RefTableName>
       <RefColNames>users_id</RefColNames>
     </foreign-key>
-    <foreign-key id="406" parent="344" name="household1_id">
+    <foreign-key id="407" parent="344" name="household1_id">
       <ColNames>house_hold_id</ColNames>
       <RefTableName>household</RefTableName>
       <RefColNames>household_id</RefColNames>
     </foreign-key>
-    <column id="407" parent="345" name="data_id">
+    <column id="408" parent="345" name="data_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="408" parent="345" name="ip_adress">
+    <column id="409" parent="345" name="ip_adress">
       <Position>2</Position>
       <DataType>varchar(200)|0s</DataType>
     </column>
-    <column id="409" parent="345" name="web_browser_OS">
+    <column id="410" parent="345" name="web_browser_OS">
       <Position>3</Position>
       <DataType>varchar(200)|0s</DataType>
     </column>
-    <column id="410" parent="345" name="signup_time">
+    <column id="411" parent="345" name="signup_time">
       <Position>4</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <column id="411" parent="345" name="users_id">
+    <column id="412" parent="345" name="users_id">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <index id="412" parent="345" name="users_id">
+    <index id="413" parent="345" name="users_id">
       <ColNames>users_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="413" parent="345" name="PRIMARY">
+    <key id="414" parent="345" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>data_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="414" parent="345" name="log_data_ibfk_1">
+    <foreign-key id="415" parent="345" name="log_data_ibfk_1">
       <ColNames>users_id</ColNames>
       <RefTableName>accounts</RefTableName>
       <RefColNames>users_id</RefColNames>
     </foreign-key>
-    <column id="415" parent="346" name="roles_id">
+    <column id="416" parent="346" name="roles_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="416" parent="346" name="role">
+    <column id="417" parent="346" name="role">
       <Position>2</Position>
       <Comment>0 = regular user&#xd;
 1 = household admin &#xd;
@@ -1548,7 +1552,7 @@ house_hold_id</ColNames>
       <NotNull>1</NotNull>
       <DefaultExpression>1</DefaultExpression>
     </column>
-    <key id="417" parent="346" name="PRIMARY">
+    <key id="418" parent="346" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>roles_id</ColNames>
       <Primary>1</Primary>

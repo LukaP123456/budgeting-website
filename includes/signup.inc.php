@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {
 
         $allow = array('jpg','jpeg','png','pic',' ');
 
-        if (in_array($file_actual_ext,$allow)  ){
+//        if (in_array($file_actual_ext,$allow)  ){
 
                 if ($file_size < 1000000){
                     if ($file_name===""){
@@ -88,11 +88,11 @@ if (isset($_POST['submit'])) {
                     die();
                 }
 
-        }else{
-            $_SESSION['error1'] = true;
-            header("location:../index.php?error=wrong_img_typ");
-            die();
-        }
+//        }else{
+//            $_SESSION['error1'] = true;
+//            header("location:../index.php?error=wrong_img_typ");
+//            die();
+//        }
     }else{
         $img_status = 0;
         $img_name = "no";
