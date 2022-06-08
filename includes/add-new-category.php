@@ -34,6 +34,9 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
           integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
+    <!--Sweet alert-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <title>LP Budgeting - add category</title>
 </head>
 <body>
@@ -91,6 +94,8 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
                                             $("#category_name").addClass("border border-danger border-2");
                                             $("#error_category_name").text(" Please add an amount ").addClass("text-danger fas fa-exclamation-circle ");
                                             $("#response").html(" ");
+                                            swal("Warning!",  "Please enter a name of your category into the field","error");
+
                                             check_name = 1;
                                         }else {
                                             $('#category_name').addClass("border border-success border-2").removeClass("border border-danger border-2");
@@ -108,14 +113,20 @@ setcookie("house_hold_id", $house_id, time() + (10 * 365 * 24 * 60 * 60), "/", "
                                                 },
                                                 success: function (response){
                                                     console.log(response);
+                                                    swal("Good job!",  "Successfully added a new positive category: "+category_name,"success");
                                                     if(response === "success"){
                                                         $("#response").html("<div class='alert alert-success' role='alert'>Successfully added a new category</div>");
+                                                        $("#category_name").val(" ")
                                                     }else{
                                                         $("#response").html(response);
+                                                        $("#category_name").val(" ")
+                                                        swal("Warning!",  response,"error");
+
                                                     }
                                                 },
                                                 error: function(response) {
                                                     alert(JSON.stringify(response));
+                                                    swal("Warning!",  response,"error");
                                                 }
                                             })
                                         }
