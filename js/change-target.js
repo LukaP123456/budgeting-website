@@ -57,6 +57,11 @@ $(document).ready(function () {
                             $("#amount_response").html("<p>It's value is: $"+amount+"</p>");
                             $("#hidden_amount").val(amount);
 
+                            if (goal !== "" && amount !== ""){
+                                swal("Good job!",  "Successfully changed your goal to: "+goal+" which has a price of: "+amount, "success");
+
+                            }
+
                             $("#goal_name").val("").removeClass("border border-danger border-2").addClass("border border-success border-2");
                             $("#amount").val("").removeClass("border border-danger border-2").addClass("border border-success border-2");
                             $("#response").html("");
@@ -64,6 +69,7 @@ $(document).ready(function () {
                         });
                     }else {
                         $("#response").html(response);
+                        swal("Warning",  response, "error");
 
                         $("#goal_name").addClass("border border-danger border-2");
                         $("#amount").addClass("border border-danger border-2");

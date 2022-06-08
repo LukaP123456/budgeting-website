@@ -61,6 +61,10 @@ if ($_SESSION['blocked'] === true){
             integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <!--Sweet alert-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
     <style>
 
         .bi {
@@ -75,9 +79,9 @@ if ($_SESSION['blocked'] === true){
 </head>
 <body class="bg-dark">
 
-<div class="loader-container">
-    <img src="../img/loader.gif"  alt="loader">
-</div>
+<!--<div class="loader-container">-->
+<!--    <img src="../img/loader.gif"  alt="loader">-->
+<!--</div>-->
 
 <!--USER HEADER START-->
 <!--navbar start-->
@@ -1239,7 +1243,7 @@ $expenses_month = $get->get_expense_month($house_id);
 </script>
 
 <!--Loader script for loader gif and refresh page-->
-<script type="text/javascript" src="../js/loader-refresh.js"></script>
+<!--<script type="text/javascript" src="../js/loader-refresh.js"></script>-->
 
 </body>
 </html>

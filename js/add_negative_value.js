@@ -85,6 +85,7 @@ $(document).ready(function () {
                             success: function (response) {
                                 $("#delete").on("hidden.bs.modal", function () {
                                     $("#full_expenses").html("<p>$-" + response + "</p>");
+                                    swal("Good job!",  "Successfully added an amount of: $"+response+" to your expenses", "success");
 
                                     let full_expenses = response;
 
@@ -102,10 +103,14 @@ $(document).ready(function () {
                         })
                     } else {
                         $("#neg_response").html(response);
+                        swal("Warning",  response, "error");
+
                     }
                 },
                 error: function (response) {
                     alert(JSON.stringify(response));
+                    swal("Warning",  response, "error");
+
                 }
             })
         }

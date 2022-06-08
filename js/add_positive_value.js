@@ -73,6 +73,7 @@ $(document).ready(function () {
                             success: function (response) {
                                 $("#enroll").on("hidden.bs.modal",function () {
                                     $("#full_budget").html("<p>$" + response + "</p>");
+                                    swal("Good job!",  "Successfully added an amount of: $"+response+" to your income", "success");
 
                                     budget_expenses_chart.data.datasets[0].data[0] = response;
                                     budget_expenses_chart.update('active');
@@ -83,11 +84,12 @@ $(document).ready(function () {
                                 });
                             },error:function (response){
                                 alert(JSON.stringify(response));
+                                swal("Warning",  response, "error");
                             }
                         })
                     }else {
                         $("#pos_response").html(response);
-
+                        swal("Warning",  response, "error");
 
                         $("#pos_amount").addClass("border border-danger border-2");
                         $("#pos_category").addClass("border border-danger border-2");
@@ -98,6 +100,7 @@ $(document).ready(function () {
                 },
                 error: function (response) {
                     alert(JSON.stringify(response));
+                    swal("Warning",  response, "error");
                 }
             })
         }
