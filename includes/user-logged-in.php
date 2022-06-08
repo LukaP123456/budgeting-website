@@ -995,6 +995,8 @@ $get->get_group_name($_COOKIE['users_id']);
                                 $("#error_pos_category").text("Looks good!").removeClass("text-danger fas fa-exclamation-circle ").addClass("text-success fas fas fa-check-circle");
                             }
 
+                            let category_text = $("#pos_category option:selected").text();
+
                             if(check_neg_category2 !== 1){
                                 $.ajax({
                                     method: "post",
@@ -1004,10 +1006,12 @@ $get->get_group_name($_COOKIE['users_id']);
                                     },
                                     success: function (response){
                                             console.log("asdasdasdasd")
-                                            $("#pos_response").html(response);
+                                        swal("Good job!",  "Successfully deleted category: "+category_text, "success");
+                                        $("#pos_response").html(response);
                                     },
                                     error:function (response){
                                         console.log(response)
+                                        swal("Warning",  response, "error");
                                         $("#pos_response").html(response);
 
                                     }
@@ -1084,6 +1088,7 @@ $get->get_group_name($_COOKIE['users_id']);
                         <button type="button" class="btn btn-danger" id="neg_submit">Submit</button>
                     </div>
                 </form>
+
                 <!--Delete negative category from list-->
                 <script type="text/javascript">
 
@@ -1104,6 +1109,8 @@ $get->get_group_name($_COOKIE['users_id']);
                                 $("#error_neg_category").text("Looks good!").removeClass("text-danger fas fa-exclamation-circle ").addClass("text-success fas fas fa-check-circle");
                             }
 
+                            let category_text = $("#neg_category option:selected").text();
+
                             if(check_neg_category2 !== 1){
                                 $.ajax({
                                     method: "post",
@@ -1112,12 +1119,14 @@ $get->get_group_name($_COOKIE['users_id']);
                                         category:category
                                     },
                                     success: function (response){
-                                        console.log("asdasdasdasd")
+                                        console.log("asdasdasdasd");
+                                        swal("Good job!",  "Successfully deleted category: "+category_text, "success");
                                         $("#neg_response").html(response);
                                     },
                                     error:function (response){
                                         console.log(response)
                                         $("#neg_response").html(response);
+                                        swal("Warning",  response, "error");
 
                                     }
                                 })

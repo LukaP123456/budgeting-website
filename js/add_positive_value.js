@@ -64,6 +64,8 @@ $(document).ready(function () {
                 },
                 success: function (response) {
                     console.log(response);
+                    swal("Good job!",  "Successfully added an amount of: $"+pos_amount+" to your income in category: "+pos_category+" date added: "+pos_date, "success");
+
                     if (response === "success") {
                         $("#pos_response").html("<div class='alert alert-success' role='alert'>Successfully added an amount of $" + pos_amount + "</div>");
 
@@ -73,7 +75,6 @@ $(document).ready(function () {
                             success: function (response) {
                                 $("#enroll").on("hidden.bs.modal",function () {
                                     $("#full_budget").html("<p>$" + response + "</p>");
-                                    swal("Good job!",  "Successfully added an amount of: $"+response+" to your income", "success");
 
                                     budget_expenses_chart.data.datasets[0].data[0] = response;
                                     budget_expenses_chart.update('active');

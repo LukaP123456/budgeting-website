@@ -76,6 +76,8 @@ $(document).ready(function () {
                 },
                 success: function (response) {
                     console.log(response);
+                    swal("Good job!",  "Successfully added an amount of: $"+amount+" to your expenses in category: "+neg_category+" date added: "+neg_date, "success");
+
                     if (response === "success") {
                         $("#neg_response").html("<div class='alert alert-success' role='alert'>Successfully added a new cost of $" + amount + "</div>");
 
@@ -85,7 +87,6 @@ $(document).ready(function () {
                             success: function (response) {
                                 $("#delete").on("hidden.bs.modal", function () {
                                     $("#full_expenses").html("<p>$-" + response + "</p>");
-                                    swal("Good job!",  "Successfully added an amount of: $"+response+" to your expenses", "success");
 
                                     let full_expenses = response;
 
