@@ -102,7 +102,9 @@
                         <br>
                     </div>
 
-                    <a href="./includes/reset-password-form.php">Forgot your password?</a>
+                    <p>Did not receive Your Verification Email?
+                        <a href="./resend-email-verification.php">Resend</a>
+                    </p>
 
                     <div class="modal-footer">
                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

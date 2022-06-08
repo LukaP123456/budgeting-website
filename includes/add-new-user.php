@@ -93,7 +93,7 @@
                             <div class="form-group mb-3">
                                 <label for="email">Email address</label>
                                 <input type="email" id="email" name="email" class="form-control"
-                                       placeholder="Enter your e-mail address">
+                                       placeholder="Enter friends e-mail address">
                                 <small class="message" id="message-email"></small>
                             </div>
                             <div class="form-group mb-3">

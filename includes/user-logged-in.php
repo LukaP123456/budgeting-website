@@ -1198,6 +1198,8 @@ $get->get_group_name($_COOKIE['users_id']);
 <br>
 <br>
 
+
+
 <?php
 $expenses_month = $get->get_expense_month($house_id);
 
@@ -1206,13 +1208,40 @@ $expenses_month = $get->get_expense_month($house_id);
         <img src="../img/red-bg%20-%20Copy.jpg" class="card-img"  alt="..." >
         <div class="card-img-overlay">
             <h5 class="card-title">Expenses for the current month</h5>
-            <h1 class="text-white" style="font-size: 150px">$<?php echo $expenses_month;?></h1>
+            <h1 class="text-white" style="font-size: 150px" id="expense_month">$<?php echo $expenses_month;?></h1>
         </div>
     </div>
 
     <?php
 }
 ?>
+<script>
+
+    $(document).ready(function () {
+
+        $("#neg_submit").click(function () {
+
+            $.ajax({
+                type: "POST",
+                url: "get_expenses_month.php",
+                success: function (response) {
+                    $("#delete").on("hidden.bs.modal", function () {
+                        $("#expense_month").val(response);
+                    });
+                },
+                error: function (response){
+                    $("#expense_month").val(response);
+                }
+            })
+
+
+        });
+
+    });
+
+
+</script>
+
 <!--Loader script for loader gif and refresh page-->
 <script type="text/javascript" src="../js/loader-refresh.js"></script>
 

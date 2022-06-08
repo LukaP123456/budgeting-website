@@ -58,13 +58,12 @@
 
 
                     <div class="modal-footer">
+                        <a href="./includes/reset-password-form.php">Forgot your password?</a>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" name="login-submit" id="login-submit" class="btn btn-primary">Login
                         </button>
                         <hr>
-                        <p>Did not receive Your Verification Email?
-                            <a href="./resend-email-verification.php">Resend</a>
-                        </p>
+
                     </div>
                     <script src="./js/login_error_handler.js"></script>
                 </form>

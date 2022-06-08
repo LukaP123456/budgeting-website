@@ -83,7 +83,7 @@ $(document).ready(function () {
                             type: "POST",
                             url: "get_expenses.php",
                             success: function (response) {
-                                $("#delete").on("hidden.bs.modal", function (e) {
+                                $("#delete").on("hidden.bs.modal", function () {
                                     $("#full_expenses").html("<p>$-" + response + "</p>");
 
                                     let full_expenses = response;
@@ -95,6 +95,8 @@ $(document).ready(function () {
                                     $("#neg_category").val(" ");
                                     $("#neg_date").val(" ");
                                     $("#cost_description").val(" ");
+
+                                    //window.location.reload();
                                 });
                             }
                         })

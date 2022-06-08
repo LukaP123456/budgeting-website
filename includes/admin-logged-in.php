@@ -57,9 +57,6 @@ require_once "../classes/first-time-loggedin.classes.php";
 </head>
 <body>
 
-<div class="loader-container">
-    <img src="../img/loader.gif"  alt="loader">
-</div>
 
 <!--HEADER START-->
 <!--navbar start-->
@@ -204,6 +201,8 @@ for ($i = 0; $i < count($houses_array); $i++) {
 
 
 </script>
+
+
 
 </body>
 </html>

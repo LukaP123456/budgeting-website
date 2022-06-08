@@ -531,14 +531,19 @@ AND YEAR(date_added) = YEAR(CURRENT_DATE())
 AND positive_negative = 0 AND users_id IN(SELECT user_id FROM household_accounts WHERE house_hold_id = ?)");
 
         if ($get_stmt->execute(array($house_id))) {
+            if ($get_stmt->rowCount() > 0){
+                while ($selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC)){
+                    $expenses = ($selector[0]['SUM(amount)']);
+                    $return_value = number_format((float)$expenses, 2, '.', '');
 
-            $selector = $get_stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            for ($i = 0; $i < $get_stmt->rowCount(); $i++) {
-                return $selector[$i]['SUM(amount)'];
+                }
             }
         }
+
+        return $return_value;
     }
+
+
 
     function set_goal_achieved($house_id)
     {
