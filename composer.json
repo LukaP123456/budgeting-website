@@ -5,6 +5,7 @@
       "ext-pdo": "*",
         "whichbrowser/parser": "^2.1",
       "ext-json": "*",
-      "ext-ctype": "*"
+      "ext-ctype": "*",
+      "ext-gd": "*"
     }
 }

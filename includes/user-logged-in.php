@@ -65,6 +65,8 @@ if ($_SESSION['blocked'] === true){
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
+
+
     <style>
 
         .bi {
@@ -309,11 +311,25 @@ $get->get_group_name($_COOKIE['users_id']);
 <!--                    </li>-->
                 </ul>
                 <hr>
+                <?php
+
+                $user_name =$_SESSION['user_name'];
+
+                $words = explode(" ",$user_name);
+                $initials = "";
+
+                foreach ($words as $w) {
+                    $initials .= $w[0];
+                }
+
+
+                ?>
+
                 <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                    <a href="#"  class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                        <strong>mdo</strong>
+                        <img alt="Avatar" id="avatar" width="32" height="32" class="rounded-circle me-2">
+                        <strong><?php echo $user_name?></strong>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
 <!--                        <li><a class="dropdown-item" href="#">New project...</a></li>-->
@@ -337,6 +353,48 @@ $get->get_group_name($_COOKIE['users_id']);
             </div>
         </main>
     </div>
+    <!--Avatar -->
+    <script>
+
+        function generateAvatar(text,foregroundColor = "white",backgroundColor = "black") {
+            const canvas = document.createElement("canvas");
+            const context = canvas.getContext("2d");
+
+            canvas.width = 200;
+            canvas.height = 200;
+
+            // Draw background
+            context.fillStyle = backgroundColor;
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw text
+            context.font = "bold 100px Assistant";
+            context.fillStyle = foregroundColor;
+            context.textAlign = "center";
+            context.textBaseline = "middle";
+            context.fillText(text, canvas.width / 2, canvas.height / 2);
+
+            return canvas.toDataURL("image/png");
+        }
+
+        function randomIntFromInterval(min, max) { // min and max included
+            return Math.floor(Math.random() * (max - min + 1) + min)
+        }
+
+        const rndInt = randomIntFromInterval(0, 255)
+
+        const randColor = () =>  {
+            return "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0').toUpperCase();
+        }
+
+        document.getElementById("avatar").src = generateAvatar(
+            "<?php echo $initials;?>",
+            randColor(),
+            randColor()
+        );
+
+
+    </script>
 
     <!--SIDEBAR END-->
 
@@ -353,6 +411,7 @@ $get->get_group_name($_COOKIE['users_id']);
                             style="background: url('../img/bg_money.jpg'); background-size: cover; height: 10vh">
                             Income</h5>
                     </div>
+
                     <p class="card-text text-center">Your current income is:</p>
                     <?php
 
@@ -704,7 +763,7 @@ $get->get_group_name($_COOKIE['users_id']);
 
 
                                 if(start_date === ""){
-                                    swal("Warning!",  "Please select start date","error");
+                                    // swal("Warning!",  "Please select start date","error");
                                     $("#start_date").addClass("border border-danger border-2");
                                     $("#error_start_date").html("<small> Please select a start date </small>").addClass("text-danger fas fa-exclamation-circle ");
                                     check_start_date = 1;
@@ -712,12 +771,12 @@ $get->get_group_name($_COOKIE['users_id']);
 
                                 if(end_date === ""){
                                     if( end_date=== "" && start_date === ""){
-                                        swal("Warning!",  "Please select start & end date","error");
+                                        // swal("Warning!",  "Please select start & end date","error");
                                         $("#end_date").addClass("border border-danger border-2");
                                         $("#error_end_date").html("<small> Please select a start date </small>").addClass("text-danger fas fa-exclamation-circle ");
                                         check_start_date = 1;
                                     }else {
-                                        swal("Warning!",  "Please select end date","error");
+                                        // swal("Warning!",  "Please select end date","error");
                                         $("#end_date").addClass("border border-danger border-2");
                                         $("#error_end_date").html("<small> Please select a start date </small>").addClass("text-danger fas fa-exclamation-circle ");
                                         check_start_date = 1;
@@ -1269,6 +1328,8 @@ $expenses_month = $get->get_expense_month($house_id);
 
 
 </script>
+
+
 
 <!--Loader script for loader gif and refresh page-->
 <!--<script type="text/javascript" src="../js/loader-refresh.js"></script>-->

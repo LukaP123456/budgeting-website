@@ -5,6 +5,7 @@ include_once "dbh.classes.php";
 class Login extends Dbh
 {
 
+
     protected function getUser($email, $pwd)
     {
         $stmt = $this->connect()->prepare("SELECT users_pwd from accounts where  users_email = ? AND verify_status = 1 AND role !=2;");
@@ -55,11 +56,7 @@ class Login extends Dbh
             $_SESSION["email"] = $user[0]["users_email"];
             $_SESSION["users_email"] = $user[0]["users_email"];
             $_SESSION["users_id"] = $user[0]["users_id"];
-
-            var_dump($_SESSION["users_id"]);
-            var_dump($_SESSION["users_email"]);
-            var_dump($_SESSION["email"]);
-
+            $_SESSION["user_name"]  = $user[0]["full_name"];
 
             $stmt = null;
 
