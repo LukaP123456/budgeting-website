@@ -81,9 +81,9 @@ if ($_SESSION['blocked'] === true){
 </head>
 <body class="bg-dark">
 
-<!--<div class="loader-container">-->
-<!--    <img src="../img/loader.gif"  alt="loader">-->
-<!--</div>-->
+<div class="loader-container">
+    <img src="../img/loader.gif"  alt="loader">
+</div>
 
 <!--USER HEADER START-->
 <!--navbar start-->
@@ -1346,7 +1346,7 @@ $expenses_month = $get->get_expense_month($house_id);
 
 
 <!--Loader script for loader gif and refresh page-->
-<!--<script type="text/javascript" src="../js/loader-refresh.js"></script>-->
+<script type="text/javascript" src="../js/loader-refresh.js"></script>
 
 </body>
 </html>
