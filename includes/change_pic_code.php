@@ -20,7 +20,6 @@ if (isset($_POST['pic_submit'])){
 
         $allow = array('jpg','jpeg','png','pic','pdf');
 
-        if (in_array($file_actual_ext,$allow)){
             if ($file_error === 0){
                 if ($file_size < 1000000){
                     $img_name = $file_name;
@@ -45,10 +44,6 @@ if (isset($_POST['pic_submit'])){
                 header("location:../includes/change_profile_pic.php?error=filer_error");
                 die();
             }
-        }else{
-            header("location:../includes/change_profile_pic.php?error=wrong_img_typ");
-            die();
-        }
 
     }else{
         header("location:../includes/change_profile_pic.php?error=no_pic");
