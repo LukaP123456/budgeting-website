@@ -1318,7 +1318,7 @@ $expenses_month = $get->get_expense_month($house_id);
         <img src="../img/red-bg%20-%20Copy.jpg" class="card-img"  alt="..." >
         <div class="card-img-overlay">
             <h5 class="card-title">Expenses for the current month</h5>
-            <h1 class="text-white" style="font-size: 150px" id="expense_month">$<?php echo $expenses_month;?></h1>
+            <h1 class="text-white" style="font-size: 12vw" id="expense_month">$<?php echo $expenses_month;?></h1>
         </div>
     </div>
 

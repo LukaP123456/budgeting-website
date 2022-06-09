@@ -44,6 +44,7 @@ include_once "includes/modal_form.php";
 include_once "includes/login-modal.php";
 
 ?>
+
 <!--BODY END-->
 
 <!--Javascript links-->
