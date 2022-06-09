@@ -81,9 +81,9 @@ if ($_SESSION['blocked'] === true){
 </head>
 <body class="bg-dark">
 
-<!--<div class="loader-container">-->
-<!--    <img src="../img/loader.gif"  alt="loader">-->
-<!--</div>-->
+<div class="loader-container">
+<img src="../img/loader.gif"  alt="loader">
+</div>
 
 <!--USER HEADER START-->
 <!--navbar start-->
@@ -329,19 +329,17 @@ $get->get_group_name($_COOKIE['users_id']);
 
                 $img_status = $get->get_img_status($_COOKIE['users_id']);
 
-
-
                 ?>
 
                 <div class="dropdown">
                     <a href="#"  class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                       id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                       id="dropdownUser1"  data-bs-toggle="dropdown" aria-expanded="false">
                         <?php
 
                         if ($img_status === "1"){
                             $img_name = $get->get_img($_COOKIE['users_id']);
 
-                            echo '<img alt="Avatar" src="../uploads/'.$img_name.'"  width="32" height="32" class="rounded-circle me-2">';
+                            echo '<img alt="Avatar" src="../uploads/'.$img_name.'"  width="32" height="32" class="rounded-circle me-2 avatar_img">';
                             echo '<strong>'.$user_name.'</strong>';
                         }
                         if ($img_status === "0" OR $img_status === null){
@@ -1353,7 +1351,7 @@ $expenses_month = $get->get_expense_month($house_id);
 
 
 <!--Loader script for loader gif and refresh page-->
-<!--<script type="text/javascript" src="../js/loader-refresh.js"></script>-->
+<script type="text/javascript" src="../js/loader-refresh.js"></script>
 
 </body>
 </html>

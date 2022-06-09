@@ -4,6 +4,26 @@ require_once "dbh.classes.php";
 class Insert_get extends Dbh
 {
 
+    function get_2FA($user_id){
+
+        $get_Stmt = $this->connect()->prepare("Select * from accounts where users_id =? LIMIT 1");
+
+        if ($get_Stmt->execute(array($user_id))){
+
+            $selector = $get_Stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($selector[0]['2FA_status'] == 1){
+                echo ' <input class="form-check-input" type="checkbox" role="switch" name="2FA_box"
+                                       id="2FA_radio" style="transform: scale(1.3)" checked>';
+            }else{
+                echo ' <input class="form-check-input" type="checkbox" role="switch" name="2FA_box"
+                                       id="2FA_radio" style="transform: scale(1.3)" >';
+            }
+
+        }
+
+    }
+
     function check_pin($pin,$users_id){
         try {
             $check_stmt = $this->connect()->prepare("SELECT * from accounts WHERE users_id = ? AND PIN = ? and PIN_expiration>now();");
@@ -27,6 +47,21 @@ class Insert_get extends Dbh
 
 
 
+
+    }
+
+    function turn_off_2FA($users_id){
+
+        $turn_stmt = $this->connect()->prepare("UPDATE accounts SET 2FA_status = 0 WHERE users_id =?;");
+
+        if ($turn_stmt->execute(array($users_id))){
+
+            header("location:../includes/turn_on_2FA.php?error=none");
+
+        }else{
+            header("location:../includes/turn_on_2FA.php?error=failed_stmt");
+            die();
+        }
 
     }
 

@@ -2,7 +2,16 @@
 
 require_once "../classes/insert-get-class.php";
 
-if (isset($_POST['pic_submit'])){
+if (isset($_POST['pic_submit']) OR isset($_POST['delete_pic'])){
+
+    if (isset($_POST['delete_pic'])){
+        $img_status = 0;
+        $img_name = null;
+
+        $insert = new Insert_get();
+        $users_id = $_COOKIE['users_id'];
+        $insert->insert_img($img_status,$img_name,$users_id);
+    }
 
     //profile picture
     if (isset($_FILES['file'])){
