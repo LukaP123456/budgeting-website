@@ -52,6 +52,9 @@ require_once "../classes/first-time-loggedin.classes.php";
             integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <!--Sweet alert-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
     <title>LP Budgeting</title>
 </head>
@@ -158,7 +161,6 @@ for ($i = 0; $i < count($houses_array); $i++) {
             let house_id = $(this).val();
 
             console.log(house_id);
-
             $.ajax({
                 method: "post",
                 url: "block_house.php",
@@ -168,6 +170,7 @@ for ($i = 0; $i < count($houses_array); $i++) {
                 success: function (response) {
                     window.location.reload(true);
                     alert(response);
+                    //swal("HOUSE BLOCKED!", response,"error");
                 },
                 error: function (response) {
                     alert(response);
