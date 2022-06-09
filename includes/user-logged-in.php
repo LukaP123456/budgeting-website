@@ -444,6 +444,7 @@ $get->get_group_name($_COOKIE['users_id']);
 
                     $budget = $get->get_budget($house_id);
                     ?>
+                    <input type="hidden" id="hidden_full_budget" value="0">
                     <p class="card-text text-center text-success" id="full_budget" style="font-size: 45px">
                         $<?php if (isset($budget)) {
                             echo $budget;
@@ -470,6 +471,7 @@ $get->get_group_name($_COOKIE['users_id']);
                     $expenses = $get->get_expenses($house_id);
 
                     ?>
+<!--                    <input type="hidden" id="hidden_full_expenses" value="0">-->
                     <p class="card-text text-center text-danger" id="full_expenses" style="font-size: 45px">
                         $-<?php if (isset($expenses)) {
                             echo $expenses;
@@ -535,62 +537,60 @@ $get->get_group_name($_COOKIE['users_id']);
 
                         <!--Script for calculating the goal-->
                         <script type="text/javascript">
-
-                            let full_budget = parseFloat($("#full_budget").val().replace(/$/g, ''));
-                            let full_expenses = parseFloat($("#full_budget").val().replace(/$/g, ''));
-                            let goal_value = <?php echo $amount;?>;
-
-                            console.log(full_budget);
-
-                            let ratio = full_budget - full_expenses;
-                            let direction = 0;
-
-                            if(ratio < goal_value){
-                                direction = 1;
-                            }
-
-                            if (!direction){
-
-                                console.log("Goal reached");
-
-                                $(document).ready(function (){
-
-                                    $.ajax({
-                                        method: "POST",
-                                        url:"set_goal_achieved.php",
-                                        data:{
-                                            full_budget: full_budget,
-                                            full_expenses: full_expenses,
-                                            goal_value: goal_value
-                                        },
-                                        success: function (response){
-                                            if (response === "success"){
-                                                console.log(response)
-
-
-                                            }else {
-                                                console.log(response)
-                                            }
-                                        },
-                                        error:function (response){
-                                            alert(response);
-                                        }
-                                    })
-                                });
-                            }
-                            else {
-                                console.log("Goal not reached");
-                            }
+                            //let full_budget = parseFloat($("#full_budget").val().replace(/$/g, '0'));
+                            //let full_expenses = parseFloat($("#full_budget").val().replace(/$/g, '0'));
+                            //let goal_value = <?php //echo $amount;?>//;
+                            //
+                            //let ratio = full_budget - full_expenses;
+                            //let direction = 0;
+                            //
+                            //if(ratio < goal_value){
+                            //    direction = 1;
+                            //}
+                            //
+                            //if (!direction){
+                            //    console.log("Goal reached");
+                            //
+                            //    $(document).ready(function (){
+                            //        $.ajax({
+                            //            method: "POST",
+                            //            url:"set_goal_achieved.php",
+                            //            data:{
+                            //                full_budget: full_budget,
+                            //                full_expenses: full_expenses,
+                            //                goal_value: goal_value
+                            //            },
+                            //            success: function (response){
+                            //                if (response === "success"){
+                            //                    console.log(response)
+                            //
+                            //
+                            //                }else {
+                            //                    console.log(response)
+                            //                }
+                            //            },
+                            //            error:function (response){
+                            //                alert(response);
+                            //            }
+                            //        })
+                            //    });
+                            //}
+                            //else {
+                            //    console.log("Goal not reached");
+                            //
+                            //    console.log(full_budget);
+                            //    console.log(full_expenses);
+                            //}
 
 
                         </script>
 
                         <br>
-                        <div class="progress" style="height: 50px">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 25%; font-size: 25px" aria-valuenow="0"
-                                 aria-valuemin="0" aria-valuemax="100">25%
-                            </div>
-                        </div>
+<!--                        <div class="progress" style="height: 50px">-->
+<!--                            <div class="progress-bar bg-danger" role="progressbar" style="width: 25%; font-size: 25px" aria-valuenow="0"-->
+<!--                                 aria-valuemin="0" aria-valuemax="100">25%-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <br>
                         <button class="btn btn-warning  text-black btn-lg" data-bs-toggle="modal"
                                 data-bs-target="#target" id="change_goal">Change goal

@@ -87,6 +87,7 @@ $(document).ready(function () {
                             success: function (response) {
                                 $("#delete").on("hidden.bs.modal", function () {
                                     $("#full_expenses").html("<p>$-" + response + "</p>");
+                                    // $("input[id=hidden_full_expenses]").val(response);
 
                                     let full_expenses = response;
 
