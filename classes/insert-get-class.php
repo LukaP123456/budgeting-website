@@ -5,16 +5,21 @@ class Insert_get extends Dbh
 {
 
     function check_pin($pin,$users_id){
+        try {
+            $check_stmt = $this->connect()->prepare("SELECT * from accounts WHERE users_id = ? AND PIN = ? and PIN_expiration>now();");
 
-        $check_stmt = $this->connect()->prepare("SELECT * from accounts WHERE users_id = ? AND PIN = ? and PIN_expiration>now();");
+            if ($check_stmt->execute(array($pin,$users_id))){
+                header("location:../includes/user-logged-in.php");
 
-        if ($check_stmt->execute(array($pin,$users_id))){
+            }else{
+                header("location:../includes/pin_verification.php?error=pin_invalid");
+            }
 
-            header("Location: ../includes/user-logged-in.php");
-
-        }else{
-            header("Location: ../includes/pin_verification.php?error=pin_invalid");
+        }catch (Exception $e){
+            echo "die";
         }
+
+
 
 
     }
@@ -35,10 +40,10 @@ class Insert_get extends Dbh
     }
 
 
-    function insert_img($img_name,$user_id){
-        $insert_stmt = $this->connect()->prepare("UPDATE accounts SET img_status = 1 ,img_name = ?  WHERE users_id = ?");
+    function insert_img($img_status,$img_name,$user_id){
+        $insert_stmt = $this->connect()->prepare("UPDATE accounts SET img_status = ? ,img_name = ?  WHERE users_id = ?");
         try {
-            if ($insert_stmt->execute(array($img_name,$user_id))){
+            if ($insert_stmt->execute(array($img_status,$img_name,$user_id))){
                 echo "uspoe";
                 header("location:../includes/change_profile_pic.php?error=none");
             }

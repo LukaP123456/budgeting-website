@@ -7,7 +7,8 @@ if (isset($_POST['PIN-submit'])){
     $entered_pin = $_POST['PIN'];
     $pin_length = strlen($entered_pin);
 
-    if (isset($entered_pin) AND $pin_length === 5){
+    if (isset($entered_pin) AND $pin_length <= 6){
+
 
             $check = new Insert_get();
 
