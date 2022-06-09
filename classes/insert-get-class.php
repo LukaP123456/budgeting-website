@@ -9,7 +9,7 @@ class Insert_get extends Dbh
             $check_stmt = $this->connect()->prepare("SELECT * from accounts WHERE users_id = ? AND PIN = ? and PIN_expiration>now();");
 
             if ($check_stmt->execute(array($pin,$users_id))){
-                //pin deleted
+                //pin deleted works
                 $update_stmt = $this->connect()->prepare("UPDATE accounts set PIN=null where users_id=? and PIN = ?");
 
                 if ($update_stmt->execute(array($users_id,$pin))){
