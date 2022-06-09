@@ -105,7 +105,7 @@ if (isset($_POST['submit'])) {
     $signup->signupUser();
 
     //Povratak na glavnu stranu
-    header("location../index.php?error=none");
+    //header("location../index.php?error=none");
 
 
 } else {

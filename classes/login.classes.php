@@ -141,9 +141,8 @@ class Login extends Dbh
         $date_time = date("d-m-Y H:i:s");
 
         $email_template = "
-            <h1>Please click this <a href='http://localhost/BUDGETING_WEBSITE/includes/pin_verfication.php'>link</a> and enter the below given number.</h1>
             <h3>Hello $full_name you have registered with LP Budgeting on $date_time with your email account $email</h3>
-            <h1>Your PIN is: $pin</h1>
+            <h1>Your PIN is: $pin Please enter it into the pin form.</h1>
             <br><br>
 
         ";

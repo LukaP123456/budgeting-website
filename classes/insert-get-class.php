@@ -5,16 +5,21 @@ class Insert_get extends Dbh
 {
 
     function check_pin($pin,$users_id){
+        try {
+            $check_stmt = $this->connect()->prepare("SELECT * from accounts WHERE users_id = ? AND PIN = ? and PIN_expiration>now();");
 
-        $check_stmt = $this->connect()->prepare("SELECT * from accounts WHERE users_id = ? AND PIN = ? and PIN_expiration>now();");
+            if ($check_stmt->execute(array($pin,$users_id))){
+                header("location:../includes/user-logged-in.php");
 
-        if ($check_stmt->execute(array($pin,$users_id))){
+            }else{
+                header("location:../includes/pin_verification.php?error=pin_invalid");
+            }
 
-            header("Location: ../includes/user-logged-in.php");
-
-        }else{
-            header("Location: ../includes/pin_verification.php?error=pin_invalid");
+        }catch (Exception $e){
+            echo "die";
         }
+
+
 
 
     }
