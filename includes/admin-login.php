@@ -93,7 +93,11 @@
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div></p>";
                             } else {
-                                unset($_SESSION['error2']);
+
+                                if (isset($_SESSION['error2'])){
+                                    unset($_SESSION['error2']);
+
+                                }
                             }
 
                             ?>

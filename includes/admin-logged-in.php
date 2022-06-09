@@ -97,17 +97,17 @@ $houses_array = $get->get_all_houses();
 for ($i = 0; $i < count($houses_array); $i++) {
 
 
-    if ($houses_array[$i]['verify_status'] === 1) {
+    if ($houses_array[$i]['verify_status'] === "1") {
         $verify_text = "User is verified";
     } else {
         $verify_text = "User is not verified";
     }
 
-    if ($houses_array[$i]['role'] === 1) {
+    if ($houses_array[$i]['role'] === "1") {
         $role_text = "House admin";
     }
 
-    if ($houses_array[$i]['role'] === 1) {
+    if ($houses_array[$i]['role'] === "1") {
         $role_text = "Regular user";
     }
 
@@ -118,7 +118,7 @@ for ($i = 0; $i < count($houses_array); $i++) {
         $first_login_text = "User has yet to login";
     }
 
-    if ($houses_array[$i]['blocked'] === 1) {
+    if ($houses_array[$i]['blocked'] === "1") {
         $blocked_text = "House is blocked";
     } else {
         $blocked_text = "House is not blocked";
