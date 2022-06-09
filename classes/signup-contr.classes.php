@@ -34,6 +34,20 @@ class SignupContr extends Signup
         return $this;
     }
 
+    function set_admin($full_name,$pwd,$pwdRepeat,$email,$verify_token,$ip,$browser)
+    {
+        $this->full_name = $full_name;
+        $this->pwd = $pwd;
+        $this->pwdRepeat = $pwdRepeat;
+        $this->email = $email;
+        $this->verify_token = $verify_token;
+        $this->ip = $ip;
+        $this->browser = $browser;
+
+
+        return $this;
+    }
+
     public function set_house_id($house_id) {
         $this->house_id = $house_id;
         return $this;

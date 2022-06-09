@@ -82,6 +82,8 @@ if ($_SESSION['blocked'] === true){
 <body class="bg-dark">
 
 <div class="loader-container">
+
+
     <img src="../img/loader.gif"  alt="loader">
 </div>
 
@@ -329,19 +331,17 @@ $get->get_group_name($_COOKIE['users_id']);
 
                 $img_status = $get->get_img_status($_COOKIE['users_id']);
 
-
-
                 ?>
 
                 <div class="dropdown">
                     <a href="#"  class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                       id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                       id="dropdownUser1"  data-bs-toggle="dropdown" aria-expanded="false">
                         <?php
 
                         if ($img_status === "1"){
                             $img_name = $get->get_img($_COOKIE['users_id']);
 
-                            echo '<img alt="Avatar" src="../uploads/'.$img_name.'"  width="32" height="32" class="rounded-circle me-2">';
+                            echo '<img alt="Avatar" src="../uploads/'.$img_name.'"  width="32" height="32" class="rounded-circle me-2 avatar_img">';
                             echo '<strong>'.$user_name.'</strong>';
                         }
                         if ($img_status === "0" OR $img_status === null){
@@ -1320,7 +1320,7 @@ $expenses_month = $get->get_expense_month($house_id);
         <img src="../img/red-bg%20-%20Copy.jpg" class="card-img"  alt="..." >
         <div class="card-img-overlay">
             <h5 class="card-title">Expenses for the current month</h5>
-            <h1 class="text-white" style="font-size: 150px" id="expense_month">$<?php echo $expenses_month;?></h1>
+            <h1 class="text-white" style="font-size: 12vw" id="expense_month">$<?php echo $expenses_month;?></h1>
         </div>
     </div>
 

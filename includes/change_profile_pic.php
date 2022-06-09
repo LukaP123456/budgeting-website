@@ -111,9 +111,19 @@
                                 <input type="file" class="form-control" id="file" name="file">
                             </div>
                             <div class="form-group mb-3">
-                                <button type="submit" name="pic_submit" class="btn btn-primary">Submit
-                                </button>
+                                <button type="submit" name="pic_submit" class="btn btn-primary">Submit</button>
                             </div>
+
+                            <form action="change_pic_code.php" method="post" enctype="multipart/form-data">
+                                <div class="d-none"><input type="file" name="delete_pic" id="file" value=""></div>
+                                <button type="submit" name="delete_pic" class="btn btn-danger">Remove profile picture</button>
+                            </form>
+
+                            <script type="javascript">
+                                
+                                
+                                
+                            </script>
 
                         </form>
                     </div>

@@ -50,13 +50,13 @@ if (isset($_POST['submit'])) {
     include "../classes/signup-contr.classes.php";
 
 
-    $signup = SignupContr::create()->set_vanilla_user($full_name,$pwd,$pwdRepeat,$email,$verify_token,$ip,$browser);
+    $signup = SignupContr::create()->set_admin($full_name,$pwd,$pwdRepeat,$email,$verify_token,$ip,$browser);
 
     //Runs error handlers and inserts the user into the database
     $signup->signupAdmin();
 
     //Povratak na glavnu stranu
-    header("location../index.php?error=none");
+    //header("location../index.php?error=none");
 
 
 } else {

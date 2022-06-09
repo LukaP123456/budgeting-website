@@ -155,8 +155,9 @@ for ($i = 0; $i < count($houses_array); $i++) {
 
     $(document).ready(function () {
 
-        $(".block").click(function () {
+        $(".block").click(function (e) {
             console.log(123123)
+            e.preventDefault();
 
             let house_id = $(this).val();
 
@@ -168,9 +169,19 @@ for ($i = 0; $i < count($houses_array); $i++) {
                     house_id: house_id
                 },
                 success: function (response) {
-                    window.location.reload(true);
-                    alert(response);
-                    //swal("HOUSE BLOCKED!", response,"error");
+
+                    swal({
+                        title: "Are you sure ??",
+                        text: response,
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                        .then(() => {
+                            window.location.reload(true)
+
+                        });
+
                 },
                 error: function (response) {
                     alert(response);
@@ -192,11 +203,30 @@ for ($i = 0; $i < count($houses_array); $i++) {
                     house_id: house_id
                 },
                 success: function (response) {
-                    window.location.reload(true);
-                    alert(response);
+                    swal({
+                        title: "Are you sure ??",
+                        text: response,
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: false,
+                    })
+                        .then(() => {
+                            window.location.reload(true)
+
+                        });
                 },
                 error: function (response) {
-                    alert(response);
+                    swal({
+                        title: "Are you sure ??",
+                        text: response,
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                        .then(() => {
+                            window.location.reload(true)
+
+                        });
                 }
             })
         });
