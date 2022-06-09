@@ -66,7 +66,7 @@
                 <div class="card">
                     <div class="card-header bg-black text-white">
                         <h5>Change your profile picture</h5>
-                        <p>Enter a file of a picture type (jpg, jpeg, png, pic)</p>
+                        <p>Enter a file of a picture type (jpg, jpeg, png, pic). If you want to remove your profile picture just click on the submit button</p>
                     </div>
                     <div class="card-body">
                         <?php

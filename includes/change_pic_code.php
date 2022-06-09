@@ -33,7 +33,7 @@ if (isset($_POST['pic_submit'])){
                     $users_id = $_COOKIE['users_id'];
 
 
-                    $insert->insert_img($img_name,$users_id);
+                    $insert->insert_img($img_status,$img_name,$users_id);
 
                 }else{
                     header("location:../includes/change_profile_pic.php?error=file_large");
@@ -41,8 +41,12 @@ if (isset($_POST['pic_submit'])){
                 }
 
             }else{
-                header("location:../includes/change_profile_pic.php?error=filer_error");
-                die();
+                $img_status = 0;
+                $img_name = null;
+
+                $insert = new Insert_get();
+                $users_id = $_COOKIE['users_id'];
+                $insert->insert_img($img_status,$img_name,$users_id);
             }
 
     }else{

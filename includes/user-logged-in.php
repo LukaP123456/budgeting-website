@@ -329,7 +329,7 @@ $get->get_group_name($_COOKIE['users_id']);
 
                 $img_status = $get->get_img_status($_COOKIE['users_id']);
 
-                $img_name = $get->get_img($_COOKIE['users_id']);
+
 
                 ?>
 
@@ -339,6 +339,8 @@ $get->get_group_name($_COOKIE['users_id']);
                         <?php
 
                         if ($img_status === "1"){
+                            $img_name = $get->get_img($_COOKIE['users_id']);
+
                             echo '<img alt="Avatar" src="../uploads/'.$img_name.'"  width="32" height="32" class="rounded-circle me-2">';
                             echo '<strong>'.$user_name.'</strong>';
                         }

@@ -35,10 +35,10 @@ class Insert_get extends Dbh
     }
 
 
-    function insert_img($img_name,$user_id){
-        $insert_stmt = $this->connect()->prepare("UPDATE accounts SET img_status = 1 ,img_name = ?  WHERE users_id = ?");
+    function insert_img($img_status,$img_name,$user_id){
+        $insert_stmt = $this->connect()->prepare("UPDATE accounts SET img_status = ? ,img_name = ?  WHERE users_id = ?");
         try {
-            if ($insert_stmt->execute(array($img_name,$user_id))){
+            if ($insert_stmt->execute(array($img_status,$img_name,$user_id))){
                 echo "uspoe";
                 header("location:../includes/change_profile_pic.php?error=none");
             }
