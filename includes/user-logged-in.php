@@ -315,11 +315,16 @@ $get->get_group_name($_COOKIE['users_id']);
 
                 $user_name =$_SESSION['user_name'];
 
+
                 $words = explode(" ",$user_name);
                 $initials = "";
 
                 foreach ($words as $w) {
-                    $initials .= $w[0];
+
+                    if (!empty($w[0])){
+                        $initials .=  $w[0];
+
+                    }
                 }
 
                 $img_status = $get->get_img_status($_COOKIE['users_id']);
@@ -335,9 +340,9 @@ $get->get_group_name($_COOKIE['users_id']);
 
                         if ($img_status === "1"){
                             echo '<img alt="Avatar" src="../uploads/'.$img_name.'"  width="32" height="32" class="rounded-circle me-2">';
-
+                            echo '<strong>'.$user_name.'</strong>';
                         }
-                        if ($img_status === "0"){
+                        if ($img_status === "0" OR $img_status === null){
                         echo '<img alt="Avatar" id="avatar" width="32" height="32" class="rounded-circle me-2">';
                         echo '<strong>'.$user_name.'</strong>';
                         }
