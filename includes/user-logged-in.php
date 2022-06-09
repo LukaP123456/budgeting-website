@@ -82,7 +82,9 @@ if ($_SESSION['blocked'] === true){
 <body class="bg-dark">
 
 <div class="loader-container">
-<img src="../img/loader.gif"  alt="loader">
+
+
+    <img src="../img/loader.gif"  alt="loader">
 </div>
 
 <!--USER HEADER START-->
