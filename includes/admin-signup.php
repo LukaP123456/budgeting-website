@@ -113,8 +113,6 @@
                         There is an error with your verification token
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
-                            } else {
-                                unset($_SESSION['error1']);
                             }
                             ?>
 
