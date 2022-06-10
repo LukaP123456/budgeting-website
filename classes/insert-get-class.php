@@ -25,6 +25,11 @@ class Insert_get extends Dbh
     }
 
     function check_pin($pin,$users_id){
+        if (!isset($pin)){
+            header("location:../includes/pin_verification.php?error=no_pin");
+            die();
+        }
+
         try {
             $check_stmt = $this->connect()->prepare("SELECT * from accounts WHERE users_id = ? AND PIN = ? and PIN_expiration>now();");
 
@@ -34,7 +39,8 @@ class Insert_get extends Dbh
 
                 if ($update_stmt->execute(array($users_id,$pin))){
                     header("location:../includes/user-logged-in.php");
-
+                }else{
+                    header("location:../includes/pin_verification.php?error=no_pin");
                 }
 
             }else{

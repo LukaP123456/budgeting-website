@@ -12,7 +12,7 @@ if (isset($_POST['2FA_submit'])){
         die();
     }
 
-    if (isset($value) AND true){
+    if (isset($value)){
 
         $turn = new Insert_get();
         $turn->turn_on_2FA($_COOKIE['users_id']);
