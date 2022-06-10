@@ -54,9 +54,10 @@ if (isset($_POST['submit'])) {
     include "../classes/signup.classes.php";
     include "../classes/signup-contr.classes.php";
 
+    $img_name ="";
+    $img_status = 0;
 
-
-    $signup = SignupContr::create()->set_inviter_id($inviter_id)->set_house_id($_SESSION['house_id'])->set_vanilla_user($full_name,$pwd,$pwdRepeat,$email,$verify_token,$ip,$browser);
+    $signup = SignupContr::create()->set_inviter_id($inviter_id)->set_house_id($_SESSION['house_id'])->set_vanilla_user($full_name,$pwd,$pwdRepeat,$email,$verify_token,$ip,$browser,$img_name,$img_status);
 
 
     //Checks if the house exists
