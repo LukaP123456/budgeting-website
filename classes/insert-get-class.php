@@ -4,18 +4,70 @@ require_once "dbh.classes.php";
 class Insert_get extends Dbh
 {
 
-    function check_pin($pin,$users_id){
+    function get_2FA($user_id){
 
-        $check_stmt = $this->connect()->prepare("SELECT * from accounts WHERE users_id = ? AND PIN = ? and PIN_expiration>now();");
+        $get_Stmt = $this->connect()->prepare("Select * from accounts where users_id =? LIMIT 1");
 
-        if ($check_stmt->execute(array($pin,$users_id))){
+        if ($get_Stmt->execute(array($user_id))){
 
-            header("Location: ../includes/user-logged-in.php");
+            $selector = $get_Stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        }else{
-            header("Location: ../includes/pin_verification.php?error=pin_invalid");
+            if ($selector[0]['2FA_status'] == 1){
+                echo ' <input class="form-check-input" type="checkbox" role="switch" name="2FA_box"
+                                       id="2FA_radio" style="transform: scale(1.3)" checked>';
+            }else{
+                echo ' <input class="form-check-input" type="checkbox" role="switch" name="2FA_box"
+                                       id="2FA_radio" style="transform: scale(1.3)" >';
+            }
+
         }
 
+    }
+
+    function check_pin($pin,$users_id){
+        if (!isset($pin)){
+            header("location:../includes/pin_verification.php?error=no_pin");
+            die();
+        }
+
+        try {
+            $check_stmt = $this->connect()->prepare("SELECT * from accounts WHERE users_id = ? AND PIN = ? and PIN_expiration>now();");
+
+            if ($check_stmt->execute(array($pin,$users_id))){
+                //pin deleted works
+                $update_stmt = $this->connect()->prepare("UPDATE accounts set PIN=null where users_id=? and PIN = ?");
+
+                if ($update_stmt->execute(array($users_id,$pin))){
+                    header("location:../includes/user-logged-in.php");
+                }else{
+                    header("location:../includes/pin_verification.php?error=no_pin");
+                }
+
+            }else{
+                header("location:../includes/pin_verification.php?error=pin_invalid");
+            }
+
+        }catch (Exception $e){
+            echo "die";
+        }
+
+
+
+
+    }
+
+    function turn_off_2FA($users_id){
+
+        $turn_stmt = $this->connect()->prepare("UPDATE accounts SET 2FA_status = 0 WHERE users_id =?;");
+
+        if ($turn_stmt->execute(array($users_id))){
+
+            header("location:../includes/turn_on_2FA.php?error=none");
+
+        }else{
+            header("location:../includes/turn_on_2FA.php?error=failed_stmt");
+            die();
+        }
 
     }
 
@@ -35,10 +87,10 @@ class Insert_get extends Dbh
     }
 
 
-    function insert_img($img_name,$user_id){
-        $insert_stmt = $this->connect()->prepare("UPDATE accounts SET img_status = 1 ,img_name = ?  WHERE users_id = ?");
+    function insert_img($img_status,$img_name,$user_id){
+        $insert_stmt = $this->connect()->prepare("UPDATE accounts SET img_status = ? ,img_name = ?  WHERE users_id = ?");
         try {
-            if ($insert_stmt->execute(array($img_name,$user_id))){
+            if ($insert_stmt->execute(array($img_status,$img_name,$user_id))){
                 echo "uspoe";
                 header("location:../includes/change_profile_pic.php?error=none");
             }

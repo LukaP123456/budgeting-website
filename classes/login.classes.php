@@ -73,11 +73,13 @@ class Login extends Dbh
 
             if ($user[0]['2FA_status'] === "1"){
 
+                $user_id = $user[0]['users_id'];
+
                 $pin =$this->randomNumber(5);
 
-                $update_stmt =$this->connect()->prepare( "UPDATE accounts set PIN=?");
+                $update_stmt =$this->connect()->prepare( "UPDATE accounts set PIN=? where users_id=?");
 
-                if ($update_stmt->execute(array($pin))){
+                if ($update_stmt->execute(array($pin,$user_id))){
 
                     $full_name = $user[0]['full_name'];
                     $users_email = $user[0]['users_email'];
@@ -91,9 +93,10 @@ class Login extends Dbh
                 }
 
 
+            }else{
+                header("Location: ../includes/user-logged-in.php");
             }
 
-            header("Location: ../includes/user-logged-in.php");
         }
 
 
@@ -138,9 +141,8 @@ class Login extends Dbh
         $date_time = date("d-m-Y H:i:s");
 
         $email_template = "
-            <h1>Please click this <a href='http://localhost/BUDGETING_WEBSITE/includes/pin_verfication.php'>link</a> and enter the below given number.</h1>
             <h3>Hello $full_name you have registered with LP Budgeting on $date_time with your email account $email</h3>
-            <h1>Your PIN is: $pin</h1>
+            <h1>Your PIN is: $pin Please enter it into the pin form.</h1>
             <br><br>
 
         ";

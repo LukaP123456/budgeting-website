@@ -57,12 +57,14 @@
                     <br>
 
 
-                    <div class="modal-footer">
+                    <div class="modal-footer justify-content-between">
                         <a href="./includes/reset-password-form.php">Forgot your password?</a>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="login-submit" id="login-submit" class="btn btn-primary">Login
-                        </button>
-                        <hr>
+                        <div>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" name="login-submit" id="login-submit" class="btn btn-primary">Login</button>
+                        </div>
+
+
 
                     </div>
                     <script src="./js/login_error_handler.js"></script>

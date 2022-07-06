@@ -52,6 +52,9 @@ require_once "../classes/first-time-loggedin.classes.php";
             integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <!--Sweet alert-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
     <title>LP Budgeting</title>
 </head>
@@ -97,17 +100,17 @@ $houses_array = $get->get_all_houses();
 for ($i = 0; $i < count($houses_array); $i++) {
 
 
-    if ($houses_array[$i]['verify_status'] === 1) {
+    if ($houses_array[$i]['verify_status'] === "1") {
         $verify_text = "User is verified";
     } else {
         $verify_text = "User is not verified";
     }
 
-    if ($houses_array[$i]['role'] === 1) {
+    if ($houses_array[$i]['role'] === "1") {
         $role_text = "House admin";
     }
 
-    if ($houses_array[$i]['role'] === 1) {
+    if ($houses_array[$i]['role'] === "1") {
         $role_text = "Regular user";
     }
 
@@ -118,7 +121,7 @@ for ($i = 0; $i < count($houses_array); $i++) {
         $first_login_text = "User has yet to login";
     }
 
-    if ($houses_array[$i]['blocked'] === 1) {
+    if ($houses_array[$i]['blocked'] === "1") {
         $blocked_text = "House is blocked";
     } else {
         $blocked_text = "House is not blocked";
@@ -152,13 +155,13 @@ for ($i = 0; $i < count($houses_array); $i++) {
 
     $(document).ready(function () {
 
-        $(".block").click(function () {
+        $(".block").click(function (e) {
             console.log(123123)
+            e.preventDefault();
 
             let house_id = $(this).val();
 
             console.log(house_id);
-
             $.ajax({
                 method: "post",
                 url: "block_house.php",
@@ -166,8 +169,19 @@ for ($i = 0; $i < count($houses_array); $i++) {
                     house_id: house_id
                 },
                 success: function (response) {
-                    window.location.reload(true);
-                    alert(response);
+
+                    swal({
+                        title: "Are you sure ??",
+                        text: response,
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                        .then(() => {
+                            window.location.reload(true)
+
+                        });
+
                 },
                 error: function (response) {
                     alert(response);
@@ -189,11 +203,30 @@ for ($i = 0; $i < count($houses_array); $i++) {
                     house_id: house_id
                 },
                 success: function (response) {
-                    window.location.reload(true);
-                    alert(response);
+                    swal({
+                        title: "Are you sure ??",
+                        text: response,
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: false,
+                    })
+                        .then(() => {
+                            window.location.reload(true)
+
+                        });
                 },
                 error: function (response) {
-                    alert(response);
+                    swal({
+                        title: "Are you sure ??",
+                        text: response,
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                        .then(() => {
+                            window.location.reload(true)
+
+                        });
                 }
             })
         });

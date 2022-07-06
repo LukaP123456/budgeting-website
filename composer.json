@@ -6,6 +6,7 @@
         "whichbrowser/parser": "^2.1",
       "ext-json": "*",
       "ext-ctype": "*",
-      "ext-gd": "*"
+      "ext-gd": "*",
+      "ext-http": "*"
     }
 }

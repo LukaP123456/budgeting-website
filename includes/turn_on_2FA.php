@@ -73,6 +73,10 @@
                                 <?php
                                 session_start();
 
+                                require_once "../classes/insert-get-class.php";
+
+                                $get = new Insert_get();
+
                                 $fullUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
                                 if (strpos($fullUrl, "error=not_selected") == true) {
@@ -95,15 +99,22 @@
                          Two factor authentication is turned on.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div></p>";
+                                }elseif (strpos($fullUrl, "error=off") == true){
+                                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                         Two factor authentication is turned off.
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div></p>";
                                 }else {
                                     unset($_SESSION['error-message-resend']);
                                 }
-
-
                                 ?>
                                 <input type="hidden" value="<?php echo $_COOKIE['users_id']; ?>">
-                                <input class="form-check-input" type="checkbox" role="switch" name="2FA_box"
-                                       id="2FA_radio" style="transform: scale(1.3)" onclick="radioCheck()">
+
+                                <?php
+                                    $get->get_2FA($_COOKIE['users_id']);
+
+                                ?>
+
                                 <label class="form-check-label" for="alone-radio">Click this button to turn on two factor authentication</label>
                                 <small class="message" id="message-alone-radio"></small>
                             </div>

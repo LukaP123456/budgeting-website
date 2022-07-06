@@ -80,9 +80,9 @@ if (isset($_COOKIE['pin'])){
                         Your pin is invalid or it expired.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div></p>";
-                            }elseif (strpos($fullUrl, "error=email_notindb") == true){
+                            }elseif (strpos($fullUrl, "error=no_pin") == true){
                                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <strong>Warning!</strong> An account with the entered email doesn't exist.
+                        Please enter a pin into the form.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div></p>";
                             }else {

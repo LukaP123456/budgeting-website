@@ -82,6 +82,8 @@ if ($_SESSION['blocked'] === true){
 <body class="bg-dark">
 
 <div class="loader-container">
+
+
     <img src="../img/loader.gif"  alt="loader">
 </div>
 
@@ -315,29 +317,34 @@ $get->get_group_name($_COOKIE['users_id']);
 
                 $user_name =$_SESSION['user_name'];
 
+
                 $words = explode(" ",$user_name);
                 $initials = "";
 
                 foreach ($words as $w) {
-                    $initials .= $w[0];
+
+                    if (!empty($w[0])){
+                        $initials .=  $w[0];
+
+                    }
                 }
 
                 $img_status = $get->get_img_status($_COOKIE['users_id']);
-
-                $img_name = $get->get_img($_COOKIE['users_id']);
 
                 ?>
 
                 <div class="dropdown">
                     <a href="#"  class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                       id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                       id="dropdownUser1"  data-bs-toggle="dropdown" aria-expanded="false">
                         <?php
 
                         if ($img_status === "1"){
-                            echo '<img alt="Avatar" src="../uploads/'.$img_name.'"  width="32" height="32" class="rounded-circle me-2">';
+                            $img_name = $get->get_img($_COOKIE['users_id']);
 
+                            echo '<img alt="Avatar" src="../uploads/'.$img_name.'"  width="32" height="32" class="rounded-circle me-2 avatar_img">';
+                            echo '<strong>'.$user_name.'</strong>';
                         }
-                        if ($img_status === "0"){
+                        if ($img_status === "0" OR $img_status === null){
                         echo '<img alt="Avatar" id="avatar" width="32" height="32" class="rounded-circle me-2">';
                         echo '<strong>'.$user_name.'</strong>';
                         }
@@ -437,6 +444,7 @@ $get->get_group_name($_COOKIE['users_id']);
 
                     $budget = $get->get_budget($house_id);
                     ?>
+                    <input type="hidden" id="hidden_full_budget" value="0">
                     <p class="card-text text-center text-success" id="full_budget" style="font-size: 45px">
                         $<?php if (isset($budget)) {
                             echo $budget;
@@ -463,6 +471,7 @@ $get->get_group_name($_COOKIE['users_id']);
                     $expenses = $get->get_expenses($house_id);
 
                     ?>
+<!--                    <input type="hidden" id="hidden_full_expenses" value="0">-->
                     <p class="card-text text-center text-danger" id="full_expenses" style="font-size: 45px">
                         $-<?php if (isset($expenses)) {
                             echo $expenses;
@@ -528,12 +537,9 @@ $get->get_group_name($_COOKIE['users_id']);
 
                         <!--Script for calculating the goal-->
                         <script type="text/javascript">
-
-                            //let full_budget = parseFloat($("#full_budget").val().replace(/$/g, ''));
-                            //let full_expenses = parseFloat($("#full_budget").val().replace(/$/g, ''));
+                            //let full_budget = parseFloat($("#full_budget").val().replace(/$/g, '0'));
+                            //let full_expenses = parseFloat($("#full_budget").val().replace(/$/g, '0'));
                             //let goal_value = <?php //echo $amount;?>//;
-                            //
-                            //console.log(full_budget);
                             //
                             //let ratio = full_budget - full_expenses;
                             //let direction = 0;
@@ -543,11 +549,9 @@ $get->get_group_name($_COOKIE['users_id']);
                             //}
                             //
                             //if (!direction){
-                            //
                             //    console.log("Goal reached");
                             //
                             //    $(document).ready(function (){
-                            //
                             //        $.ajax({
                             //            method: "POST",
                             //            url:"set_goal_achieved.php",
@@ -573,6 +577,9 @@ $get->get_group_name($_COOKIE['users_id']);
                             //}
                             //else {
                             //    console.log("Goal not reached");
+                            //
+                            //    console.log(full_budget);
+                            //    console.log(full_expenses);
                             //}
 
 
@@ -1313,7 +1320,7 @@ $expenses_month = $get->get_expense_month($house_id);
         <img src="../img/red-bg%20-%20Copy.jpg" class="card-img"  alt="..." >
         <div class="card-img-overlay">
             <h5 class="card-title">Expenses for the current month</h5>
-            <h1 class="text-white" style="font-size: 150px" id="expense_month">$<?php echo $expenses_month;?></h1>
+            <h1 class="text-white" style="font-size: 12vw" id="expense_month">$<?php echo $expenses_month;?></h1>
         </div>
     </div>
 

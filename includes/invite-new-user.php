@@ -13,10 +13,15 @@ if (isset($_POST['add_new_user_btn']) or isset($_POST['add-new-user-form'])) {
 
     if (!$first_time_log->check_user_exists($invitee_email)) {
         //user exists and is verified in the database so we can continue and make a household
+        ;
+        if ($first_time_log->check_household_exists($group_name)) {
 
-        if (!$first_time_log->check_household_exists($group_name)) {
+            $house_id = $_COOKIE['house_hold_id'];
 
-            if (!$first_time_log->insert_into_household($group_name, $users_id)) {
+            echo $house_id;
+
+
+            if (!$first_time_log->insert_into_household($group_name, $users_id,$house_id)) {
 
                 $first_time_log->sendemail_verify($invitee_email, $inviter_email, $group_name);
 

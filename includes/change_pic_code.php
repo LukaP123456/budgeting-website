@@ -2,7 +2,16 @@
 
 require_once "../classes/insert-get-class.php";
 
-if (isset($_POST['pic_submit'])){
+if (isset($_POST['pic_submit']) OR isset($_POST['delete_pic'])){
+
+    if (isset($_POST['delete_pic'])){
+        $img_status = 0;
+        $img_name = null;
+
+        $insert = new Insert_get();
+        $users_id = $_COOKIE['users_id'];
+        $insert->insert_img($img_status,$img_name,$users_id);
+    }
 
     //profile picture
     if (isset($_FILES['file'])){
@@ -20,7 +29,6 @@ if (isset($_POST['pic_submit'])){
 
         $allow = array('jpg','jpeg','png','pic','pdf');
 
-        if (in_array($file_actual_ext,$allow)){
             if ($file_error === 0){
                 if ($file_size < 1000000){
                     $img_name = $file_name;
@@ -34,7 +42,7 @@ if (isset($_POST['pic_submit'])){
                     $users_id = $_COOKIE['users_id'];
 
 
-                    $insert->insert_img($img_name,$users_id);
+                    $insert->insert_img($img_status,$img_name,$users_id);
 
                 }else{
                     header("location:../includes/change_profile_pic.php?error=file_large");
@@ -42,13 +50,13 @@ if (isset($_POST['pic_submit'])){
                 }
 
             }else{
-                header("location:../includes/change_profile_pic.php?error=filer_error");
-                die();
+                $img_status = 0;
+                $img_name = null;
+
+                $insert = new Insert_get();
+                $users_id = $_COOKIE['users_id'];
+                $insert->insert_img($img_status,$img_name,$users_id);
             }
-        }else{
-            header("location:../includes/change_profile_pic.php?error=wrong_img_typ");
-            die();
-        }
 
     }else{
         header("location:../includes/change_profile_pic.php?error=no_pic");

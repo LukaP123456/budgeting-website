@@ -92,8 +92,6 @@
                         <strong>Holy guacamole!</strong> That's not the password from the database.
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div></p>";
-                            } else {
-                                unset($_SESSION['error2']);
                             }
 
                             ?>

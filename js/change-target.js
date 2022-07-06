@@ -49,6 +49,11 @@ $(document).ready(function () {
                 },
                 success: function (response){
                     console.log(response);
+                    if (goal !== "" && amount !== ""){
+                        swal("Good job!",  "Successfully changed your goal to: "+goal+" which has a price of: "+amount, "success");
+
+                    }
+
                     if(response === "success"){
                         $("#response").html("<p class='alert alert-success' role='alert'>Successfully changed target</p>");
 
@@ -57,10 +62,7 @@ $(document).ready(function () {
                             $("#amount_response").html("<p>It's value is: $"+amount+"</p>");
                             $("#hidden_amount").val(amount);
 
-                            if (goal !== "" && amount !== ""){
-                                swal("Good job!",  "Successfully changed your goal to: "+goal+" which has a price of: "+amount, "success");
 
-                            }
 
                             $("#goal_name").val("").removeClass("border border-danger border-2").addClass("border border-success border-2");
                             $("#amount").val("").removeClass("border border-danger border-2").addClass("border border-success border-2");

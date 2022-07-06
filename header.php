@@ -1,7 +1,7 @@
 <!--HEADER START-->
 <!--navbar start-->
 <nav class="navbar navbar-expand-lg bg-black navbar-dark py-3 fixed-top">
-    <div class="container">
+    <div class="container" data-toggle="collapse" data-target=".navbar-collapse">
         <a href="index.php" class="navbar-brand">LP<span class="text-warning">Budgeting</span></a>
 
         <button class="navbar-toggler"

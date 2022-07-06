@@ -75,6 +75,7 @@ $(document).ready(function () {
                             success: function (response) {
                                 $("#enroll").on("hidden.bs.modal",function () {
                                     $("#full_budget").html("<p>$" + response + "</p>");
+                                    // $("input[id=hidden_full_budget]").val(response);
 
                                     budget_expenses_chart.data.datasets[0].data[0] = response;
                                     budget_expenses_chart.update('active');

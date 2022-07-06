@@ -128,19 +128,16 @@ class first_time_logged extends Dbh
      */
     function check_household_exists($house_name): bool
     {
-        $check_stmt = $this->connect()->prepare("SELECT * FROM household WHERE household_name=?;");
+        $check_stmt = $this->connect()->prepare("SELECT * FROM household WHERE household_name=? LIMIT 1");
 
         if ($check_stmt->execute(array($house_name))) {
 
-            if ($check_stmt->rowCount() > 0) {
-                //Household with the same name exists and we have to stop the user from creating a new house with the same name
-                header("location:../includes/user-logged-in.php?error=house_exists");
-                return false;
+            return true;
 
-            }
+        }else{
+            return false;
         }
 
-        return true;
 
     }
 
@@ -149,15 +146,14 @@ class first_time_logged extends Dbh
      * @param $user_id
      * @return bool
      */
-    function insert_into_household($group_name, $user_id): bool
+    function insert_into_household($group_name, $user_id,$house_id): bool
     {
 
         $create_stmt = $this->connect()->prepare("BEGIN; 
-            INSERT INTO household( household_name) VALUES (?);
-            INSERT INTO household_accounts(user_id,house_hold_id) VALUES(?,LAST_INSERT_ID());
+            INSERT INTO household_accounts(user_id,house_hold_id) VALUES(?,?);
             COMMIT;");
 
-        if ($create_stmt->execute(array($group_name, $user_id))) {
+        if ($create_stmt->execute(array( $user_id,$house_id))) {
             if ($create_stmt->rowCount() > 0) {
                 return true;
 
